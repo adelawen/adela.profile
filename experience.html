@@ -9,16 +9,47 @@
     <style>
         :root { --primary: #007bff; --bg: #f8f9fa; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); color: #333; }
+        
         .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
         .lang-btn { border: none; background: none; font-weight: bold; color: var(--primary); padding: 5px; cursor: pointer; }
         .lang-active { text-decoration: underline; text-underline-offset: 4px; }
-        .exp-card { background: white; border-radius: 20px; padding: 35px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-        .photo-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 15px; scroll-snap-type: x mandatory; }
-        .slider-item { flex: 0 0 280px; scroll-snap-align: start; }
-        .slider-item img { width: 100%; height: 180px; object-fit: cover; border-radius: 12px; border: 1px solid #eee; }
+
+        .exp-card { background: white; border-radius: 20px; padding: 35px; margin-bottom: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); border: none; }
+        
+        /* --- 核心修正：確保可以右滑 --- */
+        .photo-slider { 
+            display: flex; 
+            overflow-x: auto; /* 允許橫向滾動 */
+            gap: 15px; 
+            padding-bottom: 15px; 
+            scroll-snap-type: x mandatory; 
+            -webkit-overflow-scrolling: touch; /* 讓手機滑動更順暢 */
+        }
+        
+        /* 隱藏醜醜的捲軸，但保留滑動功能 */
+        .photo-slider::-webkit-scrollbar { display: none; }
+
+        .slider-item { 
+            flex: 0 0 280px; /* 重要：不允許照片縮小，固定寬度 280px */
+            scroll-snap-align: start; 
+        }
+
+        .slider-item img { 
+            width: 100%; 
+            height: 180px; 
+            object-fit: cover; 
+            border-radius: 12px; 
+            border: 1px solid #eee; 
+        }
+        
+        /* 統一按鈕樣式 */
         .btn-doc { background: #f1f3f5; color: #495057; border-radius: 8px; padding: 10px 20px; text-decoration: none; font-size: 0.9rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; }
         .btn-doc:hover { background: #e9ecef; color: black; }
-        @media (max-width: 991px) { .navbar-nav { text-align: center; padding: 20px 0; } .slider-item { flex: 0 0 240px; } }
+
+        @media (max-width: 991px) {
+            .navbar-nav { text-align: center; padding: 20px 0; }
+            .slider-item { flex: 0 0 240px; } /* 手機版照片小一點點 */
+        }
     </style>
 </head>
 <body>
@@ -34,7 +65,9 @@
                 <li class="nav-item"><a class="nav-link px-3" href="index.html" data-key="nav-home">Home</a></li>
                 <li class="nav-item"><a class="nav-link px-3" href="projects.html" data-key="nav-projects">Projects</a></li>
                 <li class="nav-item"><a class="nav-link px-3 active" href="experience.html" data-key="nav-exp">Experience</a></li>
-                <li class="nav-item ms-lg-3 mt-3 mt-lg-0"><a href="resume.pdf" download class="btn btn-primary px-4" style="border-radius:50px;" data-key="btn-cv">Download CV</a></li>
+                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                    <a href="resume.pdf" download class="btn btn-primary px-4 shadow-sm" style="border-radius:50px;" data-key="btn-cv">Download CV</a>
+                </li>
                 <li class="nav-item ms-lg-3">
                     <div class="d-flex align-items-center gap-2">
                         <button id="btn-en" class="lang-btn" onclick="switchLang('en')">EN</button>
@@ -56,6 +89,12 @@
         <div class="photo-slider">
             <div class="slider-item"><img src="grouppic1.jpg"></div>
             <div class="slider-item"><img src="grouppic2.jpg"></div>
+            <div class="slider-item"><img src="grouppic3.jpg"></div>
+            <div class="slider-item"><img src="grouppic4.jpg"></div>
+            <div class="slider-item"><img src="grouppic5.jpg"></div>
+            <div class="slider-item"><img src="grouppic6.jpg"></div>
+            <div class="slider-item"><img src="grouppic7.jpg"></div>
+            <div class="slider-item"><img src="grouppic8.jpg"></div>
         </div>
         <div class="text-center mt-3">
             <a href="EMI%20educational%20assistant%20contract.pdf" target="_blank" class="btn-doc">
@@ -68,7 +107,9 @@
         <h4 class="fw-bold text-primary mb-1">AlphaRing International (聚界潔能)</h4>
         <p class="text-muted mb-4" data-key="role-alpha">Administrative Operations Intern | 2024</p>
         <div class="photo-slider">
-            <div class="slider-item"><img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg"></div>
+            <div class="slider-item">
+                <img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg" alt="AlphaRing Lab">
+            </div>
         </div>
         <div class="text-center mt-3">
             <a href="Employment%20Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-doc">
@@ -83,6 +124,7 @@
         en: { "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV", "page-title": "Work Experience", "role-global": "EMI Educational Assistant", "role-alpha": "Operations Intern", "btn-doc": "View Document" },
         zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "page-title": "專業實習經歷", "role-global": "EMI 教育助理", "role-alpha": "行政營運實習生", "btn-doc": "查看證明文件" }
     };
+
     function applyLang(lang) {
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
@@ -91,8 +133,15 @@
         document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
         document.getElementById('btn-zh').classList.toggle('lang-active', lang === 'zh');
     }
-    function switchLang(lang) { localStorage.setItem('pref-lang', lang); applyLang(lang); }
-    window.onload = () => applyLang(localStorage.getItem('pref-lang') || 'en');
+
+    function switchLang(lang) {
+        localStorage.setItem('pref-lang', lang);
+        applyLang(lang);
+    }
+
+    window.onload = () => {
+        applyLang(localStorage.getItem('pref-lang') || 'en');
+    };
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
