@@ -7,17 +7,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
-        .navbar { background: #fff; border-bottom: 1px solid #eee; }
-        .exp-card { background: #fff; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .exp-company { color: #007bff; font-weight: bold; font-size: 1.25rem; }
-        .exp-date { color: #6c757d; font-size: 0.9rem; float: right; }
-        .photo-placeholder { background: #e9ecef; border: 2px dashed #ccc; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 15px; overflow: hidden; }
-        .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
-        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: #007bff; padding: 0 10px; }
+        :root { --primary-color: #007bff; }
+        body { font-family: 'Inter', system-ui, sans-serif; background-color: #f8f9fa; color: #333; }
+        
+        /* 導覽列統一樣式 */
+        .navbar { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
+        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: var(--primary-color); padding: 0 10px; }
+
+        /* 經歷卡片 */
+        .exp-card { background: #fff; border-radius: 20px; padding: 40px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); border: none; }
+        .exp-company { color: var(--primary-color); font-weight: 800; font-size: 1.4rem; margin-bottom: 5px; }
+        .exp-role { font-weight: 600; font-size: 1.1rem; color: #444; }
+        .exp-date { color: #888; font-size: 0.9rem; font-weight: 500; display: block; margin-bottom: 20px; }
+        
+        /* 照片區塊 */
+        .photo-grid { display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap; }
+        .proof-photo { width: 220px; height: 160px; object-fit: cover; border-radius: 12px; border: 1px solid #eee; box-shadow: 0 4px 10px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .proof-photo:hover { transform: translateY(-5px); }
+        
+        /* PDF 按鈕 */
+        .btn-pdf { background: #f1f3f5; color: #495057; border: none; padding: 8px 15px; border-radius: 8px; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; }
+        .btn-pdf:hover { background: #e9ecef; color: #000; }
     </style>
 </head>
 <body>
+
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
@@ -25,6 +39,9 @@
                 <button class="lang-btn" onclick="switchLang('en')">EN</button> | 
                 <button class="lang-btn" onclick="switchLang('zh')">中文</button>
             </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link px-3" href="index.html" data-key="nav-home">Home</a></li>
@@ -35,53 +52,73 @@
         </div>
     </nav>
 
-    <div class="container my-5">
-        <h2 class="fw-bold mb-4" data-key="page-title">Work & Leadership Experience</h2>
-        
+    <div class="container my-5" style="max-width: 900px;">
+        <h1 class="fw-bold mb-5 text-center" data-key="page-title">Professional Experience</h1>
+
         <div class="exp-card">
-            <span class="exp-date">Jun 2024 – Aug 2024</span>
             <div class="exp-company">AlphaRing International (聚界潔能)</div>
-            <h5 class="fw-bold mt-1">Administrative Operations Intern</h5>
-            <div data-key="exp1-content">
+            <div class="exp-role">Administrative Operations Intern</div>
+            <span class="exp-date">June 2024 – Aug 2024</span>
+            <div data-key="exp-alpha">
                 <ul>
-                    <li>Managed high-level executive meetings and logistical needs.</li>
-                    <li>Liaison between executive team and building management for VIP clients.</li>
-                    <li>Spearheaded Tainan Laboratory Grand Opening reception.</li>
+                    <li><strong>Proactive Executive Support:</strong> Independently coordinated guest logistics, NDAs, and dietary needs for high-level meetings.</li>
+                    <li><strong>Event Execution:</strong> Spearheaded reception desk operations for Tainan Laboratory Grand Opening (50+ VIPs).</li>
+                    <li><strong>Bilingual Agility:</strong> Selected through 100% English interview; thrived in a fast-paced startup.</li>
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-md-4"><div class="photo-placeholder"><img src="alpha1.jpg" alt="Proof"></div></div>
-                <div class="col-md-4"><div class="photo-placeholder"><img src="alpha2.jpg" alt="Proof"></div></div>
+            <a href="Employment Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-pdf">
+                <i class="fas fa-file-pdf"></i> View Employment Agreement
+            </a>
+            <div class="photo-grid">
+                <img src="alpha_office.jpg" alt="AlphaRing Work" class="proof-photo">
+                <img src="alpha_opening.jpg" alt="Lab Opening" class="proof-photo">
             </div>
         </div>
 
         <div class="exp-card">
-            <span class="exp-date">Dec 2024</span>
+            <div class="exp-company">NCKU German Student Language Partner (Tandem)</div>
+            <span class="exp-date">Jun 2024 – Aug 2024</span>
+            <div data-key="exp-german">
+                <ul>
+                    <li><strong>Competitive Selection:</strong> Secured one of 34 slots with a structured cultural exchange proposal.</li>
+                    <li><strong>Project Management:</strong> Maintained bi-weekly progress reports for the Chinese Language Center.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="exp-card">
             <div class="exp-company">The Microbiological Society of Taiwan</div>
-            <h5 class="fw-bold mt-1">Bilingual Master of Ceremonies (MC)</h5>
-            <div data-key="exp2-content">
+            <div class="exp-role">Bilingual Master of Ceremonies (MC)</div>
+            <span class="exp-date">Dec 24 - 25, 2024</span>
+            <div data-key="exp-mc">
                 <ul>
-                    <li>Orchestrated annual meeting for 50+ attendees in English and Mandarin.</li>
-                    <li>Coordinated technical presentation logistics for international students.</li>
+                    <li>Orchestrated the annual meeting (50+ attendees) in both English and Mandarin.</li>
+                    <li>Moderated student presentations and poster competitions with high composure.</li>
                 </ul>
-            </div>
-            <div class="row">
-                <div class="col-md-4"><div class="photo-placeholder"><span>Photo Slot</span></div></div>
             </div>
         </div>
 
         <div class="exp-card">
-            <span class="exp-date">Sept 2025 – Dec 2025</span>
-            <div class="exp-company">NCKU Indigenous Resource Center</div>
-            <h5 class="fw-bold mt-1">Cultural Exchange Interpreter & Coordinator</h5>
-            <div data-key="exp3-content">
+            <div class="exp-company">Global Education & Culture Group (遠見文創)</div>
+            <div class="exp-role">Teaching Assistant & Cross-Cultural Coordinator</div>
+            <span class="exp-date">July 28 – Aug 8, 2025</span>
+            <div data-key="exp-ta">
                 <ul>
-                    <li>Simultaneous interpretation for Maori Cultural Team exchange.</li>
-                    <li>Produced English subtitles for "Original Form" Podcast series.</li>
+                    <li><strong>Bilingual Bridge:</strong> Primary linguistic link for Grade 5/6 students and Canadian instructors.</li>
+                    <li><strong>Operational Liaison:</strong> Synchronized curriculum goals across local and international parties.</li>
                 </ul>
             </div>
-            <div class="row">
-                <div class="col-md-4"><div class="photo-placeholder"><span>Photo Slot</span></div></div>
+        </div>
+
+        <div class="exp-card">
+            <div class="exp-company">NCKU Indigenous Resource Center</div>
+            <div class="exp-role">Cultural Exchange Interpreter & Coordinator</div>
+            <span class="exp-date">Sept 2025 – Dec 2025</span>
+            <div data-key="exp-indig">
+                <ul>
+                    <li><strong>Interpretation:</strong> Simultaneous English-Mandarin interpreter for Maori Cultural Team exchange.</li>
+                    <li><strong>Digital Media:</strong> Produced subtitles for "Original Form" (原形必錄) Podcast and authored bilingual press releases.</li>
+                </ul>
             </div>
         </div>
     </div>
@@ -90,19 +127,24 @@
         const langData = {
             en: {
                 "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience",
-                "page-title": "Work & Leadership Experience",
-                "exp1-content": "<ul><li>Managed high-level executive meetings by anticipating logistical needs.</li><li>Coordinated VIP hospitality for 50+ attendees.</li></ul>",
-                "exp2-content": "<ul><li>Orchestrated annual meeting in both English and Mandarin.</li></ul>",
-                "exp3-content": "<ul><li>Served as primary English-Mandarin interpreter for Maori Cultural Team.</li></ul>"
+                "page-title": "Professional Experience",
+                "exp-alpha": "<ul><li>Proactive executive support and logistics management.</li><li>Spearheaded Tainan Lab Grand Opening reception.</li></ul>",
+                "exp-german": "<ul><li>Selected as 1 of 34 language partners for cultural exchange.</li></ul>",
+                "exp-mc": "<ul><li>Bilingual hosting for 2024 Annual Meeting.</li></ul>",
+                "exp-ta": "<ul><li>Bilingual bridge for students and Canadian instructors.</li></ul>",
+                "exp-indig": "<ul><li>Simultaneous interpreter for Maori Cultural Team.</li></ul>"
             },
             zh: {
                 "nav-home": "首頁", "nav-projects": "專案作品", "nav-exp": "實習經歷",
-                "page-title": "工作與實習經驗",
-                "exp1-content": "<ul><li>協助高階主管會議籌備與行政規劃。</li><li>負責聚界潔能台南實驗室開幕儀式接待。</li></ul>",
-                "exp2-content": "<ul><li>擔任台灣微生物學會年會雙語主持人。</li></ul>",
-                "exp3-content": "<ul><li>擔任毛利文化團隊與成大原資中心之口譯人員。</li></ul>"
+                "page-title": "專業實習與經歷",
+                "exp-alpha": "<ul><li>協助高階主管行政規劃與賓客接待。</li><li>負責聚界潔能台南實驗室開幕儀式籌備與現場營運。</li><li>全英文面試錄取，展現新創公司所需的高靈活性。</li></ul>",
+                "exp-german": "<ul><li>從眾多申請者中獲選為學期語伴（僅 34 名）。</li><li>負責撰寫華語中心雙週進度報告。</li></ul>",
+                "exp-mc": "<ul><li>擔任 2024 微生物學會年會之雙語主持人。</li><li>協調國際學生技術簡報與海報競賽流程。</li></ul>",
+                "exp-ta": "<ul><li>擔任加拿大老師與國小學生間的溝通橋樑與翻譯。</li><li>協調跨國教學課程進度同步。</li></ul>",
+                "exp-indig": "<ul><li>擔任毛利人文化團隊訪校期間之英漢口譯。</li><li>負責《原形必錄》Podcast 英文字幕製作與雙語新聞稿。</li></ul>"
             }
         };
+
         function switchLang(lang) {
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
