@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | HsinYu Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #f4f7f6; font-family: 'Inter', sans-serif; }
+        .navbar { background: white; border-bottom: 2px solid #eef2f3; }
+        .project-header { background: #fff; padding: 60px 0; border-bottom: 1px solid #eee; margin-bottom: 40px; }
+        .content-card { background: white; border-radius: 15px; border: none; box-shadow: 0 4px 15px rgba(0,0,0,0.05); margin-bottom: 30px; }
+        .badge-tech { background: #e9ecef; color: #495057; margin-right: 5px; }
+        .lang-switch { font-size: 0.9rem; cursor: pointer; }
+        .section-title { border-left: 5px solid #007bff; padding-left: 15px; margin-bottom: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html text-primary">HsinYu.</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home / 首頁</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="projects.html">Projects / 專案</a></li>
+                    <li class="nav-item"><a class="nav-link" href="experience.html">Experience / 經歷</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resume.html">Resume / 履歷</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <header class="project-header text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Detailed Projects</h1>
+            <p class="lead text-muted">專案研究與技術成果詳述</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card content-card p-4 p-md-5">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2 class="section-title">Vissim 交通流模擬與 Python 自動化</h2>
+                            <h5 class="text-muted">Vissim Traffic Simulation & Python Automation</h5>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <span class="badge bg-primary">ITS</span>
+                            <span class="badge bg-dark">Python</span>
+                        </div>
+                    </div>
+                    
+                    <hr>
+
+                    <div class="row mt-4">
+                        <div class="col-md-6 border-end">
+                            <h5 class="fw-bold"><i class="fas fa-bullseye me-2"></i>研究動機與方法</h5>
+                            <p>本專案旨在解決傳統路口評估效率低下的問題。我利用 **Vissim** 建立高精確度的交通流模型，並開發 **Python 腳本** 介面（COM Interface）來實現參數批量修改與數據自動提取。</p>
+                            <h5 class="fw-bold mt-4"><i class="fas fa-check-circle me-2"></i>具體成果</h5>
+                            <ul>
+                                <li>自動化處理超過 50 組不同配時方案。</li>
+                                <li>將原本需耗時 3 天的數據整理工作縮短至 2 小時。</li>
+                                <li>成功找出路口瓶頸並提出優化建議。</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6 ps-md-4">
+                            <h5 class="fw-bold text-primary">Methodology</h5>
+                            <p>This project optimizes intersection evaluations. Using the **Vissim COM Interface**, I developed **Python scripts** to automate parameter calibration and data extraction, ensuring high-fidelity modeling.</p>
+                            <h5 class="fw-bold text-primary mt-4">Key Results</h5>
+                            <ul>
+                                <li>Automated 50+ signal timing scenarios.</li>
+                                <li>Reduced data processing time from 3 days to 2 hours.</li>
+                                <li>Identified critical bottlenecks and proposed mitigation strategies.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="card content-card p-4 p-md-5">
+                    <h2 class="section-title">物流碳盤查與減排路徑：以 DHL 為例</h2>
+                    <h5 class="text-muted">Logistics Carbon Inventory & Reduction Path: DHL Case Study</h5>
+                    <hr>
+                    <div class="row mt-4">
+                        <div class="col-md-6 border-end">
+                            <h5 class="fw-bold">研究背景</h5>
+                            <p>針對全球供應鏈去碳化趨勢，我以工程方法分析物流環節中的碳排來源。透過 DHL 的減排數據，建立數學模型預測不同綠能運輸佔比下的減碳潛力。</p>
+                        </div>
+                        <div class="col-md-6 ps-md-4">
+                            <h5 class="fw-bold text-primary">Research Overview</h5>
+                            <p>Focused on supply chain decarbonization, I applied engineering methods to analyze emission sources. Using DHL's roadmap, I modeled the potential impact of green transportation transitions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 text-center text-muted">
+        <small>© 2026 HsinYu. All Rights Reserved.</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
