@@ -10,20 +10,23 @@
         :root { --primary: #007bff; --bg: #f8f9fa; }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: #333; }
         
-        /* 導覽列：高度統一與陰影 */
         .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
-        .nav-link { font-weight: 500; color: #555 !important; transition: 0.3s; }
+        .nav-link { font-weight: 500; color: #555 !important; }
         .nav-link.active { color: var(--primary) !important; font-weight: 700; }
         .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 22px; font-size: 0.9rem; }
 
-        /* 語言切換紐樣式 */
-        .lang-btn { border: none; background: none; font-weight: bold; color: var(--primary); padding: 5px; cursor: pointer; transition: 0.2s; }
-        .lang-btn:hover { opacity: 0.6; }
+        .lang-btn { border: none; background: none; font-weight: bold; color: var(--primary); padding: 5px; cursor: pointer; }
         .lang-active { text-decoration: underline; text-underline-offset: 4px; }
 
-        /* Hero Section */
         .hero-section { min-height: 85vh; display: flex; align-items: center; padding: 60px 0; }
         .profile-photo { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* 社交按鈕樣式 */
+        .social-links .btn { border-radius: 50px; font-weight: 600; padding: 10px 20px; transition: 0.3s; }
+        .btn-email { background-color: #ea4335; color: white !important; border: none; }
+        .btn-email:hover { background-color: #d33828; opacity: 0.9; }
+        .btn-linkedin { background-color: #0077b5; color: white !important; border: none; }
+        .btn-linkedin:hover { background-color: #005582; opacity: 0.9; }
 
         @media (max-width: 991px) {
             .navbar-nav { text-align: center; padding: 20px 0; }
@@ -65,9 +68,18 @@
             <div class="col-lg-7">
                 <h6 class="text-primary fw-bold text-uppercase mb-3" data-key="hero-tag">ITS & Logistics Management</h6>
                 <h1 class="display-4 fw-bold mb-4">Hi, I'm <span class="text-primary">HsinYu</span></h1>
-                <p class="lead text-secondary mb-5" data-key="hero-desc">Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.</p>
-                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
-                    <a href="projects.html" class="btn btn-dark btn-resume px-4 shadow" data-key="btn-view-projects">Explore Projects</a>
+                <p class="lead text-secondary mb-4" data-key="hero-desc">Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.</p>
+                
+                <div class="social-links d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                    <a href="projects.html" class="btn btn-dark shadow" data-key="btn-view-projects">Explore Projects</a>
+                    
+                    <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn btn-linkedin shadow">
+                        <i class="fab fa-linkedin me-2"></i>LinkedIn
+                    </a>
+                    
+                    <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn btn-email shadow">
+                        <i class="fas fa-envelope me-2"></i>Email
+                    </a>
                 </div>
             </div>
             <div class="col-lg-5 text-center mt-5 mt-lg-0">
@@ -80,7 +92,7 @@
 <script>
     const langData = {
         en: { "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV", "hero-tag": "ITS & Logistics Management", "hero-desc": "Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.", "btn-view-projects": "Explore Projects" },
-        zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "hero-tag": "智慧交通與物流管理", "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化，致力於永續物流與模擬分析。", "btn-view-projects": "查看作品" }
+        zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "hero-tag": "智慧交通與物流管理", "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化，致力於將數據轉化為物流決策。", "btn-view-projects": "查看作品集" }
     };
 
     function applyLang(lang) {
@@ -88,7 +100,6 @@
             const key = el.getAttribute('data-key');
             if (langData[lang][key]) el.innerText = langData[lang][key];
         });
-        // 切換按鈕高亮
         document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
         document.getElementById('btn-zh').classList.toggle('lang-active', lang === 'zh');
     }
