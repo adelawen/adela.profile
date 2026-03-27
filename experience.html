@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,45 +7,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { --primary-color: #007bff; --bg-light: #f8f9fa; }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-light); color: #333; }
-        
+        :root { --primary-color: #007bff; }
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; color: #333; }
         .navbar { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
-        .exp-card { background: #fff; border-radius: 20px; padding: 40px; margin-bottom: 40px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        .exp-company { color: var(--primary-color); font-weight: 800; font-size: 1.4rem; }
-
-        /* --- 核心修正：強制所有照片容器大小一致 --- */
-        .photo-slider {
-            display: flex;
-            overflow-x: auto;
-            gap: 15px;
-            padding: 10px 0 20px 0;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .slider-item {
-            flex: 0 0 300px !important; /* 強制寬度 300px */
-            width: 300px !important;
-            scroll-snap-align: start;
-        }
-
-        /* 強制照片比例為 3:2，且高度固定 */
-        .slider-item img {
-            width: 100% !important;
-            height: 200px !important; /* 強制高度 200px */
-            object-fit: cover !important; /* 核心：這會自動裁切多餘部分，不變形 */
-            border-radius: 12px;
-            border: 1px solid #eee;
-        }
-
-        .btn-wrapper { text-align: center; margin-top: 20px; }
+        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: var(--primary-color); padding: 5px; }
+        
+        .exp-card { background: #fff; border-radius: 20px; padding: 40px; margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .photo-slider { display: flex; overflow-x: auto; gap: 15px; padding-bottom: 20px; scroll-snap-type: x mandatory; }
+        .slider-item { flex: 0 0 300px; scroll-snap-align: start; }
+        .slider-item img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; border: 1px solid #eee; }
         .btn-pdf { background: #f1f3f5; color: #495057; border-radius: 8px; padding: 10px 20px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
-
-        @media (max-width: 768px) {
-            .slider-item { flex: 0 0 260px !important; width: 260px !important; }
-            .slider-item img { height: 180px !important; }
-        }
+        
+        @media (max-width: 991px) { .navbar-nav { text-align: center; padding: 20px 0; } }
     </style>
 </head>
 <body>
@@ -53,57 +26,79 @@
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="experience.html">Experience</a></li>
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html" data-key="nav-home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="projects.html" data-key="nav-projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="experience.html" data-key="nav-exp">Experience</a></li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="resume.pdf" download class="btn btn-primary px-4 shadow-sm" style="border-radius:50px;" data-key="btn-cv">Download CV</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <div class="d-flex align-items-center justify-content-center gap-2">
+                            <button class="lang-btn" onclick="switchLang('en')">EN</button>
+                            <span class="text-muted">|</span>
+                            <button class="lang-btn" onclick="switchLang('zh')">中</button>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container my-5" style="max-width: 900px;">
-        <h1 class="fw-bold mb-5 text-center">Work Experience</h1>
+        <h1 class="fw-bold mb-5 text-center" data-key="page-title">Work Experience</h1>
 
         <div class="exp-card">
-            <div class="exp-company">Global Views Monthly (遠見雜誌)</div>
-            <p class="exp-role">EMI Educational Assistant | 2025 - Present</p>
-            
+            <h4 class="fw-bold text-primary">Global Views Monthly (遠見雜誌)</h4>
+            <p class="text-muted" data-key="role-global">EMI Educational Assistant | 2025 - Present</p>
             <div class="photo-slider">
                 <div class="slider-item"><img src="grouppic1.jpg"></div>
                 <div class="slider-item"><img src="grouppic2.jpg"></div>
-                <div class="slider-item"><img src="grouppic3.jpg"></div>
-                <div class="slider-item"><img src="grouppic4.jpg"></div>
-                <div class="slider-item"><img src="grouppic5.jpg"></div>
-                <div class="slider-item"><img src="grouppic6.jpg"></div>
-                <div class="slider-item"><img src="grouppic7.jpg"></div>
-                <div class="slider-item"><img src="grouppic8.jpg"></div>
-            </div>
-
-            <div class="btn-wrapper">
-                <a href="EMI%20educational%20assistant%20contract.pdf" target="_blank" class="btn-pdf">
-                    <i class="fas fa-file-contract"></i> View Contract
-                </a>
+                </div>
+            <div class="text-center mt-3">
+                <a href="EMI%20educational%20assistant%20contract.pdf" target="_blank" class="btn-pdf" data-key="btn-contract">View Contract</a>
             </div>
         </div>
 
         <div class="exp-card">
-            <div class="exp-company">AlphaRing International (聚界潔能)</div>
-            <p class="exp-role">Administrative Operations Intern | 2024</p>
-
+            <h4 class="fw-bold text-primary">AlphaRing International (聚界潔能)</h4>
+            <p class="text-muted" data-key="role-alpha">Administrative Operations Intern | 2024</p>
             <div class="photo-slider">
-                <div class="slider-item">
-                    <img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg" alt="AlphaRing Lab">
-                </div>
+                <div class="slider-item"><img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg"></div>
             </div>
-
-            <div class="btn-wrapper">
-                <a href="Employment%20Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-pdf">
-                    <i class="fas fa-file-pdf"></i> View Agreement
-                </a>
+            <div class="text-center mt-3">
+                <a href="Employment%20Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-pdf" data-key="btn-agreement">View Agreement</a>
             </div>
         </div>
     </div>
+
+    <script>
+        const langData = {
+            en: { "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV", "page-title": "Work Experience", "role-global": "EMI Educational Assistant | 2025 - Present", "role-alpha": "Operations Intern | 2024", "btn-contract": "View Contract", "btn-agreement": "View Agreement" },
+            zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "page-title": "專業實習經歷", "role-global": "EMI 教育助理 | 2025 - 至今", "role-alpha": "行政營運實習生 | 2024", "btn-contract": "查看合約", "btn-agreement": "查看協議" }
+        };
+
+        function applyLang(lang) {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (langData[lang][key]) el.innerText = langData[lang][key];
+            });
+            document.querySelector(`[href="experience.html"][data-key]`)?.classList.add('active');
+        }
+
+        function switchLang(lang) {
+            localStorage.setItem('pref-lang', lang);
+            applyLang(lang);
+        }
+
+        window.onload = () => {
+            const savedLang = localStorage.getItem('pref-lang') || 'en';
+            applyLang(savedLang);
+        };
+    </script>
 </body>
 </html>
