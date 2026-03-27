@@ -4,45 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HsinYu | Portfolio</title>
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
-        :root { --primary-color: #007bff; }
-        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: #fff; color: #333; }
+        :root { --primary-color: #007bff; --bg-light: #f8f9fa; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #333; }
         
-        /* 導覽列 */
+        /* 導覽列優化 */
         .navbar { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
-        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: var(--primary-color); padding: 0 10px; }
-        
-        /* Hero Section */
-        .hero-section {
-            min-height: 90vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 80px 0;
+        .nav-link { font-weight: 500; color: #555 !important; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--primary-color) !important; }
+        .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 20px; transition: 0.3s; }
+
+        /* Hero 區塊 */
+        .hero-section { min-height: 90vh; display: flex; align-items: center; background: linear-gradient(135deg, #f8f9fa 0%, #eef2f7 100%); padding: 80px 0; }
+        .profile-photo { 
+            width: 320px; height: 320px; object-fit: cover; border-radius: 50%; 
+            border: 8px solid #fff; box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
         }
 
-        /* 個人照 */
-        .profile-photo {
-            width: 320px;
-            height: 320px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 8px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .btn-cv {
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        footer { background: #f8f9fa; padding: 30px 0; border-top: 1px solid #eee; }
+        .lang-toggle { cursor: pointer; font-weight: bold; color: var(--primary-color); text-decoration: none; }
+        footer { background: #fff; padding: 40px 0; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
@@ -50,23 +32,21 @@
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
-            
             <div class="ms-auto d-flex align-items-center order-lg-last">
-                <button class="lang-btn" onclick="switchLang('en')">EN</button> | 
-                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+                <a href="javascript:void(0)" class="lang-toggle me-2" onclick="switchLang('en')">EN</a>
+                <span class="text-muted">|</span>
+                <a href="javascript:void(0)" class="lang-toggle ms-2" onclick="switchLang('zh')">中</a>
             </div>
-
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item"><a class="nav-link px-3 active" href="index.html" data-key="nav-home">Home</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="projects.html" data-key="nav-projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link px-3" href="experience.html" data-key="nav-exp">Experience</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a href="resume.pdf" download class="btn btn-primary btn-cv shadow-sm" data-key="btn-cv">
+                        <a href="resume.pdf" download class="btn btn-primary btn-resume shadow-sm" data-key="btn-cv">
                             <i class="fas fa-file-download me-2"></i>Download CV
                         </a>
                     </li>
@@ -79,26 +59,24 @@
         <div class="container">
             <div class="row align-items-center text-center text-lg-start">
                 <div class="col-lg-7">
-                    <span class="text-uppercase small text-secondary fw-bold" data-key="hero-tag">Transportation Management | ITS | SCM</span>
-                    <h1 class="display-3 fw-bold my-3">Hi, I'm <span class="text-primary">HsinYu</span></h1>
-                    <p class="lead mb-5" data-key="hero-desc">Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization. Experienced in Vissim simulation and carbon reduction logistics.</p>
-
+                    <h6 class="text-primary fw-bold text-uppercase mb-3" data-key="hero-tag">ITS & Logistics Management</h6>
+                    <h1 class="display-3 fw-bold mb-4">Crafting <span class="text-primary">Efficient</span> Movements.</h1>
+                    <p class="lead text-secondary mb-5" data-key="hero-desc">NCKU student specializing in Intelligent Transportation Systems. Turning complex data into sustainable logistics solutions.</p>
                     <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
-                        <a href="projects.html" class="btn btn-primary btn-cv px-4" data-key="btn-view-projects">View Projects</a>
-                        <a href="experience.html" class="btn btn-outline-primary btn-cv px-4" data-key="btn-view-exp">Experience</a>
+                        <a href="projects.html" class="btn btn-dark btn-resume px-4" data-key="btn-view-projects">Explore Projects</a>
+                        <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn btn-outline-dark btn-resume px-4"><i class="fab fa-linkedin me-2"></i>LinkedIn</a>
                     </div>
                 </div>
-
                 <div class="col-lg-5 text-center mt-5 mt-lg-0">
-                    <img src="my-face.jpg" alt="HsinYu" class="img-fluid profile-photo">
+                    <img src="my-face.jpg" alt="Profile" class="profile-photo">
                 </div>
             </div>
         </div>
     </header>
 
     <footer class="text-center">
-        <p class="text-muted mb-1">© 2026 HsinYu Portfolio</p>
-        <p class="small text-secondary" data-key="footer-sub">NCKU Transportation & Communication Management Science</p>
+        <p class="text-muted mb-1">© 2026 Wen, Hsin-Yu</p>
+        <p class="small text-secondary">National Cheng Kung University | TCM Science</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -106,20 +84,17 @@
         const langData = {
             en: {
                 "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV",
-                "hero-tag": "Transportation Management | ITS | SCM",
-                "hero-desc": "Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization. Experienced in Vissim simulation and carbon reduction logistics.",
-                "btn-view-projects": "View Projects", "btn-view-exp": "Experience",
-                "footer-sub": "NCKU Transportation & Communication Management Science"
+                "hero-tag": "ITS & Logistics Management",
+                "hero-desc": "NCKU student specializing in Intelligent Transportation Systems. Turning complex data into sustainable logistics solutions.",
+                "btn-view-projects": "Explore Projects"
             },
             zh: {
                 "nav-home": "首頁", "nav-projects": "專案作品", "nav-exp": "實習經歷", "btn-cv": "下載履歷",
-                "hero-tag": "交通管理 | 智慧交通系統 | 供應鏈管理",
-                "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化。具備 Vissim 模擬分析與 Python 自動化經驗，致力於永續物流發展。",
-                "btn-view-projects": "查看作品", "btn-view-exp": "實習經歷",
-                "footer-sub": "國立成功大學 交通管理科學系"
+                "hero-tag": "智慧交通與物流管理",
+                "hero-desc": "就讀於成大交管系，專注於智慧交通系統 (ITS)。擅長將複雜數據轉化為永續的物流與交通解決方案。",
+                "btn-view-projects": "查看作品"
             }
         };
-
         function switchLang(lang) {
             document.querySelectorAll('[data-key]').forEach(el => {
                 const key = el.getAttribute('data-key');
@@ -127,11 +102,7 @@
             });
             localStorage.setItem('pref-lang', lang);
         }
-
-        window.onload = () => { 
-            const savedLang = localStorage.getItem('pref-lang') || 'en';
-            switchLang(savedLang); 
-        };
+        window.onload = () => { switchLang(localStorage.getItem('pref-lang') || 'en'); };
     </script>
 </body>
 </html>
