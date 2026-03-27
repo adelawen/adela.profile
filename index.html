@@ -9,29 +9,21 @@
     <style>
         :root { --primary: #007bff; --bg: #f8f9fa; }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: #333; }
-        
         .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
         .nav-link { font-weight: 500; color: #555 !important; }
         .nav-link.active { color: var(--primary) !important; font-weight: 700; }
-        .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 22px; font-size: 0.9rem; }
-
+        .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 22px; }
         .lang-btn { border: none; background: none; font-weight: bold; color: var(--primary); padding: 5px; cursor: pointer; }
         .lang-active { text-decoration: underline; text-underline-offset: 4px; }
 
+        /* Hero & Buttons */
         .hero-section { min-height: 85vh; display: flex; align-items: center; padding: 60px 0; }
         .profile-photo { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .btn-action { border-radius: 50px; font-weight: 600; padding: 10px 20px; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
+        .btn-linkedin { background: #0077b5; color: white !important; border: none; }
+        .btn-email { background: #ea4335; color: white !important; border: none; }
 
-        /* 社交按鈕樣式 */
-        .social-links .btn { border-radius: 50px; font-weight: 600; padding: 10px 20px; transition: 0.3s; }
-        .btn-email { background-color: #ea4335; color: white !important; border: none; }
-        .btn-email:hover { background-color: #d33828; opacity: 0.9; }
-        .btn-linkedin { background-color: #0077b5; color: white !important; border: none; }
-        .btn-linkedin:hover { background-color: #005582; opacity: 0.9; }
-
-        @media (max-width: 991px) {
-            .navbar-nav { text-align: center; padding: 20px 0; }
-            .nav-item { margin-bottom: 15px; }
-        }
+        @media (max-width: 991px) { .navbar-nav { text-align: center; padding: 20px 0; } .nav-item { margin-bottom: 15px; } }
     </style>
 </head>
 <body>
@@ -69,16 +61,13 @@
                 <h6 class="text-primary fw-bold text-uppercase mb-3" data-key="hero-tag">ITS & Logistics Management</h6>
                 <h1 class="display-4 fw-bold mb-4">Hi, I'm <span class="text-primary">HsinYu</span></h1>
                 <p class="lead text-secondary mb-4" data-key="hero-desc">Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.</p>
-                
-                <div class="social-links d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
-                    <a href="projects.html" class="btn btn-dark shadow" data-key="btn-view-projects">Explore Projects</a>
-                    
-                    <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn btn-linkedin shadow">
-                        <i class="fab fa-linkedin me-2"></i>LinkedIn
+                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                    <a href="projects.html" class="btn btn-dark btn-action shadow" data-key="btn-view-projects">Explore Projects</a>
+                    <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn btn-linkedin btn-action shadow">
+                        <i class="fab fa-linkedin"></i> LinkedIn
                     </a>
-                    
-                    <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn btn-email shadow">
-                        <i class="fas fa-envelope me-2"></i>Email
+                    <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn btn-email btn-action shadow">
+                        <i class="fas fa-envelope"></i> Email
                     </a>
                 </div>
             </div>
@@ -92,9 +81,8 @@
 <script>
     const langData = {
         en: { "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV", "hero-tag": "ITS & Logistics Management", "hero-desc": "Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.", "btn-view-projects": "Explore Projects" },
-        zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "hero-tag": "智慧交通與物流管理", "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化，致力於將數據轉化為物流決策。", "btn-view-projects": "查看作品集" }
+        zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "hero-tag": "智慧交通與物流管理", "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化。", "btn-view-projects": "查看作品" }
     };
-
     function applyLang(lang) {
         document.querySelectorAll('[data-key]').forEach(el => {
             const key = el.getAttribute('data-key');
@@ -103,15 +91,8 @@
         document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
         document.getElementById('btn-zh').classList.toggle('lang-active', lang === 'zh');
     }
-
-    function switchLang(lang) {
-        localStorage.setItem('pref-lang', lang);
-        applyLang(lang);
-    }
-
-    window.onload = () => {
-        applyLang(localStorage.getItem('pref-lang') || 'en');
-    };
+    function switchLang(lang) { localStorage.setItem('pref-lang', lang); applyLang(lang); }
+    window.onload = () => applyLang(localStorage.getItem('pref-lang') || 'en');
 </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
