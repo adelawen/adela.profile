@@ -21,37 +21,33 @@
         .exp-role { font-weight: 600; font-size: 1.1rem; color: #444; }
         .exp-date { color: #888; font-size: 0.9rem; margin-bottom: 20px; display: block; }
         
-        /* --- 滑動相簿 CSS --- */
+        /* --- 滑動相簿 CSS (統一規格) --- */
         .photo-slider {
             display: flex;
-            overflow-x: auto; /* 啟用水平捲動 */
+            overflow-x: auto;
             gap: 15px;
             padding: 10px 0 20px 0;
-            scroll-snap-type: x mandatory; /* 滑動對齊感 */
+            scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
-        /* 隱藏捲動條但保留功能 */
         .photo-slider::-webkit-scrollbar { height: 6px; }
         .photo-slider::-webkit-scrollbar-thumb { background: #ddd; border-radius: 10px; }
         
         .slider-item {
-            flex: 0 0 calc(33.333% - 10px); /* 電腦版顯示三張 */
+            flex: 0 0 calc(33.333% - 10px);
             min-width: 280px;
             scroll-snap-align: start;
         }
+        /* 這裡統一了所有照片的高度與裁切方式 */
         .slider-item img {
             width: 100%;
-            height: 200px; /* 固定高度保持整齊 */
-            object-fit: cover; /* 裁切圖片不變形 */
+            height: 200px; 
+            object-fit: cover; 
             border-radius: 12px;
             border: 1px solid #eee;
             transition: transform 0.3s ease;
         }
         .slider-item img:hover { transform: scale(1.03); }
-
-        /* 單張照片樣式 (AlphaRing 用) */
-        .single-photo-container { text-align: center; margin: 30px 0; }
-        .single-photo { max-width: 400px; width: 100%; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
 
         /* PDF 按鈕 */
         .btn-wrapper { text-align: center; margin-top: 20px; }
@@ -63,7 +59,7 @@
         .btn-pdf:hover { background: #e9ecef; color: #000; }
 
         @media (max-width: 768px) {
-            .slider-item { flex: 0 0 75%; } /* 手機版一次看一張多一點 */
+            .slider-item { flex: 0 0 75%; }
         }
     </style>
 </head>
@@ -102,11 +98,11 @@
             <div data-key="exp-global">
                 <ul>
                     <li>Collaborated on EMI (English as a Medium of Instruction) educational promotion.</li>
-                    <li>Supported editorial coordination and administrative tasks for various media projects.</li>
+                    <li>Supported editorial coordination and administrative tasks.</li>
                 </ul>
             </div>
 
-            <h6 class="fw-bold mt-4 mb-2"><i class="fas fa-camera-retro me-2"></i>Internship Gallery (Slide to view)</h6>
+            <h6 class="fw-bold mt-4 mb-2"><i class="fas fa-camera-retro me-2"></i>Internship Gallery</h6>
             <div class="photo-slider">
                 <div class="slider-item"><img src="grouppic1.jpg" alt="Moment 1"></div>
                 <div class="slider-item"><img src="grouppic2.jpg" alt="Moment 2"></div>
@@ -135,9 +131,14 @@
                     <li>Managed reception desk operations for Tainan Laboratory Grand Opening.</li>
                 </ul>
             </div>
-            <div class="single-photo-container">
-                <img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg" alt="AlphaRing Lab" class="single-photo">
+
+            <h6 class="fw-bold mt-4 mb-2"><i class="fas fa-image me-2"></i>Laboratory Ceremony</h6>
+            <div class="photo-slider">
+                <div class="slider-item">
+                    <img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg" alt="AlphaRing Lab">
+                </div>
             </div>
+
             <div class="btn-wrapper">
                 <a href="Employment%20Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-pdf">
                     <i class="fas fa-file-pdf"></i> View Employment Agreement
