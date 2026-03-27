@@ -11,13 +11,10 @@
         body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background-color: var(--bg-light); color: #333; }
         
         .navbar { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #eee; backdrop-filter: blur(10px); }
-        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: var(--primary-color); padding: 0 10px; }
-        .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 20px; }
-
         .exp-card { background: #fff; border-radius: 20px; padding: 40px; margin-bottom: 40px; border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
         .exp-company { color: var(--primary-color); font-weight: 800; font-size: 1.4rem; }
-        
-        /* --- 統一照片規格 --- */
+
+        /* --- 核心修正：強制所有照片容器大小一致 --- */
         .photo-slider {
             display: flex;
             overflow-x: auto;
@@ -26,38 +23,28 @@
             scroll-snap-type: x mandatory;
             -webkit-overflow-scrolling: touch;
         }
-        
-        /* 這裡是關鍵：限制每一張照片容器的大小 */
+
         .slider-item {
-            flex: 0 0 300px !important; /* 強制寬度固定為 300px */
-            max-width: 300px !important;
+            flex: 0 0 300px !important; /* 強制寬度 300px */
+            width: 300px !important;
             scroll-snap-align: start;
         }
 
+        /* 強制照片比例為 3:2，且高度固定 */
         .slider-item img {
             width: 100% !important;
-            height: 200px !important; /* 強制高度固定為 200px */
-            object-fit: cover !important; /* 確保不變形且填滿 */
+            height: 200px !important; /* 強制高度 200px */
+            object-fit: cover !important; /* 核心：這會自動裁切多餘部分，不變形 */
             border-radius: 12px;
             border: 1px solid #eee;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
         }
-        .slider-item img:hover { transform: scale(1.03); }
 
         .btn-wrapper { text-align: center; margin-top: 20px; }
-        .btn-pdf { 
-            background: #f1f3f5; color: #495057; border: none; padding: 10px 20px; 
-            border-radius: 8px; text-decoration: none; display: inline-flex; 
-            align-items: center; gap: 8px; font-weight: 500;
-        }
-
-        /* 隱藏捲動條 */
-        .photo-slider::-webkit-scrollbar { height: 5px; }
-        .photo-slider::-webkit-scrollbar-thumb { background: #eee; border-radius: 10px; }
+        .btn-pdf { background: #f1f3f5; color: #495057; border-radius: 8px; padding: 10px 20px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
 
         @media (max-width: 768px) {
-            .slider-item { flex: 0 0 250px !important; }
+            .slider-item { flex: 0 0 260px !important; width: 260px !important; }
+            .slider-item img { height: 180px !important; }
         }
     </style>
 </head>
@@ -66,48 +53,32 @@
     <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
-            <div class="ms-auto d-flex align-items-center order-lg-last">
-                <button class="lang-btn" onclick="switchLang('en')">EN</button> | 
-                <button class="lang-btn" onclick="switchLang('zh')">中</button>
-            </div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="projects.html">Projects</a></li>
-                    <li class="nav-item"><a class="nav-link px-3 active" href="experience.html">Experience</a></li>
-                    <li class="nav-item ms-lg-3">
-                        <a href="resume.pdf" download class="btn btn-primary btn-resume shadow-sm">Download CV</a>
-                    </li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="experience.html">Experience</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <div class="container my-5" style="max-width: 900px;">
-        <h1 class="fw-bold mb-5 text-center" data-key="page-title">Experience Detail</h1>
+        <h1 class="fw-bold mb-5 text-center">Work Experience</h1>
 
         <div class="exp-card">
             <div class="exp-company">Global Views Monthly (遠見雜誌)</div>
             <p class="exp-role">EMI Educational Assistant | 2025 - Present</p>
-            <div data-key="exp-global">
-                <ul>
-                    <li>Assisted in EMI project coordination and editorial support.</li>
-                </ul>
-            </div>
-
-            <h6 class="fw-bold mt-4 mb-2"><i class="fas fa-images me-2"></i>Internship Gallery</h6>
+            
             <div class="photo-slider">
-                <div class="slider-item"><img src="grouppic1.jpg" alt="Moment 1"></div>
-                <div class="slider-item"><img src="grouppic2.jpg" alt="Moment 2"></div>
-                <div class="slider-item"><img src="grouppic3.jpg" alt="Moment 3"></div>
-                <div class="slider-item"><img src="grouppic4.jpg" alt="Moment 4"></div>
-                <div class="slider-item"><img src="grouppic5.jpg" alt="Moment 5"></div>
-                <div class="slider-item"><img src="grouppic6.jpg" alt="Moment 6"></div>
-                <div class="slider-item"><img src="grouppic7.jpg" alt="Moment 7"></div>
-                <div class="slider-item"><img src="grouppic8.jpg" alt="Moment 8"></div>
+                <div class="slider-item"><img src="grouppic1.jpg"></div>
+                <div class="slider-item"><img src="grouppic2.jpg"></div>
+                <div class="slider-item"><img src="grouppic3.jpg"></div>
+                <div class="slider-item"><img src="grouppic4.jpg"></div>
+                <div class="slider-item"><img src="grouppic5.jpg"></div>
+                <div class="slider-item"><img src="grouppic6.jpg"></div>
+                <div class="slider-item"><img src="grouppic7.jpg"></div>
+                <div class="slider-item"><img src="grouppic8.jpg"></div>
             </div>
 
             <div class="btn-wrapper">
@@ -120,13 +91,7 @@
         <div class="exp-card">
             <div class="exp-company">AlphaRing International (聚界潔能)</div>
             <p class="exp-role">Administrative Operations Intern | 2024</p>
-            <div data-key="exp-alpha">
-                <ul>
-                    <li>Managed VIP reception and high-level logistics for Lab Opening.</li>
-                </ul>
-            </div>
 
-            <h6 class="fw-bold mt-4 mb-2"><i class="fas fa-image me-2"></i>Laboratory Ceremony</h6>
             <div class="photo-slider">
                 <div class="slider-item">
                     <img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg" alt="AlphaRing Lab">
@@ -140,20 +105,5 @@
             </div>
         </div>
     </div>
-
-    <script>
-        const langData = {
-            en: { "page-title": "Work Experience", "exp-global": "<ul><li>Educational support.</li></ul>", "exp-alpha": "<ul><li>Logistics and event support.</li></ul>" },
-            zh: { "page-title": "專業實習經歷", "exp-global": "<ul><li>教育專案支援與行政協作。</li></ul>", "exp-alpha": "<ul><li>VIP 接待與實驗室開幕執行。</li></ul>" }
-        };
-        function switchLang(lang) {
-            document.querySelectorAll('[data-key]').forEach(el => {
-                const key = el.getAttribute('data-key');
-                el.innerHTML = langData[lang][key];
-            });
-            localStorage.setItem('pref-lang', lang);
-        }
-        window.onload = () => { switchLang(localStorage.getItem('pref-lang') || 'en'); };
-    </script>
 </body>
 </html>
