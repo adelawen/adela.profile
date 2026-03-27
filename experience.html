@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | HsinYu</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f8f9fa; }
+        .navbar { background: #fff; border-bottom: 1px solid #eee; }
+        .exp-card { background: #fff; border-radius: 15px; padding: 30px; margin-bottom: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .exp-company { color: #007bff; font-weight: bold; font-size: 1.25rem; }
+        .exp-date { color: #6c757d; font-size: 0.9rem; float: right; }
+        .photo-placeholder { background: #e9ecef; border: 2px dashed #ccc; height: 200px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: #999; margin-top: 15px; overflow: hidden; }
+        .photo-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+        .lang-btn { cursor: pointer; border: none; background: none; font-weight: bold; color: #007bff; padding: 0 10px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
+            <div class="ms-auto d-flex align-items-center order-lg-last">
+                <button class="lang-btn" onclick="switchLang('en')">EN</button> | 
+                <button class="lang-btn" onclick="switchLang('zh')">中文</button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html" data-key="nav-home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="projects.html" data-key="nav-projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link px-3 active" href="experience.html" data-key="nav-exp">Experience</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <h2 class="fw-bold mb-4" data-key="page-title">Work & Leadership Experience</h2>
+        
+        <div class="exp-card">
+            <span class="exp-date">Jun 2024 – Aug 2024</span>
+            <div class="exp-company">AlphaRing International (聚界潔能)</div>
+            <h5 class="fw-bold mt-1">Administrative Operations Intern</h5>
+            <div data-key="exp1-content">
+                <ul>
+                    <li>Managed high-level executive meetings and logistical needs.</li>
+                    <li>Liaison between executive team and building management for VIP clients.</li>
+                    <li>Spearheaded Tainan Laboratory Grand Opening reception.</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><div class="photo-placeholder"><img src="alpha1.jpg" alt="Proof"></div></div>
+                <div class="col-md-4"><div class="photo-placeholder"><img src="alpha2.jpg" alt="Proof"></div></div>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <span class="exp-date">Dec 2024</span>
+            <div class="exp-company">The Microbiological Society of Taiwan</div>
+            <h5 class="fw-bold mt-1">Bilingual Master of Ceremonies (MC)</h5>
+            <div data-key="exp2-content">
+                <ul>
+                    <li>Orchestrated annual meeting for 50+ attendees in English and Mandarin.</li>
+                    <li>Coordinated technical presentation logistics for international students.</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><div class="photo-placeholder"><span>Photo Slot</span></div></div>
+            </div>
+        </div>
+
+        <div class="exp-card">
+            <span class="exp-date">Sept 2025 – Dec 2025</span>
+            <div class="exp-company">NCKU Indigenous Resource Center</div>
+            <h5 class="fw-bold mt-1">Cultural Exchange Interpreter & Coordinator</h5>
+            <div data-key="exp3-content">
+                <ul>
+                    <li>Simultaneous interpretation for Maori Cultural Team exchange.</li>
+                    <li>Produced English subtitles for "Original Form" Podcast series.</li>
+                </ul>
+            </div>
+            <div class="row">
+                <div class="col-md-4"><div class="photo-placeholder"><span>Photo Slot</span></div></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const langData = {
+            en: {
+                "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience",
+                "page-title": "Work & Leadership Experience",
+                "exp1-content": "<ul><li>Managed high-level executive meetings by anticipating logistical needs.</li><li>Coordinated VIP hospitality for 50+ attendees.</li></ul>",
+                "exp2-content": "<ul><li>Orchestrated annual meeting in both English and Mandarin.</li></ul>",
+                "exp3-content": "<ul><li>Served as primary English-Mandarin interpreter for Maori Cultural Team.</li></ul>"
+            },
+            zh: {
+                "nav-home": "首頁", "nav-projects": "專案作品", "nav-exp": "實習經歷",
+                "page-title": "工作與實習經驗",
+                "exp1-content": "<ul><li>協助高階主管會議籌備與行政規劃。</li><li>負責聚界潔能台南實驗室開幕儀式接待。</li></ul>",
+                "exp2-content": "<ul><li>擔任台灣微生物學會年會雙語主持人。</li></ul>",
+                "exp3-content": "<ul><li>擔任毛利文化團隊與成大原資中心之口譯人員。</li></ul>"
+            }
+        };
+        function switchLang(lang) {
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                el.innerHTML = langData[lang][key];
+            });
+            localStorage.setItem('pref-lang', lang);
+        }
+        window.onload = () => { switchLang(localStorage.getItem('pref-lang') || 'en'); };
+    </script>
+</body>
+</html>
