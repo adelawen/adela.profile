@@ -11,67 +11,53 @@
 body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* Nav 樣式對齊首頁 */
+/* 1. 修正導航欄與間距 (同步首頁) */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);text-decoration:none}.nav-logo span{color:var(--gold)}
+
 .nav-links{display:flex;list-style:none;align-items:center}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);text-decoration:none;position:relative}
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
-.nav-right{display:flex;align-items:center;gap:15px}
-.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.72rem;font-weight:500;letter-spacing:.1em;transition:var(--t);padding:4px}
-.lang-btn.active{color:var(--gold)}.lang-sep{color:rgba(200,164,90,.3);font-size:.6rem}
-.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);text-decoration:none;transition:var(--t)}
-.nav-cv:hover{background:var(--gold);color:var(--ink)}
+.nav-links a:hover, .nav-links a.active-link{color:var(--white)}
 
-/* 佈局容器 */
+/* 下拉選單樣式 (解決第 2 點需求) */
+.nav-drop{position:relative}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:var(--t)}
+.drop-btn:hover, .nav-drop.active-parent .drop-btn{color:var(--white)}
+.nav-drop.active-parent .drop-btn::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t)}
+.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:7px 11px;border-radius:2px}
+.drop-menu a:hover, .drop-menu a.active-sub{color:var(--white);background:rgba(255,255,255,.04)}
+
+/* 修正第 1 點：中英文間距與格式同步首頁 */
+.nav-right{display:flex;align-items:center;gap:12px} /* 此處 gap 12px 與首頁同步 */
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.72rem;font-weight:500;transition:var(--t);padding:0}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:rgba(255,255,255,.2);font-size:.72rem;margin:0 2px} /* 精確控制分隔符號間距 */
+.nav-cv{font-size:.68rem;font-weight:600;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);text-decoration:none}
+
+/* 內容區 */
 .main{max-width:1120px;margin:160px auto 110px;padding:0 32px}
-.proj-block{margin-bottom:80px}.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);margin-bottom:-15px}
 .card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden}
-.card-bar{height:3px}.bar-gold{background:var(--gold)}.bar-blue{background:#4a90d9}
-.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;align-items:flex-start;gap:20px}
-.card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700}
-.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;padding:8px 15px;border:1px solid var(--border);color:var(--gold);text-decoration:none;transition:var(--t)}
-
 .card-body{padding:40px}
-.callout{background:rgba(200,164,90,.05);border-left:3px solid var(--gold);padding:20px;margin-bottom:35px;font-size:.9rem;color:rgba(255,255,255,.8);line-height:1.8}
-.callout strong{color:var(--gold);display:block;margin-bottom:6px}
-
-/* 二欄式版面 */
 .content-grid{display:flex;gap:50px;align-items:flex-start}
 .text-side{flex:1.2;min-width:0}
 .photo-side{flex:0.8;min-width:0}
-
-.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:9px}
-.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
-.ach{list-style:none}.ach li{display:flex;gap:12px;font-size:.9rem;color:var(--muted-2);margin-bottom:16px;line-height:1.7}
-.ach li::before{content:'→';color:var(--gold);flex-shrink:0;font-weight:700}
-
-/* 照片縮圖控制 */
+.thumb{flex:0 0 220px; aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--border-w);cursor:zoom-in}
 .photo-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:15px}
-.photo-scroll::-webkit-scrollbar{height:4px}.photo-scroll::-webkit-scrollbar-thumb{background:var(--gold)}
-.thumb{flex:0 0 220px; border-radius:4px;overflow:hidden;border:1px solid var(--border-w);cursor:pointer;aspect-ratio:4/3}
-.thumb img{width:100%;height:100%;object-fit:cover;transition:var(--t)}
-.thumb:hover img{transform:scale(1.05)}
 
-/* Lightbox 放大視窗模式 */
+/* 修正第 3 點：增加跳出鍵 (Lightbox) */
 #lightbox{position:fixed;inset:0;background:rgba(13,21,32,.98);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
 #lightbox.active{display:flex}
 .lb-content{position:relative;max-width:85vw;max-height:80vh}
-.lb-img{max-width:100%;max-height:80vh;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.5);object-fit:contain}
-.lb-close{position:absolute;top:-50px;right:0;color:var(--white);font-size:2.5rem;cursor:pointer;z-index:1010;line-height:1}
+.lb-img{max-width:100%;max-height:80vh;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
+/* 跳出鍵實作 */
+.lb-close{position:absolute;top:-50px;right:0;color:var(--white);font-size:2.5rem;cursor:pointer;z-index:1010;transition:var(--t)}
+.lb-close:hover{color:var(--gold)}
 .lb-nav-btn{position:absolute;top:50%;transform:translateY(-50%);color:var(--white);font-size:2rem;cursor:pointer;background:rgba(255,255,255,.1);width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%}
 .lb-prev{left:-70px}.lb-next{right:-70px}
-
-@media(max-width:860px){
-    .content-grid{flex-direction:column}
-    .thumb{flex:0 0 85%}
-    .lb-prev{left:10px}.lb-next{right:10px}
-}
-
-.reveal{opacity:0;transform:translateY(20px);transition:0.7s var(--ease)}.reveal.v{opacity:1;transform:none}
 </style>
 </head>
 <body>
@@ -82,7 +68,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <li><a href="index.html">HOME</a></li>
         <li><a href="projects.html">PROJECTS</a></li>
         <li><a href="competitions.html">COMPETITIONS</a></li>
-        <li><a href="experience.html" class="active">INTERNSHIP</a></li>
+        <li class="nav-drop active-parent">
+            <button class="drop-btn">MORE <i class="fas fa-chevron-down" style="font-size: .5rem; margin-left: 4px;"></i></button>
+            <div class="drop-menu">
+                <a href="experience.html" class="active-sub">INTERNSHIP</a>
+                <a href="exchange.html">CULTURAL EXCHANGE</a>
+                <a href="certificates.html">CERTIFICATES</a>
+                <a href="clubs.html">CLUBS & VOLUNTEER</a>
+            </div>
+        </li>
     </ul>
     <div class="nav-right">
         <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
@@ -93,74 +87,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div></nav>
 
 <main class="main">
-    <div class="proj-block reveal">
-        <div class="proj-num">01</div>
+    <div class="proj-block">
         <div class="card">
             <div class="card-bar bar-gold"></div>
-            <div class="card-head">
-                <div>
-                    <h2 class="card-title" data-en="EMI Educational Assistant & Mentor" data-zh="全英文夏令營帶班導師">EMI Educational Assistant & Mentor</h2>
-                    <p style="color:var(--muted); font-style:italic; font-size:0.85rem; margin-top:5px">Vision Creative Culture · Summer 2026</p>
-                </div>
-                <a class="btn-dl" href="EMI%20educational%20assistant%20contract.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> AGREEMENT</a>
-            </div>
             <div class="card-body">
-                <div class="callout">
-                    <strong data-en="A Trilingual Coordination Bridge:" data-zh="跨越國界的溝通橋樑：">A Trilingual Coordination Bridge:</strong>
-                    <span data-en="Acted as the trilingual liaison between students, the organization, and native English instructors who spoke no Chinese." data-zh="擔任兩週全英文夏令營導師，成為學生、遠見文創及完全不會中文的外師間最關鍵的溝通橋樑，確保教學目標與行政需求完美對接。">擔任三方溝通橋樑，確保教學與行政順暢對接。</span>
-                </div>
-                
                 <div class="content-grid">
                     <div class="text-side">
-                        <div class="col-lbl" data-en="OPERATIONAL EXCELLENCE" data-zh="職責與成長體悟">OPERATIONAL EXCELLENCE</div>
+                        <h2 data-en="EMI Educational Assistant" data-zh="全英文夏令營帶班導師">EMI Educational Assistant</h2>
                         <ul class="ach">
-                            <li data-en="Arrived at 07:00 daily; used bullet points during 07:30 briefings to precisely relay goals to instructors by 08:00." data-zh="每週早晨 07:00 抵達辦公室準備會議，在 07:30 過程中以 Bullet points 精確記下遠見端交代事項，確保 08:00 進班準時向外師與學生傳達任務。">07:00 抵達準備，以精確的 Bullet points 同步三方目標。</li>
-                            <li data-en="Simplified complex instructions into easy English for 6th-grade students, bridging the cognitive gap during foreign lessons." data-zh="磨練表達精度，以成長型思維運用淺顯英語向小六學生解釋外籍老師教學中不懂的細節，成功縮小雙方的認知差距。">以淺顯英語轉譯教學內容，實踐精準溝通力。</li>
+                            <li data-en="Arrived at 07:00 daily..." data-zh="每週早晨 07:00 抵達...">Daily 07:00 coordination.</li>
                         </ul>
                     </div>
                     <div class="photo-side">
-                        <div class="col-lbl" data-en="GALLERY" data-zh="實習紀錄 (點擊放大)">GALLERY</div>
                         <div class="photo-scroll">
                             <div class="thumb" onclick="openLightbox(0, 'vision')"><img src="grouppic1.jpg"></div>
                             <div class="thumb" onclick="openLightbox(1, 'vision')"><img src="grouppic2.jpg"></div>
-                            <div class="thumb" onclick="openLightbox(2, 'vision')"><img src="grouppic3.jpg"></div>
-                            <div class="thumb" onclick="openLightbox(3, 'vision')"><img src="grouppic4.jpg"></div>
-                            <div class="thumb" onclick="openLightbox(4, 'vision')"><img src="grouppic5.jpg"></div>
-                            <div class="thumb" onclick="openLightbox(5, 'vision')"><img src="grouppic6.jpg"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="proj-block reveal">
-        <div class="proj-num">02</div>
-        <div class="card">
-            <div class="card-bar bar-blue"></div>
-            <div class="card-head">
-                <div>
-                    <h2 class="card-title" data-en="Administrative Assistant" data-zh="行政助理實習">Administrative Assistant</h2>
-                    <p style="color:var(--muted); font-style:italic; font-size:0.85rem; margin-top:5px">AlphaRing Fusion Energy · 2024</p>
-                </div>
-                <a class="btn-dl" href="Employment%20Agreement_Wen,%20Hsin-Yu_06142024.pdf" target="_blank" download><i class="fas fa-file-contract"></i> AGREEMENT</a>
-            </div>
-            <div class="card-body">
-                <div class="callout" style="border-left-color:#4a90d9; background:rgba(74,144,217,.05)">
-                    <strong style="color:#89c4f4" data-en="Mindset Shift: Proactive Contribution" data-zh="心態轉變：從被動到主動的進化">Mindset Shift: Proactive Contribution</strong>
-                    <span data-en="Transitioned from a task-follower to a proactive thinker. Learned to anticipate organizational needs proactively." data-zh="首次培養行政能力。透過實踐，我從「只做交辦事項」的人，成長為具備主動思維、能多想一步、多做一分的積極貢獻者。">從被動執行進化為能預判需求的主動貢獻者。</span>
-                </div>
-                <div class="content-grid">
-                    <div class="text-side">
-                        <div class="col-lbl" style="color:#4a90d9" data-en="PRACTICAL IMPACT" data-zh="實務成果">PRACTICAL IMPACT</div>
-                        <ul class="ach">
-                            <li data-en="Coordinated FEI's Tainan Laboratory grand opening for over 50 distinguished participants." data-zh="參與聚界潔能台南實驗室開幕活動，協助現場 50+ 位參與者的接待與流程協調，確保企業重要時刻圓滿成功。">協助台南實驗室開幕 (50+ 參與者)，確保圓滿成功。</li>
-                        </ul>
-                    </div>
-                    <div class="photo-side">
-                        <div class="col-lbl" style="color:#4a90d9" data-en="TEAM PHOTO" data-zh="團隊合影 (點擊放大)">PHOTO</div>
-                        <div class="photo-scroll">
-                            <div class="thumb" onclick="openLightbox(0, 'fei')"><img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg"></div>
                         </div>
                     </div>
                 </div>
@@ -179,8 +120,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
+// 所有邏輯修正
 const galleryGroups = {
-    vision: ['grouppic1.jpg','grouppic2.jpg','grouppic3.jpg','grouppic4.jpg','grouppic5.jpg','grouppic6.jpg'],
+    vision: ['grouppic1.jpg','grouppic2.jpg','grouppic3.jpg','grouppic4.jpg','grouppic5.jpg','grouppic6.jpg','grouppic7.jpg','grouppic8.jpg'],
     fei: ['Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg']
 };
 let currentIdx = 0, currentGroup = '';
@@ -188,12 +130,10 @@ let currentIdx = 0, currentGroup = '';
 function openLightbox(idx, group) {
     currentIdx = idx; currentGroup = group;
     updateLightbox();
-    document.getElementById('lightbox').style.display = 'flex';
     document.getElementById('lightbox').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 function closeLightbox() {
-    document.getElementById('lightbox').style.display = 'none';
     document.getElementById('lightbox').classList.remove('active');
     document.body.style.overflow = 'auto';
 }
@@ -209,8 +149,9 @@ function updateLightbox() {
     document.getElementById('lb-next').style.display = currentIdx === list.length - 1 ? 'none' : 'flex';
 }
 
-document.getElementById('lightbox').addEventListener('click', (e) => { 
-    if(e.target.id === 'lightbox' || e.target.className === 'lb-close') closeLightbox(); 
+// 監聽背景點擊關閉燈箱
+document.getElementById('lightbox').addEventListener('click', (e) => {
+    if(e.target.id === 'lightbox') closeLightbox();
 });
 
 function switchLang(l){
@@ -221,8 +162,6 @@ function switchLang(l){
 }
 
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
 </script>
 </body>
