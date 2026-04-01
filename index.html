@@ -1,99 +1,239 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HsinYu | Portfolio</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root { --primary: #007bff; --bg: #f8f9fa; }
-        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: #333; }
-        .navbar { background: white; border-bottom: 1px solid #eee; padding: 15px 0; }
-        .nav-link { font-weight: 500; color: #555 !important; }
-        .nav-link.active { color: var(--primary) !important; font-weight: 700; }
-        .btn-resume { border-radius: 50px; font-weight: 600; padding: 8px 22px; }
-        .lang-btn { border: none; background: none; font-weight: bold; color: var(--primary); padding: 5px; cursor: pointer; }
-        .lang-active { text-decoration: underline; text-underline-offset: 4px; }
-
-        /* Hero & Buttons */
-        .hero-section { min-height: 85vh; display: flex; align-items: center; padding: 60px 0; }
-        .profile-photo { width: 300px; height: 300px; object-fit: cover; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .btn-action { border-radius: 50px; font-weight: 600; padding: 10px 20px; transition: 0.3s; display: inline-flex; align-items: center; gap: 8px; }
-        .btn-linkedin { background: #0077b5; color: white !important; border: none; }
-        .btn-email { background: #ea4335; color: white !important; border: none; }
-
-        @media (max-width: 991px) { .navbar-nav { text-align: center; padding: 20px 0; } .nav-item { margin-bottom: 15px; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HsinYu Wen | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
+.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);flex-shrink:0}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links li{position:relative}
+.nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active::after,.nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-drop{position:relative}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color var(--t)}
+.drop-btn:hover{color:var(--white)}
+.drop-btn svg{width:8px;height:8px;transition:transform var(--t)}
+.nav-drop:hover .drop-btn svg{transform:rotate(180deg)}
+.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t);z-index:200}
+.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:2px;transition:var(--t)}
+.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color var(--t);padding:2px}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
+.nav-cv:hover{background:var(--gold);color:var(--ink)}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:0;top:10%;width:46vw;height:78vh;border:1px solid var(--border);border-right:none;border-radius:4px 0 0 4px;pointer-events:none}
+.hero-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 370px;gap:60px;align-items:center;position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.eyebrow-bar{width:32px;height:1px;background:var(--gold)}
+.eyebrow span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.hero-h1{font-family:var(--fd);font-size:clamp(2.8rem,5.2vw,5rem);font-weight:700;line-height:1.06;margin-bottom:22px}
+.hero-h1 em{font-style:italic;color:var(--gold)}
+.hero-desc{font-size:.92rem;color:var(--muted);max-width:450px;margin-bottom:34px;font-weight:300;line-height:1.85}
+.btn-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn-gold{background:var(--gold);color:var(--ink);font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:11px 22px;border-radius:var(--radius);display:inline-flex;align-items:center;gap:7px;transition:var(--t)}
+.btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,164,90,.2)}
+.btn-ghost{color:var(--white);font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);display:inline-flex;align-items:center;gap:7px;transition:var(--t)}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.04)}
+.btn-ico{width:40px;height:40px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);display:inline-flex;align-items:center;justify-content:center;color:var(--muted);font-size:.85rem;transition:var(--t)}
+.btn-ico:hover{border-color:var(--gold);color:var(--gold);background:rgba(200,164,90,.07)}
+.stats-row{display:flex;gap:24px;margin-top:38px;padding-top:26px;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-num{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-lbl{font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+/* photo */
+.photo-wrap{position:relative}
+.photo-wrap::before{content:'';position:absolute;inset:16px -16px -16px 16px;border:1px solid var(--border);border-radius:4px;z-index:0}
+.photo-img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top center;border-radius:4px;position:relative;z-index:1;filter:grayscale(8%) contrast(1.02)}
+.photo-fallback{width:100%;aspect-ratio:4/5;background:var(--ink-2);border-radius:4px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);gap:12px}
+.photo-fallback i{font-size:3.5rem;color:var(--border)}
+.photo-fallback span{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+/* ABOUT */
+.about{border-top:1px solid var(--border);padding:80px 0}
+.about-inner{max-width:1120px;margin:0 auto;padding:0 32px}
+.sec-hd{display:flex;align-items:center;gap:14px;margin-bottom:44px}
+.sec-hd-line{width:24px;height:1px;background:var(--gold)}
+.sec-hd span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.about-h{font-family:var(--fd);font-size:2.35rem;font-weight:700;line-height:1.15;margin-bottom:18px}
+.about-h em{font-style:italic;color:var(--gold)}
+.pull-q{border-left:3px solid var(--gold);padding:12px 17px;margin:16px 0;font-family:var(--fd);font-size:1.1rem;color:rgba(255,255,255,.6);line-height:1.55;font-style:italic}
+.about-p{font-size:.87rem;color:var(--muted-2);font-weight:300;line-height:1.9}
+.about-p+.about-p{margin-top:12px}
+.about-p strong{color:var(--white);font-weight:500}
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:24px}
+.s-chip{background:var(--ink-2);border:1px solid var(--border-w);border-radius:var(--radius);padding:9px 12px;font-size:.74rem;font-weight:400;color:rgba(255,255,255,.62);display:flex;align-items:center;gap:7px;transition:var(--t)}
+.s-chip:hover{border-color:var(--border);color:var(--white);background:rgba(200,164,90,.06)}
+.s-chip i{color:var(--gold);width:12px;text-align:center;flex-shrink:0;font-size:.75rem}
+.principle{background:var(--ink-2);border:1px solid var(--border-w);border-radius:4px;padding:18px 20px}
+.p-label{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.p-label::after{content:'';flex:1;height:1px;background:var(--border)}
+.p-text{font-size:.83rem;color:var(--muted-2);font-weight:300;line-height:1.85}
+.p-text strong{color:var(--white);font-weight:500}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
+.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}
+.foot-links a:hover{color:var(--gold)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.v{opacity:1;transform:none}
+@media(max-width:860px){
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .hero::after{display:none}
+  .photo-wrap{max-width:240px;margin:24px auto 0}
+  .about-grid{grid-template-columns:1fr;gap:28px}
+}
+</style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg sticky-top shadow-sm">
-    <div class="container">
-        <a class="navbar-brand fw-bold text-primary" href="index.html">HsinYu.</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
+ 
+<nav class="nav" id="mainnav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="competitions.html">Competitions</a></li>
+      <li class="nav-drop">
+        <button class="drop-btn">More
+          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto align-items-center">
-                <li class="nav-item"><a class="nav-link px-3 active" href="index.html" data-key="nav-home">Home</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="projects.html" data-key="nav-projects">Projects</a></li>
-                <li class="nav-item"><a class="nav-link px-3" href="experience.html" data-key="nav-exp">Experience</a></li>
-                <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
-                    <a href="resume.pdf" download class="btn btn-primary btn-resume shadow-sm" data-key="btn-cv">Download CV</a>
-                </li>
-                <li class="nav-item ms-lg-3">
-                    <div class="d-flex align-items-center gap-2">
-                        <button id="btn-en" class="lang-btn" onclick="switchLang('en')">EN</button>
-                        <span class="text-muted">|</span>
-                        <button id="btn-zh" class="lang-btn" onclick="switchLang('zh')">中</button>
-                    </div>
-                </li>
-            </ul>
+        <div class="drop-menu">
+          <a href="experience.html">Internship</a>
+          <a href="exchange.html">Cultural Exchange</a>
+          <a href="certificates.html">Certificates</a>
+          <a href="clubs.html">Clubs &amp; Volunteer</a>
         </div>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <div style="display:flex;align-items:center;gap:5px">
+        <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+      </div>
+      <a href="resume.pdf" download class="nav-cv">CV</a>
     </div>
+  </div>
 </nav>
-
-<header class="hero-section">
-    <div class="container">
-        <div class="row align-items-center text-center text-lg-start">
-            <div class="col-lg-7">
-                <h6 class="text-primary fw-bold text-uppercase mb-3" data-key="hero-tag">ITS & Logistics Management</h6>
-                <h1 class="display-4 fw-bold mb-4">Hi, I'm <span class="text-primary">HsinYu</span></h1>
-                <p class="lead text-secondary mb-4" data-key="hero-desc">Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.</p>
-                <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
-                    <a href="projects.html" class="btn btn-dark btn-action shadow" data-key="btn-view-projects">Explore Projects</a>
-                    <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn btn-linkedin btn-action shadow">
-                        <i class="fab fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn btn-email btn-action shadow">
-                        <i class="fas fa-envelope"></i> Email
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-5 text-center mt-5 mt-lg-0">
-                <img src="my-face.jpg" alt="Profile" class="profile-photo">
-            </div>
-        </div>
+ 
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow reveal">
+        <span class="eyebrow-bar"></span>
+        <span id="hero-tag">ITS · Logistics · Growth Mindset</span>
+      </div>
+      <h1 class="hero-h1 reveal">Hi, I'm<br><em>HsinYu Wen</em></h1>
+      <p class="hero-desc reveal" id="hero-desc">Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.</p>
+      <div class="btn-row reveal">
+        <a href="projects.html" class="btn-gold"><i class="fas fa-arrow-right"></i>Explore Projects</a>
+        <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn-ghost"><i class="fas fa-envelope"></i>Contact</a>
+        <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn-ico"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+      <div class="stats-row reveal">
+        <div><div class="stat-num">2</div><div class="stat-lbl" id="stat-projects">Research Projects</div></div>
+        <div><div class="stat-num">1<sup style="font-size:.9rem">st</sup></div><div class="stat-lbl">Chuangnan 2025</div></div>
+        <div><div class="stat-num">6.5</div><div class="stat-lbl">IELTS</div></div>
+        <div><div class="stat-num" style="font-size:1.1rem;padding-top:4px">Liverpool</div><div class="stat-lbl" id="stat-intern">2026 Internship</div></div>
+      </div>
     </div>
+    <div class="photo-wrap reveal">
+      <img src="my-face.jpg" alt="HsinYu Wen" class="photo-img"
+           onerror="this.style.display='none';document.getElementById('photo-fb').style.display='flex'">
+      <div class="photo-fallback" id="photo-fb" style="display:none">
+        <i class="fas fa-user"></i>
+        <span>my-face.jpg</span>
+      </div>
+    </div>
+  </div>
 </header>
-
+ 
+<section class="about">
+  <div class="about-inner">
+    <div class="sec-hd reveal">
+      <span class="sec-hd-line"></span>
+      <span id="about-label">About Me</span>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <h2 class="about-h">I grow by<br><em>listening, then doing.</em></h2>
+        <div class="pull-q">"Every person carries a perspective I haven't thought of yet — and that gap is where I learn the most."</div>
+        <p class="about-p">Growing up, the most meaningful growth never came from sitting alone with a textbook — it came from <strong>conversations with people from entirely different backgrounds</strong>. There's something irreplaceable about genuinely listening to someone's experience, letting their input reshape how you see a problem, then articulating your own view back — sharpened by the exchange.</p>
+        <p class="about-p">When I encounter something difficult — professional software no course teaches, a field I've never touched, a competition topic far outside my expertise — <strong>my instinct isn't to wait for permission. It's to find the people who know it, and start building.</strong></p>
+        <p class="about-p">When I committed to the NSTC research proposal, I had zero experience with PTV Vissim — a paid, industry-grade microsimulation platform. I learned it myself online. When I realized the road network needed to exactly match the 400m specs in the proposal, I taught myself AutoCAD to draft it properly. Not because anyone asked — because <strong>approximate wasn't good enough.</strong></p>
+        <p class="about-p">The same drive brings me to business competitions: not for trophies, but because they force me to step inside someone else's pain and think from the inside out. <strong>Feeling where it actually hurts — and designing something that relieves that specific pressure — is the real challenge.</strong></p>
+      </div>
+      <div class="reveal">
+        <div class="skills-grid">
+          <div class="s-chip"><i class="fas fa-traffic-light"></i>Signal Control</div>
+          <div class="s-chip"><i class="fas fa-code"></i>Python / COM API</div>
+          <div class="s-chip"><i class="fas fa-car"></i>PTV Vissim</div>
+          <div class="s-chip"><i class="fas fa-drafting-compass"></i>AutoCAD</div>
+          <div class="s-chip"><i class="fas fa-leaf"></i>Carbon Modeling</div>
+          <div class="s-chip"><i class="fas fa-chart-bar"></i>Data Analysis</div>
+          <div class="s-chip"><i class="fas fa-lightbulb"></i>Business Strategy</div>
+          <div class="s-chip"><i class="fas fa-globe"></i>Cross-cultural Comm.</div>
+          <div class="s-chip"><i class="fas fa-language"></i>IELTS 6.5</div>
+          <div class="s-chip"><i class="fas fa-pen-nib"></i>Academic Writing</div>
+        </div>
+        <div class="principle">
+          <div class="p-label">Core Operating Principle</div>
+          <p class="p-text">I don't need to already know something to start. I need to understand <strong>why it matters</strong> — and that's enough. Whether it's a microsimulation platform, a carbon model, or a business pitch for a problem I've never lived — the process is always: <strong>immerse, question, build, iterate.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<footer>
+  <div class="foot-inner">
+    <span class="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</span>
+    <div class="foot-links">
+      <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
+      <a href="projects.html">Projects</a>
+    </div>
+  </div>
+</footer>
+ 
 <script>
-    const langData = {
-        en: { "nav-home": "Home", "nav-projects": "Projects", "nav-exp": "Experience", "btn-cv": "Download CV", "hero-tag": "ITS & Logistics Management", "hero-desc": "Focusing on Intelligent Transportation Systems (ITS) and supply chain optimization.", "btn-view-projects": "Explore Projects" },
-        zh: { "nav-home": "首頁", "nav-projects": "作品集", "nav-exp": "實習經驗", "btn-cv": "下載履歷", "hero-tag": "智慧交通與物流管理", "hero-desc": "專注於智慧交通系統 (ITS) 與供應鏈管理優化。", "btn-view-projects": "查看作品" }
-    };
-    function applyLang(lang) {
-        document.querySelectorAll('[data-key]').forEach(el => {
-            const key = el.getAttribute('data-key');
-            if (langData[lang][key]) el.innerText = langData[lang][key];
-        });
-        document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
-        document.getElementById('btn-zh').classList.toggle('lang-active', lang === 'zh');
-    }
-    function switchLang(lang) { localStorage.setItem('pref-lang', lang); applyLang(lang); }
-    window.onload = () => applyLang(localStorage.getItem('pref-lang') || 'en');
+window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+const L={
+  en:{'hero-tag':'ITS · Logistics · Growth Mindset','hero-desc':'Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.','about-label':'About Me','stat-projects':'Research Projects','stat-intern':'2026 Internship'},
+  zh:{'hero-tag':'智慧交通 · 物流 · 成長型思維','hero-desc':'就讀於國立成功大學，專注於智慧交通系統與供應鏈永續研究，享受跨域交流帶來的視角衝擊。','about-label':'關於我','stat-projects':'研究計畫','stat-intern':'2026 國際實習'}
+};
+function switchLang(l){
+  localStorage.setItem('lang',l);
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
+  Object.entries(L[l]).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val});
+}
+document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
