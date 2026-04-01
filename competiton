@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitions | HsinYu Wen</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
+.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);flex-shrink:0}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links li{position:relative}
+.nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active::after,.nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-drop{position:relative}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color var(--t)}
+.drop-btn:hover{color:var(--white)}
+.drop-btn svg{width:8px;height:8px;transition:transform var(--t)}
+.nav-drop:hover .drop-btn svg{transform:rotate(180deg)}
+.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t);z-index:200}
+.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:2px;transition:var(--t)}
+.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color var(--t);padding:2px}
+.lang-btn.active{color:var(--gold)}
+.lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
+.nav-cv:hover{background:var(--gold);color:var(--ink)}
+.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(200,164,90,.06) 0%,transparent 65%);pointer-events:none}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.eyebrow span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;line-height:1.06;margin-bottom:18px}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{font-size:.93rem;color:var(--muted);font-weight:300;max-width:520px;line-height:1.85}
+.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;position:relative;z-index:1}
+.card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;transition:border-color var(--t)}
+.card:hover{border-color:var(--border)}
+.card-bar{height:3px}
+.bar-gold{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+.bar-green{background:linear-gradient(90deg,var(--green),#7fd9a8)}
+.bar-blue{background:linear-gradient(90deg,#4a90d9,#89c4f4)}
+.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.proj-cat{font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.proj-cat.green{color:var(--green)}.proj-cat.blue{color:#89c4f4}
+.card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700;line-height:1.15;margin-bottom:7px}
+.card-title-sub{font-size:.83rem;color:var(--muted);font-style:italic;font-weight:300}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.tag{font-size:.66rem;font-weight:500;letter-spacing:.06em;padding:3px 10px;border-radius:2px;border:1px solid}
+.tg{border-color:rgba(200,164,90,.35);color:var(--gold-lt)}.td{border-color:var(--border-w);color:var(--muted)}.tk{border-color:rgba(58,170,114,.35);color:#7fd9a8}.tb{border-color:rgba(74,144,217,.35);color:#89c4f4}
+.dl-group{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t);white-space:nowrap}
+.btn-dl:hover{background:rgba(200,164,90,.07);border-color:var(--gold)}
+.btn-dl.green{border-color:rgba(58,170,114,.3);color:#7fd9a8}.btn-dl.green:hover{background:rgba(58,170,114,.07);border-color:var(--green)}
+.btn-dl.blue{border-color:rgba(74,144,217,.3);color:#89c4f4}.btn-dl.blue:hover{background:rgba(74,144,217,.07);border-color:#4a90d9}
+.card-body{padding:36px 40px}
+.callout{background:rgba(200,164,90,.055);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:16px 20px;margin-bottom:30px;font-size:.87rem;color:rgba(255,255,255,.77);font-weight:300;line-height:1.85}
+.callout strong{color:var(--gold);font-weight:600}.callout.green{background:rgba(58,170,114,.055);border-left-color:var(--green)}.callout.green strong{color:#7fd9a8}
+.callout.blue{background:rgba(74,144,217,.055);border-left-color:#4a90d9}.callout.blue strong{color:#89c4f4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:9px}
+.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}.col-lbl.green{color:var(--green)}.col-lbl.blue{color:#89c4f4}
+.col-text{font-size:.87rem;color:var(--muted-2);font-weight:300;line-height:1.9}
+.col-text p+p{margin-top:11px}.col-text strong{color:var(--white);font-weight:500}
+.ach{list-style:none;margin-top:13px}
+.ach li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--muted-2);font-weight:300;margin-bottom:10px;line-height:1.7}
+.ach li::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.76rem;margin-top:3px}
+.ach.green li::before{color:var(--green)}.ach.blue li::before{color:#89c4f4}.ach li strong{color:var(--white);font-weight:500}
+.divider{height:1px;background:var(--border-w);margin:26px 0}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cred-card{background:var(--ink-3);border:1px solid var(--border-w);border-radius:4px;padding:15px 17px;transition:var(--t)}
+.cred-card:hover{border-color:var(--border)}
+.cred-val{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:var(--gold);line-height:1}.cred-val.green{color:var(--green)}
+.cred-key{font-size:.65rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.chip{background:var(--ink-3);border:1px solid var(--border-w);border-radius:2px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);line-height:1;margin-bottom:-14px;letter-spacing:-.02em;user-select:none}
+.proj-block{margin-bottom:72px}.proj-block:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
+.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}.foot-links a:hover{color:var(--gold)}
+.coming{text-align:center;padding:72px 20px;color:var(--muted)}
+.coming i{font-size:2.2rem;color:var(--border-w);display:block;margin-bottom:18px}
+.coming h3{font-family:var(--fd);font-size:1.5rem;color:rgba(255,255,255,.25);margin-bottom:8px}
+.coming p{font-size:.84rem;font-weight:300}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
+@media(max-width:860px){.nav-links{display:none}.two-col{grid-template-columns:1fr;gap:28px}.card-head{flex-direction:column}.dl-group{flex-direction:row;flex-wrap:wrap}.card-body{padding:24px 22px}.card-head{padding:24px 22px}}
+ 
+ 
+.award-badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(200,164,90,.13),rgba(200,164,90,.04));border:1px solid rgba(200,164,90,.38);border-radius:4px;padding:10px 18px;margin-bottom:22px}
+.award-badge i{color:var(--gold);font-size:1rem}
+.award-badge span{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-lt)}
+.sol-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:14px}
+.sol-card{background:var(--ink-3);border:1px solid var(--border-w);border-radius:4px;padding:17px;transition:var(--t)}
+.sol-card:hover{border-color:var(--border)}
+.sol-icon{font-size:1.2rem;color:var(--gold);margin-bottom:9px}
+.sol-title{font-size:.76rem;font-weight:600;color:var(--white);margin-bottom:6px}
+.sol-desc{font-size:.75rem;color:var(--muted);font-weight:300;line-height:1.7}
+.phase-list{list-style:none;margin-top:13px}
+.phase-list li{display:grid;grid-template-columns:76px 1fr;gap:14px;margin-bottom:13px;align-items:start}
+.phase-badge{font-size:.62rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:rgba(200,164,90,.14);color:var(--gold-lt);padding:4px 8px;border-radius:2px;white-space:nowrap;margin-top:2px}
+.phase-txt{font-size:.84rem;color:var(--muted-2);font-weight:300;line-height:1.7}
+.phase-txt strong{color:var(--white);font-weight:500}
+.placeholder-card{border-style:dashed!important}
+@media(max-width:640px){.sol-grid{grid-template-columns:1fr 1fr}}
+ 
+</style>
+</head>
+<body>
+<nav class="nav" id="mainnav"><div class="nav-inner"><a href="index.html" class="nav-logo">HsinYu<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="competitions.html" class="active">Competitions</a></li><li class="nav-drop"><button class="drop-btn">More<svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button><div class="drop-menu"><a href="experience.html">Internship</a><a href="exchange.html">Cultural Exchange</a><a href="certificates.html">Certificates</a><a href="clubs.html">Clubs &amp; Volunteer</a></div></li></ul><div class="nav-right"><div style="display:flex;align-items:center;gap:5px"><button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button></div><a href="resume.pdf" download class="nav-cv">CV</a></div></div></nav>
+ 
+<div class="page-header"><div class="ph-inner">
+  <div class="eyebrow reveal"><span class="eyebrow-line"></span><span>Business Competitions</span></div>
+  <h1 class="page-title reveal">Think from<br><em>inside the pain.</em></h1>
+  <p class="page-sub reveal">I compete not for the trophy — but because competitions are the fastest way I know to step into a stranger's world, understand exactly where it hurts, and design something that works from the inside out.</p>
+</div></div>
+ 
+<main class="main">
+  <div class="callout blue reveal" style="margin-bottom:52px">
+    <strong>Why competitions?</strong> Every new topic drops me into an industry I've never lived. That's the point. The best solutions don't come from people who already know the field — they come from people who ask the right questions, <strong>listen carefully to those closest to the pain, and then design something that actually relieves it.</strong> Competitions give me a structured reason to do exactly that, across entirely different domains.
+  </div>
+ 
+  <div class="proj-block reveal">
+    <div class="proj-num">01</div>
+    <div class="card">
+      <div class="card-bar bar-gold"></div>
+      <div class="card-head">
+        <div>
+          <div class="proj-cat">創建南方商業競賽 · Chuangnan Business Competition — Southern Taiwan</div>
+          <h2 class="card-title">SafeCloud — Smart Pedestrian<br>Safety for Elementary Schools</h2>
+          <p class="card-title-sub">步行校車系統設計 · Sep 16, 2025 — <strong style="color:var(--gold)">1st Place</strong> out of 40+ teams</p>
+          <div class="tag-row">
+            <span class="tag tg">🏆 1st Place</span><span class="tag td">Urban Mobility</span>
+            <span class="tag td">Traffic Data</span><span class="tag td">Walking School Bus</span><span class="tag td">Tainan</span>
+          </div>
+        </div>
+        <div class="dl-group">
+          <a class="btn-dl" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/Initial%20project%20proposal%20.pdf" target="_blank" download><i class="fas fa-file-pdf"></i>Initial Proposal</a>
+          <a class="btn-dl" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/safecloud_initial_routeplan.pdf" target="_blank" download><i class="fas fa-map"></i>Route Plan</a>
+          <a class="btn-dl" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/SafeCloud%20Presentation%20.pdf" target="_blank" download><i class="fas fa-file-powerpoint"></i>Presentation</a>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="award-badge">
+          <i class="fas fa-trophy"></i>
+          <span>1st Place · Chuangnan 2025 · 40+ Teams · Southern Taiwan</span>
+        </div>
+ 
+        <div class="callout">
+          <strong>The pain point:</strong> Every school day, streets around Shengli Elementary School near Shengli Circle in Tainan gridlock as hundreds of parents arrive simultaneously. <strong>The area nearest the school gates — the most dangerous zone for children — is also the most congested.</strong> Enforcement hasn't worked. The solution isn't more rules; it's redesigning the system so the problem physically cannot occur.
+        </div>
+ 
+        <div class="two-col">
+          <div>
+            <div class="col-lbl">The Insight — Thinking from Inside</div>
+            <div class="col-text">
+              <p>I came into this competition knowing almost nothing about elementary school traffic management. So I started where I always start: <strong>listening.</strong> What do parents actually care about? Safety and convenience. What do administrators care about? Smooth operations and liability.</p>
+              <p>The breakthrough was realizing the conflict isn't a behavior problem — it's a <strong>coordination problem.</strong> Parents aren't reckless; they all park near the gates because there's no alternative infrastructure that makes distance feel safe.</p>
+              <p>Once I understood that, the direction became clear: don't ban cars from a zone and hope for compliance. <strong>Create a system that makes dispersed parking the naturally convenient choice</strong> — then close the danger zone, because vehicles have already been redirected elsewhere.</p>
+            </div>
+          </div>
+          <div>
+            <div class="col-lbl">SafeCloud — System Design</div>
+            <div class="col-text"><p>A three-layer system that works together:</p></div>
+            <ul class="ach" style="margin-top:11px">
+              <li><strong>Real-time Traffic Monitoring</strong> — sensors and a parent-facing website continuously track vehicle volume near Shengli Circle, giving live visibility into congestion levels.</li>
+              <li><strong>Data-Driven Parking Dispersal</strong> — based on live data, the system guides parents in batches to designated temporary zones within 10-minute walking radius, preventing cluster congestion at any single point.</li>
+              <li><strong>Walking School Bus Zone</strong> — once vehicles are dispersed to satellite zones, the immediate school perimeter closes to through traffic. Children walk the final 10 minutes in a vehicle-free corridor — the European walking school bus model, made operationally viable.</li>
+            </ul>
+          </div>
+        </div>
+ 
+        <div class="divider"></div>
+        <div class="col-lbl" style="margin-bottom:14px">System Architecture</div>
+        <div class="sol-grid">
+          <div class="sol-card"><div class="sol-icon"><i class="fas fa-satellite-dish"></i></div><div class="sol-title">Live Traffic Sensing</div><div class="sol-desc">Real-time vehicle count and density monitoring around Shengli Circle, visualized on a parent-facing dashboard.</div></div>
+          <div class="sol-card"><div class="sol-icon"><i class="fas fa-route"></i></div><div class="sol-title">Smart Dispersal Routing</div><div class="sol-desc">Algorithm-driven batched guidance directing parents to the least-congested temporary stop zone within 10 min walking distance.</div></div>
+          <div class="sol-card"><div class="sol-icon"><i class="fas fa-walking"></i></div><div class="sol-title">Pedestrian-Only Zone</div><div class="sol-desc">With vehicles redirected, the school perimeter closes to traffic — a safe, car-free corridor for children. The walking school bus model, made feasible.</div></div>
+        </div>
+ 
+        <div class="divider"></div>
+        <div class="col-lbl" style="margin-bottom:14px">Implementation Phases</div>
+        <ul class="phase-list">
+          <li><span class="phase-badge">Phase 1</span><p class="phase-txt"><strong>Sensor Deployment &amp; Baseline Data</strong> — install monitoring infrastructure at Shengli Circle; establish traffic volume baselines by time of day and day of week.</p></li>
+          <li><span class="phase-badge">Phase 2</span><p class="phase-txt"><strong>Satellite Parking Zone Designation</strong> — map and designate 3–5 temporary drop-off zones within 10-minute walking radius, coordinating with local government on legal stopping permissions.</p></li>
+          <li><span class="phase-badge">Phase 3</span><p class="phase-txt"><strong>Platform Launch &amp; Parent Onboarding</strong> — launch real-time guidance website; pilot with voluntary parent cohort; iterate on UX based on actual usage patterns.</p></li>
+          <li><span class="phase-badge">Phase 4</span><p class="phase-txt"><strong>Road Closure &amp; Walking Corridor Activation</strong> — with satellite zones operational and behavior shifted, close the school perimeter to through traffic during arrival and dismissal windows. <em>This stage only becomes viable once the prior infrastructure is in place.</em></p></li>
+        </ul>
+ 
+        <div class="divider"></div>
+        <div class="col-lbl" style="margin-bottom:12px">What I Took Away</div>
+        <div class="col-text" style="max-width:720px">
+          <p>Winning wasn't the most valuable part. The most valuable part was realizing — again — that <strong>the best solutions are almost never about technology. They're about understanding the human system well enough that the technology becomes almost obvious.</strong> The sensors and the app are the easy parts. The hard part was understanding why parents park where they park, and what it would take to make them park somewhere else willingly. That's a behavioral design problem disguised as a traffic engineering problem. And I only found that framing by listening carefully first.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="proj-block reveal">
+    <div class="proj-num" style="color:rgba(200,164,90,.06)">02</div>
+    <div class="card placeholder-card">
+      <div class="card-body"><div class="coming"><i class="fas fa-plus-circle"></i><h3>More Competitions Coming</h3><p>Additional entries will be documented here as they occur.</p></div></div>
+    </div>
+  </div>
+</main>
+<footer><div class="foot-inner"><span class="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</span><div class="foot-links"><a href="mailto:h54121210@gs.ncku.edu.tw">Email</a><a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a><a href="index.html">Home</a></div></div></footer>
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+function switchLang(l){localStorage.setItem('lang',l);document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-zh').classList.toggle('active',l==='zh')}
+document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
+</script>
+</body></html>
