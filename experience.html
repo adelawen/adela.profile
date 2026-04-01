@@ -1,126 +1,292 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Internship Experience | HsinYu Wen</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
-.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
-.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);flex-shrink:0}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;list-style:none}
-.nav-links li{position:relative}
-.nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-.nav-links a.active::after,.nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
-.nav-drop{position:relative}
-.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color var(--t)}
-.drop-btn:hover{color:var(--white)}
-.drop-btn svg{width:8px;height:8px;transition:transform var(--t)}
-.nav-drop:hover .drop-btn svg{transform:rotate(180deg)}
-.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t);z-index:200}
-.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:2px;transition:var(--t)}
-.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
-.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color var(--t);padding:2px}
-.lang-btn.active{color:var(--gold)}
-.lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
-.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
-.nav-cv:hover{background:var(--gold);color:var(--ink)}
-.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(200,164,90,.06) 0%,transparent 65%);pointer-events:none}
-.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.eyebrow-line{width:32px;height:1px;background:var(--gold)}
-.eyebrow span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;line-height:1.06;margin-bottom:18px}
-.page-title em{font-style:italic;color:var(--gold)}
-.page-sub{font-size:.93rem;color:var(--muted);font-weight:300;max-width:520px;line-height:1.85}
-.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;position:relative;z-index:1}
-.card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;transition:border-color var(--t)}
-.card:hover{border-color:var(--border)}
-.card-bar{height:3px}
-.bar-gold{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
-.bar-green{background:linear-gradient(90deg,var(--green),#7fd9a8)}
-.bar-blue{background:linear-gradient(90deg,#4a90d9,#89c4f4)}
-.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
-.proj-cat{font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.proj-cat.green{color:var(--green)}.proj-cat.blue{color:#89c4f4}
-.card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700;line-height:1.15;margin-bottom:7px}
-.card-title-sub{font-size:.83rem;color:var(--muted);font-style:italic;font-weight:300}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
-.tag{font-size:.66rem;font-weight:500;letter-spacing:.06em;padding:3px 10px;border-radius:2px;border:1px solid}
-.tg{border-color:rgba(200,164,90,.35);color:var(--gold-lt)}.td{border-color:var(--border-w);color:var(--muted)}.tk{border-color:rgba(58,170,114,.35);color:#7fd9a8}.tb{border-color:rgba(74,144,217,.35);color:#89c4f4}
-.dl-group{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
-.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t);white-space:nowrap}
-.btn-dl:hover{background:rgba(200,164,90,.07);border-color:var(--gold)}
-.btn-dl.green{border-color:rgba(58,170,114,.3);color:#7fd9a8}.btn-dl.green:hover{background:rgba(58,170,114,.07);border-color:var(--green)}
-.btn-dl.blue{border-color:rgba(74,144,217,.3);color:#89c4f4}.btn-dl.blue:hover{background:rgba(74,144,217,.07);border-color:#4a90d9}
-.card-body{padding:36px 40px}
-.callout{background:rgba(200,164,90,.055);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:16px 20px;margin-bottom:30px;font-size:.87rem;color:rgba(255,255,255,.77);font-weight:300;line-height:1.85}
-.callout strong{color:var(--gold);font-weight:600}.callout.green{background:rgba(58,170,114,.055);border-left-color:var(--green)}.callout.green strong{color:#7fd9a8}
-.callout.blue{background:rgba(74,144,217,.055);border-left-color:#4a90d9}.callout.blue strong{color:#89c4f4}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
-.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:9px}
-.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}.col-lbl.green{color:var(--green)}.col-lbl.blue{color:#89c4f4}
-.col-text{font-size:.87rem;color:var(--muted-2);font-weight:300;line-height:1.9}
-.col-text p+p{margin-top:11px}.col-text strong{color:var(--white);font-weight:500}
-.ach{list-style:none;margin-top:13px}
-.ach li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--muted-2);font-weight:300;margin-bottom:10px;line-height:1.7}
-.ach li::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.76rem;margin-top:3px}
-.ach.green li::before{color:var(--green)}.ach.blue li::before{color:#89c4f4}.ach li strong{color:var(--white);font-weight:500}
-.divider{height:1px;background:var(--border-w);margin:26px 0}
-.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.cred-card{background:var(--ink-3);border:1px solid var(--border-w);border-radius:4px;padding:15px 17px;transition:var(--t)}
-.cred-card:hover{border-color:var(--border)}
-.cred-val{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:var(--gold);line-height:1}.cred-val.green{color:var(--green)}
-.cred-key{font-size:.65rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
-.chip{background:var(--ink-3);border:1px solid var(--border-w);border-radius:2px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
-.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);line-height:1;margin-bottom:-14px;letter-spacing:-.02em;user-select:none}
-.proj-block{margin-bottom:72px}.proj-block:last-child{margin-bottom:0}
-footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
-.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
-.foot-links{display:flex;gap:16px}
-.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}.foot-links a:hover{color:var(--gold)}
-.coming{text-align:center;padding:72px 20px;color:var(--muted)}
-.coming i{font-size:2.2rem;color:var(--border-w);display:block;margin-bottom:18px}
-.coming h3{font-family:var(--fd);font-size:1.5rem;color:rgba(255,255,255,.25);margin-bottom:8px}
-.coming p{font-size:.84rem;font-weight:300}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
-@media(max-width:860px){.nav-links{display:none}.two-col{grid-template-columns:1fr;gap:28px}.card-head{flex-direction:column}.dl-group{flex-direction:row;flex-wrap:wrap}.card-body{padding:24px 22px}.card-head{padding:24px 22px}}
- 
- 
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experience | HsinYu Wen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --ink: #0d1520; --ink-2: #172030; --ink-3: #1e2d42; --gold: #c8a45a; --gold-lt: #e8d4a0;
+            --white: #fff; --muted: #8a96a8; --muted-2: #b0bac8; --green: #3aaa72;
+            --border: rgba(200, 164, 90, .22); --border-w: rgba(255, 255, 255, .07);
+            --radius: 3px; --fd: 'Cormorant Garamond', Georgia, serif; --fb: 'Outfit', sans-serif;
+            --ease: cubic-bezier(.4, 0, .2, 1); --t: .32s var(--ease);
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--fb); background: var(--ink); color: var(--white); overflow-x: hidden; line-height: 1.7; }
+        a { text-decoration: none; color: inherit; }
+        img { display: block; max-width: 100%; }
+        
+        /* Background Noise */
+        body::before {
+            content: ''; position: fixed; inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");
+            pointer-events: none; z-index: 0;
+        }
+
+        /* Nav Styles */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: var(--t); border-bottom: 1px solid transparent; }
+        .nav.scrolled { padding: 13px 0; background: rgba(13, 21, 32, .96); backdrop-filter: blur(18px); border-color: var(--border); }
+        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--fd); font-size: 1.4rem; font-weight: 700; color: var(--white); }
+        .nav-logo span { color: var(--gold); }
+        .nav-links { display: flex; align-items: center; list-style: none; }
+        .nav-links a { font-size: .72rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); padding: 7px 13px; transition: var(--t); position: relative; }
+        .nav-links a:hover, .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 13px; right: 13px; height: 1px; background: var(--gold); }
+        .nav-drop { position: relative; }
+        .drop-btn { display: flex; align-items: center; gap: 4px; font-size: .72rem; color: var(--muted); background: none; border: none; cursor: pointer; font-family: var(--fb); }
+        .drop-menu { position: absolute; top: calc(100% + 6px); right: 0; background: var(--ink-2); border: 1px solid var(--border); border-radius: 4px; padding: 6px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(-6px); transition: all var(--t); }
+        .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .drop-menu a { display: block; font-size: .7rem; color: var(--muted); padding: 7px 11px; border-radius: 2px; }
+        .drop-menu a:hover { color: var(--white); background: rgba(255, 255, 255, .04); }
+        .nav-right { display: flex; align-items: center; gap: 12px; }
+        .lang-btn { background: none; border: none; cursor: pointer; color: var(--muted); font-size: .68rem; font-weight: 500; transition: var(--t); }
+        .lang-btn.active { color: var(--gold); }
+        .nav-cv { font-size: .68rem; font-weight: 600; border: 1px solid var(--gold); color: var(--gold); padding: 6px 15px; border-radius: var(--radius); transition: var(--t); }
+        .nav-cv:hover { background: var(--gold); color: var(--ink); }
+
+        /* Header & Content */
+        .page-header { padding: 148px 0 70px; border-bottom: 1px solid var(--border); position: relative; }
+        .ph-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+        .eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+        .eyebrow-line { width: 32px; height: 1px; background: var(--gold); }
+        .eyebrow span { font-size: .7rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); }
+        .page-title { font-family: var(--fd); font-size: clamp(2.6rem, 5vw, 4.6rem); line-height: 1.06; margin-bottom: 18px; }
+        .page-title em { font-style: italic; color: var(--gold); }
+        .page-sub { font-size: .93rem; color: var(--muted); max-width: 520px; }
+
+        /* Experience Cards */
+        .main { max-width: 1120px; margin: 0 auto; padding: 70px 32px 110px; }
+        .proj-block { margin-bottom: 72px; }
+        .proj-num { font-family: var(--fd); font-size: 4.5rem; font-weight: 700; color: rgba(200, 164, 90, .1); margin-bottom: -14px; }
+        .card { background: var(--ink-2); border: 1px solid var(--border-w); border-radius: 6px; overflow: hidden; transition: var(--t); }
+        .card:hover { border-color: var(--border); }
+        .card-bar { height: 3px; }
+        .bar-gold { background: var(--gold); }
+        .bar-blue { background: #4a90d9; }
+        .card-head { padding: 32px 40px 26px; border-bottom: 1px solid var(--border-w); display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; flex-wrap: wrap; }
+        .card-title { font-family: var(--fd); font-size: 1.85rem; font-weight: 700; line-height: 1.15; }
+        .card-title-sub { font-size: .83rem; color: var(--muted); font-style: italic; margin-top: 4px; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 13px; }
+        .tag { font-size: .66rem; padding: 3px 10px; border: 1px solid rgba(255,255,255,.1); border-radius: 2px; color: var(--muted-2); }
+        .tg { border-color: var(--gold); color: var(--gold-lt); }
+        .tb { border-color: #4a90d9; color: #89c4f4; }
+        .dl-group { display: flex; flex-direction: column; gap: 8px; }
+        .btn-dl { display: inline-flex; align-items: center; gap: 8px; font-size: .68rem; padding: 8px 15px; border: 1px solid var(--border); border-radius: var(--radius); color: var(--gold); transition: var(--t); }
+        .btn-dl:hover { background: rgba(200, 164, 90, .07); }
+        .card-body { padding: 36px 40px; }
+        .callout { background: rgba(200, 164, 90, .05); border-left: 3px solid var(--gold); padding: 16px 20px; margin-bottom: 30px; font-size: .87rem; color: rgba(255,255,255,.77); }
+        .callout strong { color: var(--gold); display: block; margin-bottom: 4px; }
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+        .col-lbl { font-size: .65rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 13px; display: flex; align-items: center; gap: 9px; }
+        .col-lbl::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+        .ach { list-style: none; }
+        .ach li { display: flex; gap: 10px; font-size: .87rem; color: var(--muted-2); margin-bottom: 10px; }
+        .ach li::before { content: '→'; color: var(--gold); flex-shrink: 0; }
+
+        /* Photo Slider Logic */
+        .photo-section { margin-top: 20px; }
+        .photo-slider { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 15px; scroll-snap-type: x mandatory; }
+        .photo-slider::-webkit-scrollbar { height: 4px; }
+        .photo-slider::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+        .photo-item { flex: 0 0 calc(33.33% - 8px); scroll-snap-align: start; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-w); }
+        .photo-item img { width: 100%; height: 160px; object-fit: cover; transition: var(--t); }
+        .photo-item:hover img { transform: scale(1.08); }
+
+        /* Single Photo Layout (for FEI) */
+        .single-photo { border-radius: 4px; overflow: hidden; border: 1px solid var(--border-w); margin-top: 10px; }
+        .single-photo img { width: 100%; height: 220px; object-fit: cover; }
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+        .reveal.v { opacity: 1; transform: none; }
+
+        footer { border-top: 1px solid var(--border); padding: 26px 0; margin-top: 50px; }
+        .foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); }
+        
+        @media(max-width: 860px) {
+            .two-col { grid-template-columns: 1fr; gap: 28px; }
+            .photo-item { flex: 0 0 70%; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
-<nav class="nav" id="mainnav"><div class="nav-inner"><a href="index.html" class="nav-logo">HsinYu<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html">Projects</a></li><li><a href="competitions.html">Competitions</a></li><li class="nav-drop"><button class="drop-btn">More<svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button><div class="drop-menu"><a href="experience.html" class="active">Internship</a><a href="exchange.html">Cultural Exchange</a><a href="certificates.html">Certificates</a><a href="clubs.html">Clubs &amp; Volunteer</a></div></li></ul><div class="nav-right"><div style="display:flex;align-items:center;gap:5px"><button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button></div><a href="resume.pdf" download class="nav-cv">CV</a></div></div></nav>
-<div class="page-header"><div class="ph-inner">
-  <div class="eyebrow reveal"><span class="eyebrow-line"></span><span>Internship Experience</span></div>
-  <h1 class="page-title reveal">Learn by doing,<br><em>in the real world.</em></h1>
-  <p class="page-sub reveal">Professional internship experience — where classroom frameworks meet operational reality.</p>
-</div></div>
+
+<nav class="nav" id="mainnav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="projects.html" data-en="Projects" data-zh="研究專案">Projects</a></li>
+            <li><a href="competitions.html" data-en="Competitions" data-zh="競賽經歷">Competitions</a></li>
+            <li class="nav-drop">
+                <button class="drop-btn"><span data-en="More" data-zh="更多">More</span> <i class="fas fa-chevron-down" style="font-size: .5rem;"></i></button>
+                <div class="drop-menu">
+                    <a href="experience.html" class="active" data-en="Internship" data-zh="實習經驗">Internship</a>
+                    <a href="exchange.html" data-en="Cultural Exchange" data-zh="文化交流">Cultural Exchange</a>
+                    <a href="certificates.html" data-en="Certificates" data-zh="專業證照">Certificates</a>
+                </div>
+            </li>
+        </ul>
+        <div class="nav-right">
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+            <span style="color:rgba(200,164,90,.3)">·</span>
+            <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+            <a href="resume.pdf" download class="nav-cv" data-en="CV" data-zh="履歷">CV</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="ph-inner">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span><span data-en="Professional Growth" data-zh="職場成長">Professional Growth</span></div>
+        <h1 class="page-title reveal" data-en="Learn by doing, in the real world." data-zh="在實務中學習，在現實中成長">Learn by doing,<br><em>in the real world.</em></h1>
+        <p class="page-sub reveal" data-en="Professional internship experience — where classroom frameworks meet operational reality and proactive problem-solving." data-zh="專業實習經歷——在這裡，課堂理論轉化為實際營運，並培養主動解決問題的能力。">Professional internship experience — where classroom frameworks meet operational reality.</p>
+    </div>
+</div>
+
 <main class="main">
-  <div class="reveal"><div class="card"><div class="card-bar bar-gold"></div>
-    <div class="card-body"><div class="coming"><i class="fas fa-briefcase"></i><h3>Content Coming Soon</h3><p>This section is being documented. Check back soon.</p></div></div>
-  </div></div>
+    <div class="proj-block reveal">
+        <div class="proj-num">01</div>
+        <div class="card">
+            <div class="card-bar bar-gold"></div>
+            <div class="card-head">
+                <div>
+                    <div class="tag tg" style="margin-bottom: 8px;" data-en="Summer Internship" data-zh="暑期實習">Summer Internship</div>
+                    <h2 class="card-title" data-en="EMI Educational Assistant & Coordinator" data-zh="全英文夏令營帶班導師與協調員">EMI Educational Assistant & Coordinator</h2>
+                    <p class="card-title-sub" data-en="Vision Creative Culture · Jul 2026" data-zh="遠見文創 · 2026年7月">Vision Creative Culture · Jul 2026</p>
+                    <div class="tag-row">
+                        <span class="tag" data-en="Cross-Cultural Bridge" data-zh="跨文化橋樑">Cross-Cultural Bridge</span>
+                        <span class="tag" data-en="Classroom Management" data-zh="課堂管理">Classroom Management</span>
+                        <span class="tag" data-en="English Expression" data-zh="英語表達實踐">English Expression</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a class="btn-dl" href="EMI educational assistant contract.pdf" target="_blank" download>
+                        <i class="fas fa-file-pdf"></i> <span data-en="Internship Contract" data-zh="實習合約">Internship Contract</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="callout">
+                    <strong data-en="The Core Role:" data-zh="核心角色：">The Core Role:</strong>
+                    <span data-en="Acted as the trilingual communication bridge between students, the organization, and native English instructors who spoke no Chinese." data-zh="在學生、機構以及完全不會中文的外籍老師之間，擔任關鍵的三方溝通橋樑。">Acted as the trilingual communication bridge between students, organization, and foreign instructors.</span>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl" data-en="Operational Excellence" data-zh="執行細節">Operational Excellence</div>
+                        <ul class="ach">
+                            <li data-en="Daily 07:00 preparation and 07:30 briefings; translated corporate directives into actionable bullet points for the team by 08:00." data-zh="每日 07:00 抵達辦公室，07:30 參與會議並以 Bullet points 記錄遠見端交代事項，於 08:00 轉達給外師與學生。">Daily 07:00 start with precise bullet-point coordination.</li>
+                            <li data-en="Practiced simplified English communication to explain complex lesson content to 6th-grade students, ensuring zero knowledge gaps." data-zh="練習以淺顯易懂的英語（小六程度）向孩子解釋外師教學中的難點，精進語言表達與教學溝通。">Simplified complex English for 6th-grade students.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="col-lbl" data-en="Gallery" data-zh="實習紀錄">Gallery</div>
+                        <div class="photo-slider">
+                            <div class="photo-item"><img src="grouppic1.jpg" alt="1"></div>
+                            <div class="photo-item"><img src="grouppic2.jpg" alt="2"></div>
+                            <div class="photo-item"><img src="grouppic3.jpg" alt="3"></div>
+                            <div class="photo-item"><img src="grouppic4.jpg" alt="4"></div>
+                            <div class="photo-item"><img src="grouppic5.jpg" alt="5"></div>
+                            <div class="photo-item"><img src="grouppic6.jpg" alt="6"></div>
+                            <div class="photo-item"><img src="grouppic7.jpg" alt="7"></div>
+                            <div class="photo-item"><img src="grouppic8.jpg" alt="8"></div>
+                        </div>
+                        <p style="font-size: 0.65rem; color: var(--muted); margin-top: 8px;" data-en="Scroll right to see more (8 photos)" data-zh="向右滑動查看更多 (共8張)">Scroll right to see more</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="proj-block reveal">
+        <div class="proj-num">02</div>
+        <div class="card">
+            <div class="card-bar bar-blue"></div>
+            <div class="card-head">
+                <div>
+                    <div class="tag tb" style="margin-bottom: 8px;" data-en="Administrative Support" data-zh="行政支援實習">Administrative Support</div>
+                    <h2 class="card-title" data-en="Administrative Assistant" data-zh="行政助理">Administrative Assistant</h2>
+                    <p class="card-title-sub" data-en="FEI (Fusion Energy) · Jun 2024 - Aug 2024" data-zh="聚界潔能 · 2024年6月 - 8月">FEI (Fusion Energy) · Jun 2024 - Aug 2024</p>
+                    <div class="tag-row">
+                        <span class="tag" data-en="Event Management" data-zh="活動籌辦">Event Management</span>
+                        <span class="tag" data-en="Proactive Growth" data-zh="主動思考培養">Proactive Growth</span>
+                        <span class="tag" data-en="Lab Opening" data-zh="實驗室開幕協助">Lab Opening</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a class="btn-dl" href="Employment Agreement_Wen. Hsin-Yu_06142024.pdf" target="_blank" download style="color: #89c4f4; border-color: #4a90d9;">
+                        <i class="fas fa-file-signature"></i> <span data-en="Employment Agreement" data-zh="聘僱合約">Employment Agreement</span>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="callout" style="border-left-color: #4a90d9; background: rgba(74,144,217,.05);">
+                    <strong style="color: #89c4f4;" data-en="Mindset Shift:" data-zh="心態轉變：">Mindset Shift:</strong>
+                    <span data-en="Evolved from a task-taker to a proactive thinker, learning to anticipate needs and contribute to high-stakes corporate events." data-zh="從單純執行主管交辦事項，轉變為能主動思考並預判需求，為企業的重要活動做出具體貢獻。">Transitioned from following instructions to identifying needs proactively.</span>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl" style="color: #89c4f4;" data-en="Key Contribution" data-zh="關鍵貢獻">Key Contribution</div>
+                        <ul class="ach">
+                            <li data-en="Successfully supported the FEI Tainan Laboratory opening ceremony, managing logistics and hospitality for 50+ distinguished guests." data-zh="協助聚界潔能台南實驗室開幕活動順利舉行，負責接待與統籌現場 50+ 位參與者的各項事宜。">Coordinated the grand opening for 50+ participants.</li>
+                            <li data-en="Mastered administrative protocols and office operations through independent task management." data-zh="透過獨立處理各項行政庶務，掌握了職場行政流程與標準作業規範。">Mastered office administrative protocols.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="col-lbl" style="color: #89c4f4;" data-en="Team Photo" data-zh="團隊合影">Team Photo</div>
+                        <div class="single-photo">
+                            <img src="Group photo at the laboratory closing ceremony.jpg" alt="Lab Opening Photo">
+                        </div>
+                        <p style="font-size: 0.65rem; color: var(--muted); margin-top: 8px;" data-en="FEI Tainan Laboratory Opening" data-zh="聚界潔能台南實驗室開幕合影">FEI Tainan Laboratory Opening</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
-<footer><div class="foot-inner"><span class="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</span><div class="foot-links"><a href="mailto:h54121210@gs.ncku.edu.tw">Email</a><a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a><a href="index.html">Home</a></div></div></footer>
+
+<footer>
+    <div class="foot-inner">
+        <span>© 2026 HsinYu Wen — NCKU TCM</span>
+        <div style="display:flex; gap:16px;">
+            <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
+            <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
 <script>
-window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-function switchLang(l){localStorage.setItem('lang',l);document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-zh').classList.toggle('active',l==='zh')}
-document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
+    // Scroll effect for nav
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // Intersection Observer for Reveal
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v') });
+    }, { threshold: .08 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Language Switcher
+    function switchLang(l) {
+        localStorage.setItem('lang', l);
+        document.getElementById('btn-en').classList.toggle('active', l === 'en');
+        document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+        document.querySelectorAll('[data-en]').forEach(el => {
+            el.textContent = el.getAttribute('data-' + l);
+        });
+    }
+
+    // Initialize Language
+    document.addEventListener('DOMContentLoaded', () => {
+        switchLang(localStorage.getItem('lang') || 'en');
+    });
 </script>
-</body></html>
+</body>
+</html>
