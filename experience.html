@@ -6,46 +6,57 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-/* 基礎樣式對齊首頁 */
-:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',serif;--fb:'Outfit',sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* 導航欄樣式 - 嚴格對齊首頁格式與大小 */
+/* 導航欄 - 嚴格對齊首頁格式 */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);text-decoration:none}.nav-logo span{color:var(--gold)}
 .nav-links{display:flex;list-style:none;align-items:center}
 .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);text-decoration:none;position:relative}
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-links a.active{color:var(--white)}.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 .nav-right{display:flex;align-items:center;gap:15px}
 .lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.72rem;font-weight:500;letter-spacing:.1em;transition:var(--t);padding:4px}
 .lang-btn.active{color:var(--gold)}.lang-sep{color:rgba(200,164,90,.3);font-size:.6rem}
 .nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);text-decoration:none;transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* 內容區塊 */
-.main{max-width:1120px;margin:160px auto 110px;padding:0 32px}
+/* 頁面內容佈局 */
+.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;line-height:1.06;margin-bottom:18px}
+.page-title em{color:var(--gold);font-style:italic}
+.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px}
 .proj-block{margin-bottom:80px}.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);margin-bottom:-15px}
 .card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden}
 .card-bar{height:3px}.bar-gold{background:var(--gold)}.bar-blue{background:#4a90d9}
-.card-head{padding:32px 40px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
 .card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700}
 .btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;padding:8px 15px;border:1px solid var(--border);color:var(--gold);text-decoration:none;transition:var(--t)}
 
-/* 縮圖統一尺寸設定 */
+.card-body{padding:36px 40px}
+.callout{background:rgba(200,164,90,.05);border-left:3px solid var(--gold);padding:16px 20px;margin-bottom:30px;font-size:.87rem;color:rgba(255,255,255,.77)}
+.callout strong{color:var(--gold)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:9px}
+.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
+.ach{list-style:none}.ach li{display:flex;gap:10px;font-size:.87rem;color:var(--muted-2);margin-bottom:10px}
+.ach li::before{content:'→';color:var(--gold);flex-shrink:0}
+
+/* 照片統一尺寸與滑動 */
 .photo-area{margin-top:20px}
 .photo-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:15px}
 .photo-scroll::-webkit-scrollbar{height:4px}.photo-scroll::-webkit-scrollbar-thumb{background:var(--gold)}
-.thumb{flex:0 0 220px; /* 固定寬度，不論幾張照片都一樣大 */
+.thumb{flex:0 0 220px; /* 這裡強制讓每張縮圖不論幾張都一樣寬 */
        aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--border-w);cursor:pointer}
 .thumb img{width:100%;height:100%;object-fit:cover;transition:var(--t)}
 .thumb:hover img{transform:scale(1.05)}
 
-/* 燈箱視窗 */
+/* Lightbox 燈箱效果 */
 #lightbox{position:fixed;inset:0;background:rgba(13,21,32,.98);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
 #lightbox.active{display:flex}
 .lb-content{position:relative;max-width:85vw;max-height:80vh}
@@ -55,6 +66,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .lb-prev{left:-70px}.lb-next{right:-70px}
 
 .reveal{opacity:0;transform:translateY(20px);transition:0.7s var(--ease)}.reveal.v{opacity:1;transform:none}
+
+@media(max-width:860px){.two-col{grid-template-columns:1fr}.thumb{flex:0 0 75%}.lb-prev{left:10px}.lb-next{right:10px}}
 </style>
 </head>
 <body>
@@ -75,6 +88,10 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
 </div></nav>
 
+<div class="page-header"><div class="ph-inner">
+  <h1 class="page-title reveal" data-en="Experience that<br><em>builds character.</em>" data-zh="在實務中學習，<br><em>在現實中成長。</em>">Experience that<br><em>builds character.</em></h1>
+</div></div>
+
 <main class="main">
     <div class="proj-block reveal">
         <div class="proj-num">01</div>
@@ -82,23 +99,33 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
             <div class="card-bar bar-gold"></div>
             <div class="card-head">
                 <div>
-                    <h2 class="card-title" data-en="EMI Educational Assistant" data-zh="全英文夏令營帶班導師">EMI Educational Assistant</h2>
+                    <h2 class="card-title" data-en="EMI Educational Assistant & Mentor" data-zh="全英文夏令營帶班導師">EMI Educational Assistant & Mentor</h2>
                     <p style="color:var(--muted); font-style:italic">Vision Creative Culture · Summer 2026</p>
                 </div>
                 <a class="btn-dl" href="EMI%20educational%20assistant%20contract.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> AGREEMENT</a>
             </div>
-            <div class="card-body" style="padding:40px">
-                <div class="photo-area">
-                    <p class="col-lbl" data-en="GALLERY" data-zh="實習紀錄">GALLERY</p>
-                    <div class="photo-scroll">
-                        <div class="thumb" onclick="openLightbox(0, 'vision')"><img src="grouppic1.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(1, 'vision')"><img src="grouppic2.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(2, 'vision')"><img src="grouppic3.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(3, 'vision')"><img src="grouppic4.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(4, 'vision')"><img src="grouppic5.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(5, 'vision')"><img src="grouppic6.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(6, 'vision')"><img src="grouppic7.jpg"></div>
-                        <div class="thumb" onclick="openLightbox(7, 'vision')"><img src="grouppic8.jpg"></div>
+            <div class="card-body">
+                <div class="callout"><strong data-en="Communication Bridge:" data-zh="溝通的橋樑：">Communication Bridge:</strong> <span data-en="Served as the essential link between students, organization, and native English instructors." data-zh="在學生、機構以及完全不會中文的外籍老師之間擔任關鍵溝通橋樑。">Served as the essential link between three parties.</span></div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl" data-en="DAILY OPERATIONS" data-zh="每日職責體悟">DAILY OPERATIONS</div>
+                        <ul class="ach">
+                            <li data-en="Arrived at 07:00 for 07:30 briefings; noted instructions in bullet points for 08:00 class transition." data-zh="每週早晨 07:00 抵達辦公室準備會議，並以 Bullet points 記下遠見端交代事項，於 08:00 轉達給孩子與外師。">07:00 Early arrival & bullet-point coordination.</li>
+                            <li data-en="Simplified complex instructions into easy English to help 6th-grade students understand foreign lessons." data-zh="得到大量表達機會，練習以淺顯英語向小六孩子解釋教學難點，縮小其與外師間的溝通差距。">Simplified English for student clarity.</li>
+                        </ul>
+                    </div>
+                    <div class="photo-area">
+                        <p class="col-lbl" data-en="GALLERY" data-zh="實習紀錄 (點擊放大)">GALLERY</p>
+                        <div class="photo-scroll">
+                            <div class="thumb" onclick="openLightbox(0, 'vision')"><img src="grouppic1.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(1, 'vision')"><img src="grouppic2.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(2, 'vision')"><img src="grouppic3.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(3, 'vision')"><img src="grouppic4.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(4, 'vision')"><img src="grouppic5.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(5, 'vision')"><img src="grouppic6.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(6, 'vision')"><img src="grouppic7.jpg"></div>
+                            <div class="thumb" onclick="openLightbox(7, 'vision')"><img src="grouppic8.jpg"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,11 +143,23 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
                 </div>
                 <a class="btn-dl" href="Employment%20Agreement_Wen,%20Hsin-Yu_06142024.pdf" target="_blank" download><i class="fas fa-file-contract"></i> AGREEMENT</a>
             </div>
-            <div class="card-body" style="padding:40px">
-                <div class="photo-area">
-                    <p class="col-lbl" data-en="TEAM PHOTO" data-zh="團隊合影">TEAM PHOTO</p>
-                    <div class="photo-scroll">
-                        <div class="thumb" onclick="openLightbox(0, 'fei')"><img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg"></div>
+            <div class="card-body">
+                <div class="callout" style="border-left-color:#4a90d9; background:rgba(74,144,217,.05)">
+                    <strong style="color:#89c4f4" data-en="Proactive Mindset:" data-zh="心態轉變：">Proactive Mindset:</strong> 
+                    <span data-en="Evolved from following instructions to anticipating needs and proactively adding value." data-zh="第一次培養行政助理能力，讓我從一個只做主管交代的事情，成長為能主動預判需求、多想多做的職場人。">Evolved from a task-taker to a proactive thinker.</span>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl" style="color:#4a90d9" data-en="KEY ACHIEVEMENT" data-zh="重要實務">KEY ACHIEVEMENT</div>
+                        <ul class="ach">
+                            <li data-en="Coordinated the Tainan Lab opening ceremony for 50+ distinguished participants." data-zh="一同參加了台南實驗室開張活動，協助 50+ 參與者的接待與流程協調，確保活動順利舉行。">Coordinated Tainan Lab Opening (50+ participants).</li>
+                        </ul>
+                    </div>
+                    <div class="photo-area">
+                        <p class="col-lbl" style="color:#4a90d9" data-en="TEAM PHOTO" data-zh="團隊合影 (點擊放大)">TEAM PHOTO</p>
+                        <div class="photo-scroll">
+                            <div class="thumb" onclick="openLightbox(0, 'fei')"><img src="Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -138,7 +177,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-// 分組照片定義
+// 分組定義
 const galleryGroups = {
     vision: ['grouppic1.jpg','grouppic2.jpg','grouppic3.jpg','grouppic4.jpg','grouppic5.jpg','grouppic6.jpg','grouppic7.jpg','grouppic8.jpg'],
     fei: ['Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg']
@@ -160,7 +199,8 @@ function closeLightbox() {
 function changeImg(dir) {
     const list = galleryGroups[currentGroup];
     const nextIdx = currentIdx + dir;
-    if (nextIdx >= 0 && nextIdx < list.length) {
+    // 獨立滑動邏輯：到頭尾就停止
+    if(nextIdx >= 0 && nextIdx < list.length) {
         currentIdx = nextIdx;
         updateLightbox();
     }
@@ -168,7 +208,7 @@ function changeImg(dir) {
 function updateLightbox() {
     const list = galleryGroups[currentGroup];
     document.getElementById('lbImg').src = list[currentIdx].replace(/ /g, '%20');
-    // 判斷按鈕顯示與否 (分組隔離，滑到底就不能再滑)
+    // 控制箭頭顯示
     document.getElementById('lb-prev').style.display = currentIdx === 0 ? 'none' : 'flex';
     document.getElementById('lb-next').style.display = currentIdx === list.length - 1 ? 'none' : 'flex';
 }
