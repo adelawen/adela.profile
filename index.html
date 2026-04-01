@@ -3,16 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HsinYu Wen | Portfolio</title>
+<title>HsinYu Wen | HsinYu Wen</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
@@ -39,7 +37,71 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
 .nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
-/* HERO */
+.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
+.page-header::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(200,164,90,.06) 0%,transparent 65%);pointer-events:none}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.eyebrow-line{width:32px;height:1px;background:var(--gold)}
+.eyebrow span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;line-height:1.06;margin-bottom:18px}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{font-size:.93rem;color:var(--muted);font-weight:300;max-width:520px;line-height:1.85}
+.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;position:relative;z-index:1}
+.card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;transition:border-color var(--t)}
+.card:hover{border-color:var(--border)}
+.card-bar{height:3px}
+.bar-gold{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
+.bar-green{background:linear-gradient(90deg,var(--green),#7fd9a8)}
+.bar-blue{background:linear-gradient(90deg,#4a90d9,#89c4f4)}
+.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.proj-cat{font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.proj-cat.green{color:var(--green)}.proj-cat.blue{color:#89c4f4}
+.card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700;line-height:1.15;margin-bottom:7px}
+.card-title-sub{font-size:.83rem;color:var(--muted);font-style:italic;font-weight:300}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+.tag{font-size:.66rem;font-weight:500;letter-spacing:.06em;padding:3px 10px;border-radius:2px;border:1px solid}
+.tg{border-color:rgba(200,164,90,.35);color:var(--gold-lt)}.td{border-color:var(--border-w);color:var(--muted)}.tk{border-color:rgba(58,170,114,.35);color:#7fd9a8}.tb{border-color:rgba(74,144,217,.35);color:#89c4f4}
+.dl-group{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t);white-space:nowrap}
+.btn-dl:hover{background:rgba(200,164,90,.07);border-color:var(--gold)}
+.btn-dl.green{border-color:rgba(58,170,114,.3);color:#7fd9a8}.btn-dl.green:hover{background:rgba(58,170,114,.07);border-color:var(--green)}
+.btn-dl.blue{border-color:rgba(74,144,217,.3);color:#89c4f4}.btn-dl.blue:hover{background:rgba(74,144,217,.07);border-color:#4a90d9}
+.card-body{padding:36px 40px}
+.callout{background:rgba(200,164,90,.055);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:16px 20px;margin-bottom:30px;font-size:.87rem;color:rgba(255,255,255,.77);font-weight:300;line-height:1.85}
+.callout strong{color:var(--gold);font-weight:600}.callout.green{background:rgba(58,170,114,.055);border-left-color:var(--green)}.callout.green strong{color:#7fd9a8}
+.callout.blue{background:rgba(74,144,217,.055);border-left-color:#4a90d9}.callout.blue strong{color:#89c4f4}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:9px}
+.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}.col-lbl.green{color:var(--green)}.col-lbl.blue{color:#89c4f4}
+.col-text{font-size:.87rem;color:var(--muted-2);font-weight:300;line-height:1.9}
+.col-text p+p{margin-top:11px}.col-text strong{color:var(--white);font-weight:500}
+.ach{list-style:none;margin-top:13px}
+.ach li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--muted-2);font-weight:300;margin-bottom:10px;line-height:1.7}
+.ach li::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.76rem;margin-top:3px}
+.ach.green li::before{color:var(--green)}.ach.blue li::before{color:#89c4f4}.ach li strong{color:var(--white);font-weight:500}
+.divider{height:1px;background:var(--border-w);margin:26px 0}
+.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.cred-card{background:var(--ink-3);border:1px solid var(--border-w);border-radius:4px;padding:15px 17px;transition:var(--t)}
+.cred-card:hover{border-color:var(--border)}
+.cred-val{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:var(--gold);line-height:1}.cred-val.green{color:var(--green)}
+.cred-key{font-size:.65rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.chip{background:var(--ink-3);border:1px solid var(--border-w);border-radius:2px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
+.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);line-height:1;margin-bottom:-14px;letter-spacing:-.02em;user-select:none}
+.proj-block{margin-bottom:72px}.proj-block:last-child{margin-bottom:0}
+footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
+.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.foot-links{display:flex;gap:16px}
+.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}.foot-links a:hover{color:var(--gold)}
+.coming{text-align:center;padding:72px 20px;color:var(--muted)}
+.coming i{font-size:2.2rem;color:var(--border-w);display:block;margin-bottom:18px}
+.coming h3{font-family:var(--fd);font-size:1.5rem;color:rgba(255,255,255,.25);margin-bottom:8px}
+.coming p{font-size:.84rem;font-weight:300}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
+@media(max-width:860px){.nav-links{display:none}.two-col{grid-template-columns:1fr;gap:28px}.card-head{flex-direction:column}.dl-group{flex-direction:row;flex-wrap:wrap}.card-body{padding:24px 22px}.card-head{padding:24px 22px}}
+ 
+ 
 .hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:0;top:10%;width:46vw;height:78vh;border:1px solid var(--border);border-right:none;border-radius:4px 0 0 4px;pointer-events:none}
 .hero-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 370px;gap:60px;align-items:center;position:relative;z-index:1}
@@ -59,14 +121,12 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .stats-row{display:flex;gap:24px;margin-top:38px;padding-top:26px;border-top:1px solid var(--border);flex-wrap:wrap}
 .stat-num{font-family:var(--fd);font-size:1.75rem;font-weight:700;color:var(--gold);line-height:1}
 .stat-lbl{font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
-/* photo */
 .photo-wrap{position:relative}
 .photo-wrap::before{content:'';position:absolute;inset:16px -16px -16px 16px;border:1px solid var(--border);border-radius:4px;z-index:0}
 .photo-img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top center;border-radius:4px;position:relative;z-index:1;filter:grayscale(8%) contrast(1.02)}
 .photo-fallback{width:100%;aspect-ratio:4/5;background:var(--ink-2);border-radius:4px;position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid var(--border);gap:12px}
 .photo-fallback i{font-size:3.5rem;color:var(--border)}
 .photo-fallback span{font-size:.72rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
-/* ABOUT */
 .about{border-top:1px solid var(--border);padding:80px 0}
 .about-inner{max-width:1120px;margin:0 auto;padding:0 32px}
 .sec-hd{display:flex;align-items:center;gap:14px;margin-bottom:44px}
@@ -88,44 +148,26 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .p-label::after{content:'';flex:1;height:1px;background:var(--border)}
 .p-text{font-size:.83rem;color:var(--muted-2);font-weight:300;line-height:1.85}
 .p-text strong{color:var(--white);font-weight:500}
-/* FOOTER */
-footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
-.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
-.foot-links{display:flex;gap:16px}
-.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}
-.foot-links a:hover{color:var(--gold)}
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
-.reveal.v{opacity:1;transform:none}
-@media(max-width:860px){
-  .nav-links{display:none}
-  .hero-inner{grid-template-columns:1fr}
-  .hero::after{display:none}
-  .photo-wrap{max-width:240px;margin:24px auto 0}
-  .about-grid{grid-template-columns:1fr;gap:28px}
-}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero::after{display:none}.photo-wrap{max-width:240px;margin:24px auto 0}.about-grid{grid-template-columns:1fr;gap:28px}}
+ 
 </style>
 </head>
 <body>
- 
 <nav class="nav" id="mainnav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="projects.html">Projects</a></li>
-      <li><a href="competitions.html">Competitions</a></li>
+<li><a href="projects.html">Projects</a></li>
+<li><a href="competitions.html">Competitions</a></li>
+ 
       <li class="nav-drop">
-        <button class="drop-btn">More
-          <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
-        </button>
-        <div class="drop-menu">
-          <a href="experience.html">Internship</a>
-          <a href="exchange.html">Cultural Exchange</a>
-          <a href="certificates.html">Certificates</a>
-          <a href="clubs.html">Clubs &amp; Volunteer</a>
-        </div>
+        <button class="drop-btn">More<svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+        <div class="drop-menu"><a href="experience.html">Internship</a>
+<a href="exchange.html">Cultural Exchange</a>
+<a href="certificates.html">Certificates</a>
+<a href="clubs.html">Clubs & Volunteer</a>
+</div>
       </li>
     </ul>
     <div class="nav-right">
@@ -138,7 +180,6 @@ footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-ind
     </div>
   </div>
 </nav>
- 
 <header class="hero">
   <div class="hero-inner">
     <div>
@@ -154,18 +195,17 @@ footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-ind
         <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn-ico"><i class="fab fa-linkedin-in"></i></a>
       </div>
       <div class="stats-row reveal">
-        <div><div class="stat-num">2</div><div class="stat-lbl" id="stat-projects">Research Projects</div></div>
+        <div><div class="stat-num">2</div><div class="stat-lbl" id="stat-p">Research Projects</div></div>
         <div><div class="stat-num">1<sup style="font-size:.9rem">st</sup></div><div class="stat-lbl">Chuangnan 2025</div></div>
         <div><div class="stat-num">6.5</div><div class="stat-lbl">IELTS</div></div>
-        <div><div class="stat-num" style="font-size:1.1rem;padding-top:4px">Liverpool</div><div class="stat-lbl" id="stat-intern">2026 Internship</div></div>
+        <div><div class="stat-num" style="font-size:1.1rem;padding-top:4px">Liverpool</div><div class="stat-lbl" id="stat-i">2026 Internship</div></div>
       </div>
     </div>
     <div class="photo-wrap reveal">
       <img src="my-face.jpg" alt="HsinYu Wen" class="photo-img"
-           onerror="this.style.display='none';document.getElementById('photo-fb').style.display='flex'">
-      <div class="photo-fallback" id="photo-fb" style="display:none">
-        <i class="fas fa-user"></i>
-        <span>my-face.jpg</span>
+           onerror="this.style.display='none';document.getElementById('pfb').style.display='flex'">
+      <div class="photo-fallback" id="pfb" style="display:none">
+        <i class="fas fa-user"></i><span>my-face.jpg</span>
       </div>
     </div>
   </div>
@@ -173,17 +213,14 @@ footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-ind
  
 <section class="about">
   <div class="about-inner">
-    <div class="sec-hd reveal">
-      <span class="sec-hd-line"></span>
-      <span id="about-label">About Me</span>
-    </div>
+    <div class="sec-hd reveal"><span class="sec-hd-line"></span><span id="about-lbl">About Me</span></div>
     <div class="about-grid">
       <div class="reveal">
         <h2 class="about-h">I grow by<br><em>listening, then doing.</em></h2>
         <div class="pull-q">"Every person carries a perspective I haven't thought of yet — and that gap is where I learn the most."</div>
         <p class="about-p">Growing up, the most meaningful growth never came from sitting alone with a textbook — it came from <strong>conversations with people from entirely different backgrounds</strong>. There's something irreplaceable about genuinely listening to someone's experience, letting their input reshape how you see a problem, then articulating your own view back — sharpened by the exchange.</p>
         <p class="about-p">When I encounter something difficult — professional software no course teaches, a field I've never touched, a competition topic far outside my expertise — <strong>my instinct isn't to wait for permission. It's to find the people who know it, and start building.</strong></p>
-        <p class="about-p">When I committed to the NSTC research proposal, I had zero experience with PTV Vissim — a paid, industry-grade microsimulation platform. I learned it myself online. When I realized the road network needed to exactly match the 400m specs in the proposal, I taught myself AutoCAD to draft it properly. Not because anyone asked — because <strong>approximate wasn't good enough.</strong></p>
+        <p class="about-p">When I committed to the NSTC research proposal, I had zero experience with PTV Vissim — a paid, industry-grade microsimulation platform. I learned it myself online. When I realized the road network needed to exactly match the 400m specs in the proposal, I taught myself AutoCAD to draft it precisely. Not because anyone asked — because <strong>approximate wasn't good enough.</strong></p>
         <p class="about-p">The same drive brings me to business competitions: not for trophies, but because they force me to step inside someone else's pain and think from the inside out. <strong>Feeling where it actually hurts — and designing something that relieves that specific pressure — is the real challenge.</strong></p>
       </div>
       <div class="reveal">
@@ -207,33 +244,22 @@ footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-ind
     </div>
   </div>
 </section>
- 
 <footer>
   <div class="foot-inner">
     <span class="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</span>
     <div class="foot-links">
       <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
       <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
-      <a href="projects.html">Projects</a>
+      <a href="index.html">Home</a>
     </div>
   </div>
 </footer>
- 
 <script>
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-const L={
-  en:{'hero-tag':'ITS · Logistics · Growth Mindset','hero-desc':'Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.','about-label':'About Me','stat-projects':'Research Projects','stat-intern':'2026 Internship'},
-  zh:{'hero-tag':'智慧交通 · 物流 · 成長型思維','hero-desc':'就讀於國立成功大學，專注於智慧交通系統與供應鏈永續研究，享受跨域交流帶來的視角衝擊。','about-label':'關於我','stat-projects':'研究計畫','stat-intern':'2026 國際實習'}
-};
-function switchLang(l){
-  localStorage.setItem('lang',l);
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-  Object.entries(L[l]).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.textContent=val});
-}
+const L={en:{'hero-tag':'ITS · Logistics · Growth Mindset','hero-desc':'Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.','about-lbl':'About Me','stat-p':'Research Projects','stat-i':'2026 Internship'},zh:{'hero-tag':'智慧交通 · 物流 · 成長型思維','hero-desc':'就讀於國立成功大學，專注智慧交通與供應鏈永續研究，享受跨域交流帶來的視角衝擊。','about-lbl':'關於我','stat-p':'研究計畫','stat-i':'2026 國際實習'}};
+function switchLang(l){localStorage.setItem('lang',l);document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-zh').classList.toggle('active',l==='zh');Object.entries(L[l]).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v})}
 document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
 </script>
-</body>
-</html>
+</body></html>
