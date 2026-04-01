@@ -9,55 +9,49 @@
 :root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* 1. 修正導航欄與間距 (同步首頁) */
+/* 導航欄基礎 */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);text-decoration:none}.nav-logo span{color:var(--gold)}
 
+/* 導航連結 */
 .nav-links{display:flex;list-style:none;align-items:center}
-.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);text-decoration:none;position:relative}
-.nav-links a:hover, .nav-links a.active-link{color:var(--white)}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);text-decoration:none}
+.nav-links a:hover{color:var(--white)}
 
-/* 下拉選單樣式 (解決第 2 點需求) */
+/* 下拉選單與 Internship 標記 */
 .nav-drop{position:relative}
-.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:var(--t)}
-.drop-btn:hover, .nav-drop.active-parent .drop-btn{color:var(--white)}
-.nav-drop.active-parent .drop-btn::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--white);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);position:relative}
+/* 在 Internship 頁面時，MORE 下方顯示金線 */
+.nav-drop.active-parent::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 .drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t)}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
 .drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:7px 11px;border-radius:2px}
-.drop-menu a:hover, .drop-menu a.active-sub{color:var(--white);background:rgba(255,255,255,.04)}
+.drop-menu a.active-sub{color:var(--white);background:rgba(255,255,255,.04)}
 
-/* 修正第 1 點：中英文間距與格式同步首頁 */
-.nav-right{display:flex;align-items:center;gap:12px} /* 此處 gap 12px 與首頁同步 */
-.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.72rem;font-weight:500;transition:var(--t);padding:0}
+/* --- 修正重點：中英文間距與 CV 按鈕 (精確對齊首頁截圖) --- */
+.nav-right{display:flex;align-items:center;gap:35px} /* 增加右側大組件間距 */
+.lang-switcher{display:flex;align-items:center;gap:20px} /* 修正：EN · 中 之間的超寬間距 */
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.72rem;font-weight:500;transition:var(--t);padding:0;line-height:1}
 .lang-btn.active{color:var(--gold)}
-.lang-sep{color:rgba(255,255,255,.2);font-size:.72rem;margin:0 2px} /* 精確控制分隔符號間距 */
-.nav-cv{font-size:.68rem;font-weight:600;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);text-decoration:none}
+.lang-sep{color:rgba(200,164,90,.3);font-size:.6rem;pointer-events:none}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:8px 18px;border-radius:var(--radius);text-decoration:none;transition:var(--t)}
+.nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* 內容區 */
+/* 內容與縮圖 */
 .main{max-width:1120px;margin:160px auto 110px;padding:0 32px}
-.card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden}
-.card-body{padding:40px}
-.content-grid{display:flex;gap:50px;align-items:flex-start}
-.text-side{flex:1.2;min-width:0}
-.photo-side{flex:0.8;min-width:0}
 .thumb{flex:0 0 220px; aspect-ratio:4/3;border-radius:4px;overflow:hidden;border:1px solid var(--border-w);cursor:zoom-in}
-.photo-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:15px}
 
-/* 修正第 3 點：增加跳出鍵 (Lightbox) */
-#lightbox{position:fixed;inset:0;background:rgba(13,21,32,.98);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(10px)}
+/* 燈箱視窗與跳出鍵 */
+#lightbox{position:fixed;inset:0;background:rgba(13,21,32,.98);z-index:1000;display:none;align-items:center;justify-content:center;backdrop-filter:blur(12px)}
 #lightbox.active{display:flex}
 .lb-content{position:relative;max-width:85vw;max-height:80vh}
-.lb-img{max-width:100%;max-height:80vh;border-radius:4px;box-shadow:0 20px 50px rgba(0,0,0,.5)}
-/* 跳出鍵實作 */
-.lb-close{position:absolute;top:-50px;right:0;color:var(--white);font-size:2.5rem;cursor:pointer;z-index:1010;transition:var(--t)}
-.lb-close:hover{color:var(--gold)}
-.lb-nav-btn{position:absolute;top:50%;transform:translateY(-50%);color:var(--white);font-size:2rem;cursor:pointer;background:rgba(255,255,255,.1);width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%}
-.lb-prev{left:-70px}.lb-next{right:-70px}
+.lb-img{max-width:100%;max-height:80vh;border-radius:4px;box-shadow:0 30px 60px rgba(0,0,0,.5);object-fit:contain}
+/* 修正：右上角明確的跳出鍵 (X) */
+.lb-close{position:fixed;top:30px;right:30px;color:var(--white);font-size:2.5rem;cursor:pointer;z-index:1010;background:rgba(255,255,255,.1);width:50px;height:50px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:var(--t)}
+.lb-close:hover{background:var(--gold);color:var(--ink)}
 </style>
 </head>
 <body>
@@ -69,7 +63,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         <li><a href="projects.html">PROJECTS</a></li>
         <li><a href="competitions.html">COMPETITIONS</a></li>
         <li class="nav-drop active-parent">
-            <button class="drop-btn">MORE <i class="fas fa-chevron-down" style="font-size: .5rem; margin-left: 4px;"></i></button>
+            <button class="drop-btn">MORE <i class="fas fa-chevron-up" style="font-size: .5rem; margin-left: 4px;"></i></button>
             <div class="drop-menu">
                 <a href="experience.html" class="active-sub">INTERNSHIP</a>
                 <a href="exchange.html">CULTURAL EXCHANGE</a>
@@ -79,36 +73,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
         </li>
     </ul>
     <div class="nav-right">
-        <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
-        <span class="lang-sep">·</span>
-        <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+        <div class="lang-switcher">
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+            <span class="lang-sep">·</span>
+            <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+        </div>
         <a href="resume.pdf" download class="nav-cv">CV</a>
     </div>
 </div></nav>
-
-<main class="main">
-    <div class="proj-block">
-        <div class="card">
-            <div class="card-bar bar-gold"></div>
-            <div class="card-body">
-                <div class="content-grid">
-                    <div class="text-side">
-                        <h2 data-en="EMI Educational Assistant" data-zh="全英文夏令營帶班導師">EMI Educational Assistant</h2>
-                        <ul class="ach">
-                            <li data-en="Arrived at 07:00 daily..." data-zh="每週早晨 07:00 抵達...">Daily 07:00 coordination.</li>
-                        </ul>
-                    </div>
-                    <div class="photo-side">
-                        <div class="photo-scroll">
-                            <div class="thumb" onclick="openLightbox(0, 'vision')"><img src="grouppic1.jpg"></div>
-                            <div class="thumb" onclick="openLightbox(1, 'vision')"><img src="grouppic2.jpg"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</main>
 
 <div id="lightbox">
     <div class="lb-close" onclick="closeLightbox()">&times;</div>
@@ -120,7 +92,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </div>
 
 <script>
-// 所有邏輯修正
+// 1. 語言切換與首頁同步間距
+function switchLang(l){
+    localStorage.setItem('lang',l);
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
+    document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + l);
+    });
+}
+
+// 2. 燈箱控制 (含修復後的關閉功能)
 const galleryGroups = {
     vision: ['grouppic1.jpg','grouppic2.jpg','grouppic3.jpg','grouppic4.jpg','grouppic5.jpg','grouppic6.jpg','grouppic7.jpg','grouppic8.jpg'],
     fei: ['Group%20photo%20at%20the%20laboratory%20closing%20ceremony.jpg']
@@ -149,17 +131,10 @@ function updateLightbox() {
     document.getElementById('lb-next').style.display = currentIdx === list.length - 1 ? 'none' : 'flex';
 }
 
-// 監聽背景點擊關閉燈箱
+// 點擊背景關閉
 document.getElementById('lightbox').addEventListener('click', (e) => {
     if(e.target.id === 'lightbox') closeLightbox();
 });
-
-function switchLang(l){
-    localStorage.setItem('lang',l);
-    document.getElementById('btn-en').classList.toggle('active',l==='en');
-    document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-    document.querySelectorAll('[data-en]').forEach(el=>{ el.innerHTML = el.getAttribute('data-'+l); });
-}
 
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
 document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
