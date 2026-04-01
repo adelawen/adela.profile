@@ -1,234 +1,161 @@
-<!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects | HsinYu Wen</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
-.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
-.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white);flex-shrink:0}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;align-items:center;list-style:none}
-.nav-links li{position:relative}
-.nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
-.nav-links a:hover,.nav-links a.active{color:var(--white)}
-.nav-links a.active::after,.nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
-.nav-drop{position:relative}
-.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:color var(--t)}
-.drop-btn:hover{color:var(--white)}
-.drop-btn svg{width:8px;height:8px;transition:transform var(--t)}
-.nav-drop:hover .drop-btn svg{transform:rotate(180deg)}
-.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t);z-index:200}
-.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:2px;transition:var(--t)}
-.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
-.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color var(--t);padding:2px}
-.lang-btn.active{color:var(--gold)}
-.lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
-.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
-.nav-cv:hover{background:var(--gold);color:var(--ink)}
-.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.page-header::before{content:'';position:absolute;top:0;right:0;width:55%;height:100%;background:radial-gradient(ellipse at 80% 40%,rgba(200,164,90,.06) 0%,transparent 65%);pointer-events:none}
-.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.eyebrow-line{width:32px;height:1px;background:var(--gold)}
-.eyebrow span{font-size:.7rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4.6rem);font-weight:700;line-height:1.06;margin-bottom:18px}
-.page-title em{font-style:italic;color:var(--gold)}
-.page-sub{font-size:.93rem;color:var(--muted);font-weight:300;max-width:520px;line-height:1.85}
-.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;position:relative;z-index:1}
-.card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;transition:border-color var(--t)}
-.card:hover{border-color:var(--border)}
-.card-bar{height:3px}
-.bar-gold{background:linear-gradient(90deg,var(--gold),var(--gold-lt))}
-.bar-green{background:linear-gradient(90deg,var(--green),#7fd9a8)}
-.bar-blue{background:linear-gradient(90deg,#4a90d9,#89c4f4)}
-.card-head{padding:32px 40px 26px;border-bottom:1px solid var(--border-w);display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
-.proj-cat{font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.proj-cat.green{color:var(--green)}.proj-cat.blue{color:#89c4f4}
-.card-title{font-family:var(--fd);font-size:1.85rem;font-weight:700;line-height:1.15;margin-bottom:7px}
-.card-title-sub{font-size:.83rem;color:var(--muted);font-style:italic;font-weight:300}
-.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
-.tag{font-size:.66rem;font-weight:500;letter-spacing:.06em;padding:3px 10px;border-radius:2px;border:1px solid}
-.tg{border-color:rgba(200,164,90,.35);color:var(--gold-lt)}.td{border-color:var(--border-w);color:var(--muted)}.tk{border-color:rgba(58,170,114,.35);color:#7fd9a8}.tb{border-color:rgba(74,144,217,.35);color:#89c4f4}
-.dl-group{display:flex;flex-direction:column;gap:8px;flex-shrink:0}
-.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:8px 15px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t);white-space:nowrap}
-.btn-dl:hover{background:rgba(200,164,90,.07);border-color:var(--gold)}
-.btn-dl.green{border-color:rgba(58,170,114,.3);color:#7fd9a8}.btn-dl.green:hover{background:rgba(58,170,114,.07);border-color:var(--green)}
-.btn-dl.blue{border-color:rgba(74,144,217,.3);color:#89c4f4}.btn-dl.blue:hover{background:rgba(74,144,217,.07);border-color:#4a90d9}
-.card-body{padding:36px 40px}
-.callout{background:rgba(200,164,90,.055);border-left:3px solid var(--gold);border-radius:0 4px 4px 0;padding:16px 20px;margin-bottom:30px;font-size:.87rem;color:rgba(255,255,255,.77);font-weight:300;line-height:1.85}
-.callout strong{color:var(--gold);font-weight:600}.callout.green{background:rgba(58,170,114,.055);border-left-color:var(--green)}.callout.green strong{color:#7fd9a8}
-.callout.blue{background:rgba(74,144,217,.055);border-left-color:#4a90d9}.callout.blue strong{color:#89c4f4}
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
-.col-lbl{font-size:.65rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;display:flex;align-items:center;gap:9px}
-.col-lbl::after{content:'';flex:1;height:1px;background:var(--border)}.col-lbl.green{color:var(--green)}.col-lbl.blue{color:#89c4f4}
-.col-text{font-size:.87rem;color:var(--muted-2);font-weight:300;line-height:1.9}
-.col-text p+p{margin-top:11px}.col-text strong{color:var(--white);font-weight:500}
-.ach{list-style:none;margin-top:13px}
-.ach li{display:flex;align-items:flex-start;gap:10px;font-size:.84rem;color:var(--muted-2);font-weight:300;margin-bottom:10px;line-height:1.7}
-.ach li::before{content:'→';color:var(--gold);flex-shrink:0;font-size:.76rem;margin-top:3px}
-.ach.green li::before{color:var(--green)}.ach.blue li::before{color:#89c4f4}.ach li strong{color:var(--white);font-weight:500}
-.divider{height:1px;background:var(--border-w);margin:26px 0}
-.cred-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.cred-card{background:var(--ink-3);border:1px solid var(--border-w);border-radius:4px;padding:15px 17px;transition:var(--t)}
-.cred-card:hover{border-color:var(--border)}
-.cred-val{font-family:var(--fd);font-size:1.55rem;font-weight:700;color:var(--gold);line-height:1}.cred-val.green{color:var(--green)}
-.cred-key{font-size:.65rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:5px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
-.chip{background:var(--ink-3);border:1px solid var(--border-w);border-radius:2px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.5);letter-spacing:.04em}
-.proj-num{font-family:var(--fd);font-size:4.5rem;font-weight:700;color:rgba(200,164,90,.1);line-height:1;margin-bottom:-14px;letter-spacing:-.02em;user-select:none}
-.proj-block{margin-bottom:72px}.proj-block:last-child{margin-bottom:0}
-footer{border-top:1px solid var(--border);padding:26px 0;position:relative;z-index:1}
-.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
-.foot-links{display:flex;gap:16px}
-.foot-links a{font-size:.72rem;color:var(--muted);letter-spacing:.05em;transition:color var(--t)}.foot-links a:hover{color:var(--gold)}
-.coming{text-align:center;padding:72px 20px;color:var(--muted)}
-.coming i{font-size:2.2rem;color:var(--border-w);display:block;margin-bottom:18px}
-.coming h3{font-family:var(--fd);font-size:1.5rem;color:rgba(255,255,255,.25);margin-bottom:8px}
-.coming p{font-size:.84rem;font-weight:300}
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
-@media(max-width:860px){.nav-links{display:none}.two-col{grid-template-columns:1fr;gap:28px}.card-head{flex-direction:column}.dl-group{flex-direction:row;flex-wrap:wrap}.card-body{padding:24px 22px}.card-head{padding:24px 22px}}
- 
- 
-</style>
-</head>
-<body>
-<nav class="nav" id="mainnav"><div class="nav-inner"><a href="index.html" class="nav-logo">HsinYu<span>.</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="projects.html" class="active">Projects</a></li><li><a href="competitions.html">Competitions</a></li><li class="nav-drop"><button class="drop-btn">More<svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button><div class="drop-menu"><a href="experience.html">Internship</a><a href="exchange.html">Cultural Exchange</a><a href="certificates.html">Certificates</a><a href="clubs.html">Clubs &amp; Volunteer</a></div></li></ul><div class="nav-right"><div style="display:flex;align-items:center;gap:5px"><button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button></div><a href="resume.pdf" download class="nav-cv">CV</a></div></div></nav>
- 
-<div class="page-header"><div class="ph-inner">
-  <div class="eyebrow reveal"><span class="eyebrow-line"></span><span>Research &amp; Proposals</span></div>
-  <h1 class="page-title reveal">Work that<br><em>fills the gaps.</em></h1>
-  <p class="page-sub reveal">Two independent research projects — both born from the same instinct: find where current practice falls short, understand exactly why it hurts, then build something that fills the gap.</p>
-</div></div>
+<nav class="nav" id="mainnav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
+            <li><a href="projects.html" class="active" data-en="Projects" data-zh="研究專案">Projects</a></li>
+            <li><a href="competitions.html" data-en="Competitions" data-zh="競賽經歷">Competitions</a></li>
+            <li class="nav-drop">
+                <button class="drop-btn"><span data-en="More" data-zh="更多">More</span><svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></button>
+                <div class="drop-menu">
+                    <a href="experience.html" data-en="Internship" data-zh="實習經驗">Internship</a>
+                    <a href="exchange.html" data-en="Cultural Exchange" data-zh="文化交流">Cultural Exchange</a>
+                    <a href="certificates.html" data-en="Certificates" data-zh="專業證照">Certificates</a>
+                    <a href="clubs.html" data-en="Clubs & Volunteer" data-zh="社團與志工">Clubs &amp; Volunteer</a>
+                </div>
+            </li>
+        </ul>
+        <div class="nav-right">
+            <div style="display:flex;align-items:center;gap:5px">
+                <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+                <span class="lang-sep">·</span>
+                <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+            </div>
+            <a href="resume.pdf" download class="nav-cv" data-en="CV" data-zh="履歷">CV</a>
+        </div>
+    </div>
+</nav>
+
+<div class="page-header">
+    <div class="ph-inner">
+        <div class="eyebrow reveal"><span class="eyebrow-line"></span><span data-en="Research & Proposals" data-zh="學術研究與計畫">Research &amp; Proposals</span></div>
+        <h1 class="page-title reveal" data-en="Work that fills the gaps." data-zh="填補系統裂縫的研究">Work that<br><em>fills the gaps.</em></h1>
+        <p class="page-sub reveal" data-en="Two independent research projects — both born from the same instinct: find where current practice falls short, understand exactly why it hurts, then build something that fills the gap." data-zh="兩項獨立研究計畫——皆源於同一個本能：找出觀念與實務的落後之處，深入理解其痛點，並建立足以填補缺口的解決方案。">Two independent research projects — both born from the same instinct: find where current practice falls short, understand exactly why it hurts, then build something that fills the gap.</p>
+    </div>
+</div>
+
 <main class="main">
-  <div class="proj-block reveal">
-    <div class="proj-num">01</div>
-    <div class="card">
-      <div class="card-bar bar-gold"></div>
-      <div class="card-head">
-        <div>
-          <div class="proj-cat">NSTC Undergraduate Research Grant · 國科會大專生研究計畫</div>
-          <h2 class="card-title">Adaptive Signal Compensation<br>for Vulnerable Pedestrian Systems</h2>
-          <p class="card-title-sub">弱勢行人感應號誌之自適應協同補償研究 — Nov 2025 → Jan 2026</p>
-          <div class="tag-row">
-            <span class="tag tg">NSTC Submitted</span><span class="tag td">PTV Vissim</span>
-            <span class="tag td">Python COM</span><span class="tag td">AutoCAD</span><span class="tag td">Signal Control</span>
-          </div>
-        </div>
-        <div class="dl-group">
-          <a class="btn-dl" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/%E8%A1%A8C802.pdf" target="_blank" download><i class="fas fa-file-pdf"></i>Research Proposal</a>
-          <a class="btn-dl" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/%E8%87%BA%E7%81%A3%E5%AD%B8%E8%A1%93%E5%80%AB%E7%90%86%E6%95%99%E8%82%B2%E8%B3%87%E6%BA%90%E4%B8%AD%E5%BF%83%E4%BF%AE%E8%AA%B2%E8%AD%89%E6%98%8E.pdf" target="_blank" download><i class="fas fa-certificate"></i>Ethics Certificate</a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="callout"><strong>The engineering problem nobody was solving:</strong> VIPS systems protect elderly pedestrians with a 10-second green extension — but each random trigger pulse-shocks a precisely timed arterial system. Upstream vehicles hit red lights; downstream intersections open to empty roads. Research shows <strong>40–50% bandwidth loss per event</strong>, yet SCOOT/SCATS are too slow to recover within 1–3 cycles. <strong>No prior work offered a local, physics-aware compensation strategy for this exact disruption pattern.</strong></div>
-        <div class="two-col">
-          <div>
-            <div class="col-lbl">The Challenge — &amp; What I Did About It</div>
-            <div class="col-text">
-              <p>Over months of discussions with my advisor, I narrowed a vague interest in pedestrian safety down to a precise, literature-supported gap — then had to build the entire technical stack to test it.</p>
-              <p>PTV Vissim is a paid, professional microsimulation platform. <strong>No course teaches it.</strong> So I went online, read documentation, watched tutorials, and built the environment from scratch. When I realized the road network needed to match the exact 400m intersection spacing in the proposal, I taught myself <strong>AutoCAD to draft geometrically accurate base maps</strong> — because if the geometry was wrong, every downstream result would be wrong too.</p>
-              <p>Writing the proposal taught me: a strong research document doesn't lead with methodology. <strong>It leads with pain.</strong> Why does this gap exist? What does inaction cost? Only then does the solution earn its place.</p>
+    <div class="proj-block reveal">
+        <div class="proj-num">01</div>
+        <div class="card">
+            <div class="card-bar bar-gold"></div>
+            <div class="card-head">
+                <div>
+                    <div class="proj-cat" data-en="NSTC Undergraduate Research Grant" data-zh="國科會大專生研究計畫">NSTC Undergraduate Research Grant</div>
+                    <h2 class="card-title" data-en="Adaptive Signal Compensation for Vulnerable Pedestrian Systems" data-zh="弱勢行人感應號誌之自適應協同補償研究">Adaptive Signal Compensation<br>for Vulnerable Pedestrian Systems</h2>
+                    <p class="card-title-sub">Nov 2025 → Jan 2026</p>
+                    <div class="tag-row">
+                        <span class="tag tg" data-en="NSTC Submitted" data-zh="計畫已提交">NSTC Submitted</span>
+                        <span class="tag td">PTV Vissim</span><span class="tag td">Python COM</span><span class="tag td">AutoCAD</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a class="btn-dl" href="表C802.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> <span data-en="Research Proposal" data-zh="研究計畫書">Research Proposal</span></a>
+                    <a class="btn-dl" href="臺灣學術倫理教育資源中心修課證明.pdf" target="_blank" download><i class="fas fa-certificate"></i> <span data-en="Ethics Certificate" data-zh="學術倫理證明">Ethics Certificate</span></a>
+                </div>
             </div>
-            <div class="divider"></div>
-            <div style="font-size:.65rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Self-Taught Technical Stack</div>
-            <div class="chips">
-              <span class="chip">PTV Vissim microsim</span><span class="chip">Python COM Interface</span>
-              <span class="chip">Batch scenario control</span><span class="chip">AutoCAD road geometry</span>
-              <span class="chip">Robertson platoon model</span><span class="chip">jerk &amp; PET metrics</span>
+            <div class="card-body">
+                <div class="callout">
+                    <strong data-en="The engineering problem:" data-zh="核心工程問題：">The engineering problem:</strong> 
+                    <span data-en="VIPS systems protect elderly pedestrians with a 10s extension, but each trigger shocks the arterial system. Our research addresses the 40–50% bandwidth loss." data-zh="高齡友善號誌(VIPS)雖保障行人，但隨機的10秒補償會衝擊幹道連鎖，導致40-50%的頻寬損失。本研究提出物理感知的補償策略。">VIPS systems protect elderly pedestrians with a 10-second green extension — but each random trigger pulse-shocks a precisely timed arterial system. Research shows 40–50% bandwidth loss per event.</span>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl" data-en="The Challenge" data-zh="面臨挑戰">The Challenge</div>
+                        <div class="col-text" data-en="I built the entire technical stack from scratch, self-teaching PTV Vissim and AutoCAD to ensure geometric accuracy in traffic modeling." data-zh="我從零開始建立技術棧，自學 PTV Vissim 模擬軟體與 AutoCAD 繪圖，以確保道路幾何精度與模擬結果的可靠性。">I built the entire technical stack from scratch.</div>
+                    </div>
+                    <div>
+                        <div class="col-lbl" data-en="Key Outcomes" data-zh="研究成果">Key Outcomes</div>
+                        <ul class="ach">
+                            <li data-en="Python automation: processing time 3 days → 2 hours." data-zh="Python 自動化：情境處理時間從 3 天縮短至 2 小時。">Python automation: 3 days → 2 hours.</li>
+                            <li data-en="Submitted 10-page NSTC proposal." data-zh="成功提交 10 頁國科會研究計畫書。">Submitted 10-page NSTC proposal.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div>
-            <div class="col-lbl">Proposed Framework</div>
-            <div class="col-text"><p>Three mechanisms working together:</p></div>
-            <ul class="ach">
-              <li><strong>Spatial Compensation</strong> — Robertson dispersion model dynamically corrects downstream offsets to intercept the dispersed platoon front, rather than assuming it arrives as a block.</li>
-              <li><strong>Multi-cycle Linear Recovery</strong> — spreads the 10-second phase error across N=3 cycles, eliminating abrupt jerk and oscillation that rigid synchronization causes.</li>
-              <li><strong>System Defense Layer</strong> — minor-street slack absorption + dynamic node decoupling prevent local disruption from cascading corridor-wide.</li>
-            </ul>
-            <div class="divider"></div>
-            <div class="col-lbl">Key Outcomes</div>
-            <ul class="ach">
-              <li>Submitted 10-page NSTC proposal — January 2026 — after multiple full rewrites with faculty advisor.</li>
-              <li>6-scenario comparison framework: V/C = 0.4 / 0.7 / 0.9, 10 replications each.</li>
-              <li>Python automation: 50+ scenario processing <strong>3 days → 2 hours.</strong></li>
-              <li>Completed Taiwan Academic Ethics certification for grant eligibility.</li>
-            </ul>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
- 
-  <div class="proj-block reveal">
-    <div class="proj-num">02</div>
-    <div class="card">
-      <div class="card-bar bar-green"></div>
-      <div class="card-head">
-        <div>
-          <div class="proj-cat green">MOE Study Abroad Program · 學海計畫 — University of Liverpool, UK</div>
-          <h2 class="card-title">Green Last-Mile Logistics<br>Transition: DHL Taiwan</h2>
-          <p class="card-title-sub">DHL 國際快遞在臺灣最後一哩路綠色配送轉型之研究 — Jun 17 – Aug 4, 2026</p>
-          <div class="tag-row">
-            <span class="tag tk">NT$100K Grant</span><span class="tag tk">IELTS 6.5</span>
-            <span class="tag td">Carbon Modeling</span><span class="tag td">Business Analysis</span><span class="tag td">Governance</span>
-          </div>
-        </div>
-        <div class="dl-group">
-          <a class="btn-dl green" href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/%E9%8C%84%E5%8F%96%E9%80%9A%E7%9F%A5_%E6%88%90%E5%A4%A7%E6%BA%AB%E5%BF%83%E8%AA%9E_1142.pdf" target="_blank" download><i class="fas fa-file-pdf"></i>Admission Letter</a>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="callout green"><strong>The gap between narrative and numbers:</strong> Logistics decarbonization fills policy documents — but most analysis stays qualitative. <strong>The quantitative link between "we'll adopt more green vehicles" and "here is how many tonnes of CO₂ that actually prevents" is missing.</strong> This research builds that link for DHL Taiwan's last-mile operations.</div>
-        <div class="two-col">
-          <div>
-            <div class="col-lbl green">Selection &amp; What Got Me There</div>
-            <div class="col-text">
-              <p>Dr. Chen Tao's MOE Study Abroad program is assessed holistically. Two things stood out:</p>
-              <p><strong>The research itself</strong> — not a course project. I chose a topic at the intersection of international logistics policy, governance frameworks, and engineering carbon accounting to understand how sustainability commitments actually translate into measurable outcomes.</p>
-              <p><strong>IELTS 6.5</strong> — demonstrating readiness to operate independently at a Russell Group university. Writing this research also sharpened my ability to <strong>distill complex cross-disciplinary findings into a compelling narrative</strong> — a skill that fed directly into writing the NSTC proposal.</p>
+
+    <div class="proj-block reveal">
+        <div class="proj-num">02</div>
+        <div class="card">
+            <div class="card-bar bar-green"></div>
+            <div class="card-head">
+                <div>
+                    <div class="proj-cat green" data-en="MOE Study Abroad Program · University of Liverpool" data-zh="教育部學海計畫 · 英國利物浦大學">MOE Study Abroad Program</div>
+                    <h2 class="card-title" data-en="Green Last-Mile Logistics Transition: DHL Taiwan" data-zh="DHL 國際快遞在臺灣最後一哩路綠色配送轉型之研究">Green Last-Mile Logistics<br>Transition: DHL Taiwan</h2>
+                    <p class="card-title-sub">Jun 17 – Aug 4, 2026</p>
+                    <div class="tag-row">
+                        <span class="tag tk" data-en="NT$100K Grant" data-zh="獲得10萬獎學金">NT$100K Grant</span>
+                        <span class="tag tk">IELTS 6.5</span>
+                    </div>
+                </div>
+                <div class="dl-group">
+                    <a class="btn-dl green" href="錄取通知_成大溫心語_1142.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> <span data-en="Admission Letter" data-zh="錄取通知書">Admission Letter</span></a>
+                </div>
             </div>
-            <div class="cred-grid">
-              <div class="cred-card"><div class="cred-val green">NT$100K</div><div class="cred-key">MOE Grant Awarded</div></div>
-              <div class="cred-card"><div class="cred-val green">6.5</div><div class="cred-key">IELTS Overall</div></div>
-              <div class="cred-card"><div class="cred-val green">Liverpool</div><div class="cred-key">Russell Group, UK</div></div>
-              <div class="cred-card"><div class="cred-val green">7 Wks</div><div class="cred-key">Jun 17 – Aug 4, 2026</div></div>
+            <div class="card-body">
+                <div class="callout green">
+                    <strong data-en="The Gap:" data-zh="研究缺口：">The Gap:</strong> 
+                    <span data-en="Bridging the gap between policy narrative and quantitative carbon reduction numbers for DHL's fleet." data-zh="填補政策論述與量化減碳數據間的鴻溝，建立 DHL 車隊電動化轉型的數學關聯。">Bridging the gap between policy narrative and quantitative carbon reduction numbers.</span>
+                </div>
+                <div class="two-col">
+                    <div>
+                        <div class="col-lbl green" data-en="Selection" data-zh="選拔關鍵">Selection</div>
+                        <div class="col-text" data-en="Selected as one of 5 students from NCKU based on cross-disciplinary research and IELTS proficiency." data-zh="憑藉跨領域的研究架構與 IELTS 6.5 的語言能力，成為校內唯五獲得補助的學生之一。">Selected as one of 5 students from NCKU.</div>
+                    </div>
+                    <div>
+                        <div class="col-lbl green" data-en="Research Scope" data-zh="研究範圍">Research Scope</div>
+                        <ul class="ach green">
+                            <li data-en="Carbon modeling for fleet electrification." data-zh="建立車隊電動化的碳排放數學模型。">Carbon modeling for fleet electrification.</li>
+                            <li data-en="Public-Private governance analysis." data-zh="分析公私部門治理對綠色物流的影響。">Public-Private governance analysis.</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div>
-            <div class="col-lbl green">Research Scope</div>
-            <ul class="ach green">
-              <li><strong>International Policy Context</strong> — mapped global regulatory pressures and DHL's GoGreen roadmap against Taiwan's last-mile logistics market structure.</li>
-              <li><strong>Public-Private Governance</strong> — analyzed how government incentives and corporate commitments interact — and where they misalign — in driving fleet electrification.</li>
-              <li><strong>User Demand Modeling</strong> — modeled adoption likelihood and willingness-to-pay for green delivery options using behavioral economics frameworks.</li>
-              <li><strong>Quantitative Carbon Projection</strong> — built mathematical models predicting emission reductions under varying green transport penetration rates, converting policy narratives into engineering-grade estimates.</li>
-            </ul>
-            <div class="divider"></div>
-            <div class="col-lbl green">Connection to NSTC Work</div>
-            <div class="col-text"><p>Both projects ask the same question: <strong>what does it take to make a system change that actually holds?</strong> One through signal engineering. The other through carbon accounting and governance. Same instinct — different scale.</p></div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 </main>
-<footer><div class="foot-inner"><span class="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</span><div class="foot-links"><a href="mailto:h54121210@gs.ncku.edu.tw">Email</a><a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a><a href="index.html">Home</a></div></div></footer>
+
+<footer>
+    <div class="foot-inner">
+        <span class="foot-copy">© 2026 HsinYu Wen — NCKU TCM</span>
+        <div class="foot-links">
+            <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
+            <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
+        </div>
+    </div>
+</footer>
+
 <script>
-window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-function switchLang(l){localStorage.setItem('lang',l);document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-zh').classList.toggle('active',l==='zh')}
-document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
+// 1. 滾動效果
+window.addEventListener('scroll', () => {
+    document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// 2. 出現動畫
+const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v') });
+}, { threshold: .08 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 3. 修正後的中英文切換邏輯
+function switchLang(lang) {
+    localStorage.setItem('lang', lang);
+    
+    // 更新按鈕狀態
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
+    
+    // 遍歷所有帶有 data-en/data-zh 的元素並替換內容
+    document.querySelectorAll('[data-en]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+    });
+}
+
+// 4. 頁面加載後初始化語言
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('lang') || 'en';
+    switchLang(savedLang);
+});
 </script>
-</body></html>
