@@ -49,7 +49,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);height:100%}
 .comp-img{width:100%;height:100%;object-fit:cover;opacity:0.8;cursor:pointer;transition:var(--t)}
 .comp-img:hover{opacity:1;transform:scale(1.03)}
-.comp-content{padding:40px;position:relative;display:flex;flex-direction:column;justify-content:center}
+
+/* 關鍵修正：加入 min-width: 0 確保內部滾動條能正確觸發 */
+.comp-content{padding:40px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
 
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
 .comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:15px}
@@ -67,15 +69,18 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
-/* 大圖橫向滑動區 (比照實習紀錄樣式) */
-.gallery-section{margin-top:15px}
-.gallery-header{font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.08em;display:flex;align-items:center;gap:15px;margin:25px 0 15px 0}
+/* 大圖橫向滑動區 (修復版) */
+.gallery-section{margin-top:15px;width:100%}
+.gallery-header{font-size:0.9rem;font-weight:700;color:var(--gold);letter-spacing:0.08em;display:flex;align-items:center;gap:15px;margin:25px 0 15px 0}
 .gallery-header::after{content:'';flex:1;height:1px;background:var(--border-w)}
-.photo-slider{display:flex;gap:15px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--ink-3)}
+
+/* 這裡設定了 overflow-x: auto 與確保寬度為 100% 才能啟動滑動 */
+.photo-slider{display:flex;gap:15px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:15px;width:100%;-webkit-overflow-scrolling:touch}
 .photo-slider::-webkit-scrollbar{height:8px}
 .photo-slider::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
 .photo-slider::-webkit-scrollbar-track{background:var(--ink-3);border-radius:4px}
-.slide-item{min-width:280px;max-width:280px;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer;flex-shrink:0}
+
+.slide-item{flex:0 0 280px;width:280px;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer}
 .slide-item:hover{opacity:1;border-color:var(--gold);transform:translateY(-2px)}
 
 /* 固定的 QR Box */
@@ -162,11 +167,11 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
             <div class="gallery-section">
                 <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
                 <div class="photo-slider">
-                    <img src="dreamhack_group_pic1.JPG" class="slide-item lb-trigger">
-                    <img src="dreamhack_group_pic2.JPG" class="slide-item lb-trigger">
-                    <img src="dreamhack_group_pic3.JPG" class="slide-item lb-trigger">
-                    <img src="dreamhack_group_pic4.JPG" class="slide-item lb-trigger">
-                    <img src="dreamhack_group_pic5.JPG" class="slide-item lb-trigger">
+                    <img src="dreamhack_group_pic1.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 1">
+                    <img src="dreamhack_group_pic2.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 2">
+                    <img src="dreamhack_group_pic3.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 3">
+                    <img src="dreamhack_group_pic4.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 4">
+                    <img src="dreamhack_group_pic5.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 5">
                 </div>
             </div>
         </div>
@@ -200,9 +205,9 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
             <div class="gallery-section">
                 <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
                 <div class="photo-slider">
-                    <img src="loreal_pic1.JPG" class="slide-item lb-trigger">
-                    <img src="loreal_pic2.JPG" class="slide-item lb-trigger">
-                    <img src="loreal_pic3.JPG" class="slide-item lb-trigger">
+                    <img src="loreal_pic1.JPG" class="slide-item lb-trigger" alt="Loreal Pic 1">
+                    <img src="loreal_pic2.JPG" class="slide-item lb-trigger" alt="Loreal Pic 2">
+                    <img src="loreal_pic3.JPG" class="slide-item lb-trigger" alt="Loreal Pic 3">
                 </div>
             </div>
         </div>
@@ -246,8 +251,8 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
             <div class="gallery-section">
                 <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
                 <div class="photo-slider">
-                    <img src="Safecloud_first_place.jpeg" class="slide-item lb-trigger">
-                    <img src="Safecloud_group_pic1.jpeg" class="slide-item lb-trigger">
+                    <img src="Safecloud_first_place.jpeg" class="slide-item lb-trigger" alt="Safecloud 1st Place">
+                    <img src="Safecloud_group_pic1.jpeg" class="slide-item lb-trigger" alt="Safecloud Group">
                 </div>
             </div>
         </div>
@@ -338,7 +343,7 @@ document.getElementById('lb-close').onclick = () => lb.classList.remove('active'
 const textData = {
   en: {
     'pg-sub': 'Through high-stakes challenges, I transform complex pain points into viable business solutions.',
-    'gallery-title': 'Competition Gallery (Click to enlarge)',
+    'gallery-title': 'Competition Gallery (Scroll & Click)',
     'sec-task': 'Project Execution',
     'sec-role': 'My Role & PM Growth',
     'dh-title': 'DreamHack 2026 (NYCU)',
@@ -359,7 +364,7 @@ const textData = {
   },
   zh: {
     'pg-sub': '透過高壓挑戰，我將複雜痛點轉化為具備執行力的商業解決方案。',
-    'gallery-title': '競賽紀錄（點擊放大）',
+    'gallery-title': '競賽紀錄（向右滑動並點擊放大）',
     'sec-task': 'Project Execution (專案執行)',
     'sec-role': 'My Role & PM Growth (角色與成長)',
     'dh-title': 'DreamHack 2026 (陽明交大)',
@@ -390,7 +395,6 @@ function switchLang(l){
   document.querySelectorAll('.gallery-header').forEach(el => el.textContent = textData[l]['gallery-title']);
   
   document.querySelectorAll('.section-label').forEach((el, i) => {
-    // 過濾掉 QR Code 的標籤
     if(!el.hasAttribute('data-i18n')) {
         if(i%2===0) el.textContent = textData[l]['sec-task'];
         else el.textContent = textData[l]['sec-role'];
