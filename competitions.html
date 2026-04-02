@@ -49,7 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);height:100%}
 .comp-img{width:100%;height:100%;object-fit:cover;opacity:0.8;cursor:pointer;transition:var(--t)}
 .comp-img:hover{opacity:1;transform:scale(1.03)}
-.comp-content{padding:40px;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.comp-content{padding:40px;position:relative;display:flex;flex-direction:column;justify-content:center}
 
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
 .comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:15px}
@@ -67,15 +67,20 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
-/* 橫向滑動照片列 */
-.visual-assets{margin-top:20px;display:flex;flex-direction:column;gap:10px}
-.thumb-carousel{display:flex;gap:10px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--ink-3)}
-.thumb-carousel::-webkit-scrollbar{height:6px}
-.thumb-carousel::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
-.thumb-carousel::-webkit-scrollbar-track{background:var(--ink-3);border-radius:3px}
-.thumb-item{width:70px;height:70px;object-fit:cover;border-radius:4px;border:1px solid var(--border-w);opacity:0.6;transition:var(--t);cursor:pointer;flex-shrink:0}
-.thumb-item:hover{opacity:1;border-color:var(--gold)}
-.qr-box{min-width:100px;max-width:100px;border:1px solid var(--border);border-radius:4px;padding:5px;background:rgba(255,255,255,0.02);flex-shrink:0}
+/* 大圖橫向滑動區 (比照實習紀錄樣式) */
+.gallery-section{margin-top:15px}
+.gallery-header{font-size:1rem;font-weight:700;color:var(--gold);letter-spacing:0.08em;display:flex;align-items:center;gap:15px;margin:25px 0 15px 0}
+.gallery-header::after{content:'';flex:1;height:1px;background:var(--border-w)}
+.photo-slider{display:flex;gap:15px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:12px;scrollbar-width:thin;scrollbar-color:var(--gold) var(--ink-3)}
+.photo-slider::-webkit-scrollbar{height:8px}
+.photo-slider::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
+.photo-slider::-webkit-scrollbar-track{background:var(--ink-3);border-radius:4px}
+.slide-item{min-width:280px;max-width:280px;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer;flex-shrink:0}
+.slide-item:hover{opacity:1;border-color:var(--gold);transform:translateY(-2px)}
+
+/* 固定的 QR Box */
+.qr-container{margin-top:15px;display:flex;flex-direction:column;gap:5px}
+.qr-box{width:120px;border:1px solid var(--border);border-radius:6px;padding:6px;background:rgba(255,255,255,0.02)}
 
 /* Lightbox */
 .lightbox{position:fixed;inset:0;background:rgba(13,21,32,0.95);z-index:1000;display:none;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(10px)}
@@ -88,7 +93,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-size:0.75rem;color:var(--muted)}
 
-@media(max-width:900px){.comp-card{grid-template-columns:1fr;min-height:auto}.comp-img-wrap{height:250px}.nav-links{display:none}}
+@media(max-width:900px){.comp-card{grid-template-columns:1fr;min-height:auto}.comp-img-wrap{height:300px}.nav-links{display:none}}
 </style>
 </head>
 <body>
@@ -143,22 +148,25 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
                 <div class="comp-org"><i class="fas fa-microchip"></i> Tera Thinker Enterprise Challenge</div>
                 
                 <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="dh-desc1">在 48 小時內發想出「數位雙生護理訓練系統」。團隊調查產業痛點、利害關係人關係與競爭對手，完成從 0 到 1 的企業命題創業發想，決賽脫穎而出獲創辦人洽談實習合作。</p>
+                <p class="comp-desc" id="dh-desc1">針對 Tera Thinker 創辦人 Jason 提出「教育相關從 0 到 1 創業」的企業命題，<strong>我主動提出切入醫療領域</strong>。我們在 48 小時內發想出「數位雙生護理訓練系統」，深入調查產業痛點與獲利模式，決賽脫穎而出獲創辦人洽談實習合作。</p>
                 
                 <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
                 <p class="comp-desc" id="dh-desc2">擔任 <strong>PM</strong>，隊友皆因我而結識。我利用對成員個性的了解掌控進度，包辦初步概念構思、方向執行與簡報架構。與不同背景的人共事極大化了我的<strong>成長型思維</strong>。雖然後續因技術與訪談發現「痛點不夠痛」導致計畫未執行，但這是非常寶貴的市場驗證經驗。</p>
             </div>
-            <div class="visual-assets">
-                <div class="dl-group">
-                    <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> <span data-i18n="btn-pitch">Pitch Deck</span></a>
-                    <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
-                </div>
-                <div class="thumb-carousel">
-                    <img src="dreamhack_group_pic1.JPG" class="thumb-item lb-trigger">
-                    <img src="dreamhack_group_pic2.JPG" class="thumb-item lb-trigger">
-                    <img src="dreamhack_group_pic3.JPG" class="thumb-item lb-trigger">
-                    <img src="dreamhack_group_pic4.JPG" class="thumb-item lb-trigger">
-                    <img src="dreamhack_group_pic5.JPG" class="thumb-item lb-trigger">
+            
+            <div class="dl-group">
+                <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> <span data-i18n="btn-pitch">Pitch Deck</span></a>
+                <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
+            </div>
+
+            <div class="gallery-section">
+                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
+                <div class="photo-slider">
+                    <img src="dreamhack_group_pic1.JPG" class="slide-item lb-trigger">
+                    <img src="dreamhack_group_pic2.JPG" class="slide-item lb-trigger">
+                    <img src="dreamhack_group_pic3.JPG" class="slide-item lb-trigger">
+                    <img src="dreamhack_group_pic4.JPG" class="slide-item lb-trigger">
+                    <img src="dreamhack_group_pic5.JPG" class="slide-item lb-trigger">
                 </div>
             </div>
         </div>
@@ -184,15 +192,17 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
                 <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
                 <p class="comp-desc" id="lr-desc2"><strong>Cross-Industry Agility:</strong> 展現了強大的<strong>成長型思維</strong>，將研究重心從傳統物流跨足至美妝香氛產業。利用數據驅動洞察提出個人化科技解決方案，大幅拓展了我在國際商業標準與消費者創新上的視野。</p>
             </div>
-            <div class="visual-assets">
-                <div class="dl-group">
-                    <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-loreal-final">Final Pitch Deck</span></a>
-                    <a href="l’oréal_1st_version_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-loreal-init">Danny's Initial Draft</span></a>
-                </div>
-                <div class="thumb-carousel">
-                    <img src="loreal_pic1.JPG" class="thumb-item lb-trigger">
-                    <img src="loreal_pic2.JPG" class="thumb-item lb-trigger">
-                    <img src="loreal_pic3.JPG" class="thumb-item lb-trigger">
+            
+            <div class="dl-group">
+                <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-loreal-final">Final Pitch Deck</span></a>
+            </div>
+
+            <div class="gallery-section">
+                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
+                <div class="photo-slider">
+                    <img src="loreal_pic1.JPG" class="slide-item lb-trigger">
+                    <img src="loreal_pic2.JPG" class="slide-item lb-trigger">
+                    <img src="loreal_pic3.JPG" class="slide-item lb-trigger">
                 </div>
             </div>
         </div>
@@ -220,20 +230,24 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
                 <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
                 <p class="comp-desc" id="cn-desc2">擔任 <strong>PM</strong>，我深切運用<strong>成大交通管理科學系</strong>所學，親自評估並規劃了所有的地圖臨停區與車流疏導路線。為了完美呈現規劃圖，我自學了 <strong>Affinity Designer</strong>，並自學建置了 <strong>LINE Bot</strong>。此外，看見黃同學用 GitHub 建網頁，直接啟發了我日後自己創建這份個人官網，是跨領域學習的完美體現。</p>
             </div>
-            <div class="visual-assets">
-                <div class="dl-group">
-                    <a href="Safecloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-final">Final Presentation</span></a>
-                    <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-init">Initial Proposal</span></a>
+            
+            <div class="dl-group">
+                <a href="Safecloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-final">Final Presentation</span></a>
+                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-init">Initial Proposal</span></a>
+            </div>
+
+            <div class="qr-container">
+                <span class="section-label" style="margin-bottom:4px" data-i18n="qr-text">My Work: LineBot QR</span>
+                <div class="qr-box">
+                    <img src="safecloud_line_bot.jpg" class="lb-trigger" style="width:100%;display:block;cursor:pointer" alt="Safecloud LineBot QR">
                 </div>
-                <div style="display:flex;gap:15px;align-items:flex-end">
-                    <div class="qr-box">
-                        <img src="safecloud_line_bot.jpg" class="lb-trigger" style="width:100%;display:block" alt="Safecloud LineBot QR">
-                        <div style="font-size:0.5rem;text-align:center;color:var(--muted);margin-top:4px" data-i18n="qr-text">My Work: LineBot</div>
-                    </div>
-                    <div class="thumb-carousel">
-                        <img src="Safecloud_first_place.jpeg" class="thumb-item lb-trigger">
-                        <img src="Safecloud_group_pic1.jpeg" class="thumb-item lb-trigger">
-                    </div>
+            </div>
+
+            <div class="gallery-section">
+                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
+                <div class="photo-slider">
+                    <img src="Safecloud_first_place.jpeg" class="slide-item lb-trigger">
+                    <img src="Safecloud_group_pic1.jpeg" class="slide-item lb-trigger">
                 </div>
             </div>
         </div>
@@ -258,12 +272,11 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
                 <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
                 <p class="comp-desc" id="mj-desc2">擔任 <strong>PM</strong>，我主導了個人初步提案，並在小組討論中整合各方意見推動策略轉型。透過與不同專業背景的組員激烈交流，我不斷吸收新的分析邏輯，學會如何將發散的觀點收斂為最具落地價值的最終報告書。</p>
             </div>
-            <div class="visual-assets">
-                <div class="dl-group">
-                    <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-final">Final Proposal</span></a>
-                    <a href="preliminary proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-pre">Team Preliminary</span></a>
-                    <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-per">Personal Draft</span></a>
-                </div>
+            
+            <div class="dl-group" style="margin-top:20px">
+                <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-final">Final Proposal</span></a>
+                <a href="preliminary proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-pre">Team Preliminary</span></a>
+                <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-per">Personal Draft</span></a>
             </div>
         </div>
     </div>
@@ -285,14 +298,13 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
                 <p class="comp-desc" id="ns-desc1">針對真實企業案例進行整合行銷與營運策略規劃，透過精確的市場調研與財務預估模型，在初選中突圍並進入最終決賽階段。</p>
                 
                 <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="ns-desc2">擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。</p>
+                <p class="comp-desc" id="ns-desc2">擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的交通路線規劃經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。</p>
             </div>
-            <div class="visual-assets">
-                <div class="dl-group">
-                    <a href="final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-final">Final Proposal</span></a>
-                    <a href="initial_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-init">Initial Draft</span></a>
-                    <a href="certificate.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
-                </div>
+            
+            <div class="dl-group" style="margin-top:20px">
+                <a href="final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-final">Final Proposal</span></a>
+                <a href="initial_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-init">Initial Draft</span></a>
+                <a href="certificate.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
             </div>
         </div>
     </div>
@@ -326,11 +338,12 @@ document.getElementById('lb-close').onclick = () => lb.classList.remove('active'
 const textData = {
   en: {
     'pg-sub': 'Through high-stakes challenges, I transform complex pain points into viable business solutions.',
+    'gallery-title': 'Competition Gallery (Click to enlarge)',
     'sec-task': 'Project Execution',
     'sec-role': 'My Role & PM Growth',
     'dh-title': 'DreamHack 2026 (NYCU)',
-    'dh-desc1': 'Conceptualized a "Digital Twin Nursing Training System" within 48 hours. Our team investigated industry pain points and stakeholder relationships, executing a 0-to-1 startup pitch that stood out in the finals and earned an internship collaboration offer from the founder.',
-    'dh-desc2': 'As <strong>PM</strong>, I led a team of members who only knew me. I managed the timeline based on their personalities, brainstormed initial concepts, and structured the pitch. Working with diverse backgrounds maximized my <strong>Growth Mindset</strong>. Although the project was halted because market validation proved the pain point wasn\'t critical enough, it was an invaluable lesson in product viability.',
+    'dh-desc1': 'For the prompt of creating an education-related startup from 0 to 1 given by Jason (Founder of Tera Thinker), <strong>I took the initiative to pivot into the medical field.</strong> We conceptualized a "Digital Twin Nursing Training System" within 48 hours, standing out in the finals and earning an internship collaboration offer.',
+    'dh-desc2': 'As <strong>PM</strong>, I led a team of members who only knew me. I managed the timeline, brainstormed initial concepts, and structured the pitch. Working with diverse backgrounds maximized my <strong>Growth Mindset</strong>. Although the project was halted because market validation proved the pain point wasn\'t critical enough, it was an invaluable lesson.',
     'lr-desc1': '<strong>High-Pressure Communication:</strong> Delivered a full-English pitch in a global high-stakes competition, mastering persuasive storytelling and visual presentation under rigorous time constraints.',
     'lr-desc2': '<strong>Cross-Industry Agility:</strong> Demonstrated a strong <strong>Growth Mindset</strong> by pivoting my research focus from traditional logistics to the beauty industry. Leveraging data-driven insights for personalized tech solutions expanded my horizons in international business standards.',
     'cn-title': 'Chuangnan 2025',
@@ -341,15 +354,16 @@ const textData = {
     'mj-desc2': 'As <strong>PM</strong>, I led my personal preliminary proposal and drove the strategic pivot during team discussions. Through intense debates with teammates from various backgrounds, I absorbed new analytical logic and learned to converge divergent viewpoints into a highly practical final report.',
     'ns-title': 'NCCU Star Business Case',
     'ns-desc1': 'Developed integrated marketing and operational strategies for a real corporate case. Overcame initial rounds through precise market research and financial models to reach the finals.',
-    'ns-desc2': 'As <strong>PM</strong>, I led the initial draft and final presentation. In this project, I <strong>carried over my experience from the Chuangnan competition</strong> to personally plan the routes for a "Sustainable Food Truck". Replicating past successes to solve new business challenges proves my continuous capability iteration.',
-    'qr-text': 'My Work: LineBot'
+    'ns-desc2': 'As <strong>PM</strong>, I led the initial draft and final presentation. In this project, I <strong>carried over my traffic route planning experience from the Chuangnan competition</strong> to personally plan the routes for a "Sustainable Food Truck". Replicating past successes to solve new business challenges proves my continuous capability iteration.',
+    'qr-text': 'My Work: LineBot QR'
   },
   zh: {
     'pg-sub': '透過高壓挑戰，我將複雜痛點轉化為具備執行力的商業解決方案。',
+    'gallery-title': '競賽紀錄（點擊放大）',
     'sec-task': 'Project Execution (專案執行)',
     'sec-role': 'My Role & PM Growth (角色與成長)',
     'dh-title': 'DreamHack 2026 (陽明交大)',
-    'dh-desc1': '在 48 小時內發想出「數位雙生護理訓練系統」。團隊調查產業痛點、利害關係人關係與競爭對手，完成從 0 到 1 的企業命題創業發想，決賽脫穎而出獲創辦人洽談實習合作。',
+    'dh-desc1': '針對 Tera Thinker 創辦人 Jason 提出「教育相關從 0 到 1 創業」的企業命題，<strong>我主動提出切入醫療領域</strong>。我們在 48 小時內發想出「數位雙生護理訓練系統」，深入調查產業痛點與獲利模式，決賽脫穎而出獲創辦人洽談實習合作。',
     'dh-desc2': '擔任 <strong>PM</strong>，隊友皆因我而結識。我利用對成員個性的了解掌控進度，包辦初步概念構思、方向執行與簡報架構。與不同背景的人共事極大化了我的<strong>成長型思維</strong>。雖然後續因技術與訪談發現「痛點不夠痛」導致計畫未執行，但這是非常寶貴的市場驗證經驗。',
     'lr-desc1': '<strong>High-Pressure Communication:</strong> 在全球高壓賽事中完成全英文 Pitch 提案，在極限時間內掌握了具說服力的故事敘事 (Storytelling) 與視覺呈現藝術。',
     'lr-desc2': '<strong>Cross-Industry Agility:</strong> 展現了強大的<strong>成長型思維</strong>，將研究重心從傳統物流跨足至美妝香氛產業。利用數據驅動洞察提出個人化科技解決方案，大幅拓展了我在國際商業標準與消費者創新上的視野。',
@@ -361,8 +375,8 @@ const textData = {
     'mj-desc2': '擔任 <strong>PM</strong>，我主導了個人初步提案，並在小組討論中整合各方意見推動策略轉型。透過與不同專業背景的組員激烈交流，我不斷吸收新的分析邏輯，學會如何將發散的觀點收斂為最具落地價值的最終報告書。',
     'ns-title': '政大之星商業競賽',
     'ns-desc1': '針對真實企業案例進行整合行銷與營運策略規劃，透過精確的市場調研與財務預估模型，在初選中突圍並進入最終決賽階段。',
-    'ns-desc2': '擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。',
-    'qr-text': 'My Work: LineBot'
+    'ns-desc2': '擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的交通路線規劃經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。',
+    'qr-text': 'My Work: LineBot QR'
   }
 };
 
@@ -372,9 +386,15 @@ function switchLang(l){
   document.getElementById('btn-zh').classList.toggle('active',l==='zh');
   
   document.getElementById('pg-sub').textContent = textData[l]['pg-sub'];
+  
+  document.querySelectorAll('.gallery-header').forEach(el => el.textContent = textData[l]['gallery-title']);
+  
   document.querySelectorAll('.section-label').forEach((el, i) => {
-    if(i%2===0) el.textContent = textData[l]['sec-task'];
-    else el.textContent = textData[l]['sec-role'];
+    // 過濾掉 QR Code 的標籤
+    if(!el.hasAttribute('data-i18n')) {
+        if(i%2===0) el.textContent = textData[l]['sec-task'];
+        else el.textContent = textData[l]['sec-role'];
+    }
   });
   
   document.getElementById('dh-title').textContent = textData[l]['dh-title'];
@@ -396,14 +416,12 @@ function switchLang(l){
   document.getElementById('ns-desc1').innerHTML = textData[l]['ns-desc1'];
   document.getElementById('ns-desc2').innerHTML = textData[l]['ns-desc2'];
   
-  document.querySelector('.qr-box div').textContent = textData[l]['qr-text'];
-  
-  // Navigation translation tags
+  // Navigation & Buttons
   document.querySelectorAll('[data-i18n]').forEach(el => {
      const key = el.getAttribute('data-i18n');
      const trans = {
-       en: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-loreal-init':"Danny's Initial Draft", 'btn-cn-final':'Final Presentation', 'btn-cn-init':'Initial Proposal', 'btn-mj-final':'Final Proposal', 'btn-mj-pre':'Team Preliminary', 'btn-mj-per':'Personal Draft', 'btn-ns-final':'Final Proposal', 'btn-ns-init':'Initial Draft'},
-       zh: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-loreal-init':"Danny 初版簡報", 'btn-cn-final':'最終簡報', 'btn-cn-init':'初次提案', 'btn-mj-final':'確定繳交提案', 'btn-mj-pre':'初步小組計畫書', 'btn-mj-per':'個人初次提案', 'btn-ns-final':'最終提案', 'btn-ns-init':'初次企劃'}
+       en: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-cn-final':'Final Presentation', 'btn-cn-init':'Initial Proposal', 'btn-mj-final':'Final Proposal', 'btn-mj-pre':'Team Preliminary', 'btn-mj-per':'Personal Draft', 'btn-ns-final':'Final Proposal', 'btn-ns-init':'Initial Draft', 'qr-text':'My Work: LineBot QR'},
+       zh: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-cn-final':'最終簡報', 'btn-cn-init':'初次提案', 'btn-mj-final':'確定繳交提案', 'btn-mj-pre':'初步小組計畫書', 'btn-mj-per':'個人初次提案', 'btn-ns-final':'最終提案', 'btn-ns-init':'初次企劃', 'qr-text':'My Work: LineBot QR'}
      };
      if(trans[l][key]) el.textContent = trans[l][key];
   });
