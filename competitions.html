@@ -13,7 +13,7 @@ body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:h
 a{text-decoration:none;color:inherit}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* Nav 導航欄 - 完全同步首頁功能 */
+/* Nav 導航欄 - 嚴格對齊首頁功能 */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -32,21 +32,21 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
 .drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
 
-/* 語言與 CV 區 */
+/* 語言切換區 */
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;transition:var(--t)}
 .lang-btn.active{color:var(--gold)}
 .nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* Header */
+/* Content Structure */
 .page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative}
 .ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
 .page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
 .page-title em{font-style:italic;color:var(--gold)}
+.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;display:grid;grid-template-columns:1fr;gap:90px}
 
-/* Main Content */
-.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;display:grid;grid-template-columns:1fr;gap:80px}
+/* Card Styles */
 .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:360px 1fr;transition:border-color var(--t)}
 .comp-card:hover{border-color:var(--border)}
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3)}
@@ -56,19 +56,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .comp-h3{font-family:var(--fd);font-size:1.9rem;margin-bottom:8px;line-height:1.2}
 .comp-org{font-size:.75rem;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px;text-transform:uppercase}
 .comp-desc{font-size:.88rem;color:var(--muted-2);margin-bottom:25px;font-weight:300;line-height:1.8}
-.comp-desc strong{color:var(--white);font-weight:500}
 
-/* 下載與連結按鈕樣式 */
+/* 檔案下載標記 */
 .dl-section{margin-top:25px;padding-top:20px;border-top:1px solid var(--border-w)}
-.dl-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.1em;margin-bottom:12px;display:block}
+.dl-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin-bottom:12px;display:block;font-weight:600}
 .dl-group{display:flex;flex-wrap:wrap;gap:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.65rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
-/* 照片縮圖展示區 */
-.thumb-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}
+/* 縮圖與固定照片 */
+.visual-assets{display:flex;flex-direction:column;gap:15px;margin-top:20px}
+.thumb-grid{display:flex;flex-wrap:wrap;gap:10px}
 .thumb-item{width:60px;height:60px;object-fit:cover;border-radius:2px;border:1px solid var(--border-w);opacity:0.7;transition:var(--t)}
-.thumb-item:hover{opacity:1;border-color:var(--gold)}
+.fixed-asset{margin-top:10px;border-radius:4px;overflow:hidden;border:1px solid var(--border)}
 
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-size:0.75rem;color:var(--muted)}
@@ -115,28 +115,55 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
+            <img src="Safecloud_first_place.jpeg" class="comp-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-medal fa-3x"></i></div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-award">1st Place</div>
+            <h3 class="comp-h3">創見南方 Chuangnan 2025</h3>
+            <div class="comp-org"><i class="fas fa-university"></i> NCKU Entrepreneurship</div>
+            <p class="comp-desc">帶領團隊勇奪首獎。針對在地痛點開發永續交通營運方案，並成功設計 Safecloud LINE Bot 實踐數位轉型。</p>
+            
+            <div class="dl-section">
+                <span class="dl-label">Project Documentation</span>
+                <div class="dl-group">
+                    <a href="Safecloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Presentation</a>
+                    <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Initial Proposal</a>
+                </div>
+                <div class="visual-assets">
+                    <span class="dl-label" style="margin-top:10px">LINE Bot Access (Scan QR)</span>
+                    <div class="fixed-asset" style="width: 140px;">
+                        <img src="safecloud_line_bot.jpg" alt="LINE Bot QR" style="width: 100%;">
+                    </div>
+                    <span class="dl-label">Event Photos</span>
+                    <div class="thumb-grid">
+                        <img src="Safecloud_first_place.jpeg" class="thumb-item">
+                        <img src="Safecloud_group_pic1.jpeg" class="thumb-item">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
             <img src="dreamhack_group_pic1.JPG" class="comp-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
             <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-users fa-3x"></i></div>
         </div>
         <div class="comp-content">
             <div class="comp-award" style="background:rgba(58,170,114,.12); color:var(--green)">Project Manager</div>
-            <h3 class="comp-h3">DreamHack 2026 (NYCU)</h3>
-            <div class="comp-org"><i class="fas fa-microchip"></i> Tera Thinker Enterprise Challenge</div>
-            <p class="comp-desc">
-                <strong>PM & Leadership:</strong> 整合隊員優缺點並主導「數位雙生系統」發想。在 48 小時內完成從 0 到 1 的護理人員訓練方案，脫穎而出並獲創辦人青睞。<br>
-                <strong>Market Validation:</strong> 雖獲合作機會，但透過技術與實際訪談後驗證痛點不夠顯著，從中習得寶貴的市場驗證經驗。
-            </p>
+            <h3 class="comp-h3">DreamHack 2026 (陽明交大)</h3>
+            <div class="comp-org"><i class="fas fa-lightbulb"></i> Tera Thinker Enterprise Challenge</div>
+            <p class="comp-desc">擔任 PM 引領團隊在兩天內完成護理人員「數位雙生系統」。負責全方位的計畫構思、進度掌控與簡報架構。</p>
             <div class="dl-section">
                 <span class="dl-label">Documentation & Evidence</span>
                 <div class="dl-group">
                     <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> 48hr Pitch Deck</a>
-                    <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> Official Certificate</a>
+                    <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> Certificate</a>
                 </div>
                 <div class="thumb-grid">
-                    <img src="dreamhack_group_pic1.JPG" class="thumb-item">
-                    <img src="dreamhack_group_pic2.JPG" class="thumb-item">
-                    <img src="dreamhack_group_pic3.JPG" class="thumb-item">
-                    <img src="dreamhack_group_pic4.JPG" class="thumb-item">
+                    <img src="dreamhack_group_pic1.JPG" class="thumb-item"><img src="dreamhack_group_pic2.JPG" class="thumb-item">
+                    <img src="dreamhack_group_pic3.JPG" class="thumb-item"><img src="dreamhack_group_pic4.JPG" class="thumb-item">
                     <img src="dreamhack_group_pic5.JPG" class="thumb-item">
                 </div>
             </div>
@@ -149,22 +176,18 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
             <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-eye fa-3x"></i></div>
         </div>
         <div class="comp-content">
-            <div class="comp-award">Global Competition</div>
+            <div class="comp-award">Global Pitch</div>
             <h3 class="comp-h3">L'Oréal Brandstorm 2026</h3>
             <div class="comp-org"><i class="fas fa-globe"></i> Beauty Tech & Fragrance</div>
-            <p class="comp-desc">
-                <strong>High-Pressure Pitch:</strong> 在全球高壓賽事中進行全英文提案，掌握說服敘事與視覺呈現藝術。<br>
-                <strong>Cross-Industry Agility:</strong> 展現成長型思維，將研究重心成功轉向美妝香氛產業，提出數據驅動的個人化科技解決方案。
-            </p>
+            <p class="comp-desc">跨產業挑戰美妝香氛市場，以數據驅動洞察提出個人化解決方案，展現全英文高壓環境下的說服力與敏捷度。</p>
             <div class="dl-section">
-                <span class="dl-label">Proposal Versions</span>
+                <span class="dl-label">Competition Materials</span>
                 <div class="dl-group">
-                    <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Pitch Deck (Full Team)</a>
-                    <a href="l’oréal_1st_version_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Initial Draft (by Danny)</a>
+                    <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Pitch Deck</a>
+                    <a href="l’oréal_1st_version_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Danny's Initial Draft</a>
                 </div>
                 <div class="thumb-grid">
-                    <img src="loreal_pic1.JPG" class="thumb-item">
-                    <img src="loreal_pic2.JPG" class="thumb-item">
+                    <img src="loreal_pic1.JPG" class="thumb-item"><img src="loreal_pic2.JPG" class="thumb-item">
                     <img src="loreal_pic3.JPG" class="thumb-item">
                 </div>
             </div>
@@ -173,21 +196,19 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-file-signature fa-3x"></i></div>
+            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-star fa-3x"></i></div>
         </div>
         <div class="comp-content">
-            <div class="comp-award" style="background:rgba(74,144,217,.12); color:#89c4f4">Strategic Management</div>
-            <h3 class="comp-h3">玉山校際商業競賽 (Mount Jade)</h3>
-            <div class="comp-org"><i class="fas fa-chart-line"></i> Competitive Business Strategy</div>
-            <p class="comp-desc">
-                <strong>Strategic Framework:</strong> 深入調查產業背景與痛點，分析利害關係人關係與獲利模式，並針對競爭對手進行全面剖析。
-            </p>
+            <div class="comp-award">Finalist</div>
+            <h3 class="comp-h3">政大之星商業競賽</h3>
+            <div class="comp-org"><i class="fas fa-briefcase"></i> Case Analysis</div>
+            <p class="comp-desc">針對企業現狀困境提出多維度財務評估與行銷整合策略。完整經歷從初步構思到最終決賽提案的商業實戰。</p>
             <div class="dl-section">
-                <span class="dl-label">Comprehensive Planning</span>
+                <span class="dl-label">Documentation</span>
                 <div class="dl-group">
-                    <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Final Proposal</a>
-                    <a href="preliminary proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Preliminary Team Proposal</a>
-                    <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Personal Discussion Draft</a>
+                    <a href="final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Final Proposal</a>
+                    <a href="initial_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Initial Draft</a>
+                    <a href="certificate.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-certificate"></i> Evidence of Participation</a>
                 </div>
             </div>
         </div>
@@ -195,31 +216,20 @@ footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-medal fa-3x"></i></div>
+            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-file-invoice fa-3x"></i></div>
         </div>
         <div class="comp-content">
-            <div class="comp-award">1st Place</div>
-            <h3 class="comp-h3">創見南方 Chuangnan 2025</h3>
-            <div class="comp-org"><i class="fas fa-university"></i> NCKU Entrepreneurship</div>
-            <p class="comp-desc">
-                在此創業計畫競賽中勇奪首獎。精確定義在地痛點，並結合交通管理專業知識提出創新的永續營運方案。
-            </p>
-            <div class="tag-row"><span class="tag tg">Sustainability</span><span class="tag tg">Winner</span></div>
-        </div>
-    </div>
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-star fa-3x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div class="comp-award">Case Finalist</div>
-            <h3 class="comp-h3">政大之星商業競賽</h3>
-            <div class="comp-org"><i class="fas fa-briefcase"></i> Corporate Case Analysis</div>
-            <p class="comp-desc">
-                針對企業現實困境提出整合策略。透過多維度的財務預估與市場分析，於決賽現場向評審展現可行性方案。
-            </p>
-            <div class="tag-row"><span class="tag tb">Marketing</span><span class="tag tb">Analysis</span></div>
+            <div class="comp-award" style="background:rgba(74,144,217,.12); color:#89c4f4">Strategic Management</div>
+            <h3 class="comp-h3">玉山校際商業競賽 (Mount Jade)</h3>
+            <div class="comp-org"><i class="fas fa-chart-line"></i> Business Case Planning</div>
+            <p class="comp-desc">主導產業痛點研究與競爭者分析，建立完善的利害關係人關係與獲利評估模型。</p>
+            <div class="dl-section">
+                <span class="dl-label">Planning Files</span>
+                <div class="dl-group">
+                    <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> Final Team Report</a>
+                    <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> My Personal Draft</a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -237,10 +247,8 @@ function switchLang(l){
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   document.getElementById('btn-zh').classList.toggle('active',l==='zh');
   if(l==='zh'){
-    document.getElementById('pg-title').innerHTML = 'Global <em>Competitions</em>';
     document.getElementById('pg-sub').textContent = '透過高壓挑戰，我將複雜痛點轉化為具備執行力的商業解決方案。';
   } else {
-    document.getElementById('pg-title').innerHTML = 'Global <em>Competitions</em>';
     document.getElementById('pg-sub').textContent = 'Through high-stakes challenges, I transform complex pain points into viable business solutions.';
   }
 }
