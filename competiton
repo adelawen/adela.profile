@@ -1,64 +1,82 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competitions | HsinYu Wen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* 繼承 index.html 的 root 變數與基本樣式 */
-        :root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-        body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-        a{text-decoration:none;color:inherit}
-        
-        /* 複用首頁的導航與背景效果 */
-        body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
-        .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
-        .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
-        .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
-        .nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}
-        .nav-logo span{color:var(--gold)}
-        .nav-links{display:flex;align-items:center;list-style:none}
-        .nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
-        .nav-links a.active{color:var(--white)}
-        .nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
-        .nav-right{display:flex;align-items:center;gap:12px}
-        .nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
-        .nav-cv:hover{background:var(--gold);color:var(--ink)}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitions | HsinYu Wen</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-        /* Competitions 頁面標題區 */
-        .page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative}
-        .ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-        .page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
-        .page-title em{font-style:italic;color:var(--gold)}
-        .page-sub{font-size:.9rem;color:var(--muted);max-width:600px;font-weight:300}
+/* Nav Styles */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding var(--t),background var(--t),border-color var(--t);border-bottom:1px solid transparent}
+.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links a{font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:color var(--t);position:relative}
+.nav-links a.active{color:var(--white)}
+.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
+.nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-        /* 競賽卡片設計 */
-        .main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
-        .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:300px 1fr;transition:border-color var(--t)}
-        .comp-card:hover{border-color:var(--border)}
-        .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3)}
-        .comp-img{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:transform 0.6s var(--ease)}
-        .comp-card:hover .comp-img{transform:scale(1.05);opacity:1}
-        .comp-content{padding:40px;position:relative}
-        .comp-award{display:inline-block;background:rgba(200,164,90,.15);color:var(--gold);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:15px}
-        .comp-h3{font-family:var(--fd);font-size:1.8rem;margin-bottom:8px}
-        .comp-org{font-size:.8rem;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:10px}
-        .comp-desc{font-size:.88rem;color:var(--muted-2);margin-bottom:25px;font-weight:300}
-        .comp-tags{display:flex;flex-wrap:wrap;gap:8px}
-        .comp-tag{font-size:.65rem;border:1px solid var(--border-w);padding:3px 10px;color:var(--muted);border-radius:2px}
+/* Header */
+.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{font-size:.9rem;color:var(--muted);max-width:600px;font-weight:300}
 
-        /* 動畫 */
-        .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
+/* Cards */
+.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;display:grid;grid-template-columns:1fr;gap:60px}
+.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:340px 1fr;transition:border-color var(--t)}
+.comp-card:hover{border-color:var(--border)}
+.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3)}
+.comp-img{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:transform 0.6s var(--ease)}
+.comp-card:hover .comp-img{transform:scale(1.05);opacity:1}
+.comp-content{padding:44px;position:relative}
+.comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:18px}
+.comp-h3{font-family:var(--fd);font-size:2rem;margin-bottom:8px;line-height:1.2}
+.comp-org{font-size:.75rem;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:0.05em}
+.comp-desc{font-size:.88rem;color:var(--muted-2);margin-bottom:25px;font-weight:300;line-height:1.8}
+.comp-desc strong{color:var(--white);font-weight:500}
 
-        @media(max-width:860px){
-            .comp-card{grid-template-columns:1fr}
-            .comp-img-wrap{height:200px}
-            .nav-links{display:none}
-        }
-    </style>
+/* Tags & Buttons */
+.tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.tag{font-size:.65rem;border:1px solid var(--border-w);padding:3px 10px;color:var(--muted);border-radius:2px;letter-spacing:0.03em}
+.tag.tg{border-color:rgba(200,164,90,.3);color:var(--gold-lt)}
+.tag.tk{border-color:rgba(58,170,114,.3);color:#7fd9a8}
+.tag.tb{border-color:rgba(74,144,217,.3);color:#89c4f4}
+
+.dl-group{display:flex;flex-wrap:wrap;gap:12px}
+.btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px 18px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
+.btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
+.btn-dl.green{border-color:rgba(58,170,114,.4);color:#7fd9a8}.btn-dl.green:hover{background:rgba(58,170,114,.07)}
+.btn-dl.blue{border-color:rgba(74,144,217,.4);color:#89c4f4}.btn-dl.blue:hover{background:rgba(74,144,217,.07)}
+
+/* Thumbnails */
+.thumb-row{display:flex;gap:8px;margin-top:24px;padding-top:20px;border-top:1px solid var(--border-w)}
+.thumb{width:45px;height:45px;object-fit:cover;border-radius:2px;opacity:0.5;border:1px solid transparent;transition:var(--t);cursor:pointer}
+.thumb:hover{opacity:1;border-color:var(--gold)}
+
+/* Animations */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
+
+footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;font-size:0.75rem;color:var(--muted)}
+
+@media(max-width:900px){
+    .comp-card{grid-template-columns:1fr}
+    .comp-img-wrap{height:240px}
+    .nav-links{display:none}
+    .comp-content{padding:30px 24px}
+}
+</style>
 </head>
 <body>
 
@@ -69,7 +87,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="projects.html">Projects</a></li>
             <li><a href="competitions.html" class="active">Competitions</a></li>
-            </ul>
+        </ul>
         <div class="nav-right">
             <a href="resume.pdf" download class="nav-cv">CV</a>
         </div>
@@ -78,27 +96,74 @@
 
 <header class="page-header">
     <div class="ph-inner">
-        <h1 class="page-title reveal">Global <em>Challenges</em> & Growth</h1>
-        <p class="page-sub reveal" id="comp-sub">透過商業競賽與學術挑戰，我將跨領域思維轉化為實際解決方案。</p>
+        <h1 class="page-title reveal">Global <em>Competitions</em></h1>
+        <p class="page-sub reveal">從智慧交通到美妝科技，在跨領域的高壓競賽中磨練解決問題的意志與商業洞察力。</p>
     </div>
 </header>
 
 <main class="main">
+    
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)">
-                <i class="fas fa-trophy fa-3x"></i>
+            <img src="loreal_pic1.JPG" alt="L'Oréal Brandstorm" class="comp-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)">
+                <i class="fas fa-eye fa-3x"></i>
             </div>
         </div>
         <div class="comp-content">
-            <div class="comp-award">Finalist</div>
+            <div class="comp-award">Global Pitching</div>
             <h3 class="comp-h3">L'Oréal Brandstorm 2026</h3>
-            <div class="comp-org"><i class="fas fa-university"></i> L'Oréal Global</div>
-            <p class="comp-desc">針對未來美妝科技進行提案，結合永續物流與消費者數位體驗，提升品牌在 Z 世代中的市場滲透率。</p>
-            <div class="comp-tags">
-                <span class="comp-tag">Marketing Strategy</span>
-                <span class="comp-tag">Supply Chain</span>
-                <span class="comp-tag">Innovation</span>
+            <div class="comp-org"><i class="fas fa-globe"></i> Beauty Tech & Fragrance Track</div>
+            <p class="comp-desc">
+                <strong>High-Pressure Communication:</strong> 在全英文高壓環境下完成 Pitch，精煉敘事技巧與視覺呈現。<br>
+                <strong>Cross-Industry Agility:</strong> 將研究觸角從交通物流延伸至美妝產業，利用數據驅動洞察，提出個人化消費者科技解決方案。
+            </p>
+            <div class="tag-row">
+                <span class="tag tg">English Pitch</span>
+                <span class="tag tg">Growth Mindset</span>
+                <span class="tag tg">Storytelling</span>
+            </div>
+            <div class="dl-group">
+                <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Pitch Deck</a>
+            </div>
+            <div class="thumb-row">
+                <img src="loreal_pic1.JPG" class="thumb">
+                <img src="loreal_pic2.JPG" class="thumb">
+                <img src="loreal_pic3.JPG" class="thumb">
+            </div>
+        </div>
+    </div>
+
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
+            <img src="dreamhack_group_pic1.JPG" alt="DreamHack Team" class="comp-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)">
+                <i class="fas fa-users fa-3x"></i>
+            </div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-award" style="background:rgba(58,170,114,.12); color:var(--green)">Project Manager</div>
+            <h3 class="comp-h3">DreamHack 2026 (陽明交大)</h3>
+            <div class="comp-org"><i class="fas fa-lightbulb"></i> Tera Thinker Enterprise Challenge</div>
+            <p class="comp-desc">
+                <strong>Rapid Prototyping:</strong> 48 小時內帶領跨校團隊完成「數位雙生」訓練系統提案。身為 PM，我整合成員優缺點、主導架構設計並精準分析利害關係人與獲利模式。<br>
+                <strong>Elite Recognition:</strong> 獲創辦人 Jason 青睞並受邀洽談合作。雖然最終因市場驗證未達標而終止計畫，但深刻體會到從 0 到 1 的產品開發挑戰。
+            </p>
+            <div class="tag-row">
+                <span class="tag tk">Digital Twin</span>
+                <span class="tag tk">Team Leadership</span>
+                <span class="tag tk">Product Strategy</span>
+            </div>
+            <div class="dl-group">
+                <a href="dreamhack_pitch.pdf" target="_blank" class="btn-dl green"><i class="fas fa-file-powerpoint"></i> 48h Pitch</a>
+                <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl green"><i class="fas fa-certificate"></i> Certificate</a>
+            </div>
+            <div class="thumb-row">
+                <img src="dreamhack_group_pic1.JPG" class="thumb">
+                <img src="dreamhack_group_pic2.JPG" class="thumb">
+                <img src="dreamhack_group_pic3.JPG" class="thumb">
+                <img src="dreamhack_group_pic4.JPG" class="thumb">
+                <img src="dreamhack_group_pic5.JPG" class="thumb">
             </div>
         </div>
     </div>
@@ -106,33 +171,38 @@
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
             <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)">
-                <i class="fas fa-medal fa-3x"></i>
+                <i class="fas fa-file-invoice fa-3x"></i>
             </div>
         </div>
         <div class="comp-content">
-            <div class="comp-award" style="background:rgba(58,170,114,.15); color:var(--green)">1st Place</div>
-            <h3 class="comp-h3">Chuangnan 2025</h3>
-            <div class="comp-org"><i class="fas fa-map-marker-alt"></i> NCKU Entrepreneurship</div>
-            <p class="comp-desc">在此創業競賽中擔任核心成員，專注於解決特定產業的痛點，並成功獲得評審高度評價奪得首獎。</p>
-            <div class="comp-tags">
-                <span class="comp-tag">Business Plan</span>
-                <span class="comp-tag">Leadership</span>
-                <span class="comp-tag">Presentation</span>
+            <div class="comp-award" style="background:rgba(74,144,217,.12); color:#89c4f4">Strategic Analysis</div>
+            <h3 class="comp-h3">玉山競賽 (Mount Jade)</h3>
+            <div class="comp-org"><i class="fas fa-university"></i> Business Proposal & Planning</div>
+            <p class="comp-desc">
+                主導從初步構思到最終定稿的完整流程。針對企業命題進行深度的競爭對手分析、財務獲利模型評估以及潛在風險控管。
+            </p>
+            <div class="tag-row">
+                <span class="tag tb">Market Analysis</span>
+                <span class="tag tb">Risk Management</span>
+                <span class="tag tb">Strategic Planning</span>
+            </div>
+            <div class="dl-group">
+                <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl blue"><i class="fas fa-file-pdf"></i> Final Proposal</a>
+                <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl blue"><i class="fas fa-file-pdf"></i> Personal Draft</a>
             </div>
         </div>
     </div>
+
 </main>
 
 <footer>
-    </footer>
+    © 2026 HsinYu Wen — Driven by curiosity, defined by resilience.
+</footer>
 
 <script>
-    // 滾動效果
-    window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-    
-    // 進入視窗動畫
-    const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 </script>
 </body>
 </html>
