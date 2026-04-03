@@ -2,7 +2,7 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Internship | HsinYu Wen</title>
+<title>Internship | 溫心語 HsinYu Wen</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -41,14 +41,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .page-title em{font-style:italic;color:var(--gold)}
 .page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
 
-/* Cards - 縮小優化版 */
+/* Cards - 核心統一規格尺寸 */
 .main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
-.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t)}
+.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t);min-height:480px;align-items: stretch}
 .comp-card:hover{border-color:var(--border)}
-.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center}
+
+.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center;height:100%}
 .comp-img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:var(--t)}
 
-.comp-content{padding:25px 35px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.comp-content{padding:30px 40px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
 .comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:12px;align-self:flex-start}
 .comp-date{font-size:.65rem;color:var(--muted);font-weight:500;border:1px solid var(--border-w);padding:3px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap}
@@ -87,7 +88,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .lightbox-nav:hover{background:var(--gold);color:var(--ink)}
 .lightbox-prev{left:20px}.lightbox-next{right:20px}
 
-/* Footer - 完全符合截圖樣式 */
+/* Footer */
 footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px; position: relative; z-index: 1; }
 .foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .foot-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
@@ -99,7 +100,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px;
 
 @media(max-width:900px){
     .comp-card{grid-template-columns:1fr;min-height:auto}
-    .comp-img-wrap{height:200px}
+    .comp-img-wrap{height:250px}
     .nav-links, .lightbox-nav{display:none}
     .foot-inner { flex-direction: column; text-align: center; }
 }
@@ -155,10 +156,10 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px;
             <div class="comp-org"><i class="fas fa-building"></i> <span data-i18n="intern-org-1">遠見文創 Vision Creative</span></div>
             
             <span class="section-label" data-i18n="sec-impact">實務工作內容</span>
-            <p class="comp-desc" data-i18n="intern-desc1-1">擔任外師與學生間的關鍵溝通橋樑。每早 07:00 抵達辦公室準備，並在 07:30 會議過程中以 Bullet points 精確記下行政端交代事項，確保 08:00 進班時能準時向小孩與外師傳達當日任務。</p>
+            <p class="comp-desc" data-i18n="intern-desc1-1">擔任外師與學生間的關鍵溝通橋樑。每早 07:00 抵達準備，以 Bullet points 精確同步教學目標與行政任務內容，確保 08:00 準時對接。</p>
             
             <span class="section-label" data-i18n="sec-growth">思維成長</span>
-            <p class="comp-desc" data-i18n="intern-desc1-2">獲得大量語言表達機會，透過成長型思維磨練表達精度，以淺顯英語向小孩解釋外師教學細節，成功縮小雙方的認知差距，實踐高效的跨域溝通力。</p>
+            <p class="comp-desc" data-i18n="intern-desc1-2">透過成長型思維磨練表達精度，以淺顯英語解釋教學細節，縮小雙方的認知差距，實踐高效跨域溝通力。</p>
             
             <div class="dl-group">
                 <a href="EMI educational assistant contract.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-contract">實習合約下載</span></a>
@@ -194,7 +195,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px;
             <p class="comp-desc" data-i18n="intern-desc2-1">協助聚界潔能台南實驗室開幕活動，負責 50+ 賓客接待與現場流程協調，確保企業重要時刻圓滿成功，展現穩健應變力。</p>
             
             <span class="section-label" data-i18n="sec-growth">思維成長</span>
-            <p class="comp-desc" data-i18n="intern-desc2-2">從被動執行進化到主動預判需求，學會在主管交辦前先多想一步，將行政庶務轉化為團隊前進的穩定動力，完全體現成長型思維。</p>
+            <p class="comp-desc" data-i18n="intern-desc2-2">從被動執行進化到主動預判需求，學會在主管交辦前先多想一步，將行政庶務轉化為團隊前進的穩定動力，體現成長型思維。</p>
             
             <div class="dl-group">
                 <a href="Employment Agreement_Wen, Hsin-Yu_06142024.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-contract"></i> <span data-i18n="btn-contract">實習合約下載</span></a>
@@ -213,11 +214,11 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px;
 
 <footer>
   <div class="foot-inner">
-    <div class="foot-copy" data-i18n="foot-copy">© 2026 溫信昱 — 國立成功大學 交通管理科學系</div>
+    <div class="foot-copy" data-i18n="foot-copy">© 2026 溫心語 — 國立成功大學 交通管理科學系</div>
     <div class="foot-links">
       <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">電子郵件</a>
       <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">領英</a>
-      <a href="index.html" data-i18n="nav-home">首頁</a>
+      <a href="index.html" data-i18n="nav-home">Home</a>
     </div>
   </div>
 </footer>
@@ -227,7 +228,7 @@ window.addEventListener('scroll',()=>{document.getElementById('mainnav').classLi
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Lightbox
+// Lightbox Logic
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 const btnPrev = document.getElementById('lb-prev');
@@ -279,7 +280,7 @@ const textData = {
     'intern-desc2-1': '協助台南實驗室開幕活動，負責 50+ 賓客接待與現場流程協調，確保企業重要時刻圓滿成功，展現穩健應變力。',
     'intern-desc2-2': '從被動執行進化到主動預判，學會在主管交辦前先多想一步，將行政庶務轉化為團隊前進的穩定動力，體現成長型思維。',
     'sec-impact': '實務工作內容', 'sec-growth': '思維成長', 'gallery-title': '實習紀錄相簿 (向右滑動)', 'btn-contract': '實習合約下載',
-    'foot-copy': '© 2026 溫信昱 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英'
+    'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英'
   }
 };
 
