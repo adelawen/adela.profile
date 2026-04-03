@@ -42,8 +42,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .page-title em{font-style:italic;color:var(--gold)}
 .page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
 
-/* Cards */
-.main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:60px}
+/* Cards - 縮小版 */
+.main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
 .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t)}
 .comp-card:hover{border-color:var(--border)}
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center}
@@ -59,11 +59,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .comp-h3{font-family:var(--fd);font-size:1.6rem;margin-bottom:6px;line-height:1.2}
 .comp-org{font-size:.7rem;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase}
 
-.section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:15px 0 6px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
+.section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:12px 0 4px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
 .comp-desc{font-size:.82rem;color:var(--muted-2);margin-bottom:10px;font-weight:300;line-height:1.8}
 .comp-desc strong{color:var(--white);font-weight:500}
 
-/* 下載與影音 */
+/* 下載與影音按鈕 */
 .dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
@@ -84,15 +84,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .lightbox-overlay{position:fixed;inset:0;background:rgba(13,21,32,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(8px)}
 .lightbox-overlay.active{display:flex}
 .lightbox-close{position:absolute;top:30px;right:40px;color:var(--white);font-size:2.5rem;font-weight:300;cursor:pointer;z-index:1010;transition:var(--t)}
-.lightbox-close:hover{color:var(--gold)}
+.lightbox-close:hover{color:var(--gold);transform:scale(1.1)}
 .lightbox-content{max-width:85%;max-height:85%;position:relative;display:flex;align-items:center;justify-content:center}
 .lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,0.5)}
 .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:50px;height:50px;background:rgba(30,40,55,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.2rem;cursor:pointer;z-index:1010;transition:var(--t);user-select:none}
 .lightbox-nav:hover{background:var(--gold);color:var(--ink)}
 .lightbox-prev{left:20px}.lightbox-next{right:20px}
 
-/* Footer */
-footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px; position: relative; z-index: 1; }
+/* Footer - 完全符合截圖樣式 */
+footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 60px; position: relative; z-index: 1; }
 .foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
 .foot-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
 .foot-links { display: flex; gap: 24px; }
@@ -103,7 +103,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px;
 
 @media(max-width:900px){
     .comp-card{grid-template-columns:1fr;min-height:auto}
-    .comp-img-wrap{height:220px}
+    .comp-img-wrap{height:200px}
     .nav-links, .lightbox-nav{display:none}
     .foot-inner { flex-direction: column; text-align: center; }
 }
@@ -140,7 +140,7 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px;
 <header class="page-header">
   <div class="ph-inner">
     <h1 class="page-title reveal" data-i18n="pg-title">Cultural <em>Exchange</em></h1>
-    <p class="page-sub reveal" data-i18n="pg-sub">透過跨國合作與沉浸式學習，在多元文化激盪中拓寬全球視野。</p>
+    <p class="page-sub reveal" data-i18n="pg-sub">Through cross-cultural engagement, I cultivate empathy and leadership by connecting with diverse communities.</p>
   </div>
 </header>
 
@@ -152,43 +152,32 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px;
         </div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="exch-award-1">跨國商案協作</div>
-                <div class="comp-date" data-i18n="exch-date-1">2025 年 6 月 23 - 28 日</div>
+                <div class="comp-award" data-i18n="exch-award-1">Global Collaboration</div>
+                <div class="comp-date" data-i18n="exch-date-1">June 23 - 28, 2025</div>
             </div>
-            <h3 class="comp-h3" data-i18n="exch-title-1">NCKU x SUSS 六天商業競賽快閃營</h3>
-            <div class="comp-org"><i class="fas fa-globe-asia"></i> <span data-i18n="exch-org-1">新加坡新躍社科大學 SUSS</span></div>
+            <h3 class="comp-h3" data-i18n="exch-title-1">NCKU x SUSS Impact Startup Challenge</h3>
+            <div class="comp-org"><i class="fas fa-globe-asia"></i> <span data-i18n="exch-org-1">Singapore University of Social Sciences</span></div>
             
-            <span class="section-label" data-i18n="sec-task">快閃營執行細節</span>
-            <p class="comp-desc" data-i18n="exch-desc1-1">在極限的六天內，完成從題目發想、實體訪談、菜單設計到最終決賽 Pitch 與 QA 準備。我負責商案初期想法構思、部分簡報製作，並主導邀約訪談對象、準備訪綱。</p>
+            <span class="section-label" data-i18n="sec-task">Program Execution</span>
+            <p class="comp-desc" data-i18n="exch-desc1-1">Led the team from ideation to final pitch within a 6-day sprint. Managed logistics, conducted field interviews, and prepared Q&A. Co-designed the business menu with teammate Fanny (Lin Yen-yu).</p>
             
-            <span class="section-label" data-i18n="sec-role">交流體悟與成長</span>
-            <p class="comp-desc" data-i18n="exch-desc1-2">與組員 Fanny (林彥妤) 緊密協作設計菜單，並深度享受與新加坡同學腦力激盪的過程。透過這種成長型思維的實踐，我學會將跨文化差異轉化為團隊共識，將高壓挑戰化為精確商業洞察。</p>
+            <span class="section-label" data-i18n="sec-role">Collaborative Growth</span>
+            <p class="comp-desc" data-i18n="exch-desc1-2">Leveraged a <strong>Growth Mindset</strong> to navigate high-pressure situations. Transformed cultural differences into commercial insights and refined persuasiveness in communication.</p>
             
             <div class="dl-group">
-                <a href="Impact_Startup_Challenge_Certificate_of_Completion.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">活動結業證書</span></a>
-                <a href="The silver spoon-Menu.pdf" target="_blank" class="btn-dl"><i class="fas fa-utensils"></i> <span data-i18n="btn-menu">菜單設計 (與林彥妤)</span></a>
-                <a href="https://youtube.com/shorts/UYf977F6Z_o?feature=share" target="_blank" class="btn-dl btn-vid"><i class="fab fa-youtube"></i> <span data-i18n="btn-video">紀錄影片 (YouTube)</span></a>
+                <a href="Impact_Startup_Challenge_Certificate_of_Completion.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
+                <a href="The silver spoon-Menu.pdf" target="_blank" class="btn-dl"><i class="fas fa-utensils"></i> <span data-i18n="btn-menu">Menu Design</span></a>
+                <a href="https://youtube.com/shorts/UYf977F6Z_o?feature=share" target="_blank" class="btn-dl btn-vid"><i class="fab fa-youtube"></i> <span data-i18n="btn-video">Watch Video (YouTube)</span></a>
             </div>
 
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">活動紀錄 (向右滑動並點擊放大)</div>
+                <div class="gallery-header" data-i18n="gallery-title">Program Gallery (Scroll & Click)</div>
                 <div class="photo-slider">
-                    <img src="suss_pic1.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic2.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic3.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic4.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic5.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic6.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic7.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic8.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic9.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic10.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic11.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic12.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic13.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic14.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic15.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
-                    <img src="suss_pic16.jpg" class="slide-item lb-trigger" data-gallery="suss" onerror="this.style.display='none'">
+                    <script>
+                        for(let i=1; i<=16; i++){
+                            document.write(`<img src="suss_pic${i}.jpg" class="slide-item lb-trigger" data-gallery="suss" alt="SUSS Pic ${i}" onerror="this.style.display='none'">`);
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -200,31 +189,59 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px;
         </div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="maori-award">原住民文化交流</div>
-                <div class="comp-date" data-i18n="maori-date">2024</div>
+                <div class="comp-award" data-i18n="exch-award-2">Indigenous Exchange</div>
+                <div class="comp-date">2024</div>
             </div>
-            <h3 class="comp-h3" data-i18n="maori-title">毛利文化沉浸式學習</h3>
-            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="maori-org">跨文化交流計畫</span></div>
+            <h3 class="comp-h3" data-i18n="exch-title-2">Māori Cultural Immersion Learning</h3>
+            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="exch-org-2">NCKU Indigenous Resource Center</span></div>
             
-            <span class="section-label" data-i18n="sec-task">執行細節</span>
-            <p class="comp-desc" data-i18n="maori-desc1">深入學習毛利文化傳統與價值觀。透過工作坊探討原住民文化在現代社會中的保存與演變，反思文化多樣性的重要。這讓我學會以更開放且具包容性的心態看待不同社群的需求。</p>
+            <span class="section-label" data-i18n="sec-task">Cultural Engagement</span>
+            <p class="comp-desc" data-i18n="exch-desc2-1">Explored traditional Māori protocols (Pōwhiri) and the significance of Māori art and performances. Engaged in meaningful dialogues with representatives from New Zealand.</p>
+            
+            <span class="section-label" data-i18n="sec-growth">My Role & Perspective</span>
+            <p class="comp-desc" data-i18n="exch-desc2-2">Developed **Cultural Empathy** and a deeper respect for diversity. Immersing in Māori values helped me cultivate a more inclusive and global perspective on indigenous cultural preservation.</p>
+            
+            <div class="gallery-section">
+                <div class="gallery-header" data-i18n="gallery-title">Gallery (Scroll & Click)</div>
+                <div class="photo-slider">
+                    <script>
+                        for(let i=1; i<=9; i++){
+                            document.write(`<img src="maori_pic${i}.jpg" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic ${i}" onerror="this.style.display='none'">`);
+                        }
+                    </script>
+                </div>
+            </div>
         </div>
     </div>
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
-            <div class="comp-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="comp-icon-wrap"><i class="fas fa-campground"></i></div>
         </div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="emi-award">學術教學支援</div>
-                <div class="comp-date" data-i18n="emi-date">2024 - 2025 年</div>
+                <div class="comp-award" data-i18n="exch-award-3">Cross-Campus Program</div>
+                <div class="comp-date">Summer 2024</div>
             </div>
-            <h3 class="comp-h3" data-i18n="emi-title">EMI 全英文授課助理</h3>
-            <div class="comp-org"><i class="fas fa-graduation-cap"></i> <span data-i18n="emi-org">成功大學 EMI 計畫</span></div>
+            <h3 class="comp-h3" data-i18n="exch-title-3">EMI American Summer Cultural Camp</h3>
+            <div class="comp-org"><i class="fas fa-graduation-cap"></i> <span data-i18n="exch-org-3">NTU · NTUST · NCKU Joint Program</span></div>
             
-            <span class="section-label" data-i18n="sec-task">交流體悟</span>
-            <p class="comp-desc" data-i18n="emi-desc1">擔任全英文授課課程助理，協助教授優化教學流程，並作為語言橋樑提升學習效率。這份經歷提升了我將複雜學術概念轉化為易懂語言的能力。</p>
+            <span class="section-label" data-i18n="sec-task">Cultural Immersion</span>
+            <p class="comp-desc" data-i18n="exch-desc3-1">Engaged in an English as a Medium of Instruction (EMI) environment, collaborating with peers and American students through immersive cultural workshops and team-building activities.</p>
+            
+            <span class="section-label" data-i18n="sec-growth">Growth & Perspective</span>
+            <p class="comp-desc" data-i18n="exch-desc3-2">Developed **Cross-cultural Communication Skills**. Overcame language barriers and fostered mutual understanding with American students by focusing on common interests and collaborative problem-solving.</p>
+            
+            <div class="gallery-section">
+                <div class="gallery-header" data-i18n="gallery-title">Gallery (Scroll & Click)</div>
+                <div class="photo-slider">
+                    <script>
+                        for(let i=1; i<=6; i++){
+                            document.write(`<img src="emicamp_pic${i}.jpg" class="slide-item lb-trigger" data-gallery="emicamp" alt="EMI Camp Pic ${i}" onerror="this.style.display='none'">`);
+                        }
+                    </script>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -232,18 +249,18 @@ footer { border-top: 1px solid var(--border); padding: 30px 0; margin-top: 40px;
 
 <div class="lightbox-overlay" id="lightbox">
     <span class="lightbox-close" id="lb-close">&times;</span>
-    <div class="lightbox-nav lightbox-prev" id="lb-prev"><i class="fas fa-chevron-left"></i></div>
+    <div class="lightbox-nav lightbox-prev" id="lb-prev"><i class="fas fa-chevron-left">1</i></div>
     <div class="lightbox-content"><img class="lightbox-image" src="" id="lb-img"></div>
-    <div class="lightbox-nav lightbox-next" id="lb-next"><i class="fas fa-chevron-right"></i></div>
+    <div class="lightbox-nav lightbox-next" id="lb-next"><i class="fas fa-chevron-right">2</i></div>
 </div>
 
 <footer>
   <div class="foot-inner">
-    <div class="foot-copy" data-i18n="foot-copy">© 2026 溫信昱 — 國立成功大學 交通管理科學系</div>
+    <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</div>
     <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">電子郵件</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">領英</a>
-      <a href="index.html" data-i18n="nav-home">首頁</a>
+      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">LinkedIn</a>
+      <a href="index.html" data-i18n="nav-home">Home</a>
     </div>
   </div>
 </footer>
@@ -253,7 +270,7 @@ window.addEventListener('scroll',()=>{document.getElementById('mainnav').classLi
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Lightbox
+// Lightbox Logic
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 const btnPrev = document.getElementById('lb-prev');
@@ -282,34 +299,38 @@ btnNext.onclick = (e) => { e.stopPropagation(); changeSlide(1); };
 lb.onclick = (e) => { if(e.target === lb) lb.classList.remove('active'); };
 document.getElementById('lb-close').onclick = () => lb.classList.remove('active');
 
-// Dictionary
+// Dictionary for i18n
 const textData = {
   en: {
     'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Cultural Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Clubs & Volunteer',
     'pg-title': 'Cultural <em>Exchange</em>', 'pg-sub': 'Broadening horizons through international collaboration and immersive global learning experiences.',
     'exch-award-1': 'Global Collaboration', 'exch-date-1': 'June 23 - 28, 2025', 'exch-title-1': 'NCKU x SUSS Impact Startup Challenge', 'exch-org-1': 'Singapore University of Social Sciences',
-    'exch-desc1-1': 'Completed ideation, field interviews, menu design, and final pitch within a high-stakes 6-day sprint. Spearheaded initial business concepts and interview logistics with agility.',
-    'exch-desc1-2': 'Collaborated closely with Fanny (Lin Yen-yu) on menu design and engaged in intense brainstorming with SUSS students. Leveraging a <strong>Growth Mindset</strong>, I transformed cultural differences into collaborative strengths.',
-    'maori-award': 'Indigenous Exchange', 'maori-date': '2024', 'maori-title': 'Māori Cultural Immersion', 'maori-org': 'University Cultural Exchange',
-    'maori-desc1': 'Explored Māori traditions and values through immersive workshops. Reflecting on indigenous preservation in modernity helped me cultivate a more inclusive and empathetic global perspective.',
-    'emi-award': 'Academic Support', 'emi-date': '2024 - 2025', 'emi-title': 'EMI Course Assistant', 'emi-org': 'NCKU EMI Program',
-    'emi-desc1': 'Served as an EMI assistant to optimize teaching workflows and bridge communication gaps. Enhanced academic efficiency by translating complex concepts into accessible English.',
-    'sec-task': 'Project Details', 'sec-role': 'Reflection & Growth', 'gallery-title': 'Program Gallery (Scroll & Click)',
-    'btn-cert': 'Activity Certificate', 'btn-menu': 'Menu Design (w/ Fanny)', 'btn-video': 'Event Documentary (YouTube)',
+    'exch-desc1-1': 'Led the team from ideation to final pitch within a 6-day sprint. Managed logistics, conducted field interviews, and prepared Q&A. Co-designed the business menu with teammate Fanny (Lin Yen-yu).',
+    'exch-desc1-2': 'Leveraged a <strong>Growth Mindset</strong> to navigate high-pressure situations. Transformed cultural differences into commercial insights and refined communication skills.',
+    'exch-award-2': 'Indigenous Exchange', 'exch-title-2': 'Māori Cultural Immersion Learning', 'exch-org-2': 'NCKU Indigenous Resource Center',
+    'exch-desc2-1': 'Explored traditional Māori protocols (Pōwhiri) and the significance of Māori art and performances. Engaged in meaningful dialogues with representatives from New Zealand.',
+    'exch-desc2-2': 'Developed **Cultural Empathy** and deep mutual respect. Immersing in Māori values helped me cultivate a more inclusive and global perspective on indigenous cultural preservation.',
+    'exch-award-3': 'Cross-Campus Program', 'exch-title-3': 'EMI American Summer Cultural Camp', 'exch-org-3': 'NTU · NTUST · NCKU Joint Program',
+    'exch-desc3-1': 'Engaged in an EMI environment, collaborating with peers and American students through immersive cultural workshops and team-building activities.',
+    'exch-desc3-2': 'Developed **Cross-cultural Communication Skills**. Overcame language barriers and fostered mutual understanding with American students by focusing on shared goals and collaborative problem-solving.',
+    'sec-task': 'Program Execution', 'sec-role': 'Collaborative Growth', 'gallery-title': 'Program Gallery (Scroll & Click)',
+    'btn-cert': 'Certificate', 'btn-menu': 'Menu Design (w/ Fanny)', 'btn-video': 'Watch Video (YouTube)',
     'foot-copy': '© 2026 HsinYu Wen — NCKU Transportation Engineering', 'foot-email': 'Email', 'foot-linkedin': 'LinkedIn'
   },
   zh: {
     'nav-home': '首頁', 'nav-proj': '研究專案', 'nav-comp': '競賽經歷', 'nav-more': '更多', 'nav-intern': '實習經驗', 'nav-exch': '文化交流', 'nav-cert': '專業證照', 'nav-club': '社團志工',
-    'pg-title': '國際交流與 <em>文化體驗</em>', 'pg-sub': '透過跨國合作與沉浸式學習，在多元文化激盪中拓寬全球視野。',
+    'pg-title': '國際交流與 <em>文化體驗</em>', 'pg-sub': '透過跨國合作與沉浸式學習，在多元文化激盪中拓寬全球視野級躍升。',
     'exch-award-1': '跨國商案協作', 'exch-date-1': '2025 年 6 月 23 - 28 日', 'exch-title-1': 'NCKU x SUSS 六天商業競賽快閃營', 'exch-org-1': '新加坡新躍社科大學 SUSS',
-    'exch-desc1-1': '在極限的六天內，完成從題目發想、實體訪談、菜單設計到最終決賽 Pitch 與 QA 準備。我負責商案初期想法構思、部分簡報製作，並主導邀約訪談對象、準備訪綱。',
-    'exch-desc1-2': '與組員 Fanny (林彥妤) 緊密協作設計菜單，並深度享受與新加坡同學腦力激盪的過程。透過這種成長型思維的實踐，我學會將跨文化差異轉化為團隊共識，將高壓挑戰化為精確商業洞察。',
-    'maori-award': '原住民文化交流', 'maori-date': '2024 年', 'maori-title': '毛利文化沉浸式學習', 'maori-org': '跨文化交流計畫',
-    'maori-desc1': '深入學習毛利文化傳統與價值觀。透過工作坊探討原住民文化在現代社會中的保存與演變，反思文化多樣性的重要。這讓我學會以更開放且具包容性的心態看待不同社群的需求。',
-    'emi-award': '學術教學支援', 'emi-date': '2024 - 2025 年', 'emi-title': 'EMI 全英文授課助理', 'emi-org': '成功大學 EMI 計畫',
-    'emi-desc1': '擔任全英文授課課程助理，協助教授優化教學流程，並作為語言橋樑提升學習效率。這份經歷提升了我將複雜學術概念轉化為易懂語言的能力。',
-    'sec-task': '執行細節', 'sec-role': '交流體悟', 'gallery-title': '活動紀錄 (向右滑動並點擊放大)',
-    'btn-cert': '活動結業證書', 'btn-menu': '菜單設計 (與林彥妤)', 'btn-video': '紀錄影片 (YouTube)',
+    'exch-desc1-1': '在極限的六天內，帶領團隊完成從題目發想、實體訪談、菜單設計到最終決賽 Pitch。我主導商案初期想法構思、部分簡報製作，並精確邀約訪談對象、準備訪綱。',
+    'exch-desc1-2': '與組員 Fanny (林彥妤) 緊密協作設計菜單，並深度享受與新加坡同學腦力激盪的過程。透過成長型思維的實踐，我學會將挑戰化為精確商業洞察與語言表達能力的躍升。',
+    'exch-award-2': '原住民文化交流', 'exch-title-2': '毛利文化沉浸式學習', 'exch-org-2': '成功大學 原住民資源中心辦理',
+    'exch-desc2-1': '深入學習毛利文化傳統與價值觀。透過工作坊探討原住民文化在現代社會中的保存與演變，反思文化多樣性的重要。這讓我學會以更開放且具包容性的心態看待不同社群的需求。',
+    'exch-desc2-2': '培養了跨文化同理心。沉浸於毛利價值觀中，這份經歷豐富了我對原住民文化保存的人文視角，重塑了自信。',
+    'exch-award-3': '三校聯合計畫', 'exch-title-3': 'EMI 臺美暑期聯合文化營', 'exch-org-3': '台大 · 台科大 · 成大合辦',
+    'exch-desc3-1': '與美國學生進行沉浸式英語交流，參與多元文化工作坊與團隊建立活動，體驗美式教學風格。',
+    'exch-desc3-2': '培養了跨文化溝通技巧。在全英文環境中克服語言障礙，專注於共同目標與協作解決問題。這份經歷證明我熱衷於透過與人溝通迭代自身成長。',
+    'sec-task': '計畫執行細節', 'sec-role': '交流體悟與成長', 'gallery-title': '活動紀錄 (向右滑動並點擊放大)',
+    'btn-cert': '結業證書', 'btn-menu': '菜單設計 (與林彥妤)', 'btn-video': '觀看紀錄影片 (YouTube)',
     'foot-copy': '© 2026 溫信昱 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英'
   }
 };
@@ -323,7 +344,7 @@ function switchLang(l){
     if (textData[l][key]) el.innerHTML = textData[l][key];
   });
 }
-document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'zh'));
+document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
 </script>
 </body>
 </html>
