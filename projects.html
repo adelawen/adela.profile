@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projects | HsinYu Wen</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | 溫心語 HsinYu Wen</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
@@ -17,18 +16,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}
-.nav-logo span{color:var(--gold)}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}.nav-logo span{color:var(--gold)}
 .nav-links{display:flex;align-items:center;list-style:none}
 .nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);position:relative}
 .nav-links a:hover, .nav-links a.active{color:var(--white)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+
 .nav-drop{position:relative}
 .drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb)}
 .drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t);z-index:200}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
-.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:9px 12px;border-radius:2px}
+.drop-menu a.active-sub{color:var(--white);background:rgba(255,255,255,.04)}
+
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
 .lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;transition:var(--t)}
 .lang-btn.active{color:var(--gold)}
@@ -40,56 +40,51 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
 .page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
 .page-title em{font-style:italic;color:var(--gold)}
-.page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
+.page-sub{font-size:.9rem;color:var(--muted);max-width:750px;font-weight:300;line-height:1.8}
 
-/* Cards - 統一規格尺寸 */
+/* Cards - 核心規格化尺寸 */
 .main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
-.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t)}
+.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t);min-height:480px;align-items: stretch;}
 .comp-card:hover{border-color:var(--border)}
-.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center}
-.comp-icon-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#172030}
+
+.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center;height:100%}
+.comp-img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:var(--t)}
+.comp-icon-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#172030; width:100%}
 .comp-icon-wrap i{font-size:5rem;color:#2a364a}
 
-.comp-content{padding:25px 35px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.comp-content{padding:30px 40px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
-.comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:12px}
+.comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:12px;align-self:flex-start}
 .comp-award.green{color:var(--green);background:rgba(58,170,114,.1)}
 .comp-date{font-size:.65rem;color:var(--muted);font-weight:500;border:1px solid var(--border-w);padding:3px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap}
 
 .comp-h3{font-family:var(--fd);font-size:1.6rem;margin-bottom:6px;line-height:1.2}
 .comp-org{font-size:.7rem;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase}
 
-.section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:12px 0 4px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
-.comp-desc{font-size:.82rem;color:var(--muted-2);margin-bottom:8px;font-weight:300;line-height:1.7}
-.comp-desc strong{color:var(--white);font-weight:500}
+.section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:15px 0 6px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
+.comp-desc{font-size:.82rem;color:var(--muted-2);margin-bottom:10px;font-weight:300;line-height:1.8}
 
 /* 下載按鈕 */
-.dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
 /* Footer */
 footer{border-top:1px solid var(--border);padding:30px 0;margin-top:40px;position:relative;z-index:1}
 .foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center}
-.foot-copy{font-size:0.72rem;color:var(--muted);letter-spacing:0.05em}
-.foot-links{display:flex;gap:24px}
-.foot-links a{font-size:0.72rem;color:var(--muted);transition:var(--t);text-transform:uppercase;letter-spacing:0.05em}
-.foot-links a:hover{color:var(--gold)}
+.foot-copy{font-size:0.72rem;color:var(--muted);letter-spacing:0.05em}.foot-links{display:flex;gap:24px}.foot-links a{font-size:0.72rem;color:var(--muted);transition:var(--t);text-transform:uppercase}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 
 @media(max-width:900px){
-    .comp-card{grid-template-columns:1fr}
-    .comp-img-wrap{height:200px}
+    .comp-card{grid-template-columns:1fr;min-height:auto}
+    .comp-img-wrap{height:250px}
     .nav-links{display:none}
-    .foot-inner{flex-direction:column;gap:15px;text-align:center}
 }
 </style>
 </head>
 <body>
-
-<nav class="nav" id="mainnav">
-  <div class="nav-inner">
+<nav class="nav" id="mainnav"><div class="nav-inner">
     <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
     <ul class="nav-links">
       <li><a href="index.html" data-i18n="nav-home">Home</a></li>
@@ -106,73 +101,17 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:40px;positio
       </li>
     </ul>
     <div class="nav-right">
-      <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
-      <span style="color:var(--border-w)">|</span>
-      <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+      <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button><span style="color:var(--border-w)">|</span><button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
       <a href="resume.pdf" download class="nav-cv">CV</a>
     </div>
-  </div>
-</nav>
+</div></nav>
 
-<header class="page-header">
-  <div class="ph-inner">
+<header class="page-header"><div class="ph-inner">
     <h1 class="page-title reveal" data-i18n="pg-title">Research & <em>Proposals</em></h1>
-    <p class="page-sub reveal" data-i18n="pg-sub">Identifying systemic gaps and building technical solutions to fill them through transportation expertise.</p>
-  </div>
-</header>
+    <p class="page-sub reveal" data-i18n="pg-sub">Identifying systemic gaps and building technical solutions through transportation expertise.</p>
+</div></header>
 
 <main class="main">
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <div class="comp-icon-wrap"><i class="fas fa-bicycle"></i></div>
-        </div>
-        <div class="comp-content">
-            <div class="comp-header-row">
-                <div class="comp-award" data-i18n="p0-award">Strategic Social Proposal</div>
-                <div class="comp-date" data-i18n="p0-date">Sep 2025 - Oct 2025</div>
-            </div>
-            <h3 class="comp-h3" data-i18n="p0-title">TSMC 2025 Dreamer Program | Last-Mile Vision</h3>
-            <div class="comp-org"><i class="fas fa-microchip"></i> <span data-i18n="p0-org">TSMC Foundation</span></div>
-            
-            <span class="section-label" data-i18n="sec-task-p0">Project Vision</span>
-            <p class="comp-desc" data-i18n="p0-desc1">針對台灣「最後一哩路」的交通痛點，主導團隊提出赴荷蘭考察自行車友善城市的計畫。結合交通工程專業背景進行現況診斷，展現解決環境轉型與永續運輸問題的國際視野。</p>
-            
-            <span class="section-label" data-i18n="sec-impact-p0">Strategic Outcomes</span>
-            <p class="comp-desc" data-i18n="p0-desc2">規劃了包含 Podcast 與工作坊在內的社會推廣計畫。此專案展現了我從 0 到 1 的企劃能力，並獲得邱士峰教授的高度認可與推薦。</p>
-            
-            <div class="dl-group">
-                <a href="tsmc_final_project.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p0-proposal">Final Proposal</span></a>
-                <a href="tsmc_feedback.pdf" target="_blank" class="btn-dl"><i class="fas fa-envelope-open-text"></i> <span data-i18n="btn-p0-feedback">TSMC Feedback</span></a>
-                <a href="Recommendation letter from prof.Chiu.pdf" target="_blank" class="btn-dl"><i class="fas fa-award"></i> <span data-i18n="btn-p0-letter">Recommendation Letter</span></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <div class="comp-icon-wrap"><i class="fas fa-microchip"></i></div>
-        </div>
-        <div class="comp-content">
-            <div class="comp-header-row">
-                <div class="comp-award" data-i18n="p1-award">NSTC Undergraduate Research Grant</div>
-                <div class="comp-date" data-i18n="p1-date">Nov 2025 - Jan 2026</div>
-            </div>
-            <h3 class="comp-h3" data-i18n="p1-title">Adaptive Signal Compensation for Vulnerable Pedestrians</h3>
-            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="p1-org">NCKU Transportation Management Science</span></div>
-            
-            <span class="section-label" data-i18n="sec-task">Technical Challenge</span>
-            <p class="comp-desc" data-i18n="p1-desc1">針對高齡友善號誌(VIPS)隨機觸發衝擊幹道時制的問題，開發物理感知的補償策略。自學 <strong>PTV Vissim</strong> 與 <strong>AutoCAD</strong> 建立技術棧。</p>
-            
-            <span class="section-label" data-i18n="sec-impact">Key Outcomes</span>
-            <p class="comp-desc" data-i18n="p1-desc2">開發自動化 Python COM 腳本，將情境處理時間從 3 天縮短至 <strong>2 小時</strong>。成功提交正式 10 頁國科會研究計畫書。</p>
-            
-            <div class="dl-group">
-                <a href="表C802.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p1-proposal">Research Proposal</span></a>
-                <a href="臺灣學術倫理教育資源中心修課證明.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-p1-ethics">Ethics Certificate</span></a>
-            </div>
-        </div>
-    </div>
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
@@ -190,7 +129,7 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:40px;positio
             <p class="comp-desc" data-i18n="p2-desc1">填補永續政策與工程級碳核算之間的缺口。針對 DHL 臺灣車隊電動化轉型建立需求模型，產出量化碳排放預測。</p>
             
             <span class="section-label" data-i18n="sec-impact-p2">Selection & Success</span>
-            <p class="comp-desc" data-i18n="p2-desc2">獲選為成大僅有的 <strong>5 名代表學生</strong>。憑藉 <strong>IELTS 6.5</strong> 能力獲得教育部 <strong>10 萬元獎助金</strong> 赴英國開展獨立研究。</p>
+            <p class="comp-desc" data-i18n="p2-desc2">獲選為成大僅有的 5 名代表學生。憑藉 IELTS 6.5 能力獲得教育部 10 萬元獎助金赴英國開展獨立研究。</p>
             
             <div class="dl-group">
                 <a href="錄取通知_成大溫心語_1142.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p2-admission">Admission Letter</span></a>
@@ -198,70 +137,113 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:40px;positio
         </div>
     </div>
 
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
+            <div class="comp-icon-wrap"><i class="fas fa-microchip"></i></div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-header-row">
+                <div class="comp-award" data-i18n="p1-award">NSTC Undergraduate Research Grant</div>
+                <div class="comp-date" data-i18n="p1-date">Nov 2025 - Jan 2026</div>
+            </div>
+            <h3 class="comp-h3" data-i18n="p1-title">Adaptive Signal Compensation for Vulnerable Pedestrians</h3>
+            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="p1-org">NCKU Transportation Management Science</span></div>
+            
+            <span class="section-label" data-i18n="sec-task">Technical Challenge</span>
+            <p class="comp-desc" data-i18n="p1-desc1">針對隨機觸發的高齡友善號誌(VIPS)衝擊幹道時制的問題，開發物理感知的自適應補償策略。自學 PTV Vissim 與 AutoCAD 建立技術棧。</p>
+            
+            <span class="section-label" data-i18n="sec-impact">Key Outcomes</span>
+            <p class="comp-desc" data-i18n="p1-desc2">開發自動化 Python COM 腳本，將情境處理時間縮短至 2 小時。成功提交正式 10 頁國科會研究計畫書。</p>
+            
+            <div class="dl-group">
+                <a href="表C802.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p1-proposal">Research Proposal</span></a>
+                <a href="臺灣學術倫理教育資源中心修課證明.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-p1-ethics">Ethics Certificate</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
+            <div class="comp-icon-wrap"><i class="fas fa-bicycle"></i></div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-header-row">
+                <div class="comp-award" data-i18n="p0-award">Strategic Social Proposal</div>
+                <div class="comp-date" data-i18n="p0-date">Sep 2025 - Oct 2025</div>
+            </div>
+            <h3 class="comp-h3" data-i18n="p0-title">TSMC 2025 Dreamer Program | Last-Mile Vision</h3>
+            <div class="comp-org"><i class="fas fa-microchip"></i> <span data-i18n="p0-org">TSMC Foundation</span></div>
+            
+            <span class="section-label" data-i18n="sec-task-p0">Project Vision</span>
+            <p class="comp-desc" data-i18n="p0-desc1">針對台灣「最後一哩路」交通痛點，主導團隊提出赴荷蘭考察自行車友善城市之計畫。結合交通工程專業進行現況診斷。</p>
+            
+            <span class="section-label" data-i18n="sec-impact-p0">Strategic Outcomes</span>
+            <p class="comp-desc" data-i18n="p0-desc2">規劃了包含 Podcast 與工作坊在內的社會推廣計畫。獲得邱士峰教授高度認可與推薦，展現從 0 到 1 的企劃實力。</p>
+            
+            <div class="dl-group">
+                <a href="tsmc_final_project.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p0-proposal">Final Proposal</span></a>
+                <a href="tsmc_feedback.pdf" target="_blank" class="btn-dl"><i class="fas fa-envelope-open-text"></i> <span data-i18n="btn-p0-feedback">TSMC Feedback</span></a>
+                <a href="Recommendation letter from prof.Chiu.pdf" target="_blank" class="btn-dl"><i class="fas fa-award"></i> <span data-i18n="btn-p0-letter">Recommendation Letter</span></a>
+            </div>
+        </div>
+    </div>
+
 </main>
 
-<footer>
-  <div class="foot-inner">
+<footer><div class="foot-inner">
     <div class="foot-copy" data-i18n="foot-copy">© 2026 溫心語 — 國立成功大學 交通管理科學系</div>
     <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">LinkedIn</a>
+      <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
       <a href="index.html" data-i18n="nav-home">Home</a>
     </div>
-  </div>
-</footer>
+</div></footer>
 
 <script>
+function switchLang(l){
+  localStorage.setItem('lang',l);
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(textData[l][k])el.innerHTML=textData[l][k];});
+}
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// 全語系翻譯字典
 const textData = {
   en: {
     'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Cultural Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Clubs & Volunteer',
     'pg-title': 'Research & <em>Proposals</em>', 'pg-sub': 'Identifying systemic gaps and building technical solutions through transportation expertise.',
     'p0-award': 'Strategic Social Proposal', 'p0-date': 'Sep 2025 - Oct 2025', 'p0-title': 'TSMC 2025 Dreamer Program | Last-Mile Vision', 'p0-org': 'TSMC Foundation',
-    'p0-desc1': 'Lead the team in proposing a project to study bicycle-friendly infrastructure in the Netherlands. Conducted diagnostic analysis based on transportation expertise to solve Taiwan\'s "Last Mile" problem.',
-    'p0-desc2': 'Designed social advocacy plans including Podcasts and Workshops. This project demonstrated my 0-to-1 planning ability and earned a high recommendation from Prof. Chiu.',
+    'p0-desc1': 'Lead the team in proposing a project to study bicycle-friendly infrastructure in the Netherlands. Conducted diagnostic analysis based on transportation expertise.',
+    'p0-desc2': 'Designed social advocacy plans including Podcasts and Workshops. Earned a high recommendation from Prof. Chiu.',
     'p1-award': 'NSTC Undergraduate Research Grant', 'p1-date': 'Nov 2025 - Jan 2026', 'p1-title': 'Adaptive Signal Compensation for Vulnerable Pedestrians', 'p1-org': 'NCKU TCM Science',
-    'p1-desc1': 'Built a physics-aware compensation strategy to mitigate arterial bandwidth loss caused by random VIPS triggers. Self-taught <strong>PTV Vissim</strong> and <strong>AutoCAD</strong>.',
-    'p1-desc2': 'Developed Python COM scripts that reduced processing time from 3 days to <strong>2 hours</strong>. Submitted a 10-page formal research proposal to NSTC.',
+    'p1-desc1': 'Built a physics-aware compensation strategy for random VIPS triggers. Self-taught <strong>PTV Vissim</strong> and <strong>AutoCAD</strong>.',
+    'p1-desc2': 'Developed Python COM scripts that reduced processing time. Submitted a 10-page formal research proposal to NSTC.',
     'p2-award': 'MOE Scholars Program', 'p2-date': 'Summer 2026', 'p2-title': 'Green Last-Mile Logistics Transition: DHL Taiwan', 'p2-org': 'University of Liverpool · UK',
     'p2-desc1': 'Bridged the gap between sustainability narrative and engineering carbon accounting for DHL fleet electrification.',
-    'p2-desc2': 'Selected as one of <strong>5 students</strong> from NCKU. Awarded an <strong>NT$100,000 grant</strong>. Achieved <strong>IELTS 6.5</strong> for independent research in the UK.',
+    'p2-desc2': 'Selected as one of 5 representative students from NCKU. Awarded 100k grant for independent research in the UK.',
     'sec-task': 'Technical Challenge', 'sec-impact': 'Key Outcomes', 'sec-task-p0': 'Project Vision', 'sec-impact-p0': 'Strategic Outcomes', 'sec-task-p2': 'Research Focus', 'sec-impact-p2': 'Selection & Success',
-    'btn-p0-proposal': 'Final Proposal', 'btn-p0-feedback': 'TSMC Feedback', 'btn-p0-letter': 'Rec. Letter', 'btn-p1-proposal': 'Research Proposal', 'btn-p1-ethics': 'Ethics Certificate', 'btn-p2-admission': 'Admission Letter',
-    'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science', 'foot-email': 'Email', 'foot-linkedin': 'LinkedIn'
+    'btn-p0-proposal': 'Final Proposal', 'btn-p0-feedback': 'TSMC Feedback', 'btn-p0-letter': 'Rec. Letter', 'btn-p1-proposal': 'Proposal', 'btn-p1-ethics': 'Ethics Certificate', 'btn-p2-admission': 'Admission Letter',
+    'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science'
   },
   zh: {
     'nav-home': '首頁', 'nav-proj': '研究專案', 'nav-comp': '競賽經歷', 'nav-more': '更多', 'nav-intern': '實習經驗', 'nav-exch': '文化交流', 'nav-cert': '專業證照', 'nav-club': '社團志工',
     'pg-title': '學術研究與 <em>研究計畫</em>', 'pg-sub': '運用交通專業背景，找出系統性缺口並建立足以填補技術裂縫的解決方案。',
     'p0-award': '社會創新策略提案', 'p0-date': '2025 年 9 月 - 10 月', 'p0-title': 'TSMC 2025 台積電築夢計畫 | 綠色運輸願景', 'p0-org': '台積電文教基金會',
-    'p0-desc1': '針對台灣「最後一哩路」交通痛點，主導團隊提出赴荷蘭考察自行車友善城市之計畫。結合交通工程專業背景進行現況診斷，展現解決環境轉型與永續運輸問題的國際視野。',
-    'p0-desc2': '規劃了包含 Podcast 與工作坊在內的社會推廣計畫。此專案展現了我從 0 到 1 的企劃能力，並獲得邱士峰教授的高度認可與推薦。',
+    'p0-desc1': '針對台灣「最後一哩路」交通痛點，主導團隊提出赴荷蘭考察自行車友善城市之計畫。結合交通工程專業背景進行現況診斷。',
+    'p0-desc2': '規劃了包含 Podcast 與工作坊在內的社會推廣計畫。獲得邱士峰教授高度認可與推薦，展現從 0 到 1 的企劃實力。',
     'p1-award': '國科會大專生研究計畫', 'p1-date': '2025 年 11 月 - 2026 年 1 月', 'p1-title': '弱勢行人感應號誌之自適應協同補償研究', 'p1-org': '國立成功大學 交通管理科學系',
     'p1-desc1': '針對隨機觸發的高齡友善號誌(VIPS)衝擊幹道時制的問題，開發物理感知的自適應補償策略。自學了 <strong>PTV Vissim</strong> 與 <strong>AutoCAD</strong> 建立技術棧。',
-    'p1-desc2': '開發自動化 Python COM 腳本，將情境處理時間從 3 天縮短至 <strong>2 小時</strong>。成功提交正式 10 頁國科會研究計畫書。',
+    'p1-desc2': '開發自動化 Python COM 腳本，將情境處理時間縮短至 2 小時。成功提交正式 10 頁國科會研究計畫書。',
     'p2-award': '教育部學海計畫 · 英國利物浦大學', 'p2-date': '2026 年夏季', 'p2-title': 'DHL 國際快遞在臺灣最後一哩路綠色配送轉型之研究', 'p2-org': '英國利物浦大學 University of Liverpool',
     'p2-desc1': '填補永續政策論述與工程級碳核算之間的缺口。針對 DHL 臺灣車隊電動化轉型建立需求模型，產出量化碳排放預測。',
-    'p2-desc2': '獲選為成大僅有的 <strong>5 名代表學生</strong>。憑藉 <strong>IELTS 6.5</strong> 能力獲得教育部 <strong>10 萬元獎助金</strong> 赴英國開展獨立研究。',
+    'p2-desc2': '獲選為成大僅有的 5 名代表學生。憑藉 IELTS 6.5 能力獲得教育部 10 萬元獎助金赴英國開展獨立研究。',
     'sec-task': '技術挑戰', 'sec-impact': '核心成果', 'sec-task-p0': '計畫願景', 'sec-impact-p0': '策略成果', 'sec-task-p2': '研究重點', 'sec-impact-p2': '選拔背景',
     'btn-p0-proposal': '企劃書下載', 'btn-p0-feedback': '台積電回覆', 'btn-p0-letter': '邱教授推薦信', 'btn-p1-proposal': '研究計畫書', 'btn-p1-ethics': '學術倫理證明', 'btn-p2-admission': '錄取通知書',
-    'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英'
+    'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系'
   }
 };
-
-function switchLang(l){
-  localStorage.setItem('lang',l);
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (textData[l][key]) el.innerHTML = textData[l][key];
-  });
-}
 document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'zh'));
 </script>
-</body>
-</html>
+</body></html>
