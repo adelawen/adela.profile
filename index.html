@@ -13,7 +13,7 @@ body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:h
 a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* Nav Styles - 確保下拉選單正常顯示 */
+/* Nav Styles */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
@@ -24,13 +24,13 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-links a:hover, .nav-links a.active{color:var(--white)}
 .nav-links a.active::after, .nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 
-/* More 下拉選單修復 */
+/* More 下拉選單 */
 .nav-drop{position:relative; display:inline-block;}
 .drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:var(--t)}
 .drop-btn:hover{color:var(--white)}
 .drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t);z-index:200}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
+.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
 .drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
 
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
@@ -46,7 +46,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .hero-h1 em{font-style:italic;color:var(--gold)}
 .hero-desc{font-size:.92rem;color:var(--muted);max-width:480px;margin-bottom:34px;font-weight:300;line-height:1.85}
 
-/* Stats 競賽數據列 */
+/* Stats 數據列 */
 .stats-row{display:flex;gap:20px;margin-top:38px;padding-top:26px;border-top:1px solid var(--border);flex-wrap:wrap}
 .stat-item{min-width:100px}
 .stat-num{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--gold);line-height:1}
@@ -56,12 +56,53 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .photo-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;z-index:1;position:relative;filter:grayscale(8%)}
 .photo-wrap::before{content:'';position:absolute;inset:16px -16px -16px 16px;border:1px solid var(--border);border-radius:4px;z-index:0}
 
+/* Footer 專業版頁尾樣式 */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 30px 0;
+  position: relative;
+  z-index: 1;
+  background: var(--ink);
+}
+.foot-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.foot-copy {
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.foot-links {
+  display: flex;
+  gap: 24px;
+}
+.foot-links a {
+  font-size: 0.72rem;
+  color: var(--muted);
+  transition: var(--t);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.foot-links a:hover {
+  color: var(--gold);
+}
+
 /* Reveal */
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
 
-footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;font-size:0.72rem;color:var(--muted);letter-spacing:0.05em}
-
-@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.photo-wrap{max-width:280px;margin:30px auto 0}.nav-links{display:none}}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr}
+  .photo-wrap{max-width:280px;margin:30px auto 0}
+  .nav-links{display:none}
+  .foot-inner { flex-direction: column; text-align: center; }
+}
 </style>
 </head>
 <body>
@@ -127,7 +168,14 @@ footer{border-top:1px solid var(--border);padding:30px 0;text-align:center;font-
 </header>
 
 <footer>
-  © 2026 HsinYu Wen — NCKU Transportation Engineering
+  <div class="foot-inner">
+    <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</div>
+    <div class="foot-links">
+      <a href="mailto:h54121210@gs.ncku.edu.tw" id="foot-email">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" id="foot-linkedin">LinkedIn</a>
+      <a href="index.html" id="foot-home">Home</a>
+    </div>
+  </div>
 </footer>
 
 <script>
@@ -135,7 +183,6 @@ window.addEventListener('scroll',()=>{document.getElementById('mainnav').classLi
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// 多國語言配置：完整包含所有競賽標籤
 const L={
   en:{
     'hero-tag':'ITS · Logistics · Growth Mindset',
@@ -143,7 +190,11 @@ const L={
     'stat-c':'Major Competitions',
     'stat-cn':'Chuangnan 1st',
     'stat-dh':'DreamHack PM',
-    'stat-lr':"L'Oréal Global"
+    'stat-lr':"L'Oréal Global",
+    'foot-copy':'© 2026 HsinYu Wen — NCKU Transportation Engineering',
+    'foot-email':'Email',
+    'foot-linkedin':'LinkedIn',
+    'foot-home':'Home'
   },
   zh:{
     'hero-tag':'智慧交通 · 物流 · 成長型思維',
@@ -151,7 +202,11 @@ const L={
     'stat-c':'五大重點競賽',
     'stat-cn':'創南競賽首獎',
     'stat-dh':'DreamHack 專案經理',
-    'stat-lr':'萊雅全球競賽'
+    'stat-lr':'萊雅全球競賽',
+    'foot-copy':'© 2026 溫信昱 — 國立成功大學 交通管理科學系',
+    'foot-email':'電子郵件',
+    'foot-linkedin':'領英',
+    'foot-home':'首頁'
   }
 };
 
