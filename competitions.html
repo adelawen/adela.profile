@@ -13,424 +13,237 @@ body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:h
 a{text-decoration:none;color:inherit}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* Nav */
+/* Nav 樣式 - 嚴格對齊首頁功能 */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
 .nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
 .nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}
 .nav-logo span{color:var(--gold)}
 .nav-links{display:flex;align-items:center;list-style:none}
+.nav-links li{position:relative}
 .nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);position:relative}
-.nav-links a:hover, .nav-links a.active{color:var(--white)}
-.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-links a:hover,.nav-links a.active{color:var(--white)}
+.nav-links a.active::after,.nav-links a:hover::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 .nav-drop{position:relative}
-.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb)}
-.drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t);z-index:200}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb);transition:var(--t)}
+.drop-btn:hover{color:var(--white)}
+.drop-btn svg{width:8px;height:8px;transition:transform var(--t)}
+.nav-drop:hover .drop-btn svg{transform:rotate(180deg)}
+.drop-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:all var(--t);z-index:200}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
+.drop-menu a{display:block;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:7px 11px;border-radius:2px;transition:var(--t)}
 .drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
 .nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;transition:var(--t)}
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;transition:color var(--t);padding:2px}
 .lang-btn.active{color:var(--gold)}
+.lang-sep{color:rgba(200,164,90,.3);font-size:.5rem}
 .nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* Header */
-.page-header{padding:148px 0 70px;border-bottom:1px solid var(--border);position:relative}
-.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
-.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
-.page-title em{font-style:italic;color:var(--gold)}
-.page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
+/*頁面內容樣式*/
+.main-wrapper{max-width:1120px;margin:120px auto;padding:0 32px;position:relative;z-index:1}
 
-/* Cards */
-.main{max-width:1120px;margin:0 auto;padding:70px 32px 110px;display:grid;grid-template-columns:1fr;gap:60px}
-.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:340px 1fr;transition:border-color var(--t);min-height:560px}
+.comp-header{display:flex;flex-direction:column;align-items:flex-start;gap:10px;margin-bottom:60px}
+.header-main{font-family:var(--fd);font-size:3.5rem;font-weight:700;color:var(--white);letter-spacing:0.02em}
+.header-sub{font-size:0.9rem;font-weight:300;color:var(--gold);letter-spacing:0.1em}
+
+.comp-list{display:grid;grid-template-columns:1fr;gap:40px}
+
+/* 競賽項目卡片 - 圖片在左，文字在右 */
+.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;transition:border-color var(--t);display:flex;align-items:flex-start}
 .comp-card:hover{border-color:var(--border)}
-.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);height:100%}
-.comp-img{width:100%;height:100%;object-fit:cover;opacity:0.8;cursor:pointer;transition:var(--t)}
-.comp-img:hover{opacity:1;transform:scale(1.03)}
 
-/* 關鍵修正：加入 min-width: 0 確保內部滾動條能正確觸發 */
-.comp-content{padding:40px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
+/* 圖片容器 - 包含金色放大鏡蒙版 */
+.comp-image-container{flex:0 0 450px;aspect-ratio:1.2;position:relative;cursor:pointer;overflow:hidden}
+.comp-image-container img{width:100%;height:100%;object-fit:cover;transition:var(--t)}
+.comp-image-container:hover img{transform:scale(1.05)}
 
-.comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
-.comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.62rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 12px;border-radius:2px;margin-bottom:15px}
-.comp-date{font-size:.65rem;color:var(--muted);font-weight:500;border:1px solid var(--border-w);padding:3px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap}
+/* 金色放大鏡蒙版 */
+.comp-overlay{position:absolute;inset:0;background:rgba(13,21,32,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;opacity:0;transition:var(--t);z-index:10}
+.comp-image-container:hover .comp-overlay{opacity:1}
+.comp-overlay i{font-size:2rem;color:var(--gold)}
+.comp-overlay span{font-size:0.7rem;font-weight:500;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase}
 
-.comp-h3{font-family:var(--fd);font-size:1.85rem;margin-bottom:8px;line-height:1.2}
-.comp-org{font-size:.75rem;color:var(--muted);margin-bottom:18px;display:flex;align-items:center;gap:8px;text-transform:uppercase}
+/* 文字內容區域 */
+.comp-text{padding:32px 40px;flex:1;display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.comp-label{font-size:0.6rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--white);padding:3px 10px;border-radius:2px}
+.label-green{background:var(--green)}
+.label-blue{background:#4a90d9}
+.comp-title{font-family:var(--fd);font-size:1.9rem;font-weight:700;color:var(--white);letter-spacing:0.01em;line-height:1.15}
+.comp-sub{font-size:0.8rem;font-weight:300;font-style:italic;color:var(--muted)}
+.comp-description{font-size:0.87rem;font-weight:300;color:var(--muted-2);line-height:1.7}
+.comp-tag{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;font-weight:500;letter-spacing:0.06em;color:var(--gold-lt);border:1px solid var(--border-w);padding:3px 10px;border-radius:2px}
+.comp-tag i{font-size:0.6rem;color:var(--gold)}
 
-.section-label{font-size:0.65rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:15px 0 6px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
-.comp-desc{font-size:.85rem;color:var(--muted-2);margin-bottom:12px;font-weight:300;line-height:1.8}
-.comp-desc strong{color:var(--white);font-weight:500}
-
-/* 下載按鈕 */
-.dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-.btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
-.btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
-
-/* 大圖橫向滑動區 (修復版) */
-.gallery-section{margin-top:15px;width:100%}
-.gallery-header{font-size:0.9rem;font-weight:700;color:var(--gold);letter-spacing:0.08em;display:flex;align-items:center;gap:15px;margin:25px 0 15px 0}
-.gallery-header::after{content:'';flex:1;height:1px;background:var(--border-w)}
-
-/* 這裡設定了 overflow-x: auto 與確保寬度為 100% 才能啟動滑動 */
-.photo-slider{display:flex;gap:15px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:15px;width:100%;-webkit-overflow-scrolling:touch}
-.photo-slider::-webkit-scrollbar{height:8px}
-.photo-slider::-webkit-scrollbar-thumb{background:var(--gold);border-radius:4px}
-.photo-slider::-webkit-scrollbar-track{background:var(--ink-3);border-radius:4px}
-
-.slide-item{flex:0 0 280px;width:280px;aspect-ratio:4/3;object-fit:cover;border-radius:6px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer}
-.slide-item:hover{opacity:1;border-color:var(--gold);transform:translateY(-2px)}
-
-/* 固定的 QR Box */
-.qr-container{margin-top:15px;display:flex;flex-direction:column;gap:5px}
-.qr-box{width:120px;border:1px solid var(--border);border-radius:6px;padding:6px;background:rgba(255,255,255,0.02)}
-
-/* Lightbox */
-.lightbox{position:fixed;inset:0;background:rgba(13,21,32,0.95);z-index:1000;display:none;align-items:center;justify-content:center;padding:40px;backdrop-filter:blur(10px)}
-.lightbox.active{display:flex}
-.lb-content{max-width:90%;max-height:90%;position:relative}
-.lb-img{max-width:100%;max-height:85vh;box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid var(--border-w);border-radius:4px}
-.lb-close{position:absolute;top:-40px;right:0;color:var(--white);font-size:2rem;cursor:pointer;opacity:0.6;transition:var(--t)}
-.lb-close:hover{opacity:1;transform:scale(1.1)}
-
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
-footer{border-top:1px solid var(--border);padding:40px 0;text-align:center;font-size:0.75rem;color:var(--muted)}
-
-@media(max-width:900px){.comp-card{grid-template-columns:1fr;min-height:auto}.comp-img-wrap{height:300px}.nav-links{display:none}}
+/* Lightbox 樣式 */
+.lightbox-overlay{position:fixed;inset:0;background:rgba(13,21,32,0.95);display:none;align-items:center;justify-content:center;z-index:1000}
+.lightbox-overlay.active{display:flex}
+.lightbox-close{position:absolute;top:30px;right:30px;color:var(--white);font-size:2.5rem;font-weight:300;cursor:pointer;z-index:10;transition:var(--t)}
+.lightbox-close:hover{color:var(--gold)}
+.lightbox-content{max-width:90%;max-height:90%;position:relative;display:flex;align-items:center;justify-content:center}
+.lightbox-image{max-width:100%;max-height:100%;object-fit:contain}
+.lightbox-prev, .lightbox-next{position:absolute;top:50%;transform:translateY(-50%);color:var(--white);font-size:2.5rem;cursor:pointer;padding:16px;z-index:10;transition:var(--t)}
+.lightbox-prev{left:10px}
+.lightbox-next{right:10px}
+.lightbox-prev:hover, .lightbox-next:hover{color:var(--gold)}
 </style>
 </head>
 <body>
 
 <nav class="nav" id="mainnav">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+    <a href="index.html" class="nav-logo">HsinYu Wen<span>.</span></a>
     <ul class="nav-links">
-      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
-      <li><a href="projects.html" data-i18n="nav-proj">Projects</a></li>
-      <li><a href="competitions.html" class="active" data-i18n="nav-comp">Competitions</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="competitions.html" class="active">Competitions</a></li>
       <li class="nav-drop">
-        <button class="drop-btn"><span data-i18n="nav-more">More</span> <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+        <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:0.5rem;margin-left:4px"></i></button>
         <div class="drop-menu">
-          <a href="experience.html" data-i18n="nav-intern">Internship</a>
-          <a href="exchange.html" data-i18n="nav-exch">Cultural Exchange</a>
-          <a href="certificates.html" data-i18n="nav-cert">Certificates</a>
-          <a href="clubs.html" data-i18n="nav-club">Clubs & Volunteer</a>
+          <a href="internship.html">Internship</a>
+          <a href="certificates.html">Certificates</a>
         </div>
       </li>
     </ul>
     <div class="nav-right">
-      <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
-      <span style="color:var(--border-w)">|</span>
-      <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+      <div style="display:flex;align-items:center;gap:5px">
+        <button class="lang-btn active">EN</button>
+        <span class="lang-sep">·</span>
+        <button class="lang-btn">ZH</button>
+      </div>
       <a href="resume.pdf" download class="nav-cv">CV</a>
     </div>
   </div>
 </nav>
 
-<header class="page-header">
-  <div class="ph-inner">
-    <h1 class="page-title reveal" data-i18n="pg-title">Global <em>Competitions</em></h1>
-    <p class="page-sub reveal" id="pg-sub">Through high-stakes challenges, I transform complex pain points into viable business solutions.</p>
-  </div>
-</header>
+<div class="main-wrapper">
+    <header class="comp-header">
+        <h1 class="header-main">Global Competitions</h1>
+        <p class="header-sub">HsinYu Wen | Competitions</p>
+    </header>
 
-<main class="main">
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <img src="dreamhack_group_pic1.JPG" class="comp-img lb-trigger" alt="DreamHack">
-            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-users fa-3x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div>
-                <div class="comp-header-row">
-                    <div class="comp-award" style="background:rgba(58,170,114,.12); color:var(--green)">Project Manager</div>
-                    <div class="comp-date">Jan 2026</div>
+    <main class="comp-page">
+        <section class="comp-list">
+            <article class="comp-card">
+                <div class="comp-image-container lightbox-trigger" data-slide-index="0">
+                    <img src="dreamhack_group_pic1.JPG" alt="Chuangnan 2025 picture" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="comp-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <span>點擊放大</span>
+                    </div>
                 </div>
-                <h3 class="comp-h3" data-i18n="dh-title">DreamHack 2026 (陽明交大)</h3>
-                <div class="comp-org"><i class="fas fa-microchip"></i> Tera Thinker Enterprise Challenge</div>
-                
-                <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="dh-desc1">針對 Tera Thinker 創辦人 Jason 提出「教育相關從 0 到 1 創業」的企業命題，<strong>我主動提出切入醫療領域</strong>。我們在 48 小時內發想出「數位雙生護理訓練系統」，深入調查產業痛點與獲利模式，決賽脫穎而出獲創辦人洽談實習合作。</p>
-                
-                <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="dh-desc2">擔任 <strong>PM</strong>，隊友皆因我而結識。我利用對成員個性的了解掌控進度，包辦初步概念構思、方向執行與簡報架構。與不同背景的人共事極大化了我的<strong>成長型思維</strong>。雖然後續因技術與訪談發現「痛點不夠痛」導致計畫未執行，但這是非常寶貴的市場驗證經驗。</p>
-            </div>
-            
-            <div class="dl-group">
-                <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> <span data-i18n="btn-pitch">Pitch Deck</span></a>
-                <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
-                <div class="photo-slider">
-                    <img src="dreamhack_group_pic1.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 1">
-                    <img src="dreamhack_group_pic2.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 2">
-                    <img src="dreamhack_group_pic3.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 3">
-                    <img src="dreamhack_group_pic4.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 4">
-                    <img src="dreamhack_group_pic5.JPG" class="slide-item lb-trigger" alt="Dreamhack Pic 5">
+                <div class="comp-text">
+                    <span class="comp-label label-green">1ST PLACE</span>
+                    <h2 class="comp-title">創見南方 Chuangnan 2025</h2>
+                    <span class="comp-sub">NCKU ENTREPRENEURSHIP</span>
+                    <p class="comp-description">
+                        在此創業計畫競賽中勇奪首獎。精確定義在地痛點，並結合交通管理專業知識提出創新的永續營運方案。
+                    </p>
+                    <div class="comp-tag">
+                        <i class="fas fa-leaf"></i> Sustainability Winner
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </article>
 
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <img src="loreal_pic1.JPG" class="comp-img lb-trigger" alt="L'Oréal">
-            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-eye fa-3x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div>
-                <div class="comp-header-row">
-                    <div class="comp-award">Global Pitch</div>
-                    <div class="comp-date">Nov 2025 - Jan 2026</div>
+            <article class="comp-card">
+                <div class="comp-image-container lightbox-trigger" data-slide-index="1">
+                    <img src="dreamhack_group_pic2.JPG" alt="政大之星 picture" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+                    <div class="comp-overlay">
+                        <i class="fas fa-search-plus"></i>
+                        <span>點擊放大</span>
+                    </div>
                 </div>
-                <h3 class="comp-h3">L'Oréal Brandstorm 2026</h3>
-                <div class="comp-org"><i class="fas fa-globe"></i> Beauty Tech & Fragrance</div>
-                
-                <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="lr-desc1"><strong>High-Pressure Communication:</strong> 在全球高壓賽事中完成全英文 Pitch 提案，在極限時間內掌握了具說服力的故事敘事 (Storytelling) 與視覺呈現藝術。</p>
-                
-                <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="lr-desc2"><strong>Cross-Industry Agility:</strong> 展現了強大的<strong>成長型思維</strong>，將研究重心從傳統物流跨足至美妝香氛產業。利用數據驅動洞察提出個人化科技解決方案，大幅拓展了我在國際商業標準與消費者創新上的視野。</p>
-            </div>
-            
-            <div class="dl-group">
-                <a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-loreal-final">Final Pitch Deck</span></a>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
-                <div class="photo-slider">
-                    <img src="loreal_pic1.JPG" class="slide-item lb-trigger" alt="Loreal Pic 1">
-                    <img src="loreal_pic2.JPG" class="slide-item lb-trigger" alt="Loreal Pic 2">
-                    <img src="loreal_pic3.JPG" class="slide-item lb-trigger" alt="Loreal Pic 3">
+                <div class="comp-text">
+                    <span class="comp-label label-blue">CASE FINALIST</span>
+                    <h2 class="comp-title">政大之星商業競賽</h2>
+                    <span class="comp-sub">CORPORATE CASE ANALYSIS</span>
+                    <p class="comp-description">
+                        針對企業現狀困境提出整合策略。透過多維度的財務預估與市場分析，於決賽現場向評審展現可行性方案。
+                    </p>
+                    <div class="comp-tag">
+                        <i class="fas fa-chart-line"></i> Marketing Analysis
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>
+            </article>
+        </section>
+    </main>
+</div>
 
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <img src="Safecloud_first_place.jpeg" class="comp-img lb-trigger" alt="Chuangnan">
-            <div class="photo-fallback" style="height:100%; display:none; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-medal fa-3x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div>
-                <div class="comp-header-row">
-                    <div class="comp-award">1st Place Winner</div>
-                    <div class="comp-date">2025</div>
-                </div>
-                <h3 class="comp-h3" data-i18n="cn-title">創見南方 Chuangnan 2025</h3>
-                <div class="comp-org"><i class="fas fa-university"></i> NCKU Entrepreneurship</div>
-                
-                <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="cn-desc1">帶領團隊勇奪首獎。我們針對在地痛點開發了永續交通解決方案「Safecloud」，並由組員黃庭宓使用 GitHub 建立了專案網頁展示成果。
-                    <br><a href="https://htingmi.github.io/safecloud/" target="_blank" style="color:var(--gold);text-decoration:underline">Safecloud Web (By Ting-Mi Huang)</a>
-                </p>
-                
-                <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="cn-desc2">擔任 <strong>PM</strong>，我深切運用<strong>成大交通管理科學系</strong>所學，親自評估並規劃了所有的地圖臨停區與車流疏導路線。為了完美呈現規劃圖，我自學了 <strong>Affinity Designer</strong>，並自學建置了 <strong>LINE Bot</strong>。此外，看見黃同學用 GitHub 建網頁，直接啟發了我日後自己創建這份個人官網，是跨領域學習的完美體現。</p>
-            </div>
-            
-            <div class="dl-group">
-                <a href="Safecloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-final">Final Presentation</span></a>
-                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-init">Initial Proposal</span></a>
-            </div>
-
-            <div class="qr-container">
-                <span class="section-label" style="margin-bottom:4px" data-i18n="qr-text">My Work: LineBot QR</span>
-                <div class="qr-box">
-                    <img src="safecloud_line_bot.jpg" class="lb-trigger" style="width:100%;display:block;cursor:pointer" alt="Safecloud LineBot QR">
-                </div>
-            </div>
-
-            <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">競賽紀錄（點擊放大）</div>
-                <div class="photo-slider">
-                    <img src="Safecloud_first_place.jpeg" class="slide-item lb-trigger" alt="Safecloud 1st Place">
-                    <img src="Safecloud_group_pic1.jpeg" class="slide-item lb-trigger" alt="Safecloud Group">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-file-signature fa-4x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div>
-                <div class="comp-header-row">
-                    <div class="comp-award" style="background:rgba(74,144,217,.12); color:#89c4f4">Strategic Planning</div>
-                    <div class="comp-date">2025</div>
-                </div>
-                <h3 class="comp-h3" data-i18n="mj-title">玉山校際商業競賽</h3>
-                <div class="comp-org"><i class="fas fa-chart-line"></i> Business Case Analysis</div>
-                
-                <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="mj-desc1">針對企業命題進行了深度的利害關係人分析與財務獲利評估，從產業痛點調查到競爭對手剖析，建立了一套完整的商業執行模型。</p>
-                
-                <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="mj-desc2">擔任 <strong>PM</strong>，我主導了個人初步提案，並在小組討論中整合各方意見推動策略轉型。透過與不同專業背景的組員激烈交流，我不斷吸收新的分析邏輯，學會如何將發散的觀點收斂為最具落地價值的最終報告書。</p>
-            </div>
-            
-            <div class="dl-group" style="margin-top:20px">
-                <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-final">Final Proposal</span></a>
-                <a href="preliminary proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-pre">Team Preliminary</span></a>
-                <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-per">Personal Draft</span></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="comp-card reveal">
-        <div class="comp-img-wrap">
-            <div class="photo-fallback" style="height:100%; display:flex; align-items:center; justify-content:center; background:var(--ink-3); color:var(--muted)"><i class="fas fa-star fa-4x"></i></div>
-        </div>
-        <div class="comp-content">
-            <div>
-                <div class="comp-header-row">
-                    <div class="comp-award">Finalist</div>
-                    <div class="comp-date">2025</div>
-                </div>
-                <h3 class="comp-h3" data-i18n="ns-title">政大之星商業競賽</h3>
-                <div class="comp-org"><i class="fas fa-briefcase"></i> NCCU Business Case Analysis</div>
-                
-                <span class="section-label" data-i18n="sec-task">Project Execution</span>
-                <p class="comp-desc" id="ns-desc1">針對真實企業案例進行整合行銷與營運策略規劃，透過精確的市場調研與財務預估模型，在初選中突圍並進入最終決賽階段。</p>
-                
-                <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-                <p class="comp-desc" id="ns-desc2">擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的交通路線規劃經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。</p>
-            </div>
-            
-            <div class="dl-group" style="margin-top:20px">
-                <a href="final_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-final">Final Proposal</span></a>
-                <a href="initial_proposal.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-init">Initial Draft</span></a>
-                <a href="certificate.pdf" target="_blank" class="btn-dl" style="border-color:#4a90d9; color:#89c4f4"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<div class="lightbox" id="lightbox">
-    <div class="lb-content">
-        <span class="lb-close" id="lb-close">&times;</span>
-        <img src="" class="lb-img" id="lb-img">
+<div class="lightbox-overlay" id="lightbox">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content">
+        <img class="lightbox-image" src="" id="lightbox-img">
+        <a class="lightbox-prev" onclick="changeSlide(-1)">&#10094;</a>
+        <a class="lightbox-next" onclick="changeSlide(1)">&#10095;</a>
     </div>
 </div>
 
-<footer>© 2026 HsinYu Wen — Powered by Growth Mindset</footer>
-
 <script>
-window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // 導航欄捲動效果
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('mainnav');
+        if (window.scrollY > 50) {
+            nav.classList.add('scrolled');
+        } else {
+            nav.classList.remove('scrolled');
+        }
+    });
 
-// Lightbox Logic
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lb-img');
-document.querySelectorAll('.lb-trigger').forEach(img => {
-    img.onclick = () => { lbImg.src = img.src; lb.classList.add('active'); };
-});
-lb.onclick = (e) => { if(e.target !== lbImg) lb.classList.remove('active'); };
-document.getElementById('lb-close').onclick = () => lb.classList.remove('active');
+    // Lightbox 功能
+    let currentSlideIndex = 0;
+    const slides = [
+        'dreamhack_group_pic1.JPG', // Chuangnan 2025
+        'dreamhack_group_pic2.JPG'  // 政大之星
+        // 可以在這裡加入更多圖片檔名
+    ];
 
-// Dictionary for i18n
-const textData = {
-  en: {
-    'pg-sub': 'Through high-stakes challenges, I transform complex pain points into viable business solutions.',
-    'gallery-title': 'Competition Gallery (Scroll & Click)',
-    'sec-task': 'Project Execution',
-    'sec-role': 'My Role & PM Growth',
-    'dh-title': 'DreamHack 2026 (NYCU)',
-    'dh-desc1': 'For the prompt of creating an education-related startup from 0 to 1 given by Jason (Founder of Tera Thinker), <strong>I took the initiative to pivot into the medical field.</strong> We conceptualized a "Digital Twin Nursing Training System" within 48 hours, standing out in the finals and earning an internship collaboration offer.',
-    'dh-desc2': 'As <strong>PM</strong>, I led a team of members who only knew me. I managed the timeline, brainstormed initial concepts, and structured the pitch. Working with diverse backgrounds maximized my <strong>Growth Mindset</strong>. Although the project was halted because market validation proved the pain point wasn\'t critical enough, it was an invaluable lesson.',
-    'lr-desc1': '<strong>High-Pressure Communication:</strong> Delivered a full-English pitch in a global high-stakes competition, mastering persuasive storytelling and visual presentation under rigorous time constraints.',
-    'lr-desc2': '<strong>Cross-Industry Agility:</strong> Demonstrated a strong <strong>Growth Mindset</strong> by pivoting my research focus from traditional logistics to the beauty industry. Leveraging data-driven insights for personalized tech solutions expanded my horizons in international business standards.',
-    'cn-title': 'Chuangnan 2025',
-    'cn-desc1': 'Led the team to win 1st Place. We developed a sustainable traffic solution "Safecloud" for local pain points. Teammate Ting-Mi Huang built the project website using GitHub Pages to showcase our results.',
-    'cn-desc2': 'As <strong>PM</strong>, I leveraged my major in <strong>NCKU Transportation Management Science</strong> to personally evaluate and design temporary parking zones and traffic flow routes. I taught myself <strong>Affinity Designer</strong> to perfect the maps, and self-learned to build a <strong>LINE Bot</strong>. Furthermore, seeing Ting-Mi use GitHub inspired me to build this personal portfolio—a true testament to cross-disciplinary learning.',
-    'mj-title': 'Mount Jade Business Case',
-    'mj-desc1': 'Conducted in-depth stakeholder analysis and financial evaluations based on a corporate proposition. Established a comprehensive business execution model by investigating industry pain points and analyzing competitors.',
-    'mj-desc2': 'As <strong>PM</strong>, I led my personal preliminary proposal and drove the strategic pivot during team discussions. Through intense debates with teammates from various backgrounds, I absorbed new analytical logic and learned to converge divergent viewpoints into a highly practical final report.',
-    'ns-title': 'NCCU Star Business Case',
-    'ns-desc1': 'Developed integrated marketing and operational strategies for a real corporate case. Overcame initial rounds through precise market research and financial models to reach the finals.',
-    'ns-desc2': 'As <strong>PM</strong>, I led the initial draft and final presentation. In this project, I <strong>carried over my traffic route planning experience from the Chuangnan competition</strong> to personally plan the routes for a "Sustainable Food Truck". Replicating past successes to solve new business challenges proves my continuous capability iteration.',
-    'qr-text': 'My Work: LineBot QR'
-  },
-  zh: {
-    'pg-sub': '透過高壓挑戰，我將複雜痛點轉化為具備執行力的商業解決方案。',
-    'gallery-title': '競賽紀錄（向右滑動並點擊放大）',
-    'sec-task': 'Project Execution (專案執行)',
-    'sec-role': 'My Role & PM Growth (角色與成長)',
-    'dh-title': 'DreamHack 2026 (陽明交大)',
-    'dh-desc1': '針對 Tera Thinker 創辦人 Jason 提出「教育相關從 0 到 1 創業」的企業命題，<strong>我主動提出切入醫療領域</strong>。我們在 48 小時內發想出「數位雙生護理訓練系統」，深入調查產業痛點與獲利模式，決賽脫穎而出獲創辦人洽談實習合作。',
-    'dh-desc2': '擔任 <strong>PM</strong>，隊友皆因我而結識。我利用對成員個性的了解掌控進度，包辦初步概念構思、方向執行與簡報架構。與不同背景的人共事極大化了我的<strong>成長型思維</strong>。雖然後續因技術與訪談發現「痛點不夠痛」導致計畫未執行，但這是非常寶貴的市場驗證經驗。',
-    'lr-desc1': '<strong>High-Pressure Communication:</strong> 在全球高壓賽事中完成全英文 Pitch 提案，在極限時間內掌握了具說服力的故事敘事 (Storytelling) 與視覺呈現藝術。',
-    'lr-desc2': '<strong>Cross-Industry Agility:</strong> 展現了強大的<strong>成長型思維</strong>，將研究重心從傳統物流跨足至美妝香氛產業。利用數據驅動洞察提出個人化科技解決方案，大幅拓展了我在國際商業標準與消費者創新上的視野。',
-    'cn-title': '創見南方 Chuangnan 2025',
-    'cn-desc1': '帶領團隊勇奪首獎。我們針對在地痛點開發了永續交通解決方案「Safecloud」，並由組員黃庭宓使用 GitHub 建立了專案網頁展示成果。',
-    'cn-desc2': '擔任 <strong>PM</strong>，我深切運用<strong>成大交通管理科學系</strong>所學，親自評估並規劃了所有的地圖臨停區與車流疏導路線。為了完美呈現規劃圖，我自學了 <strong>Affinity Designer</strong>，並自學建置了 <strong>LINE Bot</strong>。此外，看見黃同學用 GitHub 建網頁，直接啟發了我日後自己創建這份個人官網，是跨領域學習的完美體現。',
-    'mj-title': '玉山校際商業競賽',
-    'mj-desc1': '針對企業命題進行了深度的利害關係人分析與財務獲利評估，從產業痛點調查到競爭對手剖析，建立了一套完整的商業執行模型。',
-    'mj-desc2': '擔任 <strong>PM</strong>，我主導了個人初步提案，並在小組討論中整合各方意見推動策略轉型。透過與不同專業背景的組員激烈交流，我不斷吸收新的分析邏輯，學會如何將發散的觀點收斂為最具落地價值的最終報告書。',
-    'ns-title': '政大之星商業競賽',
-    'ns-desc1': '針對真實企業案例進行整合行銷與營運策略規劃，透過精確的市場調研與財務預估模型，在初選中突圍並進入最終決賽階段。',
-    'ns-desc2': '擔任 <strong>PM</strong> 主導初次企劃與最終報告。在這個專案中，我<strong>沿用了在創見南方競賽中累積的交通路線規劃經驗</strong>，親自處理了「永續餐車」的路線規劃。將過往經驗成功複製並應用到新的商業痛點上，是我不斷迭代自我能力的最佳證明。',
-    'qr-text': 'My Work: LineBot QR'
-  }
-};
-
-function switchLang(l){
-  localStorage.setItem('lang',l);
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-  
-  document.getElementById('pg-sub').textContent = textData[l]['pg-sub'];
-  
-  document.querySelectorAll('.gallery-header').forEach(el => el.textContent = textData[l]['gallery-title']);
-  
-  document.querySelectorAll('.section-label').forEach((el, i) => {
-    if(!el.hasAttribute('data-i18n')) {
-        if(i%2===0) el.textContent = textData[l]['sec-task'];
-        else el.textContent = textData[l]['sec-role'];
+    function openLightbox(index) {
+        currentSlideIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        lightboxImg.src = slides[currentSlideIndex];
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden'; // 防止背景捲動
     }
-  });
-  
-  document.getElementById('dh-title').textContent = textData[l]['dh-title'];
-  document.getElementById('dh-desc1').innerHTML = textData[l]['dh-desc1'];
-  document.getElementById('dh-desc2').innerHTML = textData[l]['dh-desc2'];
-  
-  document.getElementById('lr-desc1').innerHTML = textData[l]['lr-desc1'];
-  document.getElementById('lr-desc2').innerHTML = textData[l]['lr-desc2'];
-  
-  document.getElementById('cn-title').textContent = textData[l]['cn-title'];
-  document.getElementById('cn-desc1').innerHTML = textData[l]['cn-desc1'];
-  document.getElementById('cn-desc2').innerHTML = textData[l]['cn-desc2'];
-  
-  document.getElementById('mj-title').textContent = textData[l]['mj-title'];
-  document.getElementById('mj-desc1').innerHTML = textData[l]['mj-desc1'];
-  document.getElementById('mj-desc2').innerHTML = textData[l]['mj-desc2'];
-  
-  document.getElementById('ns-title').textContent = textData[l]['ns-title'];
-  document.getElementById('ns-desc1').innerHTML = textData[l]['ns-desc1'];
-  document.getElementById('ns-desc2').innerHTML = textData[l]['ns-desc2'];
-  
-  // Navigation & Buttons
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-     const key = el.getAttribute('data-i18n');
-     const trans = {
-       en: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-cn-final':'Final Presentation', 'btn-cn-init':'Initial Proposal', 'btn-mj-final':'Final Proposal', 'btn-mj-pre':'Team Preliminary', 'btn-mj-per':'Personal Draft', 'btn-ns-final':'Final Proposal', 'btn-ns-init':'Initial Draft', 'qr-text':'My Work: LineBot QR'},
-       zh: {'nav-home':'Home','nav-proj':'Projects','nav-comp':'Competitions','nav-more':'More','nav-intern':'Internship','nav-exch':'Cultural Exchange','nav-cert':'Certificates','nav-club':'Clubs & Volunteer', 'btn-pitch':'Pitch Deck', 'btn-cert':'Certificate', 'btn-loreal-final':'Final Pitch Deck', 'btn-cn-final':'最終簡報', 'btn-cn-init':'初次提案', 'btn-mj-final':'確定繳交提案', 'btn-mj-pre':'初步小組計畫書', 'btn-mj-per':'個人初次提案', 'btn-ns-final':'最終提案', 'btn-ns-init':'初次企劃', 'qr-text':'My Work: LineBot QR'}
-     };
-     if(trans[l][key]) el.textContent = trans[l][key];
-  });
-}
-document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.classList.remove('active');
+        document.body.style.overflow = ''; // 恢復背景捲動
+    }
+
+    function changeSlide(n) {
+        currentSlideIndex += n;
+        if (currentSlideIndex >= slides.length) {
+            currentSlideIndex = 0;
+        } else if (currentSlideIndex < 0) {
+            currentSlideIndex = slides.length - 1;
+        }
+        document.getElementById('lightbox-img').src = slides[currentSlideIndex];
+    }
+
+    // 為所有 Lightbox 觸發器添加點擊事件
+    document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
+        trigger.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-slide-index'));
+            openLightbox(index);
+        });
+    });
+
+    // 點擊蒙版背景關閉 Lightbox
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLightbox();
+        }
+    });
+
+    // 按下 ESC 鍵關閉 Lightbox
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && document.getElementById('lightbox').classList.contains('active')) {
+            closeLightbox();
+        }
+    });
 </script>
+
 </body>
 </html>
