@@ -1,290 +1,243 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projects | HsinYu Wen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <style>
-        /* --- 核心設計系統 --- */
-        :root {
-            --ink: #0d1520; --ink-2: #172030; --ink-3: #1e2d42; 
-            --gold: #c8a45a; --gold-lt: #e8d4a0; --white: #fff; 
-            --muted: #8a96a8; --muted-2: #b0bac8; --green: #3aaa72;
-            --border: rgba(200, 164, 90, .22); --border-w: rgba(255, 255, 255, .07);
-            --radius: 3px; --fd: 'Cormorant Garamond', Georgia, serif; 
-            --fb: 'Outfit', system-ui, sans-serif;
-            --ease: cubic-bezier(.4, 0, .2, 1); --t: .32s var(--ease);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | HsinYu Wen</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
+a{text-decoration:none;color:inherit}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        body { 
-            font-family: var(--fb); background: var(--ink); color: var(--white); 
-            overflow-x: hidden; line-height: 1.7; position: relative; 
-        }
-        a { text-decoration: none; color: inherit; }
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--t);border-bottom:1px solid transparent}
+.nav.scrolled{padding:13px 0;background:rgba(13,21,32,.96);backdrop-filter:blur(18px);border-color:var(--border)}
+.nav-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;font-weight:700;color:var(--white)}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;align-items:center;list-style:none}
+.nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);position:relative}
+.nav-links a:hover, .nav-links a.active{color:var(--white)}
+.nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
+.nav-drop{position:relative}
+.drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb)}
+.drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:6px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t);z-index:200}
+.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
+.drop-menu a{display:block;font-size:.7rem;color:var(--muted);padding:9px 12px;border-radius:2px;transition:var(--t)}
+.drop-menu a:hover{color:var(--white);background:rgba(255,255,255,.04)}
+.nav-right{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.lang-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-family:var(--fb);font-size:.68rem;font-weight:500;transition:var(--t)}
+.lang-btn.active{color:var(--gold)}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:6px 15px;border-radius:var(--radius);transition:var(--t)}
+.nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-        /* 背景微粒噪點效果 (維持高級感) */
-        body::before {
-            content: ''; position: fixed; inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");
-            pointer-events: none; z-index: 0;
-        }
+/* Header */
+.page-header{padding:148px 0 60px;border-bottom:1px solid var(--border);position:relative}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
+.page-title em{font-style:italic;color:var(--gold)}
+.page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
 
-        /* --- 導覽列 --- */
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 0; transition: all var(--t); border-bottom: 1px solid transparent; }
-        .nav.scrolled { padding: 13px 0; background: rgba(13, 21, 32, .96); backdrop-filter: blur(18px); border-color: var(--border); }
-        .nav-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: var(--fd); font-size: 1.4rem; font-weight: 700; }
-        .nav-logo span { color: var(--gold); }
-        .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links a { font-size: .72rem; font-weight: 500; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); padding: 7px 13px; transition: color var(--t); position: relative; }
-        .nav-links a:hover, .nav-links a.active { color: var(--white); }
-        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 13px; right: 13px; height: 1px; background: var(--gold); }
+/* Cards - 統一規格尺寸 */
+.main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
+.comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t)}
+.comp-card:hover{border-color:var(--border)}
+.comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center}
+.comp-icon-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#172030}
+.comp-icon-wrap i{font-size:5rem;color:#2a364a}
 
-        /* 下拉選單 */
-        .nav-drop { position: relative; }
-        .drop-btn { background: none; border: none; cursor: pointer; font-family: var(--fb); color: var(--muted); font-size: .72rem; text-transform: uppercase; letter-spacing: .13em; padding: 7px 13px; display: flex; align-items: center; gap: 4px; }
-        .drop-menu { position: absolute; top: 100%; right: 0; background: var(--ink-2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all var(--t); }
-        .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(5px); }
-        .drop-menu a { display: block; padding: 8px 12px; font-size: .7rem; color: var(--muted); border-radius: 2px; }
-        .drop-menu a:hover { background: rgba(255,255,255,0.05); color: var(--white); }
+.comp-content{padding:25px 35px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
+.comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:2px;margin-bottom:12px}
+.comp-award.green{color:var(--green);background:rgba(58,170,114,.1)}
+.comp-date{font-size:.65rem;color:var(--muted);font-weight:500;border:1px solid var(--border-w);padding:3px 10px;border-radius:20px;letter-spacing:0.05em;white-space:nowrap}
 
-        .nav-right { display: flex; align-items: center; gap: 15px; }
-        .lang-btn { background: none; border: none; color: var(--muted); cursor: pointer; font-size: .68rem; font-weight: 600; }
-        .lang-btn.active { color: var(--gold); }
-        .nav-cv { border: 1px solid var(--gold); color: var(--gold); padding: 6px 15px; font-size: .68rem; font-weight: 600; text-transform: uppercase; border-radius: var(--radius); transition: var(--t); }
-        .nav-cv:hover { background: var(--gold); color: var(--ink); }
+.comp-h3{font-family:var(--fd);font-size:1.6rem;margin-bottom:6px;line-height:1.2}
+.comp-org{font-size:.7rem;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:6px;text-transform:uppercase}
 
-        /* --- 頁首區塊 --- */
-        .page-header { padding: 160px 0 80px; border-bottom: 1px solid var(--border); position: relative; overflow: hidden; }
-        .page-header::after { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: radial-gradient(circle at 80% 20%, rgba(200,164,90,0.08), transparent 70%); }
-        .ph-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
-        .eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
-        .eyebrow-line { width: 30px; height: 1px; background: var(--gold); }
-        .eyebrow span { font-size: .7rem; color: var(--gold); text-transform: uppercase; letter-spacing: .2em; }
-        .page-title { font-family: var(--fd); font-size: clamp(2.8rem, 6vw, 4.8rem); line-height: 1.1; margin-bottom: 20px; }
-        .page-title em { color: var(--gold); font-style: italic; }
-        .page-sub { font-size: .95rem; color: var(--muted); max-width: 550px; font-weight: 300; }
+.section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:12px 0 4px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
+.comp-desc{font-size:.82rem;color:var(--muted-2);margin-bottom:8px;font-weight:300;line-height:1.7}
+.comp-desc strong{color:var(--white);font-weight:500}
 
-        /* --- 專案卡片 --- */
-        .main { max-width: 1120px; margin: 0 auto; padding: 80px 32px; position: relative; z-index: 1; }
-        .proj-block { margin-bottom: 90px; }
-        .proj-num { font-family: var(--fd); font-size: 5rem; font-weight: 700; color: rgba(200,164,90,0.08); margin-bottom: -20px; margin-left: -5px; }
-        .card { background: var(--ink-2); border: 1px solid var(--border-w); border-radius: 8px; overflow: hidden; transition: var(--t); }
-        .card:hover { border-color: var(--border); }
-        .card-bar { height: 4px; }
-        .bar-gold { background: linear-gradient(90deg, var(--gold), var(--gold-lt)); }
-        .bar-green { background: linear-gradient(90deg, var(--green), #7fd9a8); }
+/* 下載按鈕 */
+.dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.6rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
+.btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
-        .card-head { padding: 40px; border-bottom: 1px solid var(--border-w); display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 20px; }
-        .proj-cat { font-size: .65rem; color: var(--gold); text-transform: uppercase; letter-spacing: .15em; margin-bottom: 10px; }
-        .proj-cat.green { color: var(--green); }
-        .card-title { font-family: var(--fd); font-size: 2rem; line-height: 1.2; margin-bottom: 5px; }
-        .card-title-sub { font-size: .85rem; color: var(--muted); font-style: italic; }
+/* Footer - 符合 image_ea99a0.png 樣式 */
+footer{border-top:1px solid var(--border);padding:30px 0;margin-top:40px;position:relative;z-index:1}
+.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center}
+.foot-copy{font-size:0.72rem;color:var(--muted);letter-spacing:0.05em}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:0.72rem;color:var(--muted);transition:var(--t);text-transform:uppercase;letter-spacing:0.05em}
+.foot-links a:hover{color:var(--gold)}
 
-        .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-        .tag { font-size: .62rem; padding: 4px 10px; border: 1px solid var(--border-w); color: var(--muted-2); border-radius: 2px; text-transform: uppercase; }
-        .tg { border-color: rgba(200,164,90,0.3); color: var(--gold-lt); }
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 
-        .dl-group { display: flex; flex-direction: column; gap: 10px; }
-        .btn-dl { font-size: .68rem; font-weight: 600; color: var(--gold); border: 1px solid var(--border); padding: 10px 18px; border-radius: 4px; display: inline-flex; align-items: center; gap: 8px; transition: var(--t); }
-        .btn-dl:hover { background: rgba(200,164,90,0.08); border-color: var(--gold); }
-        .btn-dl.green { color: #7fd9a8; border-color: rgba(58,170,114,0.3); }
-        .btn-dl.green:hover { background: rgba(58,170,114,0.08); border-color: var(--green); }
-
-        .card-body { padding: 40px; }
-        .callout { background: rgba(200,164,90,0.04); border-left: 3px solid var(--gold); padding: 20px; margin-bottom: 35px; font-size: .9rem; color: rgba(255,255,255,0.75); }
-        .callout strong { color: var(--gold); }
-        .callout.green { border-left-color: var(--green); background: rgba(58,170,114,0.04); }
-        .callout.green strong { color: var(--green); }
-
-        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .col-lbl { font-size: .65rem; color: var(--gold); text-transform: uppercase; letter-spacing: .2em; margin-bottom: 15px; border-bottom: 1px solid var(--border-w); padding-bottom: 10px; }
-        .col-text { font-size: .88rem; color: var(--muted-2); line-height: 1.9; font-weight: 300; }
-        .ach { list-style: none; margin-top: 10px; }
-        .ach li { padding-left: 22px; position: relative; margin-bottom: 10px; font-size: .88rem; color: var(--muted-2); }
-        .ach li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
-
-        /* --- 頁尾 --- */
-        footer { border-top: 1px solid var(--border); padding: 40px 0; }
-        .foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; color: var(--muted); font-size: .75rem; }
-
-        /* 動態進場效果 */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s var(--ease); }
-        .reveal.v { opacity: 1; transform: none; }
-
-        @media (max-width: 860px) {
-            .nav-links { display: none; }
-            .two-col { grid-template-columns: 1fr; gap: 30px; }
-            .card-head, .card-body { padding: 30px; }
-        }
-    </style>
+@media(max-width:900px){
+    .comp-card{grid-template-columns:1fr}
+    .comp-img-wrap{height:200px}
+    .nav-links{display:none}
+    .foot-inner{flex-direction:column;gap:15px;text-align:center}
+}
+</style>
 </head>
 <body>
 
 <nav class="nav" id="mainnav">
-    <div class="nav-inner">
-        <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-        <ul class="nav-links">
-            <li><a href="index.html" data-en="Home" data-zh="首頁">Home</a></li>
-            <li><a href="projects.html" class="active" data-en="Projects" data-zh="研究專案">Projects</a></li>
-            <li><a href="competitions.html" data-en="Competitions" data-zh="競賽經歷">Competitions</a></li>
-            <li class="nav-drop">
-                <button class="drop-btn"><span data-en="More" data-zh="更多">More</span> <i class="fa-solid fa-chevron-down" style="font-size:0.6rem"></i></button>
-                <div class="drop-menu">
-                    <a href="experience.html" data-en="Internship" data-zh="實習經驗">Internship</a>
-                    <a href="exchange.html" data-en="Cultural Exchange" data-zh="文化交流">Cultural Exchange</a>
-                    <a href="certificates.html" data-en="Certificates" data-zh="專業證照">Certificates</a>
-                    <a href="clubs.html" data-en="Clubs & Volunteer" data-zh="社團志工">Clubs &amp; Volunteer</a>
-                </div>
-            </li>
-        </ul>
-        <div class="nav-right">
-            <div style="display:flex; gap:8px">
-                <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
-                <span style="color:var(--border-w)">|</span>
-                <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
-            </div>
-            <a href="resume.pdf" download class="nav-cv" data-en="CV" data-zh="履歷">CV</a>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+      <li><a href="projects.html" class="active" data-i18n="nav-proj">Projects</a></li>
+      <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
+      <li class="nav-drop">
+        <button class="drop-btn"><span data-i18n="nav-more">More</span> <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+        <div class="drop-menu">
+          <a href="experience.html" data-i18n="nav-intern">Internship</a>
+          <a href="exchange.html" data-i18n="nav-exch">Cultural Exchange</a>
+          <a href="certificates.html" data-i18n="nav-cert">Certificates</a>
+          <a href="clubs.html" data-i18n="nav-club">Clubs & Volunteer</a>
         </div>
+      </li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
+      <span style="color:var(--border-w)">|</span>
+      <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+      <a href="resume.pdf" download class="nav-cv">CV</a>
     </div>
+  </div>
 </nav>
 
-<div class="page-header">
-    <div class="ph-inner">
-        <div class="eyebrow reveal"><span class="eyebrow-line"></span><span data-en="Research & Proposals" data-zh="學術研究與計畫">Research &amp; Proposals</span></div>
-        <h1 class="page-title reveal" data-en="Work that fills the gaps." data-zh="填補系統裂縫的研究">Work that<br><em>fills the gaps.</em></h1>
-        <p class="page-sub reveal" data-en="Two independent research projects — both born from the same instinct: find where current practice falls short, and build something that fills the gap." data-zh="兩項獨立研究計畫——皆源於同一個本能：找出觀念與實務的落後之處，並建立足以填補缺口的技術解決方案。">Two independent research projects — both born from the same instinct: find where current practice falls short, and build something that fills the gap.</p>
-    </div>
-</div>
+<header class="page-header">
+  <div class="ph-inner">
+    <h1 class="page-title reveal" data-i18n="pg-title">Research & <em>Proposals</em></h1>
+    <p class="page-sub reveal" data-i18n="pg-sub">Born from an instinct to identify systemic gaps and build technical solutions to fill them.</p>
+  </div>
+</header>
 
 <main class="main">
-    <div class="proj-block reveal">
-        <div class="proj-num">01</div>
-        <div class="card">
-            <div class="card-bar bar-gold"></div>
-            <div class="card-head">
-                <div>
-                    <div class="proj-cat" data-en="NSTC Undergraduate Research Grant" data-zh="國科會大專生研究計畫">NSTC Undergraduate Research Grant</div>
-                    <h2 class="card-title" data-en="Adaptive Signal Compensation for Vulnerable Pedestrian Systems" data-zh="弱勢行人感應號誌之自適應協同補償研究">Adaptive Signal Compensation<br>for Vulnerable Pedestrian Systems</h2>
-                    <p class="card-title-sub" data-en="Nov 2025 → Jan 2026" data-zh="2025年11月 → 2026年1月">Nov 2025 → Jan 2026</p>
-                    <div class="tag-row">
-                        <span class="tag tg" data-en="NSTC Submitted" data-zh="計畫已提交">NSTC Submitted</span>
-                        <span class="tag td">PTV Vissim</span><span class="tag td">Python COM</span><span class="tag td">AutoCAD</span>
-                    </div>
-                </div>
-                <div class="dl-group">
-                    <a class="btn-dl" href="表C802.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> <span data-en="Proposal" data-zh="研究計畫書">Proposal</span></a>
-                    <a class="btn-dl" href="臺灣學術倫理教育資源中心修課證明.pdf" target="_blank" download><i class="fas fa-certificate"></i> <span data-en="Ethics" data-zh="倫理證明">Ethics</span></a>
-                </div>
+
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
+            <div class="comp-icon-wrap"><i class="fas fa-microchip"></i></div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-header-row">
+                <div class="comp-award" data-i18n="p1-award">NSTC Undergraduate Research Grant</div>
+                <div class="comp-date" data-i18n="p1-date">Nov 2025 - Jan 2026</div>
             </div>
-            <div class="card-body">
-                <div class="callout">
-                    <strong data-en="The Engineering Problem:" data-zh="核心工程痛點：">The Engineering Problem:</strong> 
-                    <span data-en="VIPS systems protect elderly pedestrians but shock the arterial timing. My research addresses the 40–50% bandwidth loss per event." data-zh="高齡友善號誌(VIPS)雖保障安全，但隨機觸發會衝擊幹道時制。本研究提出物理感知的補償策略，解決 40-50% 的頻寬損失。">VIPS systems protect elderly pedestrians but shock the arterial timing. My research addresses the 40–50% bandwidth loss per event.</span>
-                </div>
-                <div class="two-col">
-                    <div>
-                        <div class="col-lbl" data-en="The Challenge" data-zh="技術挑戰">The Challenge</div>
-                        <div class="col-text" data-en="I built the entire technical stack from scratch, self-teaching PTV Vissim and AutoCAD. By using Python COM interface, I reduced scenario processing time from 3 days to 2 hours." data-zh="我從零開始建立技術棧，自學 PTV Vissim 與 AutoCAD 以確保模擬精度。透過 Python COM 介面開發自動化腳本，將情境處理時間縮短了 90% 以上。">I built the entire technical stack from scratch. Reduced processing time from 3 days to 2 hours.</div>
-                    </div>
-                    <div>
-                        <div class="col-lbl" data-en="Key Outcomes" data-zh="研究成果">Key Outcomes</div>
-                        <ul class="ach">
-                            <li data-en="Developed a 3-cycle Linear Recovery model." data-zh="開發「三週期線性恢復模型」，消除號誌切換的劇烈震盪。">Developed a 3-cycle Linear Recovery model.</li>
-                            <li data-en="Submitted 10-page proposal to NSTC." data-zh="完成並提交 10 頁國科會正式研究計畫書。">Submitted 10-page proposal to NSTC.</li>
-                        </ul>
-                    </div>
-                </div>
+            <h3 class="comp-h3" data-i18n="p1-title">Adaptive Signal Compensation for Vulnerable Pedestrians</h3>
+            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="p1-org">NCKU Transportation Management Science</span></div>
+            
+            <span class="section-label" data-i18n="sec-task">Technical Challenge</span>
+            <p class="comp-desc" data-i18n="p1-desc1">Built a physics-aware compensation strategy to mitigate the 40-50% arterial bandwidth loss caused by random VIPS triggers. I self-taught <strong>PTV Vissim</strong> and <strong>AutoCAD</strong> to build the technical stack from scratch.</p>
+            
+            <span class="section-label" data-i18n="sec-impact">Key Outcomes</span>
+            <p class="comp-desc" data-i18n="p1-desc2">Developed a automated Python COM script that reduced scenario processing time from 3 days to <strong>2 hours</strong>. Completed and submitted a formal 10-page research proposal to the National Science and Technology Council (NSTC).</p>
+            
+            <div class="dl-group">
+                <a href="表C802.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p1-proposal">Research Proposal</span></a>
+                <a href="臺灣學術倫理教育資源中心修課證明.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-p1-ethics">Ethics Certificate</span></a>
             </div>
         </div>
     </div>
 
-    <div class="proj-block reveal">
-        <div class="proj-num">02</div>
-        <div class="card">
-            <div class="card-bar bar-green"></div>
-            <div class="card-head">
-                <div>
-                    <div class="proj-cat green" data-en="MOE Study Abroad Program · University of Liverpool" data-zh="教育部學海計畫 · 英國利物浦大學">MOE Study Abroad Program</div>
-                    <h2 class="card-title" data-en="Green Last-Mile Logistics Transition: DHL Taiwan" data-zh="DHL 國際快遞在臺灣最後一哩路綠色配送轉型之研究">Green Last-Mile Logistics<br>Transition: DHL Taiwan</h2>
-                    <p class="card-title-sub" data-en="Jun 17 – Aug 4, 2026" data-zh="2026年6月17日 – 8月4日">Jun 17 – Aug 4, 2026</p>
-                    <div class="tag-row">
-                        <span class="tag tk" data-en="NT$100K Grant" data-zh="獲得10萬獎學金">NT$100K Grant</span>
-                        <span class="tag tk">IELTS 6.5</span>
-                        <span class="tag td">Carbon Modeling</span>
-                    </div>
-                </div>
-                <div class="dl-group">
-                    <a class="btn-dl green" href="錄取通知_成大溫心語_1142.pdf" target="_blank" download><i class="fas fa-file-pdf"></i> <span data-en="Admission" data-zh="錄取通知書">Admission</span></a>
-                </div>
+    <div class="comp-card reveal">
+        <div class="comp-img-wrap">
+            <div class="comp-icon-wrap"><i class="fas fa-leaf"></i></div>
+        </div>
+        <div class="comp-content">
+            <div class="comp-header-row">
+                <div class="comp-award green" data-i18n="p2-award">MOE Scholars Program</div>
+                <div class="comp-date" data-i18n="p2-date">Summer 2026</div>
             </div>
-            <div class="card-body">
-                <div class="callout green">
-                    <strong data-en="The Gap:" data-zh="研究缺口：">The Gap:</strong> 
-                    <span data-en="Bridging the gap between policy narrative and engineering-grade carbon accounting for DHL's fleet transition." data-zh="填補永續政策論述與工程級碳核算之間的缺口，為 DHL 臺灣車隊電動化轉型建立量化評估模型。">Bridging the gap between policy narrative and engineering-grade carbon accounting.</span>
-                </div>
-                <div class="two-col">
-                    <div>
-                        <div class="col-lbl" style="color:var(--green)" data-en="Selection" data-zh="選拔背景">Selection</div>
-                        <div class="col-text" data-en="Selected as one of 5 students from NCKU. Achieved IELTS 6.5 to conduct independent research in the UK on Sustainable Supply Chain Management." data-zh="獲選為成大 5 名代表學生之一。憑藉 IELTS 6.5 能力於英國利物浦大學獨立開展永續供應鏈研究計畫。">Selected as one of 5 students from NCKU. Conducted research in the UK.</div>
-                    </div>
-                    <div>
-                        <div class="col-lbl" style="color:var(--green)" data-en="Focus" data-zh="研究重點">Focus</div>
-                        <ul class="ach" style="--gold: var(--green)">
-                            <li data-en="Modeled adoption likelihood for EV fleet." data-zh="針對電動車隊轉換建立需求與採用意願模型。">Modeled adoption likelihood for EV fleet.</li>
-                            <li data-en="Quantitative Carbon Projection modeling." data-zh="建立量化碳排放預測模型，將政策轉化為數據。">Quantitative Carbon Projection modeling.</li>
-                        </ul>
-                    </div>
-                </div>
+            <h3 class="comp-h3" data-i18n="p2-title">Green Last-Mile Logistics Transition: DHL Taiwan</h3>
+            <div class="comp-org"><i class="fas fa-globe"></i> <span data-i18n="p2-org">University of Liverpool · UK</span></div>
+            
+            <span class="section-label" data-i18n="sec-task">Research Focus</span>
+            <p class="comp-desc" data-i18n="p2-desc1">Bridging the gap between sustainability policy narrative and engineering-grade carbon accounting. Modeled adoption likelihood for EV fleet transition and established quantitative carbon projection models.</p>
+            
+            <span class="section-label" data-i18n="sec-impact">Selection & Success</span>
+            <p class="comp-desc" data-i18n="p2-desc2">Selected as one of <strong>5 students</strong> from NCKU. Awarded an <strong>NT$100,000 grant</strong> from the Ministry of Education. Achieved <strong>IELTS 6.5</strong> to conduct independent research on Sustainable Supply Chain Management in the UK.</p>
+            
+            <div class="dl-group">
+                <a href="錄取通知_成大溫心語_1142.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p2-admission">Admission Letter</span></a>
             </div>
         </div>
     </div>
+
 </main>
 
 <footer>
-    <div class="foot-inner">
-        <span data-en="© 2026 HsinYu Wen — NCKU TCM" data-zh="© 2026 溫心語 — 國立成功大學 交通管理科學系">© 2026 HsinYu Wen — NCKU TCM</span>
-        <div class="foot-links">
-            <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
-            <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
-        </div>
+  <div class="foot-inner">
+    <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</div>
+    <div class="foot-links">
+      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">LinkedIn</a>
+      <a href="index.html" data-i18n="nav-home">Home</a>
     </div>
+  </div>
 </footer>
 
 <script>
-    // 導覽列滾動效果
-    window.addEventListener('scroll', () => {
-        document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
-    });
+window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
+const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-    // 動態進場監測
-    const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('v') });
-    }, { threshold: .1 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+// 全語系翻譯字典
+const textData = {
+  en: {
+    'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Cultural Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Clubs & Volunteer',
+    'pg-title': 'Research & <em>Proposals</em>',
+    'pg-sub': 'Born from an instinct to identify systemic gaps and build technical solutions to fill them.',
+    'sec-task': 'Technical Challenge', 'sec-impact': 'Key Outcomes',
+    'p1-award': 'NSTC Undergraduate Research Grant', 'p1-date': 'Nov 2025 - Jan 2026',
+    'p1-title': 'Adaptive Signal Compensation for Vulnerable Pedestrians', 'p1-org': 'NCKU Transportation Management Science',
+    'p1-desc1': 'Built a physics-aware compensation strategy to mitigate the 40-50% arterial bandwidth loss caused by random VIPS triggers. I self-taught <strong>PTV Vissim</strong> and <strong>AutoCAD</strong> to build the technical stack from scratch.',
+    'p1-desc2': 'Developed a automated Python COM script that reduced scenario processing time from 3 days to <strong>2 hours</strong>. Completed and submitted a formal 10-page research proposal to the National Science and Technology Council (NSTC).',
+    'btn-p1-proposal': 'Research Proposal', 'btn-p1-ethics': 'Ethics Certificate',
+    'p2-award': 'MOE Scholars Program', 'p2-date': 'Summer 2026',
+    'p2-title': 'Green Last-Mile Logistics Transition: DHL Taiwan', 'p2-org': 'University of Liverpool · UK',
+    'p2-desc1': 'Bridging the gap between sustainability policy narrative and engineering-grade carbon accounting. Modeled adoption likelihood for EV fleet transition and established quantitative carbon projection models.',
+    'p2-desc2': 'Selected as one of <strong>5 students</strong> from NCKU. Awarded an <strong>NT$100,000 grant</strong> from the Ministry of Education. Achieved <strong>IELTS 6.5</strong> to conduct independent research in the UK.',
+    'btn-p2-admission': 'Admission Letter',
+    'foot-copy': '© 2026 HsinYu Wen — NCKU Transportation Management Science', 'foot-email': 'Email', 'foot-linkedin': 'LinkedIn'
+  },
+  zh: {
+    'nav-home': '首頁', 'nav-proj': '研究專案', 'nav-comp': '競賽經歷', 'nav-more': '更多', 'nav-intern': '實習經驗', 'nav-exch': '文化交流', 'nav-cert': '專業證照', 'nav-club': '社團志工',
+    'pg-title': '學術研究與 <em>研究計畫</em>',
+    'pg-sub': '源於找出系統性缺口的本能，並建立足以填補這些技術裂縫的解決方案。',
+    'sec-task': '技術挑戰與執行', 'sec-impact': '核心研究成果',
+    'p1-award': '國科會大專生研究計畫', 'p1-date': '2025 年 11 月 - 2026 年 1 月',
+    'p1-title': '弱勢行人感應號誌之自適應協同補償研究', 'p1-org': '國立成功大學 交通管理科學系',
+    'p1-desc1': '針對隨機觸發的高齡友善號誌所造成的 40-50% 幹道頻寬損失，開發物理感知的自適應補償策略。我自學了 <strong>PTV Vissim</strong> 與 <strong>AutoCAD</strong>，從零開始建立完整的交通模擬環境與技術棧。',
+    'p1-desc2': '開發 Python COM 自動化腳本，將情境處理時間從 3 天縮短至 <strong>2 小時</strong>。完成並提交 10 頁國科會正式研究計畫書。',
+    'btn-p1-proposal': '研究計畫書', 'btn-p1-ethics': '學術倫理證明',
+    'p2-award': '教育部學海計畫 · 英國利物浦大學', 'p2-date': '2026 年夏季',
+    'p2-title': 'DHL 國際快遞在臺灣最後一哩路綠色配送轉型之研究', 'p2-org': '英國利物浦大學 University of Liverpool',
+    'p2-desc1': '填補永續政策論述與工程級碳核算之間的缺口。針對 DHL 臺灣車隊電動化轉型建立需求與採用意願模型，並產出量化碳排放預測。',
+    'p2-desc2': '獲選為成大僅有的 <strong>5 名代表學生</strong>之一，並獲得教育部 <strong>10 萬元獎助金</strong>。憑藉 <strong>IELTS 6.5</strong> 能力於英國獨立開展永續供應鏈與綠色物流研究計畫。',
+    'btn-p2-admission': '錄取通知書',
+    'foot-copy': '© 2026 溫信昱 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英'
+  }
+};
 
-    // 中英文切換邏輯 (一鍵切換)
-    function switchLang(lang) {
-        localStorage.setItem('preferredLang', lang);
-        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-        document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-        
-        document.querySelectorAll('[data-en]').forEach(el => {
-            el.textContent = el.getAttribute('data-' + lang);
-        });
-    }
-
-    // 初始化語言
-    document.addEventListener('DOMContentLoaded', () => {
-        const savedLang = localStorage.getItem('preferredLang') || 'en';
-        switchLang(savedLang);
-    });
+function switchLang(l){
+  localStorage.setItem('lang',l);
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (textData[l][key]) el.innerHTML = textData[l][key];
+  });
+}
+document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'en'));
 </script>
-
 </body>
 </html>
