@@ -22,8 +22,14 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-links a:hover, .nav-links a.active{color:var(--white)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 
+/* Header */
+.page-header{padding:148px 0 60px;border-bottom:1px solid var(--border);position:relative}
+.ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
+.page-title em{font-style:italic;color:var(--gold)}
+
 /* Cards - 嚴格統一規格 */
-.main{max-width:1120px;margin:0 auto;padding:140px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
+.main{max-width:1120px;margin:0 auto;padding:60px 32px 110px;display:grid;grid-template-columns:1fr;gap:40px}
 .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t);min-height:520px;align-items: stretch}
 .comp-card:hover{border-color:var(--border)}
 
@@ -43,7 +49,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:15px 0 6px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:4px}
 .comp-desc{font-size:.85rem;color:var(--muted-2);margin-bottom:10px;font-weight:300;line-height:1.7}
 
-/* 下載與相簿 */
+/* 下載、相簿與 QR */
 .dl-group{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:6px;font-size:.58rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
@@ -53,8 +59,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .photo-slider::-webkit-scrollbar{height:6px}.photo-slider::-webkit-scrollbar-thumb{background:rgba(200,164,90,0.5);border-radius:3px}
 .slide-item{flex:0 0 200px;height:140px;object-fit:cover;border-radius:4px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer;scroll-snap-align:start}
 
-.qr-container{margin-top:15px;display:flex;flex-direction:column;gap:6px}
-.qr-box{width:100px;border:1px solid var(--border);border-radius:4px;padding:6px;background:rgba(255,255,255,0.02)}
+.qr-box{width:100px;border:1px solid var(--border);border-radius:4px;padding:6px;background:rgba(255,255,255,0.02);margin-top:10px}
 
 /* Lightbox & Footer */
 .lightbox-overlay{position:fixed;inset:0;background:rgba(13,21,32,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(8px)}.lightbox-overlay.active{display:flex}
@@ -90,6 +95,10 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
     </div>
 </div></nav>
 
+<header class="page-header"><div class="ph-inner">
+    <h1 class="page-title reveal">Global <em>Competitions</em></h1>
+</div></header>
+
 <main class="main">
     <div class="comp-card reveal">
         <div class="comp-img-wrap"><img src="dreamhack_group_pic1.JPG" class="comp-img lb-trigger" data-gallery="dh"></div>
@@ -99,19 +108,21 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
                 <div class="comp-date">2026/01</div>
             </div>
             <h3 class="comp-h3" data-i18n="dh-title">DreamHack 2026 (NYCU)</h3>
-            <div class="comp-org"><i class="fas fa-microchip"></i> <span data-i18n="dh-org">Tera Thinker Enterprise Challenge</span></div>
+            <div class="comp-org"><i class="fas fa-microchip"></i> Tera Thinker Enterprise Challenge</div>
             <span class="section-label" data-i18n="sec-task">Project Execution</span>
-            <p class="comp-desc" data-i18n="dh-desc1"></p>
-            <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-            <p class="comp-desc" data-i18n="dh-desc2"></p>
+            <p class="comp-desc" data-i18n="dh-desc1">針對 Jason 提出的命題，<strong>我提出切入醫療領域</strong>。發想出「數位雙生護理訓練系統」。</p>
             <div class="dl-group">
-                <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> <span data-i18n="btn-pitch">Pitch Deck</span></a>
-                <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
+                <a href="dreamhack_pitch.pptx" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-file-powerpoint"></i> Pitch Deck</a>
+                <a href="DreamHack certificate.pdf" target="_blank" class="btn-dl" style="border-color:var(--green); color:#7fd9a8"><i class="fas fa-certificate"></i> Certificate</a>
             </div>
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">Gallery</div>
+                <div class="gallery-header">Gallery</div>
                 <div class="photo-slider">
-                    <script>for(let i=1;i<=5;i++)document.write(`<img src="dreamhack_group_pic${i}.JPG" class="slide-item lb-trigger" data-gallery="dh" onerror="this.style.display='none'">`);</script>
+                    <img src="dreamhack_group_pic1.JPG" class="slide-item lb-trigger" data-gallery="dh">
+                    <img src="dreamhack_group_pic2.JPG" class="slide-item lb-trigger" data-gallery="dh">
+                    <img src="dreamhack_group_pic3.JPG" class="slide-item lb-trigger" data-gallery="dh">
+                    <img src="dreamhack_group_pic4.JPG" class="slide-item lb-trigger" data-gallery="dh">
+                    <img src="dreamhack_group_pic5.JPG" class="slide-item lb-trigger" data-gallery="dh">
                 </div>
             </div>
         </div>
@@ -121,18 +132,18 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
         <div class="comp-img-wrap"><img src="loreal_pic1.JPG" class="comp-img lb-trigger" data-gallery="lr"></div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="lr-award">Global Pitch</div>
+                <div class="comp-award">Global Pitch</div>
                 <div class="comp-date">2025/11 - 2026/01</div>
             </div>
             <h3 class="comp-h3" data-i18n="lr-title">L'Oréal Brandstorm 2026</h3>
-            <div class="comp-org"><i class="fas fa-globe"></i> <span data-i18n="lr-org">Beauty Tech & Fragrance</span></div>
+            <div class="comp-org"><i class="fas fa-globe"></i> Beauty Tech & Fragrance</div>
             <span class="section-label" data-i18n="sec-task">Project Execution</span>
-            <p class="comp-desc" data-i18n="lr-desc1"></p>
-            <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-            <p class="comp-desc" data-i18n="lr-desc2"></p>
-            <div class="dl-group"><a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-loreal-final">Final Pitch</span></a></div>
-            <div class="gallery-section"><div class="gallery-header" data-i18n="gallery-title">Gallery</div><div class="photo-slider">
-                <script>for(let i=1;i<=3;i++)document.write(`<img src="loreal_pic${i}.JPG" class="slide-item lb-trigger" data-gallery="lr" onerror="this.style.display='none'">`);</script>
+            <p class="comp-desc" data-i18n="lr-desc1">全球高壓賽事完成全英文 Pitch，掌握故事敘事與視覺藝術。</p>
+            <div class="dl-group"><a href="loreal_final_pitch.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Pitch</a></div>
+            <div class="gallery-section"><div class="gallery-header">Gallery</div><div class="photo-slider">
+                <img src="loreal_pic1.JPG" class="slide-item lb-trigger" data-gallery="lr">
+                <img src="loreal_pic2.JPG" class="slide-item lb-trigger" data-gallery="lr">
+                <img src="loreal_pic3.JPG" class="slide-item lb-trigger" data-gallery="lr">
             </div></div>
         </div>
     </div>
@@ -141,25 +152,20 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
         <div class="comp-img-wrap"><img src="Safecloud_first_place.jpeg" class="comp-img lb-trigger" data-gallery="cn"></div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="cn-award">1st Place Winner</div>
+                <div class="comp-award">1st Place Winner</div>
                 <div class="comp-date">2025</div>
             </div>
             <h3 class="comp-h3" data-i18n="cn-title">創見南方 Chuangnan 2025</h3>
-            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="cn-org">NCKU Entrepreneurship</span></div>
-            <span class="section-label" data-i18n="sec-task">Project Execution</span>
-            <p class="comp-desc" data-i18n="cn-desc1"></p>
-            <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-            <p class="comp-desc" data-i18n="cn-desc2"></p>
+            <div class="comp-org"><i class="fas fa-university"></i> NCKU Entrepreneurship</div>
+            <span class="section-label">Project Execution</span>
+            <p class="comp-desc">帶領團隊開發「Safecloud」並勇奪首獎。解決在地痛點。</p>
             <div class="dl-group">
-                <a href="Safecloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-final">Final Slide</span></a>
-                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-cn-init">Initial Proposal</span></a>
+                <a href="SafeCloud Presentation .pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Slide</a>
+                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Initial Proposal</a>
             </div>
-            <div class="qr-container">
-                <span class="section-label" style="border:none; padding:0" data-i18n="qr-text">My Work: LineBot QR</span>
-                <div class="qr-box"><img src="safecloud_line_bot.jpg" style="width:100%" alt="LineBot"></div>
-            </div>
+            <div class="qr-box"><img src="safecloud_line_bot.jpg" style="width:100%" alt="LineBot"></div>
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">Gallery</div>
+                <div class="gallery-header">Gallery</div>
                 <div class="photo-slider">
                     <img src="Safecloud_first_place.jpeg" class="slide-item lb-trigger" data-gallery="cn">
                     <img src="Safecloud_group_pic1.jpeg" class="slide-item lb-trigger" data-gallery="cn">
@@ -172,18 +178,17 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
         <div class="comp-img-wrap"><div class="comp-icon-wrap"><i class="fas fa-chart-line"></i></div></div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="mj-award">Strategic Planning</div>
+                <div class="comp-award">Strategic Planning</div>
                 <div class="comp-date">2025</div>
             </div>
             <h3 class="comp-h3" data-i18n="mj-title">玉山校際商業競賽</h3>
-            <span class="section-label" data-i18n="sec-task">Project Execution</span>
-            <p class="comp-desc" data-i18n="mj-desc1"></p>
-            <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-            <p class="comp-desc" data-i18n="mj-desc2"></p>
+            <div class="comp-org"><i class="fas fa-university"></i> Business Case Analysis</div>
+            <span class="section-label">Project Execution</span>
+            <p class="comp-desc">利害關係人分析與財務評估，建立商業執行模型。</p>
             <div class="dl-group">
-                <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-final">Final Proposal</span></a>
-                <a href="preliminary proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-pre">Team Preliminary</span></a>
-                <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-mj-per">Personal Draft</span></a>
+                <a href="mount_jade_final_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Proposal</a>
+                <a href="preliminary proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Team Preliminary</a>
+                <a href="hsinyu_personal_discussion_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Personal Draft</a>
             </div>
         </div>
     </div>
@@ -192,18 +197,17 @@ footer{border-top:1px solid var(--border);padding:30px 0;margin-top:60px;positio
         <div class="comp-img-wrap"><div class="comp-icon-wrap"><i class="fas fa-star"></i></div></div>
         <div class="comp-content">
             <div class="comp-header-row">
-                <div class="comp-award" data-i18n="ns-award">Finalist</div>
+                <div class="comp-award">Finalist</div>
                 <div class="comp-date">2025</div>
             </div>
             <h3 class="comp-h3" data-i18n="ns-title">政大之星商業競賽</h3>
-            <span class="section-label" data-i18n="sec-task">Project Execution</span>
-            <p class="comp-desc" data-i18n="ns-desc1"></p>
-            <span class="section-label" data-i18n="sec-role">My Role & PM Growth</span>
-            <p class="comp-desc" data-i18n="ns-desc2"></p>
+            <div class="comp-org"><i class="fas fa-university"></i> NCCU Business Case</div>
+            <span class="section-label">Project Execution</span>
+            <p class="comp-desc">整合行銷與營運策略規劃，進入最終決賽。</p>
             <div class="dl-group">
-                <a href="final_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-final">Final Proposal</span></a>
-                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-ns-init">Initial Draft</span></a>
-                <a href="certificate.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> <span data-i18n="btn-cert">Certificate</span></a>
+                <a href="final_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Final Proposal</a>
+                <a href="initial_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> Initial Draft</a>
+                <a href="certificate.pdf" target="_blank" class="btn-dl"><i class="fas fa-certificate"></i> Certificate</a>
             </div>
         </div>
     </div>
@@ -230,7 +234,11 @@ function switchLang(l){
   localStorage.setItem('lang',l);
   document.getElementById('btn-en').classList.toggle('active',l==='en');
   document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-  document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.getAttribute('data-i18n'); if(textData[l][k])el.innerHTML=textData[l][k];});
+  const t = textData[l];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(t[k]) el.innerHTML = t[k];
+  });
 }
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
@@ -249,40 +257,10 @@ lb.onclick=(e)=>{if(e.target===lb)lb.classList.remove('active');}; document.getE
 
 const textData = {
   en: {
-    'dh-award': 'Project Manager', 'dh-title': 'DreamHack 2026 (NYCU)', 'dh-org': 'Tera Thinker Enterprise Challenge',
-    'dh-desc1': 'Directed the pivot into medical training systems within 48 hours, creating a Digital Twin Nursing concept.',
-    'dh-desc2': 'As PM, synchronized multidisciplinary talents and refined logical pitching strategies.',
-    'lr-award': 'Global Pitch', 'lr-title': 'L\'Oréal Brandstorm 2026', 'lr-org': 'Beauty Tech & Fragrance',
-    'lr-desc1': 'Mastered full-English business storytelling and visual presentation under global standards.',
-    'lr-desc2': 'Demonstrated cross-industry agility by applying data insights to fragrance technology.',
-    'cn-award': '1st Place Winner', 'cn-title': 'Chuangnan 2025', 'cn-org': 'NCKU Entrepreneurship',
-    'cn-desc1': 'Led team to win top prize by designing Safecloud for local traffic flow optimization.',
-    'cn-desc2': 'Applied transportation expertise to map complex routes and self-taught front-end logic.',
-    'mj-award': 'Strategic Planning', 'mj-title': 'Mount Jade Business Case',
-    'mj-desc1': 'Conducted stakeholder analysis and financial evaluations for a corporate case.',
-    'mj-desc2': 'Converged divergent viewpoints from various backgrounds into a practical final report.',
-    'ns-award': 'Finalist', 'ns-title': 'NCCU Star Business Case',
-    'ns-desc1': 'Developed integrated marketing and operational strategies for a corporate case.',
-    'ns-desc2': 'Carried over traffic route planning experience to solve new challenges.',
-    'gallery-title': 'Gallery', 'sec-task': 'Project Execution', 'sec-role': 'My Role & PM Growth', 'btn-pitch': 'Pitch Deck', 'btn-cert': 'Certificate', 'btn-loreal-final': 'Final Pitch', 'btn-cn-final': 'Final Slide', 'btn-cn-init': 'Initial Proposal', 'btn-mj-final': 'Final Proposal', 'btn-mj-pre': 'Preliminary', 'btn-mj-per': 'Personal Draft', 'btn-ns-final': 'Final Proposal', 'btn-ns-init': 'Initial Draft', 'qr-text': 'My Work: LineBot QR'
+    'dh-award': 'Project Manager', 'dh-title': 'DreamHack 2026 (NYCU)', 'lr-title': 'L\'Oréal Brandstorm 2026', 'cn-title': 'Chuangnan 2025', 'mj-title': 'Mount Jade Business Case', 'ns-title': 'NCCU Star Business Case'
   },
   zh: {
-    'dh-award': 'Project Manager', 'dh-title': 'DreamHack 2026 (陽明交大)', 'dh-org': 'Tera Thinker 企業挑戰賽',
-    'dh-desc1': '針對「0到1 創業」命題，我主動提出切入醫療領域，48小時內發想出「數位雙生護理訓練系統」。',
-    'dh-desc2': '擔任 PM 掌控進度並包辦架構。與不同背景的人共事體現了我的成長型思維。',
-    'lr-award': 'Global Pitch', 'lr-title': 'L\'Oréal Brandstorm 2026', 'lr-org': 'Beauty Tech & Fragrance',
-    'lr-desc1': '在全球賽事中完成全英文 Pitch 提案，掌握具說服力的故事敘事與視覺呈現。',
-    'lr-desc2': '展現成長型思維，將研究重心從物流跨足至美妝產業。',
-    'cn-award': '第一名首獎', 'cn-title': '創見南方 Chuangnan 2025', 'cn-org': '成功大學 創業競賽',
-    'cn-desc1': '帶領團隊開發永續交通解決方案「Safecloud」並勇奪首獎。',
-    'cn-desc2': '運用交管系專業規劃車流。這段經歷開啟了我自學網頁建置之路。',
-    'mj-award': '策略企劃', 'mj-title': '玉山校際商業競賽',
-    'mj-desc1': '針對企業命題進行深度的利害關係人分析與財務獲利評估，建立商業執行模型。',
-    'mj-desc2': '將發散的觀點收斂為具落地價值的最終報告。',
-    'ns-award': '決賽入圍', 'ns-title': '政大之星商業競賽',
-    'ns-desc1': '針對真實企業案例進行整合行銷與營運策略規劃，進入最終決賽。',
-    'ns-desc2': '將過往經驗成功複製並應用到新的商業痛點上。',
-    'gallery-title': '活動紀錄', 'sec-task': '專案執行', 'sec-role': '角色與成長', 'btn-pitch': '決賽簡報', 'btn-cert': '參賽證明', 'btn-loreal-final': '最終簡報', 'btn-cn-final': '最終簡報', 'btn-cn-init': '初次提案', 'btn-mj-final': '最終提案', 'btn-mj-pre': '初步企劃', 'btn-mj-per': '個人初稿', 'btn-ns-final': '最終提案', 'btn-ns-init': '初次企劃', 'qr-text': '我的作品: LineBot QR'
+    'dh-award': 'Project Manager', 'dh-title': 'DreamHack 2026 (陽明交大)', 'lr-title': 'L\'Oréal Brandstorm 2026', 'cn-title': '創見南方 Chuangnan 2025', 'mj-title': '玉山校際商業競賽', 'ns-title': '政大之星商業競賽'
   }
 };
 document.addEventListener('DOMContentLoaded',()=>switchLang(localStorage.getItem('lang')||'zh'));
