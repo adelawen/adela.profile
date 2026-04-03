@@ -22,7 +22,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-links a{display:block;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:7px 13px;transition:var(--t);position:relative}
 .nav-links a:hover{color:var(--white)}
 
-/* More Menu 與底線標示 */
+/* More Menu */
 .nav-drop{position:relative}
 .nav-drop.active-parent::after{content:'';position:absolute;bottom:0;left:13px;right:13px;height:1px;background:var(--gold)}
 .drop-btn{display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--white);padding:7px 13px;background:none;border:none;cursor:pointer;font-family:var(--fb)}
@@ -42,15 +42,15 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .ph-inner{max-width:1120px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
 .page-title{font-family:var(--fd);font-size:clamp(2.6rem,5vw,4rem);font-weight:700;line-height:1.1;margin-bottom:12px}
 .page-title em{font-style:italic;color:var(--gold)}
-.page-sub{font-size:.9rem;color:var(--muted);max-width:700px;font-weight:300;line-height:1.8}
 
-/* Cards - 統一規格尺寸 */
+/* Cards - 統一縮小規格 */
 .main{max-width:1120px;margin:60px auto 110px;padding:0 32px;display:grid;grid-template-columns:1fr;gap:40px;position:relative;z-index:1}
 .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:260px 1fr;transition:border-color var(--t)}
 .comp-card:hover{border-color:var(--border)}
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);height:100%;display:flex;align-items:center;justify-content:center}
 .comp-icon-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#1e2836}
 .comp-icon-wrap i{font-size:5rem;color:#2a364a}
+.comp-img{width:100%;height:100%;object-fit:cover;opacity:0.85;transition:var(--t)}
 
 .comp-content{padding:30px 40px;position:relative;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start}
@@ -72,24 +72,24 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .photo-slider::-webkit-scrollbar-thumb{background:rgba(200,164,90,0.6);border-radius:4px}
 .photo-slider::-webkit-scrollbar-track{background:rgba(255,255,255,0.05);border-radius:4px}
 .slide-item{flex:0 0 260px;height:180px;object-fit:cover;border-radius:6px;border:1px solid var(--border-w);opacity:0.85;transition:var(--t);cursor:pointer;scroll-snap-align:start}
-.slide-item:hover{opacity:1;border-color:var(--gold);transform:translateY(-2px)}
+.slide-item:hover{opacity:1;border-color:var(--gold)}
 
 /* Lightbox 圓形箭頭 */
 .lightbox-overlay{position:fixed;inset:0;background:rgba(13,21,32,0.95);display:none;align-items:center;justify-content:center;z-index:1000;backdrop-filter:blur(8px)}
 .lightbox-overlay.active{display:flex}
 .lightbox-close{position:absolute;top:30px;right:40px;color:var(--white);font-size:2.5rem;font-weight:300;cursor:pointer;z-index:1010;transition:var(--t)}
-.lightbox-close:hover{color:var(--gold);transform:scale(1.1)}
+.lightbox-close:hover{color:var(--gold)}
 .lightbox-content{max-width:85%;max-height:85%;position:relative;display:flex;align-items:center;justify-content:center}
-.lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,0.5)}
+.lightbox-image{max-width:100%;max-height:85vh;object-fit:contain;border-radius:4px;box-shadow:0 10px 40px rgba(0,0,0,0.5);transition: opacity 0.2s ease;}
 .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:56px;height:56px;background:rgba(30,40,55,0.85);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:1.5rem;cursor:pointer;z-index:1010;transition:var(--t);user-select:none}
 .lightbox-nav:hover{background:var(--gold);color:var(--ink)}
 .lightbox-prev{left:40px}.lightbox-next{right:40px}
 
-/* Footer - 符合 image_ea99a0.png 樣式 */
+/* Footer - 截圖樣式同步 */
 footer {
   border-top: 1px solid var(--border);
   padding: 30px 0;
-  margin-top: 60px;
+  margin-top: 80px;
   position: relative;
   z-index: 1;
 }
@@ -105,7 +105,7 @@ footer {
 }
 .foot-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
 .foot-links { display: flex; gap: 24px; }
-.foot-links a { font-size: 0.72rem; color: var(--muted); transition: var(--t); text-transform: uppercase; letter-spacing: 0.05em; }
+.foot-links a { font-size: 0.72rem; color: var(--muted); transition: var(--t); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500;}
 .foot-links a:hover { color: var(--gold); }
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
@@ -128,7 +128,7 @@ footer {
       <li><a href="projects.html" data-i18n="nav-proj">Projects</a></li>
       <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
       <li class="nav-drop active-parent">
-        <button class="drop-btn"><span data-i18n="nav-more">More</span> <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+        <button class="drop-btn"><span data-i18n="nav-more">MORE</span> <i class="fas fa-chevron-down" style="font-size:0.5rem; margin-left:4px"></i></button>
         <div class="drop-menu">
           <a href="experience.html" data-i18n="nav-intern">Internship</a>
           <a href="exchange.html" class="active-sub" data-i18n="nav-exch">Cultural Exchange</a>
@@ -157,7 +157,7 @@ footer {
 
     <div class="comp-card reveal">
         <div class="comp-img-wrap">
-            <img src="māori_pic1.JPG" class="comp-img lb-trigger" data-gallery="maori" alt="Maori Culture Cover">
+            <img src="māori_pic1.JPG" class="comp-img lb-trigger" data-gallery="maori" alt="Maori Cover">
         </div>
         <div class="comp-content">
             <div class="comp-header-row">
@@ -171,26 +171,26 @@ footer {
             <p class="comp-desc" data-i18n="exch-desc1-1">擔任為期兩天的雙語主持人，接待來自紐西蘭的毛利民族族長與族人。在工作坊中負責即時翻譯以協助活動舉行，並在座談交流會中引導兩國原住民文化對話。</p>
             
             <span class="section-label" data-i18n="sec-growth">My Growth</span>
-            <p class="comp-desc" data-i18n="exch-desc1-2">這次深入接觸台灣原住民與紐西蘭毛利文化，讓我體認到跨文化交流中「尊重與轉譯」的藝術，更極大磨練了我的<strong>高壓應變能力</strong>與語言表達精度。</p>
+            <p class="comp-desc" data-i18n="exch-desc1-2">即時口譯高度訓練了我的應變能力。這次深入接觸台灣原住民與紐西蘭毛利文化，讓我體認到跨文化交流中「尊重與轉譯」的藝術，這是我實踐多樣性思考的重要里程碑。</p>
 
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">活動紀錄 (點擊放大)</div>
+                <div class="gallery-header" data-i18n="gallery-title">活動紀錄 (向右滑動並點擊)</div>
                 <div class="photo-slider">
-                    <img src="māori_pic1.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 1">
-                    <img src="māori_pic2.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 2">
-                    <img src="māori_pic3.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 3">
-                    <img src="māori_pic4.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 4">
-                    <img src="māori_pic5.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 5">
-                    <img src="māori_pic6.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 6">
-                    <img src="māori_pic7.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 7">
-                    <img src="māori_pic8.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 8">
-                    <img src="māori_pic9.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 9">
-                    <img src="māori_pic10.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 10">
-                    <img src="māori_pic11.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 11">
-                    <img src="māori_pic12.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 12">
-                    <img src="māori_pic13.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 13">
-                    <img src="māori_pic14.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 14">
-                    <img src="māori_pic15.JPG" class="slide-item lb-trigger" data-gallery="maori" alt="Maori Pic 15">
+                    <img src="māori_pic1.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic2.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic3.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic4.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic5.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic6.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic7.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic8.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic9.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic10.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic11.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic12.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic13.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic14.JPG" class="slide-item lb-trigger" data-gallery="maori">
+                    <img src="māori_pic15.JPG" class="slide-item lb-trigger" data-gallery="maori">
                 </div>
             </div>
         </div>
@@ -206,20 +206,20 @@ footer {
                 <div class="comp-date" data-i18n="exch-date-2">2024</div>
             </div>
             <h3 class="comp-h3" data-i18n="exch-title-2">Fulbright American Culture Camp</h3>
-            <div class="comp-org"><i class="fas fa-globe-americas"></i> <span data-i18n="exch-org-2">NTU x NTUST x NCKU (Fulbright EMI)</span></div>
+            <div class="comp-org"><i class="fas fa-university"></i> <span data-i18n="exch-org-2">NTU x NTUST x NCKU</span></div>
             
             <span class="section-label" data-i18n="sec-task">Public Speaking & Debate</span>
-            <p class="comp-desc" data-i18n="exch-desc2-1">Participated in an intensive all-English EMI environment. 最深刻的挑戰是在辯論賽中抽中「American Dreams」主題，必須在極短時間內邏輯思考並組織攻防。</p>
+            <p class="comp-desc" data-i18n="exch-desc2-1">在全英文 EMI 環境下，練習多次站在講台上闡述觀點。最深刻的挑戰是在辯論賽中抽中「American Dreams」主題，必須在極短時間內組織邏輯並進行攻防。</p>
             
             <span class="section-label" data-i18n="sec-growth">My Growth</span>
-            <p class="comp-desc" data-i18n="exch-desc2-2">除此之外更練就了<strong>獨立思考</strong>並尋求跨文化理解的能力。這次營隊經驗對我未來處理多元觀點與國際商業議題有極大幫助。</p>
+            <p class="comp-desc" data-i18n="exch-desc2-2">除了語言表達的訓練外，更學會了<strong>獨立思考</strong>。這次營隊打破了我的思考僵局，讓我學會從社會學與文化史的角度去剖析複雜的商業與人文議題。</p>
 
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">營隊紀錄 (點擊放大)</div>
+                <div class="gallery-header" data-i18n="gallery-title">營隊紀錄 (向右滑動並點擊)</div>
                 <div class="photo-slider">
-                    <img src="emi_amercan.PNG" class="slide-item lb-trigger" data-gallery="fulbright" alt="Fulbright Pic 1">
-                    <img src="emi_amercan1.PNG" class="slide-item lb-trigger" data-gallery="fulbright" alt="Fulbright Pic 2">
-                    <img src="emi_amercan2.PNG" class="slide-item lb-trigger" data-gallery="fulbright" alt="Fulbright Pic 3">
+                    <img src="emi_amercan.PNG" class="slide-item lb-trigger" data-gallery="fulbright">
+                    <img src="emi_amercan1.PNG" class="slide-item lb-trigger" data-gallery="fulbright">
+                    <img src="emi_amercan2.PNG" class="slide-item lb-trigger" data-gallery="fulbright">
                 </div>
             </div>
         </div>
@@ -238,9 +238,9 @@ footer {
   <div class="foot-inner">
     <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU Transportation Engineering</div>
     <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">LinkedIn</a>
-      <a href="index.html" data-i18n="nav-home">Home</a>
+      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">EMAIL</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-linkedin">LINKEDIN</a>
+      <a href="index.html" data-i18n="nav-home">HOME</a>
     </div>
   </div>
 </footer>
@@ -250,67 +250,44 @@ window.addEventListener('scroll',()=>{document.getElementById('mainnav').classLi
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// 獨立的照片放大與左右滑動邏輯 (完美修復)
+// Lightbox Logic
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lb-img');
 const btnPrev = document.getElementById('lb-prev');
 const btnNext = document.getElementById('lb-next');
-
 let currentGallery = [];
 let currentIndex = 0;
 
 document.querySelectorAll('.lb-trigger').forEach(img => {
     img.addEventListener('click', function() {
-        // 取得當前點擊照片所屬的相簿名稱 (data-gallery="maori" 或 "fulbright")
         const galleryName = this.getAttribute('data-gallery');
-        
-        // 只搜集該相簿下的所有照片 src
         currentGallery = Array.from(document.querySelectorAll(`.lb-trigger[data-gallery="${galleryName}"]`)).map(el => el.src);
-        
-        // 找到當前照片在該相簿中的 index
         currentIndex = currentGallery.indexOf(this.src);
-        
-        // 若只有一張照片，則不顯示切換箭頭
         btnPrev.style.display = currentGallery.length > 1 ? 'flex' : 'none';
         btnNext.style.display = currentGallery.length > 1 ? 'flex' : 'none';
-        
-        // 顯示照片並開啟燈箱
         lbImg.src = this.src;
         lb.classList.add('active');
-        document.body.style.overflow = 'hidden'; // 禁止背景捲動
+        document.body.style.overflow = 'hidden';
     });
 });
 
 function changeSlide(direction) {
-    if (currentGallery.length <= 1) return;
-    
-    // 計算新的 index (支援循環)
     currentIndex = (currentIndex + direction + currentGallery.length) % currentGallery.length;
-    
-    // 漸變效果
     lbImg.style.opacity = '0';
     setTimeout(() => {
         lbImg.src = currentGallery[currentIndex];
         lbImg.style.opacity = '1';
     }, 150);
 }
-
-// 按鈕事件
 btnPrev.onclick = (e) => { e.stopPropagation(); changeSlide(-1); };
 btnNext.onclick = (e) => { e.stopPropagation(); changeSlide(1); };
+lb.onclick = (e) => { if(e.target === lb) { lb.classList.remove('active'); document.body.style.overflow = 'auto'; } };
+document.getElementById('lb-close').onclick = () => { lb.classList.remove('active'); document.body.style.overflow = 'auto'; };
 
-// 關閉燈箱事件
-function closeLightbox() {
-    lb.classList.remove('active');
-    document.body.style.overflow = 'auto'; // 恢復背景捲動
-}
-lb.onclick = (e) => { if(e.target === lb) closeLightbox(); };
-document.getElementById('lb-close').onclick = () => closeLightbox();
-
-// Dictionary for i18n
+// i18n Dictionary
 const textData = {
   en: {
-    'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Cultural Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Clubs & Volunteer',
+    'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'MORE', 'nav-intern': 'Internship', 'nav-exch': 'Cultural Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Clubs & Volunteer',
     'pg-title': 'Cultural <em>Exchange</em>', 'pg-sub': 'Embracing global perspectives through dialogue, interpretation, and intercultural collaboration.',
     'exch-role-1': 'Bilingual MC & Interpreter', 'exch-date-1': '2024', 'exch-title-1': 'Maori Culture Workshop & Symposium', 'exch-org-1': 'NCKU ISRC x Hui-Jia Culture',
     'exch-desc1-1': 'Served as the bilingual host for two days, receiving Maori tribal chiefs and members from New Zealand. Responsible for instant translation and facilitating cross-cultural dialogue.',
