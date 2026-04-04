@@ -12,7 +12,7 @@ body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:h
 a{text-decoration:none;color:inherit}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* NAV - 響應式優化 */
+/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:30px 0;transition:var(--t)}
 .nav.scrolled{padding:15px 0;background:rgba(13,21,32,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
@@ -163,15 +163,15 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
             <div class="comp-org"><i class="fas fa-users"></i> <span data-i18n="p0-team">Team: 青行者 (溫心語、黃奎臻、王譯賢)</span></div>
             
             <span class="section-label" data-i18n="sec-task-p0">Project Vision</span>
-            <p class="comp-desc" data-i18n="p0-desc1">針對台南短程通勤痛點，主導提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察自行車友善城市系統。</p>
+            <p class="comp-desc" data-i18n="p0-desc1">針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察自行車友善城市系統。</p>
             
-            <span class="section-label" data-i18n="sec-impact-p0">Strategic Recognition</span>
-            <p class="comp-desc" data-i18n="p0-desc2">結合數據洞察論證機車替代方案，展現從「考察、轉譯到倡議」的完整社會實踐路徑。計畫獲得邱士峰教授高度認可推薦，肯定其社會責任感與創新精神。</p>
+            <span class="section-label" data-i18n="sec-impact-p0">Strategic Insight</span>
+            <p class="comp-desc" data-i18n="p0-desc2">透過數據分析論證機車替代方案的可行性，並深入探討社會推廣路徑。此計畫體現了團隊對交通安全與環境永續的跨域結合力。</p>
             
             <div class="dl-group">
                 <a href="tsmc_final_project.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p0-proposal">Final Proposal</span></a>
+                <a href="tsmc_hsinyu_group_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-alt"></i> <span data-i18n="btn-p0-group">Group Proposal</span></a>
                 <a href="tsmc_feedback.pdf" target="_blank" class="btn-dl"><i class="fas fa-comment-dots"></i> <span data-i18n="btn-p0-feedback">TSMC Feedback</span></a>
-                <a href="Recommendation letter from prof.Chiu.pdf" target="_blank" class="btn-dl"><i class="fas fa-award"></i> <span data-i18n="btn-p0-letter">Prof. Chiu's Rec.</span></a>
             </div>
         </div>
     </div>
@@ -211,10 +211,10 @@ const textData = {
     'pg-title': 'Research & <em>Proposals</em>', 'pg-sub': 'Identifying systemic gaps through transportation expertise.',
     'p2-award': 'MOE Scholars', 'p2-title': 'Green Last-Mile: DHL Taiwan', 'p1-award': 'NSTC Grant', 'p1-title': 'Adaptive Signal Compensation', 
     'p0-award': 'Social Proposal', 'p0-title': 'TSMC Dreamer Program', 'p0-team': 'Team: Youth Go (HsinYu, Kweijen, Yihsien)',
-    'p0-desc1': 'Proposed "Tainan Cycling Loop" to build a 30-min bicycle accessibility circle. Planned a field study to the Netherlands.',
-    'p0-desc2': 'Synthesized data-driven insights with social advocacy. Recognized by Prof. Chiu for its strong social responsibility.',
-    'sec-task-p0': 'Project Vision', 'sec-impact-p0': 'Recognition',
-    'btn-p0-proposal': 'Proposal', 'btn-p0-feedback': 'Feedback', 'btn-p0-letter': 'Rec. Letter',
+    'p0-desc1': 'Proposed "Tainan Cycling Loop" to build a 30-min bicycle accessibility circle.',
+    'p0-desc2': 'Used data insights to argue for motorcycle replacement alternatives. Demonstrates cross-domain integration of safety and sustainability.',
+    'sec-task-p0': 'Project Vision', 'sec-impact-p0': 'Insight',
+    'btn-p0-proposal': 'Final Proposal', 'btn-p0-group': 'Group Report', 'btn-p0-feedback': 'Feedback',
     'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science'
   },
   zh: {
@@ -222,10 +222,10 @@ const textData = {
     'pg-title': '學術研究與 <em>研究計畫</em>', 'pg-sub': '運用交通專業背景，找出系統性缺口並建立解決方案。',
     'p2-award': '教育部學海計畫', 'p2-title': 'DHL 臺灣配送轉型研究', 'p1-award': '國科會大專生計畫', 'p1-title': '弱勢行人自適應號誌研究', 
     'p0-award': '社會創新策略提案', 'p0-title': 'TSMC 2025 台積電築夢計畫 | 府城鐵馬環', 'p0-team': '團隊：青行者 (溫心語、黃奎臻、王譯賢)',
-    'p0-desc1': '針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察。',
-    'p0-desc2': '結合數據洞察論證替代方案。計畫獲得邱士峰教授高度認可，肯定其社會責任感與創新精神。',
-    'sec-task-p0': '計畫願景', 'sec-impact-p0': '策略評價',
-    'btn-p0-proposal': '最終計畫書', 'btn-p0-feedback': '評審回饋', 'btn-p0-letter': '邱教授推薦信',
+    'p0-desc1': '針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈。',
+    'p0-desc2': '透過數據分析論證機車替代方案的可行性。此計畫體現了團隊對交通安全與環境永續的跨域結合力。',
+    'sec-task-p0': '計畫願景', 'sec-impact-p0': '核心策略',
+    'btn-p0-proposal': '最終計畫書', 'btn-p0-group': '組內提案報告', 'btn-p0-feedback': '評審回饋',
     'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系'
   }
 };
