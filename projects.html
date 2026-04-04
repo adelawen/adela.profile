@@ -13,26 +13,21 @@ a{text-decoration:none;color:inherit}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
 /* NAV - 響應式優化 */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:25px 0;transition:var(--t)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:30px 0;transition:var(--t)}
 .nav.scrolled{padding:15px 0;background:rgba(13,21,32,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--white);z-index:1001;letter-spacing:0.02em}.nav-logo span{color:var(--gold)}
-
-/* 漢堡選單按鈕 */
 .menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;z-index:1001}
-
 .nav-links-wrap{display:flex;align-items:center;gap:35px}
 .nav-links{display:flex;align-items:center;list-style:none;gap:5px}
 .nav-links a, .drop-btn{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:8px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb)}
 .nav-links a:hover, .nav-links a.active, .nav-drop:hover .drop-btn{color:var(--white)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:1px;background:var(--gold)}
-
 .nav-drop{position:relative}
 .drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:8px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t)}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
 .drop-menu a{display:block;font-size:.7rem;padding:10px 15px;color:rgba(255,255,255,0.5);border-radius:2px;text-align:left}
 .drop-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
-
 .nav-right{display:flex;align-items:center;gap:25px}
 .lang-switch{display:flex;align-items:center;gap:8px;font-size:.7rem;color:rgba(255,255,255,0.4);font-weight:500}
 .lang-btn{background:none;border:none;cursor:pointer;color:inherit;font-family:var(--fb);transition:var(--t)}
@@ -40,64 +35,48 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-cv{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:7px 18px;border-radius:var(--radius);transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* MAIN LAYOUT */
+/* Layout */
 .page-header{padding:180px 0 40px}.ph-inner{max-width:1200px;margin:0 auto;padding:0 40px}
 .page-title{font-family:var(--fd);font-size:clamp(3rem,6vw,4.5rem);font-weight:700;line-height:1;margin-bottom:15px}
 .page-title em{font-style:italic;color:var(--gold);font-weight:400}
 .page-sub{font-size:.92rem;color:var(--muted);max-width:600px;font-weight:300}
-
 .main{max-width:1200px;margin:0 auto;padding:40px 40px 120px;display:grid;grid-template-columns:1fr;gap:50px}
 
-/* CARDS - 規格化設定 */
+/* Cards */
 .comp-card{background:var(--ink-2);border:1px solid var(--border-w);border-radius:8px;overflow:hidden;display:grid;grid-template-columns:280px 1fr;transition:border-color var(--t);min-height:520px;align-items:stretch}
 .comp-card:hover{border-color:var(--border)}
-
 .comp-img-wrap{position:relative;overflow:hidden;background:var(--ink-3);display:flex;align-items:center;justify-content:center;height:100%}
 .comp-icon-wrap{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#172030; width:100%}
 .comp-icon-wrap i{font-size:4.5rem;color:#2a364a}
-
 .comp-content{padding:45px 50px;display:flex;flex-direction:column;justify-content:center;min-width:0}
 .comp-header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px}
 .comp-award{display:inline-block;background:rgba(200,164,90,.12);color:var(--gold);font-size:.6rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:5px 12px;border-radius:2px;align-self:flex-start}
 .comp-award.green{color:var(--green);background:rgba(58,170,114,.1)}
 .comp-date{font-size:.65rem;color:var(--muted);font-weight:500;border:1px solid var(--border-w);padding:4px 12px;border-radius:20px;letter-spacing:0.05em}
-
 .comp-h3{font-family:var(--fd);font-size:1.85rem;margin-bottom:8px;line-height:1.2;color:var(--white)}
 .comp-org{font-size:.72rem;color:var(--muted);margin-bottom:20px;display:flex;align-items:center;gap:8px;text-transform:uppercase;letter-spacing:0.05em}
-
 .section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:22px 0 8px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:5px}
 .comp-desc{font-size:.88rem;color:var(--muted-2);margin-bottom:12px;font-weight:300;line-height:1.8}
+.comp-desc strong{color:var(--white);font-weight:500}
 
+/* Buttons */
 .dl-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:600;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
 /* MOBILE RESPONSIVE */
 @media(max-width:960px){
-    .nav-inner{padding:0 25px}
-    .menu-toggle{display:block}
-    .nav-links-wrap{
-        position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);
-        flex-direction:column;justify-content:center;padding:40px;transition:0.4s;box-shadow:-10px 0 30px rgba(0,0,0,0.5);
-    }
-    .nav-links-wrap.active{right:0}
-    .nav-links{flex-direction:column;align-items:flex-start;width:100%;gap:15px}
-    .nav-right{flex-direction:column;align-items:flex-start;margin-top:30px;width:100%}
-    .nav-cv{width:100%;text-align:center}
-
-    .page-header{padding:120px 0 30px}
-    .page-title{font-size:2.2rem}
-    
-    .main{padding:20px 20px 80px;gap:30px}
-    .comp-card{grid-template-columns:1fr;min-height:auto}
-    .comp-img-wrap, .comp-icon-wrap{height:250px;min-height:250px}
-    .comp-content{padding:30px 25px}
-    .comp-h3{font-size:1.5rem}
+    .nav-inner{padding:0 25px}.menu-toggle{display:block}
+    .nav-links-wrap{position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);flex-direction:column;justify-content:center;padding:40px;transition:0.4s;box-shadow:-10px 0 30px rgba(0,0,0,0.5)}
+    .nav-links-wrap.active{right:0}.nav-links{flex-direction:column;align-items:flex-start;width:100%;gap:15px}
+    .nav-right{flex-direction:column;align-items:flex-start;margin-top:30px;width:100%}.nav-cv{width:100%;text-align:center}
+    .page-header{padding:120px 0 30px}.page-title{font-size:2.2rem}
+    .main{padding:20px 20px 80px;gap:30px}.comp-card{grid-template-columns:1fr;min-height:auto}
+    .comp-img-wrap, .comp-icon-wrap{height:250px;min-height:250px}.comp-content{padding:30px 25px}.comp-h3{font-size:1.5rem}
 }
 
 footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-inner{max-width:1200px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
 .foot-copy{font-size:.7rem;color:var(--muted)}
-
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 </style>
 </head>
@@ -105,9 +84,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
 
 <nav class="nav" id="mainnav"><div class="nav-inner">
     <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-    
     <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-
     <div class="nav-links-wrap" id="navLinks">
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav-home">Home</a></li>
@@ -182,13 +159,19 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
                 <div class="comp-award" data-i18n="p0-award">Strategic Social Proposal</div>
                 <div class="comp-date">Sep - Oct 2025</div>
             </div>
-            <h3 class="comp-h3" data-i18n="p0-title">TSMC 2025 Dreamer Program</h3>
-            <div class="comp-org"><i class="fas fa-microchip"></i> <span data-i18n="p0-org">TSMC Foundation</span></div>
-            <p class="comp-desc" data-i18n="p0-desc1">由溫心語、黃奎臻、王譯賢組隊，針對台灣最後一哩路交通痛點，提出赴荷蘭考察計畫。獲得教授高度認可與推薦。</p>
+            <h3 class="comp-h3" data-i18n="p0-title">TSMC 2025 Dreamer Program | 府城鐵馬環</h3>
+            <div class="comp-org"><i class="fas fa-users"></i> <span data-i18n="p0-team">Team: 青行者 (溫心語、黃奎臻、王譯賢)</span></div>
+            
+            <span class="section-label" data-i18n="sec-task-p0">Project Vision</span>
+            <p class="comp-desc" data-i18n="p0-desc1">針對台南短程通勤痛點，主導提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察自行車友善城市系統。</p>
+            
+            <span class="section-label" data-i18n="sec-impact-p0">Strategic Recognition</span>
+            <p class="comp-desc" data-i18n="p0-desc2">結合數據洞察論證機車替代方案，展現從「考察、轉譯到倡議」的完整社會實踐路徑。計畫獲得邱士峰教授高度認可推薦，肯定其社會責任感與創新精神。</p>
+            
             <div class="dl-group">
                 <a href="tsmc_final_project.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p0-proposal">Final Proposal</span></a>
-                <a href="tsmc_feedback.pdf" target="_blank" class="btn-dl"><i class="fas fa-envelope-open-text"></i> <span data-i18n="btn-p0-feedback">TSMC Feedback</span></a>
-                <a href="Recommendation letter from prof.Chiu.pdf" target="_blank" class="btn-dl"><i class="fas fa-award"></i> <span data-i18n="btn-p0-letter">Rec. Letter</span></a>
+                <a href="tsmc_feedback.pdf" target="_blank" class="btn-dl"><i class="fas fa-comment-dots"></i> <span data-i18n="btn-p0-feedback">TSMC Feedback</span></a>
+                <a href="Recommendation letter from prof.Chiu.pdf" target="_blank" class="btn-dl"><i class="fas fa-award"></i> <span data-i18n="btn-p0-letter">Prof. Chiu's Rec.</span></a>
             </div>
         </div>
     </div>
@@ -205,9 +188,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
 </div></footer>
 
 <script>
-// 手機版漢堡選單邏輯
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
+const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
 menuBtn.onclick = () => {
     navLinks.classList.toggle('active');
     menuBtn.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
@@ -228,15 +209,23 @@ const textData = {
   en: {
     'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Volunteer',
     'pg-title': 'Research & <em>Proposals</em>', 'pg-sub': 'Identifying systemic gaps through transportation expertise.',
-    'p2-award': 'MOE Scholars', 'p2-title': 'Green Last-Mile: DHL Taiwan', 'p1-award': 'NSTC Grant', 'p1-title': 'Adaptive Signal Compensation', 'p0-award': 'Social Proposal', 'p0-title': 'TSMC 2025 Dreamer',
-    'btn-p0-proposal': 'Final Proposal', 'btn-p0-feedback': 'Feedback', 'btn-p0-letter': 'Rec. Letter',
+    'p2-award': 'MOE Scholars', 'p2-title': 'Green Last-Mile: DHL Taiwan', 'p1-award': 'NSTC Grant', 'p1-title': 'Adaptive Signal Compensation', 
+    'p0-award': 'Social Proposal', 'p0-title': 'TSMC Dreamer Program', 'p0-team': 'Team: Youth Go (HsinYu, Kweijen, Yihsien)',
+    'p0-desc1': 'Proposed "Tainan Cycling Loop" to build a 30-min bicycle accessibility circle. Planned a field study to the Netherlands.',
+    'p0-desc2': 'Synthesized data-driven insights with social advocacy. Recognized by Prof. Chiu for its strong social responsibility.',
+    'sec-task-p0': 'Project Vision', 'sec-impact-p0': 'Recognition',
+    'btn-p0-proposal': 'Proposal', 'btn-p0-feedback': 'Feedback', 'btn-p0-letter': 'Rec. Letter',
     'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science'
   },
   zh: {
     'nav-home': '首頁', 'nav-proj': '研究專案', 'nav-comp': '競賽經歷', 'nav-more': '更多', 'nav-intern': '實習經驗', 'nav-exch': '文化交流', 'nav-cert': '專業證照', 'nav-club': '社團志工',
     'pg-title': '學術研究與 <em>研究計畫</em>', 'pg-sub': '運用交通專業背景，找出系統性缺口並建立解決方案。',
-    'p2-award': '教育部學海計畫', 'p2-title': 'DHL 臺灣配送轉型研究', 'p1-award': '國科會大專生計畫', 'p1-title': '弱勢行人自適應號誌研究', 'p0-award': '社會創新策略提案', 'p0-title': 'TSMC 2025 台積電築夢計畫',
-    'btn-p0-proposal': '最終計畫書', 'btn-p0-feedback': '評審回饋', 'btn-p0-letter': '教授推薦信',
+    'p2-award': '教育部學海計畫', 'p2-title': 'DHL 臺灣配送轉型研究', 'p1-award': '國科會大專生計畫', 'p1-title': '弱勢行人自適應號誌研究', 
+    'p0-award': '社會創新策略提案', 'p0-title': 'TSMC 2025 台積電築夢計畫 | 府城鐵馬環', 'p0-team': '團隊：青行者 (溫心語、黃奎臻、王譯賢)',
+    'p0-desc1': '針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察。',
+    'p0-desc2': '結合數據洞察論證替代方案。計畫獲得邱士峰教授高度認可，肯定其社會責任感與創新精神。',
+    'sec-task-p0': '計畫願景', 'sec-impact-p0': '策略評價',
+    'btn-p0-proposal': '最終計畫書', 'btn-p0-feedback': '評審回饋', 'btn-p0-letter': '邱教授推薦信',
     'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系'
   }
 };
