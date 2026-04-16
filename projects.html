@@ -23,6 +23,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .nav-links a, .drop-btn{font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:8px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb)}
 .nav-links a:hover, .nav-links a.active, .nav-drop:hover .drop-btn{color:var(--white)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:1px;background:var(--gold)}
+.nav-links a.nav-moi{color:var(--gold)}
+.nav-links a.nav-moi:hover{color:var(--white)}
 .nav-drop{position:relative}
 .drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:8px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t)}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
@@ -58,13 +60,11 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .section-label{font-size:0.6rem;text-transform:uppercase;color:var(--gold);letter-spacing:0.12em;margin:22px 0 8px;display:block;font-weight:700;border-bottom:1px solid var(--border-w);padding-bottom:5px}
 .comp-desc{font-size:.88rem;color:var(--muted-2);margin-bottom:12px;font-weight:300;line-height:1.8}
 .comp-desc strong{color:var(--white);font-weight:500}
-
-/* Buttons */
 .dl-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
 .btn-dl{display:inline-flex;align-items:center;gap:8px;font-size:.6rem;font-weight:600;text-transform:uppercase;padding:8px 16px;border:1px solid var(--border);border-radius:var(--radius);color:var(--gold);transition:var(--t)}
 .btn-dl:hover{background:rgba(200,164,90,.07);transform:translateY(-2px)}
 
-/* MOBILE RESPONSIVE */
+/* Mobile */
 @media(max-width:960px){
     .nav-inner{padding:0 25px}.menu-toggle{display:block}
     .nav-links-wrap{position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);flex-direction:column;justify-content:center;padding:40px;transition:0.4s;box-shadow:-10px 0 30px rgba(0,0,0,0.5)}
@@ -90,6 +90,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
         <li><a href="index.html" data-i18n="nav-home">Home</a></li>
         <li><a href="projects.html" class="active" data-i18n="nav-proj">Projects</a></li>
         <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
+        <li><a href="microsoft-moi.html" class="nav-moi">Microsoft MOI</a></li>
         <li class="nav-drop">
           <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
           <div class="drop-menu">
@@ -161,13 +162,10 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
             </div>
             <h3 class="comp-h3" data-i18n="p0-title">TSMC 2025 Dreamer Program | 府城鐵馬環</h3>
             <div class="comp-org"><i class="fas fa-users"></i> <span data-i18n="p0-team">Team: 青行者 (溫心語、黃奎臻、王譯賢)</span></div>
-            
             <span class="section-label" data-i18n="sec-task-p0">Project Vision</span>
             <p class="comp-desc" data-i18n="p0-desc1">針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈，並規劃赴荷蘭考察自行車友善城市系統。</p>
-            
             <span class="section-label" data-i18n="sec-impact-p0">Strategic Insight</span>
             <p class="comp-desc" data-i18n="p0-desc2">透過數據分析論證機車替代方案的可行性，並深入探討社會推廣路徑。此計畫體現了團隊對交通安全與環境永續的跨域結合力。</p>
-            
             <div class="dl-group">
                 <a href="tsmc_final_project.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-pdf"></i> <span data-i18n="btn-p0-proposal">Final Proposal</span></a>
                 <a href="tsmc_hsinyu_group_proposal.pdf" target="_blank" class="btn-dl"><i class="fas fa-file-alt"></i> <span data-i18n="btn-p0-group">Group Proposal</span></a>
@@ -188,7 +186,6 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:60px}.foot-i
 </div></footer>
 
 <script>
-// 手機選單
 const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
 menuBtn.onclick = () => {
     navLinks.classList.toggle('active');
@@ -210,7 +207,7 @@ const textData = {
   en: {
     'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-more': 'More', 'nav-intern': 'Internship', 'nav-exch': 'Exchange', 'nav-cert': 'Certificates', 'nav-club': 'Volunteer',
     'pg-title': 'Research & <em>Proposals</em>', 'pg-sub': 'Identifying systemic gaps through transportation expertise.',
-    'p2-award': 'MOE Scholars', 'p2-title': 'Green Last-Mile: DHL Taiwan', 'p1-award': 'NSTC Grant', 'p1-title': 'Adaptive Signal Compensation', 
+    'p2-award': 'MOE Scholars', 'p2-title': 'Green Last-Mile: DHL Taiwan', 'p1-award': 'NSTC Grant', 'p1-title': 'Adaptive Signal Compensation',
     'p0-award': 'Social Proposal', 'p0-title': 'TSMC Dreamer Program', 'p0-team': 'Team: Youth Go (HsinYu, Kweijen, Yihsien)',
     'p0-desc1': 'Proposed "Tainan Cycling Loop" to build a 30-min bicycle accessibility circle.',
     'p0-desc2': 'Used data insights to argue for motorcycle replacement alternatives. Demonstrates cross-domain integration of safety and sustainability.',
@@ -221,7 +218,7 @@ const textData = {
   zh: {
     'nav-home': '首頁', 'nav-proj': '研究專案', 'nav-comp': '競賽經歷', 'nav-more': '更多', 'nav-intern': '實習經驗', 'nav-exch': '文化交流', 'nav-cert': '專業證照', 'nav-club': '社團志工',
     'pg-title': '學術研究與 <em>研究計畫</em>', 'pg-sub': '運用交通專業背景，找出系統性缺口並建立解決方案。',
-    'p2-award': '教育部學海計畫', 'p2-title': 'DHL 臺灣配送轉型研究', 'p1-award': '國科會大專生計畫', 'p1-title': '弱勢行人自適應號誌研究', 
+    'p2-award': '教育部學海計畫', 'p2-title': 'DHL 臺灣配送轉型研究', 'p1-award': '國科會大專生計畫', 'p1-title': '弱勢行人自適應號誌研究',
     'p0-award': '社會創新策略提案', 'p0-title': 'TSMC 2025 台積電築夢計畫 | 府城鐵馬環', 'p0-team': '團隊：青行者 (溫心語、黃奎臻、王譯賢)',
     'p0-desc1': '針對台南短程通勤痛點，提出「府城鐵馬環」計畫。目標建構 30 分鐘自行車通達生活圈。',
     'p0-desc2': '透過數據分析論證機車替代方案的可行性。此計畫體現了團隊對交通安全與環境永續的跨域結合力。',
