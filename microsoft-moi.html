@@ -3,246 +3,273 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft MOI Portfolio | HsinYu Wen</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
+/* ── AZURE-STYLE DESIGN TOKENS ── */
 :root{
-  --ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;
-  --gold:#c8a45a;--gold-lt:#e8d4a0;
-  --ms:#0067b8;--ms-lt:#1890ff;--ms-bg:#051a30;
-  --white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;
-  --green:#22c55e;
-  --border:rgba(200,164,90,.18);--border-w:rgba(255,255,255,.07);
-  --radius:4px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
-  --ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)
+  --bg:       #050f1c;
+  --bg-2:     #071428;
+  --bg-3:     #0a1a35;
+  --bg-card:  #0c1f3d;
+  --ms:       #0078d4;
+  --ms-lt:    #50abf1;
+  --ms-dim:   rgba(0,120,212,.18);
+  --ms-bdr:   rgba(0,120,212,.35);
+  --white:    #ffffff;
+  --off:      #f0f4f8;
+  --muted:    #8ca8c8;
+  --muted-2:  #b8cfe4;
+  --rule:     rgba(255,255,255,.08);
+  --gold:     #c8a45a;  /* kept for nav logo only */
+  --green:    #00b294;
+  --amber:    #f7a600;
+  --red:      #e74c3c;
+  --radius:   6px;
+  --fd:       'Cormorant Garamond',Georgia,serif;
+  --fb:       'Outfit',system-ui,sans-serif;
+  --ease:     cubic-bezier(.4,0,.2,1);
+  --t:        .28s var(--ease);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
-a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
+body{font-family:var(--fb);background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:25px 0;transition:var(--t)}
-.nav.scrolled{padding:15px 0;background:rgba(13,21,32,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--white);z-index:1001;letter-spacing:.02em}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0;height:56px;background:rgba(5,15,28,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--rule);transition:var(--t)}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.nav-logo{font-family:var(--fd);font-size:1.45rem;font-weight:600;color:var(--white);letter-spacing:-.01em;white-space:nowrap}
 .nav-logo span{color:var(--gold)}
-.menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;z-index:1001}
-.nav-links-wrap{display:flex;align-items:center;gap:35px}
-.nav-links{display:flex;align-items:center;list-style:none;gap:5px}
-.nav-links a,.drop-btn{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:8px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb)}
-.nav-links a:hover,.nav-links a.active,.nav-drop:hover .drop-btn{color:var(--white)}
-.nav-links a.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:1px;background:var(--ms-lt)}
+.menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.3rem;cursor:pointer;z-index:1001;padding:6px}
+.nav-center{display:flex;align-items:center;list-style:none;gap:2px}
+.nav-center a,.drop-btn{font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55);padding:6px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb);border-radius:4px}
+.nav-center a:hover,.drop-btn:hover{color:var(--white);background:rgba(255,255,255,.05)}
+.nav-center a.active{color:var(--white)}
+.nav-center a.active::after{content:'';position:absolute;bottom:-1px;left:12px;right:12px;height:2px;background:var(--ms)}
 .nav-drop{position:relative}
-.drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:8px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t)}
+.drop-menu{position:absolute;top:calc(100% + 8px);right:0;background:#0d1f3a;border:1px solid var(--rule);border-radius:var(--radius);padding:6px;min-width:170px;opacity:0;visibility:hidden;transform:translateY(8px);transition:all var(--t);box-shadow:0 8px 32px rgba(0,0,0,.4)}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;padding:10px 15px;color:rgba(255,255,255,.5);border-radius:2px}
-.drop-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
-.nav-right{display:flex;align-items:center;gap:25px}
-.lang-switch{display:flex;align-items:center;gap:8px;font-size:.7rem;color:rgba(255,255,255,.4);font-weight:500}
-.lang-btn{background:none;border:none;cursor:pointer;color:inherit;font-family:var(--fb);transition:var(--t)}
+.drop-menu a{display:block;font-size:.68rem;padding:9px 14px;color:rgba(255,255,255,.55);border-radius:4px;transition:var(--t)}
+.drop-menu a:hover{background:rgba(0,120,212,.12);color:var(--white)}
+.nav-right{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.lang-switch{display:flex;align-items:center;gap:6px;font-size:.68rem;color:rgba(255,255,255,.35);font-weight:500}
+.lang-btn{background:none;border:none;cursor:pointer;color:inherit;font-family:var(--fb);transition:var(--t);padding:2px 4px;border-radius:3px}
 .lang-btn.active{color:var(--white)}
-.nav-cv{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:7px 18px;border-radius:var(--radius);transition:var(--t)}
-.nav-cv:hover{background:var(--gold);color:var(--ink)}
+.nav-cv{font-size:.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(0,120,212,.6);color:var(--ms-lt);padding:6px 16px;border-radius:var(--radius);transition:var(--t);white-space:nowrap}
+.nav-cv:hover{background:var(--ms);color:var(--white);border-color:var(--ms)}
 
-/* HERO */
-.hero{padding:130px 0 56px;border-bottom:1px solid var(--border);position:relative;z-index:1}
-.hero-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;flex-direction:column;gap:16px}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--ms-bg);border:1px solid var(--ms);border-radius:20px;padding:5px 16px;font-size:.7rem;color:var(--ms-lt);font-weight:600;letter-spacing:.1em;text-transform:uppercase;width:fit-content}
-.hero-badge .dot{width:6px;height:6px;background:var(--ms-lt);border-radius:50%;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
-.hero h1{font-family:var(--fd);font-size:clamp(2.4rem,4.5vw,4.8rem);font-weight:700;line-height:1.06}
-.hero h1 em{font-style:italic;color:var(--gold);font-weight:400}
-.hero-desc{font-size:.92rem;color:var(--muted);max-width:600px;font-weight:300;line-height:1.85}
-.hero-meta{display:flex;gap:10px;flex-wrap:wrap}
-.hero-pill{font-size:.68rem;padding:3px 12px;border-radius:20px;border:1px solid var(--border);color:var(--muted-2);font-weight:400}
+/* ── HERO ── */
+.hero{padding:110px 0 64px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 40%,rgba(0,120,212,.12) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1280px;margin:0 auto;padding:0 32px;position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,120,212,.15);border:1px solid rgba(0,120,212,.4);border-radius:20px;padding:5px 14px;font-size:.68rem;color:var(--ms-lt);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:20px}
+.hero-badge .dot{width:6px;height:6px;background:var(--ms-lt);border-radius:50%;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.6)}}
+.hero h1{font-family:var(--fd);font-size:clamp(2.8rem,5.5vw,5.6rem);font-weight:600;line-height:1.04;letter-spacing:-.02em;margin-bottom:18px}
+.hero h1 em{font-style:italic;color:var(--ms-lt);font-weight:400}
+.hero-sub{font-size:.95rem;color:var(--muted-2);max-width:580px;font-weight:300;line-height:1.8;margin-bottom:28px}
+.hero-pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{font-size:.65rem;padding:4px 12px;border-radius:20px;border:1px solid rgba(0,120,212,.3);color:var(--ms-lt);background:rgba(0,120,212,.08);font-weight:400;letter-spacing:.03em}
 
-/* TAB BAR */
-.tab-bar{position:sticky;top:58px;z-index:90;background:rgba(13,21,32,.96);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
-.tab-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none}
+/* ── TAB BAR ── */
+.tab-bar{background:var(--bg-2);border-bottom:1px solid var(--rule);position:sticky;top:56px;z-index:90}
+.tab-inner{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;align-items:center;overflow-x:auto;scrollbar-width:none;gap:0}
 .tab-inner::-webkit-scrollbar{display:none}
-.tab-btn{flex-shrink:0;font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:16px 20px;border:none;background:none;cursor:pointer;font-family:var(--fb);position:relative;transition:color var(--t);white-space:nowrap}
-.tab-btn::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:2px;background:var(--ms-lt);transform:scaleX(0);transition:transform var(--t)}
-.tab-btn:hover{color:rgba(255,255,255,.8)}
+.tab-btn{flex-shrink:0;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);padding:14px 18px;border:none;background:none;cursor:pointer;font-family:var(--fb);position:relative;transition:color var(--t);white-space:nowrap}
+.tab-btn::after{content:'';position:absolute;bottom:0;left:18px;right:18px;height:2px;background:var(--ms);transform:scaleX(0);transition:transform var(--t)}
+.tab-btn:hover{color:rgba(255,255,255,.75)}
 .tab-btn.active{color:var(--white)}
 .tab-btn.active::after{transform:scaleX(1)}
-.tcnt{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;font-size:.55rem;font-weight:600;margin-left:6px;background:rgba(24,144,255,.15);color:var(--ms-lt);border:1px solid rgba(24,144,255,.3)}
-.tcnt.tg{background:rgba(200,164,90,.12);color:var(--gold);border-color:rgba(200,164,90,.3)}
-.tcnt.tm{background:rgba(255,255,255,.06);color:var(--muted);border-color:rgba(255,255,255,.12)}
-.tcnt.tgr{background:rgba(34,197,94,.1);color:var(--green);border-color:rgba(34,197,94,.3)}
+.tbadge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 4px;border-radius:9px;font-size:.52rem;font-weight:700;margin-left:6px}
+.tbadge-blue{background:rgba(0,120,212,.2);color:var(--ms-lt);border:1px solid rgba(0,120,212,.3)}
+.tbadge-green{background:rgba(0,178,148,.15);color:var(--green);border:1px solid rgba(0,178,148,.3)}
+.tbadge-amber{background:rgba(247,166,0,.12);color:var(--amber);border:1px solid rgba(247,166,0,.3)}
+.tbadge-gray{background:rgba(255,255,255,.06);color:var(--muted);border:1px solid rgba(255,255,255,.12)}
 
-/* MAIN */
-.main-wrap{max-width:1120px;margin:0 auto;padding:44px 32px}
+/* ── MAIN ── */
+.main{max-width:1280px;margin:0 auto;padding:44px 32px 80px}
 .tab-panel{display:none}
 .tab-panel.active{display:block}
 
-/* CARD GRID */
-.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:900px){.card-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.card-grid{grid-template-columns:1fr}}
+/* ── CARD GRID ── */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.grid{grid-template-columns:1fr}}
 
-/* PROJECT CARD */
-.proj-card{background:var(--ink-2);border:1px solid rgba(255,255,255,.07);border-radius:8px;overflow:hidden;cursor:pointer;transition:border-color var(--t),transform var(--t);display:flex;flex-direction:column;position:relative}
-.proj-card:hover{border-color:var(--ms);transform:translateY(-4px)}
-.proj-card.featured{grid-column:1/-1;flex-direction:row}
-@media(max-width:680px){.proj-card.featured{flex-direction:column}}
-.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity var(--t)}
-.proj-card:hover::before,.proj-card.featured::before{opacity:1}
-.proj-card.acc-blue::before{background:var(--ms)}
-.proj-card.acc-gold::before{background:var(--gold)}
-.proj-card.acc-green::before{background:var(--green)}
+/* ── PROJECT CARD ── */
+.pcard{background:var(--bg-card);border:1px solid rgba(255,255,255,.07);border-radius:10px;overflow:hidden;cursor:pointer;transition:border-color var(--t),transform var(--t),box-shadow var(--t);display:flex;flex-direction:column;position:relative}
+.pcard:hover{border-color:rgba(0,120,212,.5);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,120,212,.12)}
+.pcard.featured{grid-column:1/-1;flex-direction:row}
+@media(max-width:680px){.pcard.featured{flex-direction:column}}
+
+/* top accent bar */
+.pcard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity var(--t)}
+.pcard:hover::before,.pcard.featured::before{opacity:1}
+.pcard.ac-blue::before{background:var(--ms)}
+.pcard.ac-green::before{background:var(--green)}
+.pcard.ac-amber::before{background:var(--amber)}
 
 /* CARD VISUAL */
-.card-vis{position:relative;overflow:hidden;background:var(--ink-3);height:190px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.proj-card.featured .card-vis{width:270px;height:auto}
-@media(max-width:680px){.proj-card.featured .card-vis{width:100%;height:180px}}
-.vis-num{font-family:var(--fd);font-size:7rem;font-weight:700;color:rgba(255,255,255,.035);line-height:1;position:absolute;bottom:-8px;right:10px;pointer-events:none}
-.vis-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;padding:20px;width:100%}
-.vis-icon{width:50px;height:50px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.35rem}
-.vis-lbl{font-size:.7rem;color:var(--muted);text-align:center;line-height:1.5}
+.cvis{position:relative;overflow:hidden;background:var(--bg-3);height:200px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pcard.featured .cvis{width:280px;height:auto}
+@media(max-width:680px){.pcard.featured .cvis{width:100%;height:180px}}
+.cvis-ghost{font-family:var(--fd);font-size:8rem;font-weight:700;color:rgba(0,120,212,.06);line-height:1;position:absolute;bottom:-12px;right:8px;pointer-events:none;user-select:none}
+.cvis-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:10px;padding:24px;width:100%}
+.cvis-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:1px solid rgba(0,120,212,.35);background:rgba(0,120,212,.12)}
+.cvis-icon.amber{border-color:rgba(247,166,0,.3);background:rgba(247,166,0,.08)}
+.cvis-lbl{font-size:.7rem;color:var(--muted);text-align:center;line-height:1.5;max-width:180px}
 
 /* LI MOCKUP */
-.li-mock{width:88%;background:#111827;border-radius:8px;padding:13px;border:1px solid #1f2937}
+.li-mock{width:90%;background:#05101f;border-radius:8px;padding:13px;border:1px solid rgba(255,255,255,.08)}
 .li-mock-hd{display:flex;align-items:center;gap:8px;margin-bottom:8px}
-.li-mock-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--ms),var(--gold));flex-shrink:0}
+.li-mock-av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--ms),#0d47a1);flex-shrink:0}
 .li-mock-nm{font-size:.67rem;font-weight:500;color:#e2e8f0}
-.li-mock-sb{font-size:.57rem;color:#6b7280}
-.li-mock-bd{font-size:.64rem;color:#9ca3af;line-height:1.5;margin-bottom:8px}
+.li-mock-sb{font-size:.57rem;color:#4a6080}
+.li-mock-bd{font-size:.64rem;color:#6a8caa;line-height:1.5;margin-bottom:8px}
 .li-mock-sl{display:flex;gap:4px;margin-bottom:7px}
-.li-mock-s{height:38px;border-radius:3px;flex:1;background:var(--ms-bg);border:1px solid var(--ms);display:flex;align-items:center;justify-content:center;font-size:.5rem;color:var(--ms-lt);font-weight:500}
-.li-mock-st{display:flex;gap:9px;padding-top:7px;border-top:1px solid #1f2937}
+.li-mock-s{height:38px;border-radius:3px;flex:1;background:rgba(0,120,212,.15);border:1px solid rgba(0,120,212,.3);display:flex;align-items:center;justify-content:center;font-size:.5rem;color:var(--ms-lt);font-weight:500}
+.li-mock-st{display:flex;gap:9px;padding-top:7px;border-top:1px solid rgba(255,255,255,.06)}
 .li-mock-n{font-size:.54rem}
 
 /* CARD BODY */
-.card-body{padding:20px 22px;display:flex;flex-direction:column;flex:1}
-.card-cats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}
-.cat{font-size:.58rem;padding:2px 8px;border-radius:20px;font-weight:500;letter-spacing:.04em}
-.cat-blue{background:rgba(0,103,184,.18);color:var(--ms-lt);border:1px solid rgba(0,103,184,.35)}
-.cat-gold{background:rgba(200,164,90,.1);color:var(--gold);border:1px solid rgba(200,164,90,.28)}
-.cat-green{background:rgba(34,197,94,.08);color:var(--green);border:1px solid rgba(34,197,94,.25)}
-.cat-gray{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid rgba(255,255,255,.1)}
-.card-h{font-family:var(--fd);font-size:1.18rem;font-weight:600;line-height:1.25;margin-bottom:6px}
-.card-h em{font-style:italic;color:var(--gold);font-weight:400}
-.card-p{font-size:.77rem;color:var(--muted);line-height:1.68;flex:1;font-weight:300;margin-bottom:12px}
-.card-ft{display:flex;align-items:center;justify-content:space-between;padding-top:11px;border-top:1px solid rgba(255,255,255,.05);margin-top:auto}
-.card-st{font-size:.64rem;display:flex;align-items:center;gap:5px}
-.sdot{width:5px;height:5px;border-radius:50%}
+.cbody{padding:22px 24px;display:flex;flex-direction:column;flex:1}
+.ccats{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.ccat{font-size:.57rem;padding:2px 9px;border-radius:20px;font-weight:500;letter-spacing:.04em}
+.ccat-blue{background:rgba(0,120,212,.14);color:var(--ms-lt);border:1px solid rgba(0,120,212,.3)}
+.ccat-green{background:rgba(0,178,148,.1);color:var(--green);border:1px solid rgba(0,178,148,.25)}
+.ccat-amber{background:rgba(247,166,0,.1);color:var(--amber);border:1px solid rgba(247,166,0,.25)}
+.ccat-gray{background:rgba(255,255,255,.05);color:var(--muted);border:1px solid rgba(255,255,255,.1)}
+.ch{font-family:var(--fd);font-size:1.22rem;font-weight:600;line-height:1.22;margin-bottom:7px;color:var(--white)}
+.ch em{font-style:italic;color:var(--ms-lt);font-weight:400}
+.cp{font-size:.78rem;color:var(--muted);line-height:1.7;flex:1;font-weight:300;margin-bottom:14px}
+.cft{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid rgba(255,255,255,.05);margin-top:auto;gap:8px}
+.cst{font-size:.64rem;display:flex;align-items:center;gap:5px;flex-shrink:0}
+.sdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 .sdot-live{background:var(--green)}
-.sdot-wip{background:var(--gold);animation:pulse 2s infinite}
+.sdot-wip{background:var(--amber);animation:blink 2s infinite}
 .sdot-plan{background:var(--muted)}
-.card-cta{font-size:.64rem;color:var(--ms-lt);display:flex;align-items:center;gap:4px;transition:gap var(--t)}
-.card-cta:hover{gap:8px}
-.card-cta-dis{font-size:.64rem;color:var(--muted);opacity:.35}
+.ccta{font-size:.64rem;color:var(--ms-lt);display:inline-flex;align-items:center;gap:4px;transition:gap var(--t);flex-shrink:0}
+.ccta:hover{gap:8px}
+.ccta-dis{font-size:.64rem;color:var(--muted);opacity:.35}
 
-/* PANEL (right drawer) */
-.p-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+/* ── RIGHT PANEL ── */
+.p-overlay{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:500;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
 .p-overlay.open{opacity:1;visibility:visible}
-.p-drawer{position:fixed;top:0;right:0;bottom:0;width:min(680px,96vw);background:var(--ink-2);z-index:501;transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;border-left:1px solid rgba(255,255,255,.08)}
+.p-drawer{position:fixed;top:0;right:0;bottom:0;width:min(700px,96vw);background:var(--bg-2);z-index:501;transform:translateX(105%);transition:transform .4s var(--ease);display:flex;flex-direction:column;border-left:1px solid rgba(0,120,212,.2);box-shadow:-20px 0 60px rgba(0,0,0,.5)}
 .p-drawer.open{transform:translateX(0)}
-.p-head{padding:20px 24px 15px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-shrink:0}
-.p-title{font-family:var(--fd);font-size:1.45rem;font-weight:600;line-height:1.2}
-.p-title em{font-style:italic;color:var(--gold);font-weight:400}
-.p-close{background:none;border:1px solid rgba(255,255,255,.12);color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--t)}
-.p-close:hover{border-color:rgba(255,255,255,.35);color:var(--white)}
-.p-tabs{display:flex;padding:0 24px;border-bottom:1px solid rgba(255,255,255,.06);flex-shrink:0}
-.p-tab{font-size:.67rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);padding:12px 14px;border:none;background:none;cursor:pointer;font-family:var(--fb);position:relative;transition:color var(--t)}
-.p-tab::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:2px;background:var(--ms-lt);transform:scaleX(0);transition:transform var(--t)}
-.p-tab.active{color:var(--white)}
-.p-tab.active::after{transform:scaleX(1)}
-.p-body{flex:1;overflow-y:auto;padding:24px}
-.p-sec{display:none}
-.p-sec.active{display:block}
 
-/* PANEL CONTENT ATOMS */
-.i-label{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ms-lt);margin-bottom:8px}
-.i-text{font-size:.81rem;color:var(--muted-2);line-height:1.75;font-weight:300;margin-bottom:14px}
-.metric-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0}
-.metric{background:var(--ink-3);border:1px solid rgba(255,255,255,.06);border-radius:6px;padding:12px 10px;text-align:center}
-.m-num{font-family:var(--fd);font-size:1.55rem;font-weight:700;line-height:1;margin-bottom:4px}
-.m-lbl{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
-.layer{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:11px 13px;margin-bottom:8px}
-.l-label{font-size:.57rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:5px}
-.l-text{font-size:.74rem;color:var(--muted-2);line-height:1.62;font-weight:300}
-.l-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
-.lchip{font-size:.58rem;padding:2px 8px;border-radius:10px}
-.ext-link{font-size:.7rem;padding:7px 14px;border-radius:4px;border:1px solid var(--ms);color:var(--ms-lt);display:inline-flex;align-items:center;gap:6px;transition:var(--t);text-decoration:none;margin-right:8px;margin-top:8px}
-.ext-link:hover{background:var(--ms);color:var(--white)}
-.ext-link.gold{border-color:rgba(200,164,90,.4);color:var(--gold)}
-.ext-link.gold:hover{background:var(--gold);color:var(--ink)}
-.str-item{display:flex;gap:12px;margin-bottom:14px}
-.str-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0;margin-top:2px}
-.str-title{font-size:.8rem;font-weight:500;color:var(--white);margin-bottom:3px}
-.str-text{font-size:.74rem;color:var(--muted);line-height:1.65;font-weight:300}
-.pdf-frame{width:100%;height:510px;border:none;border-radius:6px;background:var(--ink-3)}
+.p-head{padding:20px 24px 16px;border-bottom:1px solid var(--rule);display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-shrink:0;background:var(--bg-3)}
+.p-title{font-family:var(--fd);font-size:1.5rem;font-weight:600;line-height:1.18;color:var(--white)}
+.p-title em{font-style:italic;color:var(--ms-lt);font-weight:400}
+.p-close{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);color:var(--muted);width:32px;height:32px;border-radius:4px;cursor:pointer;font-size:.85rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:var(--t)}
+.p-close:hover{border-color:rgba(255,255,255,.3);color:var(--white)}
 
-/* STRATEGY PANEL */
-.li-sw{background:var(--ink-2);border:1px solid rgba(255,255,255,.07);border-radius:8px;padding:22px 26px;display:flex;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-top:28px}
-.li-icon{width:42px;height:42px;background:#0a66c2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--white);font-weight:700;font-family:Georgia,serif;flex-shrink:0}
-.li-sb{flex:1;min-width:200px}
-.li-st{font-size:.93rem;font-weight:500;margin-bottom:5px}
-.li-sd{font-size:.77rem;color:var(--muted);line-height:1.65;margin-bottom:13px;font-weight:300}
+.p-tabs{display:flex;padding:0 24px;border-bottom:1px solid var(--rule);flex-shrink:0;background:var(--bg-3)}
+.ptab{font-size:.64rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.4);padding:12px 12px;border:none;background:none;cursor:pointer;font-family:var(--fb);position:relative;transition:color var(--t)}
+.ptab::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:2px;background:var(--ms);transform:scaleX(0);transition:transform var(--t)}
+.ptab.active{color:var(--white)}
+.ptab.active::after{transform:scaleX(1)}
+
+.p-body{flex:1;overflow-y:auto;padding:24px 24px 40px;scrollbar-width:thin;scrollbar-color:rgba(0,120,212,.3) transparent}
+.psec{display:none}
+.psec.active{display:block}
+
+/* Panel atoms */
+.ilabel{font-size:.58rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ms-lt);margin-bottom:8px;display:block}
+.itext{font-size:.81rem;color:var(--muted-2);line-height:1.78;font-weight:300;margin-bottom:16px}
+.mrow{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 20px}
+.mcard{background:var(--bg-3);border:1px solid rgba(0,120,212,.15);border-radius:8px;padding:14px 10px;text-align:center}
+.mnum{font-family:var(--fd);font-size:1.7rem;font-weight:700;line-height:1;margin-bottom:4px}
+.mlbl{font-size:.56rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+
+.layer{background:rgba(0,120,212,.06);border:1px solid rgba(0,120,212,.15);border-radius:6px;padding:13px 15px;margin-bottom:10px;border-left:3px solid var(--ms)}
+.layer.green{background:rgba(0,178,148,.05);border-color:rgba(0,178,148,.15);border-left-color:var(--green)}
+.layer.amber{background:rgba(247,166,0,.05);border-color:rgba(247,166,0,.15);border-left-color:var(--amber)}
+.llabel{font-size:.57rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;display:block}
+.ltext{font-size:.75rem;color:var(--muted-2);line-height:1.65;font-weight:300}
+.lchips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.lchip{font-size:.58rem;padding:2px 9px;border-radius:10px;border:1px solid rgba(0,178,148,.25);background:rgba(0,178,148,.07);color:var(--green)}
+
+.elink{font-size:.7rem;padding:7px 14px;border-radius:var(--radius);border:1px solid rgba(0,120,212,.45);color:var(--ms-lt);display:inline-flex;align-items:center;gap:6px;transition:var(--t);text-decoration:none;margin-right:8px;margin-top:10px}
+.elink:hover{background:var(--ms);color:var(--white);border-color:var(--ms)}
+
+.sitem{display:flex;gap:12px;margin-bottom:14px;align-items:flex-start}
+.snum{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:700;flex-shrink:0}
+.stitle{font-size:.8rem;font-weight:500;color:var(--white);margin-bottom:3px}
+.stext{font-size:.74rem;color:var(--muted);line-height:1.65;font-weight:300}
+
+.pdf-frame{width:100%;height:520px;border:none;border-radius:6px;background:var(--bg-3)}
+
+/* Strategy tab */
+.notebox{background:rgba(0,120,212,.07);border:1px solid rgba(0,120,212,.25);border-left:3px solid var(--ms-lt);border-radius:6px;padding:16px 18px;font-size:.8rem;color:#8ec8f5;line-height:1.75;margin-bottom:22px}
+.notebox strong{color:var(--ms-lt)}
+.li-sw{background:var(--bg-3);border:1px solid var(--rule);border-radius:8px;padding:20px 24px;display:flex;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-top:24px}
+.li-ico{width:40px;height:40px;background:#0a66c2;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:var(--white);font-weight:700;font-family:Georgia,serif;flex-shrink:0}
+.li-sbody{flex:1;min-width:200px}
+.li-st{font-size:.9rem;font-weight:500;margin-bottom:5px}
+.li-sd{font-size:.76rem;color:var(--muted);line-height:1.65;margin-bottom:12px;font-weight:300}
 .li-chips{display:flex;flex-wrap:wrap;gap:6px}
-.li-chip{background:var(--ink-3);border:1px solid rgba(255,255,255,.07);border-radius:5px;padding:6px 12px;font-size:.67rem;color:var(--muted);display:flex;align-items:center;gap:6px;text-decoration:none;transition:border-color var(--t)}
-.li-chip:hover{border-color:#0a66c2;color:var(--white)}
-.cdot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.lichip{background:var(--bg-2);border:1px solid var(--rule);border-radius:5px;padding:6px 12px;font-size:.66rem;color:var(--muted);display:flex;align-items:center;gap:6px;text-decoration:none;transition:border-color var(--t)}
+.lichip:hover{border-color:rgba(0,120,212,.5);color:var(--white)}
+.cdot2{width:6px;height:6px;border-radius:50%;flex-shrink:0}
 
 /* FOOTER */
-footer{border-top:1px solid var(--border);padding:36px 0;position:relative;z-index:1;background:var(--ink)}
-.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-.foot-copy{font-size:.7rem;color:var(--muted);letter-spacing:.05em}
-.foot-links{display:flex;gap:22px}
-.foot-links a{font-size:.7rem;color:var(--muted);transition:var(--t);letter-spacing:.05em;text-transform:uppercase}
+footer{border-top:1px solid var(--rule);padding:32px 0;background:var(--bg)}
+.foot-inner{max-width:1280px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+.foot-copy{font-size:.68rem;color:var(--muted);letter-spacing:.04em}
+.foot-links{display:flex;gap:20px}
+.foot-links a{font-size:.68rem;color:var(--muted);transition:var(--t);letter-spacing:.04em;text-transform:uppercase}
 .foot-links a:hover{color:var(--white)}
 
 /* MOBILE */
 @media(max-width:960px){
   .nav-inner{padding:0 20px}
-  .menu-toggle{display:block}
-  .nav-links-wrap{position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);flex-direction:column;justify-content:center;padding:40px;transition:.4s;box-shadow:-10px 0 30px rgba(0,0,0,.5)}
-  .nav-links-wrap.active{right:0}
-  .nav-links{flex-direction:column;align-items:flex-start;width:100%;gap:14px}
+  .menu-toggle{display:flex}
+  .nav-center-wrap{position:fixed;top:0;right:-100%;width:82%;height:100vh;background:#071428;flex-direction:column;justify-content:center;padding:40px;transition:.4s;box-shadow:-10px 0 40px rgba(0,0,0,.6);display:flex;align-items:flex-start}
+  .nav-center-wrap.open{right:0}
+  .nav-center{flex-direction:column;align-items:flex-start;width:100%;gap:4px}
   .nav-right{flex-direction:column;align-items:flex-start;margin-top:28px;width:100%}
-  .main-wrap{padding:32px 20px}
+  .main{padding:32px 20px 60px}
   .tab-inner{padding:0 20px}
   .foot-inner{flex-direction:column;text-align:center}
-  .metric-row{grid-template-columns:repeat(3,1fr)}
+  .mrow{grid-template-columns:repeat(3,1fr)}
 }
 
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
 .reveal.v{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav class="nav" id="mainnav">
+<nav class="nav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-    <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-    <div class="nav-links-wrap" id="navLinks">
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="competitions.html">Competitions</a></li>
-        <li><a href="microsoft-moi.html" class="active">Microsoft MOI</a></li>
+    <button class="menu-toggle" id="menuBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <div class="nav-center-wrap" id="navWrap">
+      <ul class="nav-center">
+        <li><a href="index.html" data-i18n="nav-home">Home</a></li>
+        <li><a href="projects.html" data-i18n="nav-projects">Projects</a></li>
+        <li><a href="competitions.html" data-i18n="nav-competitions">Competitions</a></li>
+        <li><a href="microsoft-moi.html" class="active" data-i18n="nav-moi">Microsoft MOI</a></li>
         <li class="nav-drop">
-          <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:.5rem"></i></button>
+          <button class="drop-btn" data-i18n="nav-more">More <i class="fas fa-chevron-down" style="font-size:.45rem"></i></button>
           <div class="drop-menu">
-            <a href="experience.html">Internship</a>
-            <a href="exchange.html">Cultural Exchange</a>
-            <a href="certificates.html">Certificates</a>
-            <a href="clubs.html">Clubs &amp; Volunteer</a>
+            <a href="experience.html" data-i18n="nav-internship">Internship</a>
+            <a href="exchange.html" data-i18n="nav-exchange">Cultural Exchange</a>
+            <a href="certificates.html" data-i18n="nav-certs">Certificates</a>
+            <a href="clubs.html" data-i18n="nav-clubs">Clubs &amp; Volunteer</a>
           </div>
         </li>
       </ul>
       <div class="nav-right">
         <div class="lang-switch">
-          <button class="lang-btn active" id="btn-en" onclick="switchLang('en')">EN</button>
+          <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
           <span>|</span>
-          <button class="lang-btn" id="btn-zh" onclick="switchLang('zh')">中</button>
+          <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
         </div>
-        <a href="resume.pdf" download class="nav-cv">CV</a>
+        <a href="resume.pdf" download class="nav-cv" data-i18n="nav-cv">CV</a>
       </div>
     </div>
   </div>
@@ -251,15 +278,15 @@ footer{border-top:1px solid var(--border);padding:36px 0;position:relative;z-ind
 <!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
-    <div class="hero-badge reveal"><span class="dot"></span><span id="badge-text">Microsoft Taiwan · Future Ready Talent Program 2026</span></div>
-    <h1 class="reveal">MOI Application<br><em id="hero-em">Portfolio</em></h1>
-    <p class="hero-desc reveal" id="hero-desc">A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?</p>
-    <div class="hero-meta reveal">
-      <span class="hero-pill" id="pill-1">Content Creation</span>
-      <span class="hero-pill" id="pill-2">Social Media Marketing</span>
-      <span class="hero-pill" id="pill-3">Data-Driven Campaigns</span>
-      <span class="hero-pill" id="pill-4">AI Aptitude</span>
-      <span class="hero-pill" id="pill-5">B2B Strategy</span>
+    <div class="hero-badge reveal"><span class="dot"></span><span data-i18n="badge">Microsoft Taiwan · Future Ready Talent Program 2026</span></div>
+    <h1 class="reveal" data-i18n="h1">MOI Application<br><em data-i18n="h1-em">Portfolio</em></h1>
+    <p class="hero-sub reveal" data-i18n="hero-sub">A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?</p>
+    <div class="hero-pills reveal">
+      <span class="pill" data-i18n="p1">Content Creation</span>
+      <span class="pill" data-i18n="p2">Social Media Marketing</span>
+      <span class="pill" data-i18n="p3">Data-Driven Campaigns</span>
+      <span class="pill" data-i18n="p4">AI Aptitude</span>
+      <span class="pill" data-i18n="p5">B2B Strategy</span>
     </div>
   </div>
 </header>
@@ -267,38 +294,38 @@ footer{border-top:1px solid var(--border);padding:36px 0;position:relative;z-ind
 <!-- TAB BAR -->
 <div class="tab-bar">
   <div class="tab-inner">
-    <button class="tab-btn active" onclick="switchTab('all',this)">All Work <span class="tcnt">5</span></button>
-    <button class="tab-btn" onclick="switchTab('live',this)">Live <span class="tcnt tgr">1</span></button>
-    <button class="tab-btn" onclick="switchTab('wip',this)">In Progress <span class="tcnt tg">2</span></button>
-    <button class="tab-btn" onclick="switchTab('planned',this)">Planned <span class="tcnt tm">2</span></button>
-    <button class="tab-btn" onclick="switchTab('strategy',this)">Strategy</button>
+    <button class="tab-btn active" onclick="switchTab('all',this)"><span data-i18n="tab-all">All Work</span> <span class="tbadge tbadge-blue">5</span></button>
+    <button class="tab-btn" onclick="switchTab('live',this)"><span data-i18n="tab-live">Live</span> <span class="tbadge tbadge-green">1</span></button>
+    <button class="tab-btn" onclick="switchTab('wip',this)"><span data-i18n="tab-wip">In Progress</span> <span class="tbadge tbadge-amber">2</span></button>
+    <button class="tab-btn" onclick="switchTab('planned',this)"><span data-i18n="tab-planned">Planned</span> <span class="tbadge tbadge-gray">2</span></button>
+    <button class="tab-btn" onclick="switchTab('strategy',this)"><span data-i18n="tab-strategy">Strategy</span></button>
   </div>
 </div>
 
 <!-- MAIN -->
-<main class="main-wrap">
-  <div id="panel-all" class="tab-panel active"><div class="card-grid" id="grid-all"></div></div>
-  <div id="panel-live" class="tab-panel"><div class="card-grid" id="grid-live"></div></div>
-  <div id="panel-wip" class="tab-panel"><div class="card-grid" id="grid-wip"></div></div>
-  <div id="panel-planned" class="tab-panel"><div class="card-grid" id="grid-planned"></div></div>
+<main class="main">
+  <div id="panel-all" class="tab-panel active"><div class="grid" id="grid-all"></div></div>
+  <div id="panel-live" class="tab-panel"><div class="grid" id="grid-live"></div></div>
+  <div id="panel-wip" class="tab-panel"><div class="grid" id="grid-wip"></div></div>
+  <div id="panel-planned" class="tab-panel"><div class="grid" id="grid-planned"></div></div>
 
   <div id="panel-strategy" class="tab-panel">
-    <div style="max-width:740px">
-      <p style="font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ms-lt);margin-bottom:8px;font-weight:600">Distribution Strategy</p>
-      <h2 style="font-family:var(--fd);font-size:clamp(1.5rem,2.5vw,2.3rem);font-weight:700;margin-bottom:10px">Why <em style="font-style:italic;color:var(--gold)">LinkedIn-First</em></h2>
-      <p style="font-size:.82rem;color:var(--muted);line-height:1.8;font-weight:300;margin-bottom:24px">Each piece is published on LinkedIn before archiving here — real engagement data, not mock numbers.</p>
-      <div style="background:rgba(0,103,184,.07);border:1px solid rgba(0,103,184,.28);border-left:3px solid var(--ms-lt);border-radius:6px;padding:16px 20px;font-size:.8rem;color:#a0c4e8;line-height:1.75;margin-bottom:24px"><strong style="color:var(--ms-lt)">How this works:</strong> I publish each campaign piece on LinkedIn as a carousel, photo, or short video first. Once posted, I link the real post here — impressions, comments, and reactions are genuine third-party validation. This page is a living archive, updated as each piece ships.</div>
+    <div style="max-width:720px">
+      <p class="ilabel" style="font-size:.68rem;margin-bottom:6px" data-i18n="str-label">Distribution Strategy</p>
+      <h2 style="font-family:var(--fd);font-size:clamp(1.6rem,2.8vw,2.4rem);font-weight:600;margin-bottom:10px;letter-spacing:-.01em"><span data-i18n="str-h">Why</span> <em style="font-style:italic;color:var(--ms-lt)" data-i18n="str-h-em">LinkedIn-First</em></h2>
+      <p style="font-size:.82rem;color:var(--muted-2);line-height:1.8;font-weight:300;margin-bottom:24px" data-i18n="str-desc">Each piece is published on LinkedIn before archiving here — real engagement data, not mock numbers.</p>
+      <div class="notebox"><strong data-i18n="str-note-strong">How this works:</strong> <span data-i18n="str-note-body">I publish each campaign piece on LinkedIn first. Once posted, I link the real post here — so the impressions, comments, and reactions you see are genuine third-party data. This page is a living archive.</span></div>
       <div class="li-sw">
-        <div class="li-icon">in</div>
-        <div class="li-sb">
-          <div class="li-st">Published Posts</div>
-          <div class="li-sd">Posts go live on LinkedIn first. Links open original posts — engagement numbers are real.</div>
+        <div class="li-ico">in</div>
+        <div class="li-sbody">
+          <div class="li-st" data-i18n="str-posts">Published Posts</div>
+          <div class="li-sd" data-i18n="str-posts-desc">Posts go live on LinkedIn first. Links open original posts — engagement numbers are real.</div>
           <div class="li-chips">
-            <a class="li-chip" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><span class="cdot" style="background:var(--green)"></span>Tachiz · LinkedIn Algorithm 2025 · 242 impressions</a>
-            <div class="li-chip"><span class="cdot" style="background:var(--gold)"></span>Copilot for Students · Coming Soon</div>
-            <div class="li-chip"><span class="cdot" style="background:var(--gold)"></span>Azure Explained · Coming Soon</div>
-            <div class="li-chip"><span class="cdot" style="background:var(--muted)"></span>AI Copywriting Demo · Planned</div>
-            <div class="li-chip"><span class="cdot" style="background:var(--muted)"></span>Holiday Campaign · Planned</div>
+            <a class="lichip" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><span class="cdot2" style="background:var(--green)"></span><span data-i18n="chip-tachiz">Tachiz · LinkedIn Algorithm 2025 · 242 impressions</span></a>
+            <div class="lichip"><span class="cdot2" style="background:var(--amber)"></span><span data-i18n="chip-copilot">Copilot for Students · Coming Soon</span></div>
+            <div class="lichip"><span class="cdot2" style="background:var(--amber)"></span><span data-i18n="chip-azure">Azure Explained · Coming Soon</span></div>
+            <div class="lichip"><span class="cdot2" style="background:var(--muted)"></span><span data-i18n="chip-ai">AI Copywriting Demo · Planned</span></div>
+            <div class="lichip"><span class="cdot2" style="background:var(--muted)"></span><span data-i18n="chip-holiday">Holiday Campaign · Planned</span></div>
           </div>
         </div>
       </div>
@@ -306,121 +333,214 @@ footer{border-top:1px solid var(--border);padding:36px 0;position:relative;z-ind
   </div>
 </main>
 
-<!-- RIGHT PANEL DRAWER -->
+<!-- PANEL -->
 <div class="p-overlay" id="overlay" onclick="closePanel()"></div>
 <div class="p-drawer" id="drawer">
   <div class="p-head">
-    <div class="p-title" id="d-title">Project</div>
+    <div class="p-title" id="d-title"></div>
     <button class="p-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
   </div>
   <div class="p-tabs">
-    <button class="p-tab active" onclick="switchPTab('ov',this)">Overview</button>
-    <button class="p-tab" id="ptab-pdf" onclick="switchPTab('pdf',this)">PDF / Deliverable</button>
-    <button class="p-tab" onclick="switchPTab('str',this)">Strategy</button>
+    <button class="ptab active" onclick="switchPTab('ov',this)" data-i18n="ptab-ov">Overview</button>
+    <button class="ptab" onclick="switchPTab('pdf',this)" data-i18n="ptab-pdf">PDF / Deliverable</button>
+    <button class="ptab" onclick="switchPTab('str',this)" data-i18n="ptab-str">Strategy</button>
   </div>
   <div class="p-body">
-    <div class="p-sec active" id="ps-ov"></div>
-    <div class="p-sec" id="ps-pdf"></div>
-    <div class="p-sec" id="ps-str"></div>
+    <div class="psec active" id="ps-ov"></div>
+    <div class="psec" id="ps-pdf"></div>
+    <div class="psec" id="ps-str"></div>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div class="foot-inner">
-    <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
+    <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
     <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" id="foot-email">Email</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" id="foot-linkedin">LinkedIn</a>
-      <a href="index.html" id="foot-home">Home</a>
+      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
+      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-li">LinkedIn</a>
+      <a href="index.html" data-i18n="foot-home">Home</a>
     </div>
   </div>
 </footer>
 
 <script>
+/* ── I18N ── */
+const STRINGS={
+  en:{
+    'nav-home':'Home','nav-projects':'Projects','nav-competitions':'Competitions','nav-moi':'Microsoft MOI','nav-more':'More','nav-internship':'Internship','nav-exchange':'Cultural Exchange','nav-certs':'Certificates','nav-clubs':'Clubs & Volunteer','nav-cv':'CV',
+    'badge':'Microsoft Taiwan · Future Ready Talent Program 2026',
+    'h1':'MOI Application','h1-em':'Portfolio',
+    'hero-sub':"A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?",
+    'p1':'Content Creation','p2':'Social Media Marketing','p3':'Data-Driven Campaigns','p4':'AI Aptitude','p5':'B2B Strategy',
+    'tab-all':'All Work','tab-live':'Live','tab-wip':'In Progress','tab-planned':'Planned','tab-strategy':'Strategy',
+    'str-label':'Distribution Strategy','str-h':'Why','str-h-em':'LinkedIn-First',
+    'str-desc':'Each piece is published on LinkedIn before archiving here — real engagement data, not mock numbers.',
+    'str-note-strong':'How this works:','str-note-body':'I publish each campaign piece on LinkedIn first. Once posted, I link the real post here — so the impressions, comments, and reactions you see are genuine third-party data. This page is a living archive.',
+    'str-posts':'Published Posts','str-posts-desc':'Posts go live on LinkedIn first. Links open original posts — engagement numbers are real.',
+    'chip-tachiz':'Tachiz · LinkedIn Algorithm 2025 · 242 impressions','chip-copilot':'Copilot for Students · Coming Soon','chip-azure':'Azure Explained · Coming Soon','chip-ai':'AI Copywriting Demo · Planned','chip-holiday':'Holiday Campaign · Planned',
+    'ptab-ov':'Overview','ptab-pdf':'PDF / Deliverable','ptab-str':'Strategy',
+    'foot-copy':'© 2026 HsinYu Wen — NCKU TCM Science','foot-email':'Email','foot-li':'LinkedIn','foot-home':'Home'
+  },
+  zh:{
+    'nav-home':'首頁','nav-projects':'專案','nav-competitions':'競賽','nav-moi':'微軟 MOI','nav-more':'更多','nav-internship':'實習','nav-exchange':'文化交流','nav-certs':'證書','nav-clubs':'社團與志工','nav-cv':'履歷',
+    'badge':'微軟台灣 · 未來就緒人才計畫 2026',
+    'h1':'MOI 應徵','h1-em':'作品集',
+    'hero-sub':'專為微軟台灣行銷助理（MOI）職位打造的原創行銷作品、產品研究與創意提案精選。',
+    'p1':'內容創作','p2':'社群行銷','p3':'數據驅動企劃','p4':'AI 應用能力','p5':'B2B 策略',
+    'tab-all':'全部作品','tab-live':'已上線','tab-wip':'進行中','tab-planned':'規劃中','tab-strategy':'發布策略',
+    'str-label':'發布策略','str-h':'為什麼選擇','str-h-em':'LinkedIn 優先',
+    'str-desc':'每件作品先在 LinkedIn 發布，再收錄於此頁面，確保你看到的互動數據是真實的。',
+    'str-note-strong':'運作方式：','str-note-body':'每一件作品以輪播圖、圖片或短影音形式在 LinkedIn 首發。發布後，我將原始貼文連結嵌入此頁——你看到的按讚數、留言數均為真實第三方數據，而非自填數字。這是一個持續更新的活檔案庫。',
+    'str-posts':'已發布貼文','str-posts-desc':'作品在 LinkedIn 首發，數據自然累積。以下連結直接開啟原始貼文，互動數均為真實數據。',
+    'chip-tachiz':'Tachiz · LinkedIn 演算法 2025 · 242 次曝光','chip-copilot':'學生版 Copilot · 即將推出','chip-azure':'Azure 視覺化說明 · 即將推出','chip-ai':'AI 文案示範 · 規劃中','chip-holiday':'節慶行銷活動 · 規劃中',
+    'ptab-ov':'專案概覽','ptab-pdf':'PDF / 成品','ptab-str':'策略分析',
+    'foot-copy':'© 2026 溫心語 — 國立成功大學 交通管理科學系','foot-email':'電子郵件','foot-li':'領英','foot-home':'首頁'
+  }
+};
+
+let LANG='en';
+function setLang(l){
+  LANG=l;
+  localStorage.setItem('lang',l);
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
+  document.documentElement.lang=l==='zh'?'zh-Hant':'en';
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k=el.getAttribute('data-i18n');
+    if(STRINGS[l][k]!==undefined) el.innerHTML=STRINGS[l][k];
+  });
+  /* re-render cards with new lang */
+  ['all','live','wip','planned'].forEach(g=>{
+    const el=document.getElementById('grid-'+g);
+    if(el)el.innerHTML='';
+  });
+  populateGrids();
+}
+
+/* ── PROJECT DATA ── */
 const PROJECTS=[
-  {id:'tachiz',status:'live',acc:'acc-green',featured:true,num:'01',
-   cats:[{l:'100% Adopted by Team',c:'cat-green'},{l:'LinkedIn Carousel · 12 slides',c:'cat-blue'},{l:'B2B Content Strategy',c:'cat-blue'},{l:'GitHub Tool System',c:'cat-gold'}],
-   title:'Tachiz × LinkedIn',em:'Full-Stack Campaign',
-   desc:'End-to-end B2B content strategy for Tachiz (Taiwan popping boba manufacturer, 393 flavors, Red Dot Award). A 12-slide LinkedIn carousel, a 22-page strategy proposal adopted by a team of 8, and a GitHub-hosted content production system.',
-   stlabel:'Live · All 3 layers deployed',stcolor:'var(--green)',sdot:'sdot-live',
-   cta:'View LinkedIn Post →',ctaHref:'https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY',
-   pdfUrl:'tachiz_blue.pdf',pdfLabel:'LinkedIn Algorithm 2025 Carousel (12 slides)',hasPdf:true,
-   ov:`<div style="margin-bottom:16px"><div class="i-label">Project Overview</div><div class="i-text">A full-stack B2B content campaign for Tachiz — a Taiwan-based popping boba manufacturer with 393 flavors, FSSC 22000, and a Red Dot Design Award. Three distinct deliverables: a published LinkedIn carousel, a strategic proposal fully adopted by the team of 8, and a live GitHub content production system.</div></div>
-   <div class="metric-row"><div class="metric"><div class="m-num" style="color:var(--green)">242</div><div class="m-lbl">Impressions · Day 5</div></div><div class="metric"><div class="m-num" style="color:var(--gold)">28</div><div class="m-lbl">Followers · Organic</div></div><div class="metric"><div class="m-num" style="color:var(--ms-lt)">8</div><div class="m-lbl">Team · Adopted</div></div></div>
-   <div class="i-label" style="margin-top:8px">Three Deliverables</div>
-   <div class="layer" style="border-left:2px solid var(--gold)"><div class="l-label" style="color:var(--gold)">① LinkedIn Carousel · Published</div><div class="l-text">12-slide PDF: <em style="color:var(--white)">"The LinkedIn Algorithm in 2025 — What Actually Moves the Needle."</em> Covers organic reach decline (−50%), 3 algorithm gates, engagement signal hierarchy, format rankings, timing, cheat sheet. Based on 3 datasets: van der Blom 2025, Agorapulse, Postiv AI (2M+ posts).</div><div class="l-chips"><span class="lchip" style="background:rgba(34,197,94,.07);color:var(--green);border:1px solid rgba(34,197,94,.2)">242 impressions · 5 days</span><span class="lchip" style="background:rgba(34,197,94,.05);color:var(--green);border:1px solid rgba(34,197,94,.15)">Organic · 28 followers</span></div></div>
-   <div class="layer" style="border-left:2px solid var(--ms-lt)"><div class="l-label" style="color:var(--ms-lt)">② Strategic Proposal · Fully Adopted</div><div class="l-text">22-page B2B LinkedIn strategy report identifying 5 blind spots: wrong format (video −200% reach), links in post body (−30%), no CEO personal brand, no technical depth, weak English copy. Proposed 60-30-10 framework, PDF-first strategy, employee advocacy model, competitor gap analysis vs. Possmei / Bossen / Puly. <strong style="color:var(--white)">Fully adopted as team's primary marketing solution.</strong></div></div>
-   <div class="layer" style="border-left:2px solid var(--green)"><div class="l-label" style="color:var(--green)">③ GitHub Tool System · Live</div><div class="l-text">Web-based system so any Tachiz employee can generate algorithm-compliant LinkedIn carousels and caption copy without design expertise. Outputs: carousel templates, LinkedIn post copy with hook anatomy (≤210 chars), hashtag strategy, 90-min checklist.</div><div class="l-chips"><a href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank" style="font-size:.62rem;color:var(--ms-lt);text-decoration:none">adelawen.github.io/tachiz.linkedin.strategy →</a></div></div>
-   <a class="ext-link" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn Post</a>
-   <a class="ext-link" href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub System</a>`,
-   str:`<div style="margin-bottom:16px"><div class="i-label">Why This Approach</div><div class="i-text">Tachiz's core problem: competitors like Possmei and Sunnysyrup dominate LinkedIn with generic product content. Tachiz's real differentiator — molecular gastronomy tech, 393 custom flavors, FSSC 22000 — was invisible. Strategy shifts positioning from "food manufacturer" to "Asia's top food-tech R&D lab."</div></div>
-   <div class="i-label">60-30-10 Content Framework</div>
-   <div class="str-item"><div class="str-num" style="background:var(--ms)">60</div><div><div class="str-title">Industry Value Content</div><div class="str-text">EU sugar-reduction trends, Halal + FSSC 22000 compliance, ERP supply chain transparency, technical PDFs (The Science of Popping Boba).</div></div></div>
-   <div class="str-item"><div class="str-num" style="background:var(--gold)">30</div><div><div class="str-title">Thought Leadership / Personal IP</div><div class="str-text">CEO/CTO sharing R&D failures and breakthroughs. Algorithm rewards authentic failure stories 5–7× over success posts.</div></div></div>
-   <div class="str-item"><div class="str-num" style="background:var(--muted)">10</div><div><div class="str-title">Promotional / Exhibition</div><div class="str-text">Trade show announcements only. External links always in first comment — never post body (−30% reach penalty).</div></div></div>
-   <div style="margin-top:16px"><div class="i-label">Competitor Positioning Gap</div><div class="i-text">Possmei & Sunnysyrup: near-zero LinkedIn presence. Bossen/Lollicup: North America B2C TikTok tactics (ineffective on LinkedIn). Puly: product display only, no R&D narrative. <strong style="color:var(--white)">Blue ocean:</strong> Tachiz owns "high-tech food science lab" — the only competitor in this niche on LinkedIn.</div></div>`
+  {id:'tachiz',status:'live',acc:'ac-green',featured:true,num:'01',
+   cats:{en:[{l:'100% Adopted by Team',c:'ccat-green'},{l:'LinkedIn Carousel · 12 slides',c:'ccat-blue'},{l:'B2B Content Strategy',c:'ccat-blue'},{l:'GitHub Tool System',c:'ccat-amber'}],
+         zh:[{l:'提案 100% 被採用',c:'ccat-green'},{l:'LinkedIn 輪播圖 · 12 張',c:'ccat-blue'},{l:'B2B 內容策略',c:'ccat-blue'},{l:'GitHub 工具系統',c:'ccat-amber'}]},
+   title:{en:'Tachiz × LinkedIn',zh:'Tachiz × LinkedIn'},
+   em:{en:'Full-Stack Campaign',zh:'全端行銷方案'},
+   desc:{en:'End-to-end B2B content strategy for Tachiz (Taiwan popping boba manufacturer, 393 flavors, Red Dot Award). A 12-slide LinkedIn carousel, 22-page strategy proposal adopted by a team of 8, and a GitHub-hosted content production system.',
+         zh:'為泰吉軒（台灣爆爆珠製造商，393種口味、紅點設計獎）打造的完整 B2B 內容策略。包含：12 張 LinkedIn 輪播圖、22 頁策略提案（團隊 8 人全數採用）、以及 GitHub 內容生產系統。'},
+   stlabel:{en:'Live · All 3 layers deployed',zh:'已上線 · 3 個層次全數部署'},stcolor:'var(--green)',sdot:'sdot-live',
+   cta:{en:'View LinkedIn Post →',zh:'查看 LinkedIn 貼文 →'},
+   ctaHref:'https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY',
+   pdfUrl:'tachiz_blue.pdf',hasPdf:true,
+   pdfLabel:{en:'LinkedIn Algorithm 2025 Carousel (12 slides)',zh:'LinkedIn 演算法 2025 輪播圖（12 張）'},
+   ov:{
+     en:`<span class="ilabel">Project Overview</span><p class="itext">A full-stack B2B content campaign for Tachiz — a Taiwan-based popping boba manufacturer with 393 flavors, FSSC 22000, and a Red Dot Design Award. Three distinct deliverables: a published LinkedIn carousel, a strategic proposal fully adopted by the team of 8, and a live GitHub content production system.</p>
+     <div class="mrow"><div class="mcard"><div class="mnum" style="color:var(--green)">242</div><div class="mlbl">Impressions · Day 5</div></div><div class="mcard"><div class="mnum" style="color:var(--amber)">28</div><div class="mlbl">Followers · Organic</div></div><div class="mcard"><div class="mnum" style="color:var(--ms-lt)">8</div><div class="mlbl">Team · Adopted</div></div></div>
+     <span class="ilabel">Three Deliverables</span>
+     <div class="layer amber"><span class="llabel" style="color:var(--amber)">① LinkedIn Carousel · Published</span><p class="ltext">12-slide PDF: <em style="color:var(--white)">"The LinkedIn Algorithm in 2025."</em> Covers organic reach decline (−50%), 3 algorithm gates, engagement hierarchy (saves = 5× a like), format rankings, timing strategy, and a full cheat sheet. Based on: van der Blom 2025, Agorapulse, Postiv AI (2M+ posts).</p><div class="lchips"><span class="lchip">242 impressions · 5 days</span><span class="lchip">Organic · 28 followers</span></div></div>
+     <div class="layer"><span class="llabel" style="color:var(--ms-lt)">② Strategic Proposal · Fully Adopted</span><p class="ltext">22-page B2B LinkedIn strategy identifying 5 blind spots: wrong format (video −200% reach), links in post body (−30%), no CEO personal brand, no technical depth, weak EN copy. Proposed 60-30-10 framework, PDF-first strategy, employee advocacy, competitor analysis vs. Possmei / Bossen / Puly. <strong style="color:var(--white)">Fully adopted as team's primary marketing solution.</strong></p></div>
+     <div class="layer green"><span class="llabel" style="color:var(--green)">③ GitHub Tool System · Live</span><p class="ltext">Web system so any Tachiz employee can generate algorithm-compliant carousels and captions without design expertise. Outputs: carousel templates, LinkedIn copy with hook anatomy (≤210 chars), hashtag strategy, 90-min checklist.</p><div class="lchips"><a href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank" style="font-size:.62rem;color:var(--ms-lt);text-decoration:none">adelawen.github.io/tachiz.linkedin.strategy →</a></div></div>
+     <a class="elink" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn Post</a>
+     <a class="elink" href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub System</a>`,
+     zh:`<span class="ilabel">專案概覽</span><p class="itext">為泰吉軒打造的完整 B2B 內容行銷方案。泰吉軒為台灣爆爆珠製造商，擁有 393 種口味、FSSC 22000 認證與紅點設計獎。三大交付成果：已發布的 LinkedIn 輪播圖、被 8 人團隊全數採用的策略提案、以及上線中的 GitHub 內容生產系統。</p>
+     <div class="mrow"><div class="mcard"><div class="mnum" style="color:var(--green)">242</div><div class="mlbl">曝光次數 · 第 5 天</div></div><div class="mcard"><div class="mnum" style="color:var(--amber)">28</div><div class="mlbl">粉絲 · 自然觸及</div></div><div class="mcard"><div class="mnum" style="color:var(--ms-lt)">8</div><div class="mlbl">團隊人數 · 全數採用</div></div></div>
+     <span class="ilabel">三大交付成果</span>
+     <div class="layer amber"><span class="llabel" style="color:var(--amber)">① LinkedIn 輪播圖 · 已發布</span><p class="ltext">12 張 PDF 輪播圖：<em style="color:var(--white)">「2025 LinkedIn 演算法完全攻略」</em>。涵蓋：自然觸及率下降（−50%）、三關演算法機制、互動信號層級（儲存 = 5 倍按讚）、格式排名、發文時機策略，以及完整速查表。資料來源：van der Blom 2025、Agorapulse、Postiv AI（200 萬篇貼文分析）。</p><div class="lchips"><span class="lchip">242 次曝光 · 5 天</span><span class="lchip">自然觸及 · 28 粉絲</span></div></div>
+     <div class="layer"><span class="llabel" style="color:var(--ms-lt)">② 策略提案 · 被全數採用</span><p class="ltext">22 頁 B2B LinkedIn 策略報告，識別 5 大盲點：格式錯誤（影片觸及率 −200%）、貼文內放連結（−30%）、創辦人無個人品牌、缺乏技術深度、英文不夠 B2B 級別。提出 60-30-10 內容框架、PDF 輪播圖優先策略、員工倡導模型、競爭對手分析（Possmei / Bossen / Puly）。<strong style="color:var(--white)">提案被 8 人團隊全數採用為主要行銷解方。</strong></p></div>
+     <div class="layer green"><span class="llabel" style="color:var(--green)">③ GitHub 工具系統 · 上線中</span><p class="ltext">讓泰吉軒任一員工都能在不具設計能力的情況下，產出符合演算法規格的 LinkedIn 輪播圖與貼文文案。輸出項目：輪播圖模板、符合 Hook 結構（≤210 字元）的 LinkedIn 文案、Hashtag 策略、90 分鐘發文後行動清單。</p><div class="lchips"><a href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank" style="font-size:.62rem;color:var(--ms-lt);text-decoration:none">adelawen.github.io/tachiz.linkedin.strategy →</a></div></div>
+     <a class="elink" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn 貼文</a>
+     <a class="elink" href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub 系統</a>`
+   },
+   str:{
+     en:`<span class="ilabel">Why This Approach</span><p class="itext">Tachiz's problem: competitors like Possmei dominate LinkedIn with generic product content. Tachiz's real differentiator — molecular gastronomy, 393 custom flavors, FSSC 22000 — was invisible. Strategy shifts positioning from "food manufacturer" to "Asia's top food-tech R&D lab."</p>
+     <span class="ilabel">60-30-10 Content Framework</span>
+     <div class="sitem"><div class="snum" style="background:var(--ms)">60</div><div><div class="stitle">Industry Value Content</div><div class="stext">EU sugar-reduction trends, Halal + FSSC 22000 compliance, ERP supply chain, technical PDFs (The Science of Popping Boba).</div></div></div>
+     <div class="sitem"><div class="snum" style="background:var(--amber)">30</div><div><div class="stitle">Thought Leadership / CEO Personal IP</div><div class="stext">CEO/CTO sharing R&D failures and breakthroughs. Algorithm rewards authentic failure stories 5–7× over success posts.</div></div></div>
+     <div class="sitem"><div class="snum" style="background:var(--muted)">10</div><div><div class="stitle">Promotional / Exhibition Only</div><div class="stext">Trade show announcements only. All external links in first comment — never post body (−30% reach penalty).</div></div></div>
+     <span class="ilabel" style="margin-top:8px;display:block">Competitor Blue Ocean</span><p class="itext">Possmei & Sunnysyrup: near-zero LinkedIn presence. Bossen: B2C TikTok tactics — ineffective for B2B. Puly: product display only, no R&D narrative. <strong style="color:var(--white)">Tachiz can own "high-tech food science lab" — the only competitor in this niche on LinkedIn.</strong></p>`,
+     zh:`<span class="ilabel">策略核心邏輯</span><p class="itext">泰吉軒的核心問題：競爭對手（如伯思美）以大量產品目錄內容佔據 LinkedIn 版面，但泰吉軒真正的差異化優勢——分子料理技術、393 種客製口味、FSSC 22000——卻完全不可見。策略目標：將品牌定位從「食品製造商」升格為「亞洲頂尖食品科技研發實驗室」。</p>
+     <span class="ilabel">60-30-10 內容框架</span>
+     <div class="sitem"><div class="snum" style="background:var(--ms)">60</div><div><div class="stitle">產業價值型內容</div><div class="stext">歐洲減糖趨勢、Halal + FSSC 22000 合規重要性、ERP 供應鏈透明度、技術型 PDF（《爆爆珠的科學》）。</div></div></div>
+     <div class="sitem"><div class="snum" style="background:var(--amber)">30</div><div><div class="stitle">思想領導力 / CEO 個人品牌</div><div class="stext">由創辦人或 CTO 分享研發失敗與突破經歷。演算法對「真實失敗經驗」的獎勵力道比成功案例高出 5–7 倍。</div></div></div>
+     <div class="sitem"><div class="snum" style="background:var(--muted)">10</div><div><div class="stitle">促銷 / 展會資訊</div><div class="stext">僅保留 10% 用於參展資訊發布。所有外部連結必須放在「第一則留言」，絕不放在貼文本體（否則觸及率 −30%）。</div></div></div>
+     <span class="ilabel" style="margin-top:8px;display:block">競爭對手藍海分析</span><p class="itext">伯思美、太陽糖漿：幾乎不經營 LinkedIn。Bossen：主打 B2C TikTok 戰術，在 B2B 平台上完全無效。Puly：產品展示型，無研發敘事。<strong style="color:var(--white)">泰吉軒可以獨佔「高階食品科技實驗室」定位——目前這個賽道在 LinkedIn 上毫無競爭。</strong></p>`
+   }
   },
   {id:'copilot',status:'wip',acc:'',featured:false,num:'02',
-   cats:[{l:'Instagram Carousel',c:'cat-blue'},{l:'Microsoft Copilot',c:'cat-blue'},{l:'Copywriting',c:'cat-gray'}],
-   title:'Copilot for',em:'Students',
-   desc:'Social-first explainer translating Microsoft Copilot\'s top features into student-friendly language. IG carousel targeting Gen Z — proving the ability to localize complex tech into shareable, accessible content.',
-   stlabel:'In Progress',stcolor:'var(--gold)',sdot:'sdot-wip',cta:null,pdfUrl:null,hasPdf:false,
-   ov:`<div class="i-label">Concept</div><div class="i-text">「大學生必備的 3 個 Copilot 神技」— A Gen Z-targeted IG carousel explaining Microsoft Copilot's top 3 use cases for students. The brief: if a 19-year-old sees this in their feed, do they stop scrolling? In production — carousel design and caption copy in progress. Will publish to LinkedIn on completion.</div>`,
-   str:`<div class="i-label">Platform Rationale</div><div class="i-text">PDF carousels have ~6.6% avg engagement rate on LinkedIn — highest of all formats. For student-targeted content, Instagram-first design adapted to LinkedIn PDF format maximizes both platform fit and algorithm performance.</div>`
+   cats:{en:[{l:'Instagram Carousel',c:'ccat-blue'},{l:'Microsoft Copilot',c:'ccat-blue'},{l:'Copywriting',c:'ccat-gray'}],zh:[{l:'Instagram 輪播圖',c:'ccat-blue'},{l:'Microsoft Copilot',c:'ccat-blue'},{l:'文案撰寫',c:'ccat-gray'}]},
+   title:{en:'Copilot for',zh:'學生版'},em:{en:'Students',zh:'Copilot'},
+   desc:{en:'Social-first explainer translating Copilot\'s top features into student-friendly language. IG carousel targeting Gen Z — proving the ability to localize complex tech into shareable content.',zh:'將 Microsoft Copilot 的核心功能轉譯為學生友善語言的社群內容。以 IG 輪播圖形式針對 Gen Z 受眾，展現將複雜科技轉化為可分享內容的能力。'},
+   stlabel:{en:'In Progress',zh:'進行中'},stcolor:'var(--amber)',sdot:'sdot-wip',cta:null,hasPdf:false,
+   ov:{en:`<span class="ilabel">Concept</span><p class="itext">「大學生必備的 3 個 Copilot 神技」— A Gen Z-targeted IG carousel explaining Microsoft Copilot's top 3 use cases for students. The brief: if a 19-year-old sees this in their feed, do they stop scrolling? In production — will publish to LinkedIn on completion.</p>`,
+      zh:`<span class="ilabel">企劃概念</span><p class="itext">「大學生必備的 3 個 Copilot 神技」——針對 Gen Z 設計的 IG 輪播圖，將 Microsoft Copilot 最實用的 3 個學生場景視覺化呈現。設計核心問題：19 歲的用戶看到這張圖，會不會停下來看完？目前製作中，完成後將在 LinkedIn 首發。</p>`},
+   str:{en:`<span class="ilabel">Platform Rationale</span><p class="itext">PDF carousels have ~6.6% avg engagement rate on LinkedIn — highest of all formats. Instagram-first design adapted to LinkedIn PDF format maximizes platform fit and algorithm performance.</p>`,
+       zh:`<span class="ilabel">平台邏輯</span><p class="itext">PDF 輪播圖在 LinkedIn 上的平均互動率約 6.6%，為所有格式中最高。採用以 Instagram 為優先的視覺設計，再轉為 LinkedIn PDF 格式，同時最大化雙平台的演算法表現。</p>`}
   },
   {id:'azure',status:'wip',acc:'',featured:false,num:'03',
-   cats:[{l:'Azure',c:'cat-blue'},{l:'Infographic',c:'cat-blue'},{l:'Visual Design',c:'cat-gray'}],
-   title:'Azure in',em:'Plain Language',
-   desc:'Infographic explaining Azure to a non-technical audience in under 60 seconds. Pre-built answer to the MOI interview scenario: "How would you explain Azure to a client who\'s never heard of cloud computing?"',
-   stlabel:'In Progress',stcolor:'var(--gold)',sdot:'sdot-wip',cta:null,pdfUrl:null,hasPdf:false,
-   ov:`<div class="i-label">Concept</div><div class="i-text">A single-page visual explaining what Azure is, what it does, and why enterprises need it — without technical jargon. Target reader: a procurement director or marketing manager. Designed as a preemptive answer to a classic MOI interview question.</div>`,
-   str:`<div class="i-label">MOI Interview Alignment</div><div class="i-text">The classic MOI scenario: "Explain Azure in terms a non-technical stakeholder would understand." This deliverable is the pre-built answer — designed before the interview so it can be referenced live with confidence.</div>`
+   cats:{en:[{l:'Azure',c:'ccat-blue'},{l:'Infographic',c:'ccat-blue'},{l:'Visual Design',c:'ccat-gray'}],zh:[{l:'Azure',c:'ccat-blue'},{l:'資訊圖表',c:'ccat-blue'},{l:'視覺設計',c:'ccat-gray'}]},
+   title:{en:'Azure in',zh:'Azure'},em:{en:'Plain Language',zh:'白話文版本'},
+   desc:{en:'Infographic explaining Azure to a non-technical audience in under 60 seconds — pre-built answer to the classic MOI interview scenario.',zh:'在 60 秒內讓非技術背景的受眾理解 Azure 的資訊圖表——面試情境題的預備答案。'},
+   stlabel:{en:'In Progress',zh:'進行中'},stcolor:'var(--amber)',sdot:'sdot-wip',cta:null,hasPdf:false,
+   ov:{en:`<span class="ilabel">Concept</span><p class="itext">A single visual explaining what Azure is, what it does, and why enterprises need it — without technical jargon. Target reader: a procurement director or marketing manager who needs to understand why their company uses Azure. Pre-built answer to the MOI interview scenario.</p>`,
+      zh:`<span class="ilabel">企劃概念</span><p class="itext">一張視覺化說明圖，讓採購總監或行銷經理在不需要技術背景的情況下，理解 Azure 是什麼、能做什麼、為什麼企業需要它。這是為 MOI 面試情境題「請向非技術人員說明 Azure」所預先準備的具體答案。</p>`},
+   str:{en:`<span class="ilabel">MOI Interview Alignment</span><p class="itext">The classic MOI scenario: "Explain Azure in terms a non-technical stakeholder would understand." This deliverable is the pre-built answer — designed before the interview so it can be referenced live.</p>`,
+       zh:`<span class="ilabel">面試對應邏輯</span><p class="itext">MOI 面試的經典情境題：「請向不懂技術的利害關係人說明 Azure。」這份交付成果就是預先準備好的具體答案——在面試前設計完成，可以直接在面試中引用。</p>`}
   },
-  {id:'ai-copy',status:'planned',acc:'acc-gold',featured:false,num:'04',
-   cats:[{l:'AI Aptitude',c:'cat-gold'},{l:'Prompt Engineering',c:'cat-blue'},{l:'Copilot',c:'cat-gray'}],
-   title:'AI-Assisted',em:'Copywriting',
-   desc:'Live demonstration of Microsoft\'s GCES prompt framework (Goal, Context, Expectations, Source) to generate and refine marketing copy — showing how AI collaboration accelerates content workflows without replacing creative judgment.',
-   stlabel:'Planned',stcolor:'var(--muted)',sdot:'sdot-plan',cta:null,pdfUrl:null,hasPdf:false,
-   ov:`<div class="i-label">Concept</div><div class="i-text">A documented workflow: prompt input → AI output → human editing → final copy. Uses Microsoft's official GCES framework. The point is not that AI wrote it — the point is that I directed it. Demonstrates AI Aptitude, which Microsoft explicitly values in MOI candidates.</div>`,
-   str:`<div class="i-label">Why This Matters</div><div class="i-text">Microsoft explicitly values AI Aptitude for MOI. Showing how to use Copilot as a content accelerator — not a replacement — maps directly to what the role requires in 2026. This demo positions me as a candidate who already works the way Microsoft wants its team to work.</div>`
+  {id:'ai-copy',status:'planned',acc:'ac-amber',featured:false,num:'04',
+   cats:{en:[{l:'AI Aptitude',c:'ccat-amber'},{l:'Prompt Engineering',c:'ccat-blue'},{l:'Copilot',c:'ccat-gray'}],zh:[{l:'AI 應用能力',c:'ccat-amber'},{l:'提示詞工程',c:'ccat-blue'},{l:'Copilot',c:'ccat-gray'}]},
+   title:{en:'AI-Assisted',zh:'AI 協作'},em:{en:'Copywriting',zh:'文案生產流程'},
+   desc:{en:"Live demonstration of Microsoft's GCES prompt framework to generate and refine marketing copy — showing AI collaboration without replacing creative judgment.",zh:'使用微軟 GCES 提示詞框架生成並優化行銷文案的實戰示範——展現如何以 AI 協作加速內容產出，而非取代創意判斷。'},
+   stlabel:{en:'Planned',zh:'規劃中'},stcolor:'var(--muted)',sdot:'sdot-plan',cta:null,hasPdf:false,
+   ov:{en:`<span class="ilabel">Concept</span><p class="itext">A documented workflow: prompt input → AI output → human editing → final copy. Uses Microsoft's GCES framework (Goal, Context, Expectations, Source). The point is not that AI wrote it — the point is that I directed it.</p>`,
+      zh:`<span class="ilabel">企劃概念</span><p class="itext">完整文件化的工作流程：提示詞輸入 → AI 輸出 → 人工編輯 → 最終文案。使用微軟官方 GCES 框架（目標 Goal、背景 Context、期待 Expectations、來源 Source）。重點不是「AI 寫了什麼」，而是「我如何指揮 AI」。</p>`},
+   str:{en:`<span class="ilabel">Why This Matters</span><p class="itext">Microsoft explicitly values AI Aptitude for MOI. Showing how to use Copilot as a content accelerator maps directly to what the role requires in 2026.</p>`,
+       zh:`<span class="ilabel">與 MOI 職缺的對應</span><p class="itext">微軟在 MOI 職缺中明確要求 AI Aptitude。展現如何將 Copilot 作為內容加速器使用，直接對應 2026 年這個職位的核心要求。</p>`}
   },
-  {id:'holiday',status:'planned',acc:'acc-gold',featured:false,num:'05',
-   cats:[{l:'Social Media',c:'cat-gold'},{l:'Brand Design',c:'cat-blue'},{l:'Holiday Campaign',c:'cat-gray'}],
-   title:'Microsoft Taiwan',em:'Holiday Campaign',
-   desc:'Original social post designs for Microsoft Taiwan\'s seasonal campaigns — Mid-Autumn Festival and Lunar New Year — following Microsoft brand guidelines. Bilingual (EN/ZH) copy. Pre-built answer to the MOI interview scenario question.',
-   stlabel:'Planned',stcolor:'var(--muted)',sdot:'sdot-plan',cta:null,pdfUrl:null,hasPdf:false,
-   ov:`<div class="i-label">Concept</div><div class="i-text">MOI interviewers ask: "Design a Mid-Autumn Festival social post for Microsoft Taiwan." This deliverable is the pre-prepared answer — designed before the interview with full Microsoft brand compliance and bilingual copy (EN/ZH).</div>`,
-   str:`<div class="i-label">Bilingual Strategy</div><div class="i-text">Copywriting in both EN and ZH-Hant. EN targets international Microsoft Taiwan LinkedIn followers. ZH targets local Taiwanese audience on Instagram and Facebook. Demonstrates the bilingual content creation ability the MOI role requires.</div>`
+  {id:'holiday',status:'planned',acc:'ac-amber',featured:false,num:'05',
+   cats:{en:[{l:'Social Media',c:'ccat-amber'},{l:'Brand Design',c:'ccat-blue'},{l:'Holiday Campaign',c:'ccat-gray'}],zh:[{l:'社群媒體',c:'ccat-amber'},{l:'品牌設計',c:'ccat-blue'},{l:'節慶活動',c:'ccat-gray'}]},
+   title:{en:'Microsoft Taiwan',zh:'微軟台灣'},em:{en:'Holiday Campaign',zh:'節慶行銷活動'},
+   desc:{en:'Original social post designs for Microsoft Taiwan — Mid-Autumn Festival and Lunar New Year — following Microsoft brand guidelines. Bilingual (EN/ZH) copy.',zh:'依照微軟品牌規範，為微軟台灣設計原創節慶社群貼文——中秋節與農曆新年。包含中英雙語文案。'},
+   stlabel:{en:'Planned',zh:'規劃中'},stcolor:'var(--muted)',sdot:'sdot-plan',cta:null,hasPdf:false,
+   ov:{en:`<span class="ilabel">Concept</span><p class="itext">MOI interviewers are known to ask: "Design a Mid-Autumn Festival social post for Microsoft Taiwan." This deliverable is the pre-prepared answer — designed before the interview with full Microsoft brand compliance and bilingual copy.</p>`,
+      zh:`<span class="ilabel">企劃概念</span><p class="itext">MOI 面試官已知會詢問：「請為微軟台灣設計一則中秋節社群貼文。」這份交付成果就是預先準備好的答案——在面試前依照微軟品牌規範設計完成，並附有中英雙語文案。</p>`},
+   str:{en:`<span class="ilabel">Bilingual Strategy</span><p class="itext">EN copy targets international Microsoft Taiwan LinkedIn followers. ZH copy targets local Taiwanese audience on Instagram and Facebook. Demonstrates bilingual content creation ability the MOI role requires.</p>`,
+       zh:`<span class="ilabel">雙語策略</span><p class="itext">英文版針對微軟台灣 LinkedIn 上的國際關注者；中文版針對 Instagram 和 Facebook 上的台灣本地受眾。直接展現 MOI 職缺所要求的中英雙語內容創作能力。</p>`}
   }
 ];
 
+/* ── BUILD CARD ── */
 function buildCard(p){
-  const cats=p.cats.map(c=>`<span class="cat ${c.c}">${c.l}</span>`).join('');
-  const cta=p.cta?`<a class="card-cta" href="${p.ctaHref}" target="_blank" onclick="event.stopPropagation()">${p.cta}</a>`:`<span class="card-cta-dis">Coming Soon</span>`;
+  const L=LANG;
+  const cats=p.cats[L].map(c=>`<span class="ccat ${c.c}">${c.l}</span>`).join('');
+  const cta=p.cta?`<a class="ccta" href="${p.ctaHref}" target="_blank" onclick="event.stopPropagation()">${p.cta[L]}</a>`:`<span class="ccta-dis">${L==='en'?'Coming Soon':'即將推出'}</span>`;
   let vis='';
   if(p.featured){
-    vis=`<div class="li-mock"><div class="li-mock-hd"><div class="li-mock-av"></div><div><div class="li-mock-nm">HsinYu Wen</div><div class="li-mock-sb">NCKU · TCM Science · 28 followers</div></div></div><div class="li-mock-bd">THE LINKEDIN ALGORITHM IN 2025 — What actually moves the needle. Organic reach is down 50%… but quality content saw +12%. Here's the 12-slide breakdown. 🧵</div><div class="li-mock-sl"><div class="li-mock-s">Big Picture</div><div class="li-mock-s">3 Gates</div><div class="li-mock-s">Signals</div><div class="li-mock-s">+9 more</div></div><div class="li-mock-st"><span class="li-mock-n" style="color:var(--green)">👁 242</span><span class="li-mock-n">👍 3</span><span class="li-mock-n" style="color:var(--gold)">Day 5</span></div></div>`;
+    vis=`<div class="li-mock"><div class="li-mock-hd"><div class="li-mock-av"></div><div><div class="li-mock-nm">HsinYu Wen</div><div class="li-mock-sb">NCKU · TCM Science · 28 ${L==='en'?'followers':'粉絲'}</div></div></div><div class="li-mock-bd">${L==='en'?'THE LINKEDIN ALGORITHM IN 2025 — What actually moves the needle. Organic reach is down 50%… but quality content saw +12%. Here\'s the 12-slide breakdown. 🧵':'2025 LinkedIn 演算法攻略——真正有效的方法是什麼？自然觸及率下降 50%……但高品質內容的互動率逆勢 +12%。12 張投影片完整拆解。 🧵'}</div><div class="li-mock-sl"><div class="li-mock-s">${L==='en'?'Big Picture':'總覽'}</div><div class="li-mock-s">${L==='en'?'3 Gates':'3 關卡'}</div><div class="li-mock-s">${L==='en'?'Signals':'信號'}</div><div class="li-mock-s">+9</div></div><div class="li-mock-st"><span class="li-mock-n" style="color:var(--green)">👁 242</span><span class="li-mock-n">👍 3</span><span class="li-mock-n" style="color:var(--amber)">Day 5</span></div></div>`;
   } else {
     const icons={copilot:'🤖',azure:'☁️','ai-copy':'✦',holiday:'🎋'};
-    const labels={copilot:'「大學生必備的 3 個<br>Copilot 神技」<br>IG 輪播圖',azure:'Azure 給非技術人員的<br>視覺化資訊圖表','ai-copy':'Microsoft GCES<br>Prompt 實戰展示',holiday:'微軟節慶貼文<br>中秋 / 農曆新年'};
-    const isBg=p.status==='planned'?'background:rgba(200,164,90,.1);border:1px solid rgba(200,164,90,.3)':'background:rgba(0,103,184,.14);border:1px solid rgba(0,103,184,.35)';
-    vis=`<div class="vis-inner"><div class="vis-icon" style="${isBg}">${icons[p.id]}</div><div class="vis-lbl">${labels[p.id]}</div></div>`;
+    const lbls={
+      copilot:{en:'「3 Essential Copilot\nTricks for Students」\nIG Carousel',zh:'「大學生必備的\n3 個 Copilot 神技」\nIG 輪播圖'},
+      azure:{en:'Azure Explained\nfor Non-Technical\nAudiences',zh:'Azure 給非技術\n人員的視覺化\n資訊圖表'},
+      'ai-copy':{en:'Microsoft GCES\nPrompt Framework\nLive Demo',zh:'微軟 GCES\nPrompt 實戰\n展示'},
+      holiday:{en:'Microsoft Taiwan\nMid-Autumn &\nLunar New Year',zh:'微軟台灣\n中秋 / 農曆\n新年貼文'}
+    };
+    const isBg=p.status==='planned'?'border-color:rgba(247,166,0,.3);background:rgba(247,166,0,.08)':'';
+    vis=`<div class="cvis-inner"><div class="cvis-icon ${p.status==='planned'?'amber':''}" style="${isBg}">${icons[p.id]}</div><div class="cvis-lbl">${(lbls[p.id][L]||'').replace(/\n/g,'<br>')}</div></div>`;
   }
-  return`<div class="proj-card ${p.featured?'featured':''} ${p.acc}" data-id="${p.id}" onclick="openPanel('${p.id}')"><div class="card-vis"><div class="vis-num">${p.num}</div>${vis}</div><div class="card-body"><div class="card-cats">${cats}</div><h3 class="card-h">${p.title}<br><em>${p.em}</em></h3><p class="card-p">${p.desc}</p><div class="card-ft"><span class="card-st"><span class="sdot ${p.sdot}"></span><span style="color:${p.stcolor};font-size:.64rem">${p.stlabel}</span></span>${cta}</div></div></div>`;
+  return`<div class="pcard ${p.featured?'featured':''} ${p.acc}" onclick="openPanel('${p.id}')"><div class="cvis"><div class="cvis-ghost">${p.num}</div>${vis}</div><div class="cbody"><div class="ccats">${cats}</div><h3 class="ch">${p.title[L]}<br><em>${p.em[L]}</em></h3><p class="cp">${p.desc[L]}</p><div class="cft"><span class="cst"><span class="sdot ${p.sdot}"></span><span style="color:${p.stcolor};font-size:.64rem">${p.stlabel[L]}</span></span>${cta}</div></div></div>`;
 }
 
 function populateGrids(){
-  const grids={all:document.getElementById('grid-all'),live:document.getElementById('grid-live'),wip:document.getElementById('grid-wip'),planned:document.getElementById('grid-planned')};
+  const g={all:document.getElementById('grid-all'),live:document.getElementById('grid-live'),wip:document.getElementById('grid-wip'),planned:document.getElementById('grid-planned')};
   PROJECTS.forEach(p=>{
     const h=buildCard(p);
-    grids.all.insertAdjacentHTML('beforeend',h);
-    if(p.status==='live') grids.live.insertAdjacentHTML('beforeend',h);
-    if(p.status==='wip')  grids.wip.insertAdjacentHTML('beforeend',h);
-    if(p.status==='planned') grids.planned.insertAdjacentHTML('beforeend',h);
+    g.all.insertAdjacentHTML('beforeend',h);
+    if(p.status==='live')    g.live.insertAdjacentHTML('beforeend',h);
+    if(p.status==='wip')     g.wip.insertAdjacentHTML('beforeend',h);
+    if(p.status==='planned') g.planned.insertAdjacentHTML('beforeend',h);
   });
 }
 
+/* ── TABS ── */
 function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
@@ -428,53 +548,59 @@ function switchTab(name,btn){
   document.getElementById('panel-'+name).classList.add('active');
 }
 
+/* ── PANEL ── */
 function openPanel(id){
-  const p=PROJECTS.find(x=>x.id===id);
-  if(!p)return;
-  document.getElementById('d-title').innerHTML=`${p.title}<br><em>${p.em}</em>`;
-  document.getElementById('ps-ov').innerHTML=p.ov||'';
-  document.getElementById('ps-str').innerHTML=p.str||'';
-  const pdfSec=document.getElementById('ps-pdf');
+  const p=PROJECTS.find(x=>x.id===id);if(!p)return;
+  const L=LANG;
+  document.getElementById('d-title').innerHTML=`${p.title[L]}<br><em>${p.em[L]}</em>`;
+  document.getElementById('ps-ov').innerHTML=p.ov[L]||'';
+  document.getElementById('ps-str').innerHTML=p.str[L]||'';
+  const ps=document.getElementById('ps-pdf');
   if(p.hasPdf&&p.pdfUrl){
-    pdfSec.innerHTML=`<div style="margin-bottom:14px"><div class="i-label">Deliverable</div><div class="i-text">${p.pdfLabel}</div></div><iframe class="pdf-frame" src="${p.pdfUrl}" title="${p.pdfLabel}"></iframe><div style="margin-top:10px"><a class="ext-link" href="${p.pdfUrl}" target="_blank"><i class="fas fa-external-link-alt"></i> Open Full PDF</a></div>`;
+    ps.innerHTML=`<span class="ilabel">${L==='en'?'Deliverable':'交付成果'}</span><p class="itext" style="margin-bottom:14px">${p.pdfLabel[L]}</p><iframe class="pdf-frame" src="${p.pdfUrl}" title="${p.pdfLabel[L]}"></iframe><div style="margin-top:10px"><a class="elink" href="${p.pdfUrl}" target="_blank"><i class="fas fa-external-link-alt"></i> ${L==='en'?'Open Full PDF':'開啟完整 PDF'}</a></div>`;
   } else {
-    pdfSec.innerHTML=`<div class="i-label">Deliverable</div><div class="i-text" style="color:var(--muted)">PDF not yet available — this project is ${p.status==='wip'?'in progress':'planned'}. Will be added on completion.</div>`;
+    ps.innerHTML=`<span class="ilabel">${L==='en'?'Deliverable':'交付成果'}</span><p class="itext" style="color:var(--muted)">${L==='en'?`PDF not yet available — this project is ${p.status==='wip'?'in progress':'planned'}.`:`PDF 尚未提供——此專案${p.status==='wip'?'進行中':'規劃中'}，完成後將補充。`}</p>`;
   }
-  switchPTab('ov',document.querySelector('.p-tab'));
+  switchPTab('ov',document.querySelector('.ptab'));
   document.getElementById('overlay').classList.add('open');
   document.getElementById('drawer').classList.add('open');
   document.body.style.overflow='hidden';
 }
-
 function closePanel(){
   document.getElementById('overlay').classList.remove('open');
   document.getElementById('drawer').classList.remove('open');
   document.body.style.overflow='';
 }
-
 function switchPTab(name,btn){
-  document.querySelectorAll('.p-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.ptab').forEach(b=>b.classList.remove('active'));
   if(btn)btn.classList.add('active');
-  document.querySelectorAll('.p-sec').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.psec').forEach(s=>s.classList.remove('active'));
   const map={ov:'ps-ov',pdf:'ps-pdf',str:'ps-str'};
-  const el=document.getElementById(map[name]);
-  if(el)el.classList.add('active');
+  const el=document.getElementById(map[name]);if(el)el.classList.add('active');
 }
 
+/* ── NAV MOBILE ── */
 const menuBtn=document.getElementById('menuBtn');
-const navLinks=document.getElementById('navLinks');
-menuBtn.onclick=()=>{navLinks.classList.toggle('active');menuBtn.innerHTML=navLinks.classList.contains('active')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';};
-window.addEventListener('scroll',()=>document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40));
+const navWrap=document.getElementById('navWrap');
+menuBtn.onclick=()=>{
+  navWrap.classList.toggle('open');
+  menuBtn.innerHTML=navWrap.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
+};
+
+/* ── SCROLL + REVEAL ── */
+window.addEventListener('scroll',()=>{
+  document.querySelector('.nav').style.background=window.scrollY>20?'rgba(5,15,28,.98)':'rgba(5,15,28,.95)';
+});
 const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
 
-const L={
-  en:{'badge-text':'Microsoft Taiwan · Future Ready Talent Program 2026','hero-em':'Portfolio','hero-desc':"A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?",'pill-1':'Content Creation','pill-2':'Social Media Marketing','pill-3':'Data-Driven Campaigns','pill-4':'AI Aptitude','pill-5':'B2B Strategy','foot-copy':'© 2026 HsinYu Wen — NCKU TCM Science','foot-email':'Email','foot-linkedin':'LinkedIn','foot-home':'Home'},
-  zh:{'badge-text':'微軟台灣 · 未來就緒人才計畫 2026','hero-em':'作品集','hero-desc':'專為微軟台灣行銷助理（MOI）職位打造的原創行銷作品、產品研究與創意提案精選。','pill-1':'內容創作','pill-2':'社群行銷','pill-3':'數據驅動企劃','pill-4':'AI 應用能力','pill-5':'B2B 策略','foot-copy':'© 2026 溫心語 — 國立成功大學 交通管理科學系','foot-email':'電子郵件','foot-linkedin':'領英','foot-home':'首頁'}
-};
-function switchLang(l){localStorage.setItem('lang',l);document.getElementById('btn-en').classList.toggle('active',l==='en');document.getElementById('btn-zh').classList.toggle('active',l==='zh');Object.entries(L[l]).forEach(([id,v])=>{const el=document.getElementById(id);if(el)el.textContent=v});}
-document.addEventListener('DOMContentLoaded',()=>{populateGrids();switchLang(localStorage.getItem('lang')||'zh');});
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded',()=>{
+  const saved=localStorage.getItem('lang')||'en';
+  LANG=saved;
+  setLang(saved);
+});
 </script>
 </body>
 </html>
