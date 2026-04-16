@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Microsoft MOI Portfolio | HsinYu Wen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── MATCH EXISTING SITE TOKENS ── */
+    :root {
+      --bg:        #0d0d0d;
+      --surface:   #161616;
+      --surface2:  #1e1e1e;
+      --gold:      #c9a84c;
+      --gold-dim:  #8a6e30;
+      --ms-blue:   #0067b8;
+      --ms-blue-lt:#1890ff;
+      --ms-blue-bg:#051a30;
+      --white:     #f5f4f0;
+      --muted:     #888;
+      --rule:      #2a2a2a;
+      --radius:    10px;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--white);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV — copy exact pattern from existing pages ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13,13,13,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--white); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 80px 6vw 60px;
+      border-bottom: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      max-width: 860px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--ms-blue-bg);
+      border: 1px solid var(--ms-blue);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 12px;
+      color: var(--ms-blue-lt);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      width: fit-content;
+    }
+
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--ms-blue-lt);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: .4; transform: scale(.7); }
+    }
+
+    .hero h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(36px, 5vw, 54px);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--white);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .hero-meta span {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta span::before {
+      content: '';
+      display: inline-block;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-wrap {
+      padding: 64px 6vw;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ms-blue-lt);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(26px, 3.5vw, 38px);
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .section-title em { font-style: italic; color: var(--gold); }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 540px;
+      margin-bottom: 40px;
+    }
+
+    /* ── PORTFOLIO GRID ── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color .25s, transform .25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      border-color: var(--ms-blue);
+      transform: translateY(-3px);
+    }
+
+    .card.featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+
+    @media (max-width: 640px) {
+      .card.featured { flex-direction: column; }
+    }
+
+    .card-visual {
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card.featured .card-visual {
+      width: 340px;
+      min-height: 240px;
+    }
+
+    @media (max-width: 640px) {
+      .card.featured .card-visual { width: 100%; min-height: 180px; }
+    }
+
+    /* LinkedIn embed placeholder visual */
+    .li-mockup {
+      width: 88%;
+      background: #1b1f23;
+      border-radius: 8px;
+      padding: 14px;
+      border: 1px solid #2d3748;
+    }
+
+    .li-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .li-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--ms-blue), var(--gold));
+      flex-shrink: 0;
+    }
+
+    .li-name { font-size: 12px; font-weight: 500; color: #e2e8f0; }
+    .li-sub  { font-size: 10px; color: #718096; }
+
+    .li-body  { font-size: 11px; color: #a0aec0; line-height: 1.5; margin-bottom: 10px; }
+
+    .li-carousel {
+      display: flex;
+      gap: 6px;
+    }
+
+    .li-slide {
+      height: 50px;
+      border-radius: 5px;
+      flex: 1;
+      background: var(--ms-blue-bg);
+      border: 1px solid var(--ms-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--ms-blue-lt);
+      font-weight: 500;
+    }
+
+    .li-stats {
+      display: flex;
+      gap: 12px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid #2d3748;
+    }
+
+    .li-stat { font-size: 9px; color: #718096; }
+
+    /* placeholder visual styles */
+    .placeholder-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      padding: 24px;
+    }
+
+    .ph-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+    }
+
+    .ph-icon.blue { background: var(--ms-blue-bg); border: 1px solid var(--ms-blue); }
+    .ph-icon.gold { background: #1a1400; border: 1px solid var(--gold-dim); }
+
+    .ph-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .ph-coming {
+      background: #1a1a00;
+      border: 1px dashed var(--gold-dim);
+      border-radius: 4px;
+      padding: 3px 10px;
+      font-size: 10px;
+      color: var(--gold-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── CARD BODY ── */
+    .card-body {
+      padding: 22px 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .tag {
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    .tag-blue { background: var(--ms-blue-bg); color: var(--ms-blue-lt); border: 1px solid var(--ms-blue); }
+    .tag-gold { background: #1a1400; color: var(--gold); border: 1px solid var(--gold-dim); }
+    .tag-gray { background: #1a1a1a; color: var(--muted); border: 1px solid #333; }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .card-title em { font-style: italic; color: var(--gold); }
+
+    .card-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--rule);
+    }
+
+    .card-status {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+    }
+
+    .status-dot.live    { background: #22c55e; }
+    .status-dot.wip     { background: var(--gold); animation: pulse 2s infinite; }
+    .status-dot.planned { background: var(--muted); }
+
+    .card-link {
+      font-size: 12px;
+      color: var(--ms-blue-lt);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap .2s;
+    }
+
+    .card-link:hover { gap: 8px; }
+
+    /* ── LINKEDIN SECTION ── */
+    .li-section {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .li-section-icon {
+      width: 48px; height: 48px;
+      background: #0a66c2;
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 22px;
+      color: white;
+      font-weight: 700;
+      font-family: Georgia, serif;
+    }
+
+    .li-section-body { flex: 1; min-width: 240px; }
+    .li-section-title { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
+    .li-section-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
+
+    .li-posts-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .li-post-chip {
+      background: var(--surface2);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: border-color .2s;
+    }
+
+    .li-post-chip:hover { border-color: #0a66c2; color: var(--white); }
+
+    .li-post-chip .chip-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ── STRATEGY NOTE ── */
+    .strategy-note {
+      background: var(--ms-blue-bg);
+      border: 1px solid var(--ms-blue);
+      border-left: 3px solid var(--ms-blue-lt);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      font-size: 13px;
+      color: #a0c4e8;
+      line-height: 1.7;
+    }
+
+    .strategy-note strong { color: var(--ms-blue-lt); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 6vw;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a class="nav-logo" href="index.html">HsinYu.</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="competitions.html">Competitions</a></li>
+    <li><a href="microsoft-moi.html" class="active">Microsoft MOI</a></li>
+    <li><a href="experience.html">Internship</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Microsoft Taiwan · Future Ready Talent Program 2026
+  </div>
+  <h1>MOI Application<br /><em>Portfolio</em></h1>
+  <p>
+    A curated collection of original marketing work, product research, and campaign concepts
+    — built specifically for the Microsoft Taiwan Marketing Operations Intern role.
+  </p>
+  <div class="hero-meta">
+    <span>Content Creation</span>
+    <span>Social Media Marketing</span>
+    <span>Data-Driven Campaigns</span>
+    <span>AI Aptitude</span>
+  </div>
+</header>
+
+<!-- ── PORTFOLIO ── -->
+<section class="section-wrap">
+  <p class="section-label">Work Samples</p>
+  <h2 class="section-title">Campaign <em>Projects</em></h2>
+  <p class="section-desc">
+    Each piece answers one question: "If I were already Microsoft's MOI, how would I market this product?"
+  </p>
+
+  <div class="portfolio-grid">
+
+    <!-- CARD 1 — TACHIZ (LIVE) -->
+    <div class="card featured">
+      <div class="card-visual">
+        <div class="li-mockup">
+          <div class="li-header">
+            <div class="li-avatar"></div>
+            <div>
+              <div class="li-name">HsinYu Wen</div>
+              <div class="li-sub">NCKU · Transportation & Comm. Management</div>
+            </div>
+          </div>
+          <div class="li-body">
+            ✦ Introducing Tachiz — the AI-powered tool transforming how teams communicate cross-functionally. Here's a 5-slide breakdown of why it matters for operations teams in 2026...
+          </div>
+          <div class="li-carousel">
+            <div class="li-slide">Cover</div>
+            <div class="li-slide">Problem</div>
+            <div class="li-slide">Solution</div>
+            <div class="li-slide">Demo</div>
+            <div class="li-slide">CTA</div>
+          </div>
+          <div class="li-stats">
+            <span class="li-stat">👁 Impressions loading...</span>
+            <span class="li-stat">💬 Comments loading...</span>
+            <span class="li-stat">🔁 Reposts loading...</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-blue">LinkedIn Carousel</span>
+          <span class="tag tag-blue">Content Marketing</span>
+          <span class="tag tag-gold">Live on LinkedIn</span>
+        </div>
+        <h3 class="card-title">Tachiz × LinkedIn<br /><em>Carousel Campaign</em></h3>
+        <p class="card-desc">
+          A full LinkedIn content campaign for Tachiz — built as a proof-of-concept for B2B product marketing.
+          Includes a 5-slide carousel post, matching caption copy, and a GitHub-hosted web system documenting
+          the design rationale. Demonstrates: copywriting, visual storytelling, and cross-platform content planning.
+        </p>
+        <div class="card-footer">
+          <span class="card-status">
+            <span class="status-dot live"></span>
+            <span style="color:#22c55e; font-size:11px;">Live · Published on LinkedIn</span>
+          </span>
+          <a class="card-link" href="https://www.linkedin.com/in/adelawen/" target="_blank">
+            View Post →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 2 — Copilot 101 (WIP) -->
+    <div class="card">
+      <div class="card-visual">
+        <div class="placeholder-visual">
+          <div class="ph-icon blue">🤖</div>
+          <div class="ph-label">「大學生必備的 3 個<br/>Copilot 神技」<br/>IG 輪播圖</div>
+          <div class="ph-coming">In Progress</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-blue">Instagram Carousel</span>
+          <span class="tag tag-blue">Microsoft Copilot</span>
+          <span class="tag tag-gray">Copywriting</span>
+        </div>
+        <h3 class="card-title">Copilot for <em>Students</em></h3>
+        <p class="card-desc">
+          A social-first explainer translating Microsoft Copilot's top features into student-friendly language.
+          Designed as an IG carousel targeting Gen Z users — proving the ability to localize complex
+          tech into shareable, accessible content.
+        </p>
+        <div class="card-footer">
+          <span class="card-status">
+            <span class="status-dot wip"></span>
+            <span style="color:var(--gold); font-size:11px;">In Progress</span>
+          </span>
+          <a class="card-link" href="#" style="opacity:.4; cursor:not-allowed;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 3 — Azure explainer (WIP) -->
+    <div class="card">
+      <div class="card-visual">
+        <div class="placeholder-visual">
+          <div class="ph-icon blue">☁️</div>
+          <div class="ph-label">Azure 給非技術人員的<br/>視覺化資訊圖表</div>
+          <div class="ph-coming">In Progress</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-blue">Azure</span>
+          <span class="tag tag-blue">Infographic</span>
+          <span class="tag tag-gray">Visual Design</span>
+        </div>
+        <h3 class="card-title">Azure in <em>Plain Language</em></h3>
+        <p class="card-desc">
+          An infographic that explains Azure to a non-technical audience in under 60 seconds.
+          Built to address the classic MOI interview scenario: "How would you explain Azure to a client
+          who has never heard of cloud computing?"
+        </p>
+        <div class="card-footer">
+          <span class="card-status">
+            <span class="status-dot wip"></span>
+            <span style="color:var(--gold); font-size:11px;">In Progress</span>
+          </span>
+          <a class="card-link" href="#" style="opacity:.4; cursor:not-allowed;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 4 — AI Prompt Engineering (PLANNED) -->
+    <div class="card">
+      <div class="card-visual">
+        <div class="placeholder-visual">
+          <div class="ph-icon gold">✦</div>
+          <div class="ph-label">Microsoft GOAL · CONTEXT ·<br/>EXPECTATIONS · SOURCE<br/>Prompt 實戰展示</div>
+          <div class="ph-coming">Planned</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-gold">AI Aptitude</span>
+          <span class="tag tag-blue">Prompt Engineering</span>
+          <span class="tag tag-gray">Copilot</span>
+        </div>
+        <h3 class="card-title">AI-Assisted <em>Copywriting</em></h3>
+        <p class="card-desc">
+          A live demonstration of using Microsoft's GCES prompt framework (Goal, Context, Expectations, Source)
+          to generate and refine marketing copy — showing how AI collaboration accelerates content workflows,
+          not replaces creative judgment.
+        </p>
+        <div class="card-footer">
+          <span class="card-status">
+            <span class="status-dot planned"></span>
+            <span style="color:var(--muted); font-size:11px;">Planned</span>
+          </span>
+          <a class="card-link" href="#" style="opacity:.4; cursor:not-allowed;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD 5 — Holiday Campaign (PLANNED) -->
+    <div class="card">
+      <div class="card-visual">
+        <div class="placeholder-visual">
+          <div class="ph-icon gold">🎋</div>
+          <div class="ph-label">微軟風格節慶貼文<br/>中秋 / 農曆新年<br/>社群視覺設計</div>
+          <div class="ph-coming">Planned</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="tag tag-gold">Social Media</span>
+          <span class="tag tag-blue">Brand Design</span>
+          <span class="tag tag-gray">Holiday Campaign</span>
+        </div>
+        <h3 class="card-title">Microsoft Taiwan<br /><em>Holiday Campaign</em></h3>
+        <p class="card-desc">
+          Original social post designs for Microsoft Taiwan's seasonal campaigns — Mid-Autumn Festival
+          and Lunar New Year — in Microsoft's brand guidelines. Bilingual (EN/ZH) copy included.
+          Built to preemptively answer the MOI interview scenario question.
+        </p>
+        <div class="card-footer">
+          <span class="card-status">
+            <span class="status-dot planned"></span>
+            <span style="color:var(--muted); font-size:11px;">Planned</span>
+          </span>
+          <a class="card-link" href="#" style="opacity:.4; cursor:not-allowed;">Coming Soon</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── LINKEDIN STRATEGY ── -->
+<section class="section-wrap">
+  <p class="section-label">Distribution Strategy</p>
+  <h2 class="section-title">Why <em>LinkedIn-First</em></h2>
+  <p class="section-desc">
+    Each piece is published on LinkedIn before archiving here — so this page shows real engagement data, not mock numbers.
+  </p>
+
+  <div class="strategy-note" style="margin-bottom: 28px;">
+    <strong>How this works:</strong> I publish each campaign piece on LinkedIn as a carousel, photo, or short video.
+    Once posted, I embed or link the real post here — so the impressions, comments, and reactions you see are
+    genuine third-party validation, not self-reported numbers. This page is a living archive, not a static portfolio.
+  </div>
+
+  <div class="li-section">
+    <div class="li-section-icon">in</div>
+    <div class="li-section-body">
+      <div class="li-section-title">Published Posts</div>
+      <div class="li-section-desc">
+        Posts go live on LinkedIn first. Metrics update naturally. Links below open the original posts — engagement numbers are real.
+      </div>
+      <div class="li-posts-grid">
+        <a class="li-post-chip" href="https://www.linkedin.com/in/adelawen/" target="_blank">
+          <span class="chip-dot" style="background:#22c55e;"></span>
+          Tachiz Carousel · Live
+        </a>
+        <div class="li-post-chip" style="cursor:default;">
+          <span class="chip-dot" style="background:var(--gold);"></span>
+          Copilot for Students · Coming Soon
+        </div>
+        <div class="li-post-chip" style="cursor:default;">
+          <span class="chip-dot" style="background:var(--gold);"></span>
+          Azure Explained · Coming Soon
+        </div>
+        <div class="li-post-chip" style="cursor:default;">
+          <span class="chip-dot" style="background:var(--muted);"></span>
+          AI Copywriting Demo · Planned
+        </div>
+        <div class="li-post-chip" style="cursor:default;">
+          <span class="chip-dot" style="background:var(--muted);"></span>
+          Holiday Campaign · Planned
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <span>© 2026 HsinYu Wen — NCKU TCM Science</span>
+  <span style="display:flex; gap:20px;">
+    <a href="mailto:h54121210@gs.ncku.edu.tw">Email</a>
+    <a href="https://www.linkedin.com/in/adelawen/" target="_blank">LinkedIn</a>
+    <a href="index.html">Home</a>
+  </span>
+</footer>
+
+</body>
+</html>
