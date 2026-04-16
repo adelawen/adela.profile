@@ -6,110 +6,118 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{--ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;--gold:#c8a45a;--gold-lt:#e8d4a0;--white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;--border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);--radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;--ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)}
+:root{
+  --ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;
+  --gold:#c8a45a;--gold-lt:#e8d4a0;
+  --ms:#0067b8;--ms-lt:#1890ff;--ms-bg:#051a30;
+  --white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;
+  --border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);
+  --radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--ink);color:var(--white);overflow-x:hidden;line-height:1.7}
 a{text-decoration:none;color:inherit}img{display:block;max-width:100%}
 body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.028'/%3E%3C/svg%3E");pointer-events:none;z-index:0}
 
-/* Nav - 響應式優化 */
+/* ── NAV ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:25px 0;transition:var(--t)}
 .nav.scrolled{padding:15px 0;background:rgba(13,21,32,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between}
-.nav-logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--white);z-index:1001;letter-spacing:0.02em}.nav-logo span{color:var(--gold)}
-
-/* 漢堡選單按鈕 */
+.nav-logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--white);z-index:1001;letter-spacing:.02em}
+.nav-logo span{color:var(--gold)}
 .menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;z-index:1001}
-
 .nav-links-wrap{display:flex;align-items:center;gap:35px}
 .nav-links{display:flex;align-items:center;list-style:none;gap:5px}
-.nav-links a, .drop-btn{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,0.6);padding:8px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb)}
-.nav-links a:hover, .nav-links a.active, .nav-drop:hover .drop-btn{color:var(--white)}
+.nav-links a,.drop-btn{font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);padding:8px 12px;transition:var(--t);position:relative;background:none;border:none;cursor:pointer;font-family:var(--fb)}
+.nav-links a:hover,.nav-links a.active,.nav-drop:hover .drop-btn{color:var(--white)}
 .nav-links a.active::after{content:'';position:absolute;bottom:0;left:12px;right:12px;height:1px;background:var(--gold)}
+
+/* Microsoft MOI nav item — 藍色底線區分 */
+.nav-links a.nav-moi{color:var(--ms-lt)}
+.nav-links a.nav-moi::after{background:var(--ms-lt) !important}
+.nav-links a.nav-moi:hover{color:var(--white)}
 
 .nav-drop{position:relative}
 .drop-menu{position:absolute;top:100%;right:0;background:var(--ink-2);border:1px solid var(--border);border-radius:4px;padding:8px;min-width:180px;opacity:0;visibility:hidden;transform:translateY(10px);transition:all var(--t)}
 .nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;padding:10px 15px;color:rgba(255,255,255,0.5);border-radius:2px;text-align:left}
+.drop-menu a{display:block;font-size:.7rem;padding:10px 15px;color:rgba(255,255,255,.5);border-radius:2px;text-align:left}
 .drop-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
-
 .nav-right{display:flex;align-items:center;gap:25px}
-.lang-switch{display:flex;align-items:center;gap:8px;font-size:.7rem;color:rgba(255,255,255,0.4);font-weight:500}
+.lang-switch{display:flex;align-items:center;gap:8px;font-size:.7rem;color:rgba(255,255,255,.4);font-weight:500}
 .lang-btn{background:none;border:none;cursor:pointer;color:inherit;font-family:var(--fb);transition:var(--t)}
 .lang-btn.active{color:var(--white)}
 .nav-cv{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:7px 18px;border-radius:var(--radius);transition:var(--t)}
 .nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* Hero Section */
+/* ── HERO ── */
 .hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 80px;position:relative;overflow:hidden}
 .hero-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:grid;grid-template-columns:1fr 370px;gap:60px;align-items:center;position:relative;z-index:1}
 .hero-h1{font-family:var(--fd);font-size:clamp(2.5rem,5.2vw,5rem);font-weight:700;line-height:1.06;margin-bottom:22px}
 .hero-h1 em{font-style:italic;color:var(--gold);font-weight:400}
 .hero-desc{font-size:.95rem;color:var(--muted);max-width:480px;margin-bottom:34px;font-weight:300;line-height:1.85}
-
-.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:15px;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);font-weight:600}
-
+.eyebrow{display:flex;align-items:center;gap:12px;margin-bottom:15px;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600}
 .btn-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.btn-gold{background:var(--gold);color:var(--ink);padding:12px 24px;border-radius:var(--radius);font-size:0.8rem;font-weight:600;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
+.btn-gold{background:var(--gold);color:var(--ink);padding:12px 24px;border-radius:var(--radius);font-size:.8rem;font-weight:600;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
 .btn-gold:hover{background:var(--gold-lt);transform:translateY(-2px)}
-.btn-ghost{border:1px solid var(--border);color:var(--white);padding:12px 24px;border-radius:var(--radius);font-size:0.8rem;font-weight:600;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
-.btn-ghost:hover{background:rgba(255,255,255,0.05);border-color:var(--muted)}
+.btn-ghost{border:1px solid var(--border);color:var(--white);padding:12px 24px;border-radius:var(--radius);font-size:.8rem;font-weight:600;transition:var(--t);display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{background:rgba(255,255,255,.05);border-color:var(--muted)}
 
-/* Stats 數據列 */
+/* Microsoft MOI CTA button */
+.btn-ms{border:1px solid var(--ms);color:var(--ms-lt);padding:12px 24px;border-radius:var(--radius);font-size:.8rem;font-weight:600;transition:var(--t);display:inline-flex;align-items:center;gap:8px;background:var(--ms-bg)}
+.btn-ms:hover{background:var(--ms);color:var(--white);transform:translateY(-2px)}
+
 .stats-row{display:flex;gap:30px;margin-top:45px;padding-top:30px;border-top:1px solid var(--border);flex-wrap:wrap}
 .stat-item{min-width:110px}
 .stat-num{font-family:var(--fd);font-size:1.8rem;font-weight:700;color:var(--gold);line-height:1}
 .stat-lbl{font-size:.65rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase;margin-top:6px}
-
 .photo-wrap{position:relative}
 .photo-img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;z-index:1;position:relative;filter:grayscale(5%)}
 .photo-wrap::before{content:'';position:absolute;inset:16px -16px -16px 16px;border:1px solid var(--border);border-radius:4px;z-index:0}
 
-/* Footer */
-footer { border-top: 1px solid var(--border); padding: 40px 0; position: relative; z-index: 1; background: var(--ink); }
-.foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-.foot-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
-.foot-links { display: flex; gap: 24px; }
-.foot-links a { font-size: 0.72rem; color: var(--muted); transition: var(--t); letter-spacing: 0.05em; text-transform: uppercase; }
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 0;position:relative;z-index:1;background:var(--ink)}
+.foot-inner{max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+.foot-copy{font-size:.72rem;color:var(--muted);letter-spacing:.05em}
+.foot-links{display:flex;gap:24px}
+.foot-links a{font-size:.72rem;color:var(--muted);transition:var(--t);letter-spacing:.05em;text-transform:uppercase}
+.foot-links a:hover{color:var(--white)}
 
-/* Mobile設定 */
+/* ── MOBILE ── */
 @media(max-width:960px){
-    .nav-inner{padding:0 25px}
-    .menu-toggle{display:block}
-    .nav-links-wrap{
-        position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);
-        flex-direction:column;justify-content:center;padding:40px;transition:0.4s;box-shadow:-10px 0 30px rgba(0,0,0,0.5);
-    }
-    .nav-links-wrap.active{right:0}
-    .nav-links{flex-direction:column;align-items:flex-start;width:100%;gap:15px}
-    .nav-right{flex-direction:column;align-items:flex-start;margin-top:30px;width:100%}
-    
-    .hero-inner{grid-template-columns:1fr; gap:40px; text-align:center}
-    .hero-desc{margin-left:auto; margin-right:auto}
-    .eyebrow, .btn-row, .stats-row{justify-content:center}
-    .photo-wrap{max-width:300px;margin:20px auto 0}
-    .photo-wrap::before{inset:12px -12px -12px 12px}
-    .foot-inner { flex-direction: column; text-align: center; }
+  .nav-inner{padding:0 25px}
+  .menu-toggle{display:block}
+  .nav-links-wrap{position:fixed;top:0;right:-100%;width:80%;height:100vh;background:var(--ink-2);flex-direction:column;justify-content:center;padding:40px;transition:.4s;box-shadow:-10px 0 30px rgba(0,0,0,.5)}
+  .nav-links-wrap.active{right:0}
+  .nav-links{flex-direction:column;align-items:flex-start;width:100%;gap:15px}
+  .nav-right{flex-direction:column;align-items:flex-start;margin-top:30px;width:100%}
+  .hero-inner{grid-template-columns:1fr;gap:40px;text-align:center}
+  .hero-desc{margin-left:auto;margin-right:auto}
+  .eyebrow,.btn-row,.stats-row{justify-content:center}
+  .photo-wrap{max-width:300px;margin:20px auto 0}
+  .photo-wrap::before{inset:12px -12px -12px 12px}
+  .foot-inner{flex-direction:column;text-align:center}
 }
 
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.v{opacity:1;transform:none}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.v{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
 <nav class="nav" id="mainnav">
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-    
     <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-
     <div class="nav-links-wrap" id="navLinks">
       <ul class="nav-links">
         <li><a href="index.html" class="active">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="competitions.html">Competitions</a></li>
+        <li><a href="microsoft-moi.html" class="nav-moi">Microsoft MOI</a></li>
         <li class="nav-drop">
-          <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+          <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:.5rem"></i></button>
           <div class="drop-menu">
             <a href="experience.html">Internship</a>
             <a href="exchange.html">Cultural Exchange</a>
@@ -130,6 +138,7 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; position: relativ
   </div>
 </nav>
 
+<!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-inner">
     <div>
@@ -139,10 +148,11 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; position: relativ
       </div>
       <h1 class="hero-h1 reveal">Hi, I'm<br><em>HsinYu Wen</em></h1>
       <p class="hero-desc reveal" id="hero-desc">Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.</p>
-      
+
       <div class="btn-row reveal">
-        <a href="projects.html" class="btn-gold"><i class="fas fa-arrow-right"></i> Explore Projects</a>
-        <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn-ghost"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="projects.html" class="btn-gold"><i class="fas fa-arrow-right"></i> <span id="btn-projects">Explore Projects</span></a>
+        <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn-ghost"><i class="fas fa-envelope"></i> <span id="btn-contact">Contact</span></a>
+        <a href="microsoft-moi.html" class="btn-ms"><i class="fab fa-microsoft"></i> <span id="btn-moi">Microsoft MOI</span></a>
         <a href="https://www.linkedin.com/in/adelawen/" target="_blank" style="padding:11px 13px;border:1px solid var(--border);border-radius:3px;color:var(--gold);line-height:1"><i class="fab fa-linkedin-in"></i></a>
       </div>
 
@@ -158,12 +168,13 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; position: relativ
       <img src="my-face.jpg" alt="HsinYu Wen" class="photo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div style="display:none;width:100%;aspect-ratio:4/5;background:var(--ink-2);align-items:center;justify-content:center;border:1px solid var(--border);border-radius:4px;flex-direction:column;gap:10px">
         <i class="fas fa-user fa-3x" style="color:var(--border)"></i>
-        <span style="font-size:0.7rem;color:var(--muted)">my-face.jpg</span>
+        <span style="font-size:.7rem;color:var(--muted)">my-face.jpg</span>
       </div>
     </div>
   </div>
 </header>
 
+<!-- ── FOOTER ── -->
 <footer>
   <div class="foot-inner">
     <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
@@ -176,30 +187,30 @@ footer { border-top: 1px solid var(--border); padding: 40px 0; position: relativ
 </footer>
 
 <script>
-// 手機版選單切換
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-menuBtn.onclick = () => {
-    navLinks.classList.toggle('active');
-    menuBtn.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+const menuBtn=document.getElementById('menuBtn');
+const navLinks=document.getElementById('navLinks');
+menuBtn.onclick=()=>{
+  navLinks.classList.toggle('active');
+  menuBtn.innerHTML=navLinks.classList.contains('active')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
 };
-
-window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40)});
-const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.1});
+window.addEventListener('scroll',()=>document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40));
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')}),{threshold:.1});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 const L={
   en:{
     'hero-tag':'ITS · Logistics · Growth Mindset',
     'hero-desc':'Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.',
-    'stat-c':'Major Competitions', 'stat-cn':'Chuangnan 1st', 'stat-dh':'DreamHack PM', 'stat-lr':"L'Oréal Global",
-    'foot-copy':'© 2026 HsinYu Wen — NCKU TCM Science', 'foot-email':'Email', 'foot-linkedin':'LinkedIn', 'foot-home':'Home'
+    'btn-projects':'Explore Projects','btn-contact':'Contact','btn-moi':'Microsoft MOI',
+    'stat-c':'Major Competitions','stat-cn':'Chuangnan 1st','stat-dh':'DreamHack PM','stat-lr':"L'Oréal Global",
+    'foot-copy':'© 2026 HsinYu Wen — NCKU TCM Science','foot-email':'Email','foot-linkedin':'LinkedIn','foot-home':'Home'
   },
   zh:{
     'hero-tag':'智慧交通 · 物流 · 成長型思維',
     'hero-desc':'就讀於國立成功大學，專注智慧交通與供應鏈永續研究，享受跨域交流帶來的視角衝擊。',
-    'stat-c':'五大重點競賽', 'stat-cn':'創南競賽首獎', 'stat-dh':'DreamHack 專案經理', 'stat-lr':'萊雅全球競賽',
-    'foot-copy':'© 2026 溫心語 — 國立成功大學 交通管理科學系', 'foot-email':'電子郵件', 'foot-linkedin':'領英', 'foot-home':'首頁'
+    'btn-projects':'探索專案','btn-contact':'聯絡我','btn-moi':'微軟 MOI 作品集',
+    'stat-c':'五大重點競賽','stat-cn':'創南競賽首獎','stat-dh':'DreamHack 專案經理','stat-lr':'萊雅全球競賽',
+    'foot-copy':'© 2026 溫心語 — 國立成功大學 交通管理科學系','foot-email':'電子郵件','foot-linkedin':'領英','foot-home':'首頁'
   }
 };
 
