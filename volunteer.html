@@ -11,7 +11,7 @@
     --bg-white: #ffffff;
     --text-main: #0a0a0a;
     --muted: #8a96a8;
-    --brand-blue: #0078D4;
+    --brand-blue: #0078D4; /* 微軟藍 */
     --border: rgba(0, 0, 0, 0.08);
     --radius: 3px;
     --fd: 'Cormorant Garamond', serif;
@@ -24,7 +24,7 @@ html{scroll-behavior:smooth}
 body{font-family:var(--fb);background:var(--bg-white);color:var(--text-main);overflow-x:hidden;line-height:1.7}
 a{text-decoration:none;color:inherit}
 
-/* ── NAV (與首頁完全一致的純白毛玻璃導覽列) ── */
+/* ── NAV (純白毛玻璃導覽列) ── */
 .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 25px 0; transition: var(--t); }
 .nav.scrolled { padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
 .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; }
@@ -47,34 +47,30 @@ a{text-decoration:none;color:inherit}
 .lang-switch { display: flex; align-items: center; gap: 8px; font-size: .7rem; color: rgba(0,0,0,0.3); font-weight: 600; margin-left: 10px; }
 .lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); font-weight: 600; }
 .lang-btn.active { color: var(--text-main); }
-
 .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1001; }
 
 /* ── Page Header ── */
 .page-header{padding:180px 0 60px}.ph-inner{max-width:1200px;margin:0 auto;padding:0 40px; text-align: center;}
 .page-title{font-family:var(--fd);font-size:clamp(2.8rem,6vw,4.8rem);font-weight:700;line-height:1.1;margin-bottom:15px; color: var(--text-main);}
-/* 標題中的斜體改為灰色 */
 .page-title em{font-style:italic;color:var(--muted);font-weight:600;}
-.page-sub{color: var(--muted); font-size: 1.1rem;}
+.page-sub{color: var(--muted); font-size: 1.1rem; max-width: 750px; margin: 0 auto;}
 
 /* ── Cards (白底、微軟藍點綴) ── */
 .main{max-width:1200px;margin:0 auto;padding:0 40px 120px;display:grid;grid-template-columns:1fr;gap:50px}
-.comp-card{background:#fafafa;border:1px solid var(--border);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:320px 1fr;transition:border-color var(--t);min-height:480px;align-items:stretch}
+.comp-card{background:#fafafa;border:1px solid var(--border);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:320px 1fr;transition:border-color var(--t);min-height:420px;align-items:stretch}
 .comp-card:hover{border-color:var(--brand-blue); box-shadow: 0 10px 30px rgba(0,120,212,0.05);}
 .comp-img-wrap{position:relative;overflow:hidden;background:#eee;display:flex;align-items:center;justify-content:center;height:100%}
 .comp-img{width:100%;height:100%;object-fit:cover;}
-.comp-content{padding:45px 50px;display:flex;flex-direction:column;justify-content:center;min-width:0}
+.comp-content{padding:40px 45px;display:flex;flex-direction:column;justify-content:center;min-width:0}
 
-.comp-header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px;flex-wrap:wrap;gap:10px}
-/* 獎項標籤改為微軟藍 */
-.comp-award{background:rgba(0,120,212,.1);color:var(--brand-blue);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:3px}
+.comp-header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:15px;flex-wrap:wrap;gap:10px}
+.comp-award{background:rgba(0,120,212,.1);color:var(--brand-blue);font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:3px; align-self: flex-start;}
 .comp-date{font-size:.65rem;color:var(--muted);font-weight:600;border:1px solid var(--border);padding:5px 14px;border-radius:20px;letter-spacing:0.05em}
 
-.comp-h3{font-family:var(--fd);font-size:2rem;margin-bottom:8px;line-height:1.2;color:var(--text-main); font-weight: 700;}
-.comp-org{font-size:.75rem;color:var(--muted);margin-bottom:25px;display:flex;align-items:center;gap:8px;text-transform:uppercase; font-weight: 500;}
+.comp-h3{font-family:var(--fd);font-size:2rem;margin-bottom:12px;line-height:1.2;color:var(--text-main); font-weight: 700;}
+.comp-org{font-size:.75rem;color:var(--muted);margin-bottom:25px;display:flex;align-items:center;gap:8px;text-transform:uppercase; font-weight: 600;}
 
-/* 小節標題改為微軟藍底線 */
-.section-label{font-size:0.65rem;text-transform:uppercase;color:var(--brand-blue);letter-spacing:0.12em;margin:22px 0 8px;display:inline-block;font-weight:700;border-bottom:2px solid var(--brand-blue);padding-bottom:5px}
+.section-label{font-size:0.65rem;text-transform:uppercase;color:var(--brand-blue);letter-spacing:0.12em;margin:15px 0 8px;display:inline-block;font-weight:700;border-bottom:2px solid var(--brand-blue);padding-bottom:5px}
 .comp-desc{font-size:1rem;color:#555;margin-bottom:12px;line-height:1.8}
 
 /* ── Gallery Slider ── */
@@ -104,9 +100,10 @@ a{text-decoration:none;color:inherit}
     .nav-drop .drop-menu { position: static; opacity: 1; visibility: visible; border: none; box-shadow: none; text-align: center; background: transparent; padding: 0; margin-top: 10px; }
     .drop-menu a { text-align: center; font-size: 0.9rem; }
     .lang-switch { margin-top: 30px; margin-left: 0; }
+    
     .page-header{padding:140px 0 40px}.page-title{font-size:2.8rem}
     .main{padding:20px 25px 80px;gap:30px}.comp-card{grid-template-columns:1fr;min-height:auto}
-    .comp-img-wrap{height:250px;min-height:250px}.comp-content{padding:30px 25px}
+    .comp-img-wrap{height:250px;min-height:250px}.comp-content{padding:30px 25px}.comp-h3{font-size:1.8rem}
     .lightbox-content{padding:60px 10px 100px}
     .lightbox-image{max-width:95%;max-height:75vh}
     .lightbox-nav{top:auto;bottom:30px;transform:none;width:55px;height:55px;background:rgba(255,255,255,0.2)}
@@ -115,12 +112,11 @@ a{text-decoration:none;color:inherit}
 }
 
 /* ── FOOTER ── */
-footer{border-top:1px solid var(--border);padding:60px 30px;margin-top:40px; text-align: center; background: #fff;}
-.footer-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 20px; }
-.footer-links a { color: var(--muted); transition: 0.3s; display: flex; align-items: center; gap: 8px; font-family: var(--fb); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
-.footer-links a i { font-size: 1.4rem; }
-.footer-links a:hover { color: var(--brand-blue); }
-.foot-copy{font-size:.75rem;color:var(--muted)}
+.footer-divider { background-color: var(--brand-blue); padding: 60px 0; margin-top: 40px; }
+.footer-icons { display: flex; justify-content: center; align-items: center; gap: 30px; }
+.footer-icons a { font-size: 1.8rem; color: rgba(255, 255, 255, 0.7); transition: 0.3s; }
+.footer-icons a:hover { color: white; transform: translateY(-3px); }
+.footer-bottom { padding: 30px 0; text-align: center; color: rgba(0, 0, 0, 0.4); font-size: 0.75rem; background: var(--bg-white); }
 
 .reveal{opacity:0;transform:translateY(30px);transition:opacity .8s var(--ease),transform .8s var(--ease)}.reveal.v{opacity:1;transform:none}
 </style>
@@ -133,7 +129,7 @@ footer{border-top:1px solid var(--border);padding:60px 30px;margin-top:40px; tex
     <div class="nav-links-wrap" id="navLinks">
       <ul class="nav-links">
         <li><a href="index.html" data-i18n="nav-home">Home</a></li>
-        <li><a href="projects.html" data-i18n="nav-projects">Projects</a></li>
+        <li><a href="projects.html" data-i18n="nav-proj">Projects</a></li>
         <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
         <li><a href="microsoft-moi.html" class="nav-moi" data-i18n="nav-moi">Microsoft MOI</a></li>
         <li class="nav-drop">
@@ -178,7 +174,7 @@ footer{border-top:1px solid var(--border);padding:60px 30px;margin-top:40px; tex
             <p class="comp-desc" data-i18n="club-desc1-2">透過與語伴 Josephine 的交流，我學會以成長型思維化解焦慮，找回對自我的自信。</p>
             
             <div class="gallery-section">
-                <div class="gallery-header" data-i18n="gallery-title">活動紀錄</div>
+                <div class="gallery-header" data-i18n="gallery-title">Gallery</div>
                 <div class="photo-slider">
                     <img src="closing_ceremony.PNG" class="slide-item lb-trigger" data-gallery="german" onerror="this.style.display='none'">
                     <img src="wJosephine_pic1.PNG" class="slide-item lb-trigger" data-gallery="german" onerror="this.style.display='none'">
@@ -201,16 +197,18 @@ footer{border-top:1px solid var(--border);padding:60px 30px;margin-top:40px; tex
     </div>
 </div>
 
-<footer>
-    <div class="footer-links">
-        <a href="mailto:h54121210@gs.ncku.edu.tw"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://www.linkedin.com/in/adelawen/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+<div class="footer-divider reveal">
+    <div class="footer-icons">
+        <a href="mailto:h54121210@gs.ncku.edu.tw" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/adelawen/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
     </div>
-    <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
+</div>
+
+<footer class="footer-bottom">
+    <span data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</span>
 </footer>
 
 <script>
-// 導覽列與手機選單
 const menuBtn = document.getElementById('menuBtn'), navLinks = document.getElementById('navLinks');
 menuBtn.onclick = () => {
     navLinks.classList.toggle('mobile-active');
@@ -218,11 +216,9 @@ menuBtn.onclick = () => {
 };
 window.addEventListener('scroll',()=>{document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>20)});
 
-// 元素滑動浮現
 const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('v')}),{threshold:.15});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-// Lightbox 畫廊功能
 const lb = document.getElementById('lightbox'), lbImg = document.getElementById('lb-img'), btnPrev = document.getElementById('lb-prev'), btnNext = document.getElementById('lb-next');
 let currentGallery = [], currentIndex = 0;
 
@@ -251,11 +247,11 @@ btnNext.onclick = (e) => { e.stopPropagation(); changeSlide(1); };
 lb.onclick = (e) => { if(e.target === lb || e.target.classList.contains('lightbox-content')) { lb.classList.remove('active'); document.body.style.overflow = ''; } };
 document.getElementById('lb-close').onclick = () => { lb.classList.remove('active'); document.body.style.overflow = ''; };
 
-// 中英文翻譯設定 (包含 NavBar 選項)
 const textData = {
   en: { 
-      'nav-home': 'Home', 'nav-projects': 'Projects', 'nav-comp': 'Competitions', 'nav-moi': 'Microsoft MOI', 'nav-more': 'More',
+      'nav-home': 'Home', 'nav-proj': 'Projects', 'nav-comp': 'Competitions', 'nav-moi': 'Microsoft MOI', 'nav-more': 'More',
       'drop-intern': 'Internship', 'drop-exchange': 'Cultural Exchange', 'drop-cert': 'Certificates', 'drop-volunteer': 'Clubs & Volunteer',
+      
       'pg-title': 'Clubs & <em>Volunteer</em>', 
       'pg-sub': 'Through cross-cultural engagement, I cultivate empathy and leadership by connecting with diverse communities.', 
       'club-award-1': 'Selected Volunteer (Top 34)', 
@@ -268,8 +264,9 @@ const textData = {
       'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science' 
   },
   zh: { 
-      'nav-home': '首頁', 'nav-projects': '專案作品', 'nav-comp': '競賽經歷', 'nav-moi': '微軟 MOI', 'nav-more': '更多',
+      'nav-home': '首頁', 'nav-proj': '專案作品', 'nav-comp': '競賽經歷', 'nav-moi': '微軟 MOI', 'nav-more': '更多',
       'drop-intern': '實習經歷', 'drop-exchange': '國際交流', 'drop-cert': '專業證照', 'drop-volunteer': '社團與志工',
+      
       'pg-title': '社團參與與 <em>志工服務</em>', 
       'pg-sub': '在教室之外，我培養跨領域領導力與同理心。', 
       'club-award-1': '僅錄取 34 人之計畫成員', 
@@ -292,6 +289,10 @@ function switchLang(l){
     if (t[key]) el.innerHTML = t[key];
   });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    switchLang('zh');
+});
 </script>
 </body>
 </html>
