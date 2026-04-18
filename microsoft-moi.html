@@ -1,988 +1,408 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Microsoft MOI Portfolio | HsinYu Wen</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
-  /* ── EXACT MATCH: main site tokens ── */
-  --ink:    #0d1520;
-  --ink-2:  #172030;
-  --ink-3:  #1e2d42;
-  --gold:   #c8a45a;
-  --gold-lt:#e8d4a0;
-  --ms:     #0067b8;
-  --ms-lt:  #1890ff;
-  --ms-bg:  #051a30;
-  --white:  #fff;
-  --muted:  #8a96a8;
-  --muted-2:#b0bac8;
-  --border: rgba(200,164,90,.22);
-  --rule:   rgba(255,255,255,.07);
-  --green:  #3aaa72;
-  --amber:  #c8a45a;
-
-  /* MOI page aliases → point to main site tokens */
-  --bg:     var(--ink);
-  --bg2:    var(--ink-2);
-  --bg3:    var(--ink-3);
-  --card:   #111e30;
-  --msl:    var(--gold);        /* accent colour → gold */
-  --sub:    var(--muted-2);
-  --faint:  var(--muted);
-  --r:      3px;
-  --serif:  'Cormorant Garamond', Georgia, serif;
-  --sans:   'Outfit', system-ui, sans-serif;
-  --ease:   cubic-bezier(.4,0,.2,1);
-  --speed:  .32s var(--ease);
+    /* 微軟風格配色 */
+    --ms-blue: #0078D4; 
+    --ms-dark: #1a1a1a;
+    --ms-gray: #737373;
+    --bg-light: #ffffff;
+    --border-light: rgba(0, 0, 0, 0.08);
+    
+    --sans: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --ease: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--sans);
-  background: var(--bg);
-  color: var(--white);
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
+    font-family: var(--sans);
+    background-color: var(--bg-light);
+    color: var(--ms-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    /* 模仿附圖的極淡網格線 */
+    background-image: 
+        linear-gradient(var(--border-light) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border-light) 1px, transparent 1px);
+    background-size: 100px 100px;
+    background-position: center top;
 }
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
 
-/* ─── NAV — always visible, never transparent ── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  padding:0;height:64px;
-  background:rgba(13,21,32,.97);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  transition:var(--speed);
+/* ── 唯一導覽：回首頁按鈕 ── */
+.back-btn {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 1000;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ms-dark);
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px 24px;
+    border: 1px solid var(--border-light);
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
-.nav-in{
-  max-width:1200px;margin:0 auto;padding:0 30px;
-  height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+.back-btn:hover {
+    background: var(--ms-blue);
+    color: #fff;
+    border-color: var(--ms-blue);
+    transform: translateX(-5px);
+    box-shadow: 0 8px 20px rgba(0,120,212,0.2);
 }
-.nav-logo{font-family:var(--serif);font-size:1.6rem;font-weight:700;color:var(--white);letter-spacing:.02em;white-space:nowrap}
-.nav-logo span{color:var(--gold)}
-.menu-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.4rem;cursor:pointer;z-index:902;padding:4px}
-.nav-wrap{display:flex;align-items:center;gap:30px}
-.nav-links{display:flex;align-items:center;list-style:none;gap:2px}
-.nav-links a,.drop-btn{
-  font-size:.72rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);padding:8px 11px;transition:color var(--speed);
-  position:relative;background:none;border:none;cursor:pointer;font-family:var(--sans);
-}
-.nav-links a:hover,.nav-drop:hover .drop-btn{color:var(--white)}
-.nav-links a.active{color:var(--white)}
-.nav-links a.active::after{content:'';position:absolute;bottom:0;left:11px;right:11px;height:1px;background:var(--gold)}
-.nav-links a.nav-moi{color:var(--gold)}
-.nav-links a.nav-moi.active::after{background:var(--gold)}
-.nav-drop{position:relative}
-.drop-menu{
-  position:absolute;top:calc(100% + 8px);right:0;
-  background:var(--ink-2);border:1px solid var(--border);border-radius:4px;
-  padding:6px;min-width:175px;
-  opacity:0;visibility:hidden;transform:translateY(8px);
-  transition:all var(--speed);box-shadow:0 12px 40px rgba(0,0,0,.5);
-}
-.nav-drop:hover .drop-menu{opacity:1;visibility:visible;transform:translateY(0)}
-.drop-menu a{display:block;font-size:.7rem;padding:10px 14px;color:rgba(255,255,255,.5);border-radius:2px;transition:color var(--speed),background var(--speed)}
-.drop-menu a:hover{background:rgba(255,255,255,.04);color:var(--white)}
-.nav-right{display:flex;align-items:center;gap:20px;flex-shrink:0}
-.lang-sw{display:flex;align-items:center;gap:6px;font-size:.7rem;color:rgba(255,255,255,.4);font-weight:500}
-.lang-btn{background:none;border:none;cursor:pointer;color:inherit;font-family:var(--sans);font-size:.7rem;transition:color var(--speed);padding:2px 3px}
-.lang-btn.active{color:var(--white)}
-.nav-cv{
-  font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  border:1px solid var(--gold);color:var(--gold);
-  padding:7px 18px;border-radius:var(--r);transition:var(--speed);white-space:nowrap;
-}
-.nav-cv:hover{background:var(--gold);color:var(--ink)}
 
-/* ─── HERO ─────────────────────────────────── */
+/* ── HERO SECTION ── */
 .hero {
-  padding: 136px 0 80px; /* 64px nav + 72px breathing room */
-  background: var(--ink);
-  position: relative; overflow: hidden; z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border-light);
 }
-.hero::after {
-  content: ''; position: absolute;
-  width: 700px; height: 700px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(200,164,90,.05) 0%, transparent 70%);
-  top: -200px; right: -200px; pointer-events: none;
+.hero-tag {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ms-blue);
+    margin-bottom: 20px;
+    background: rgba(0,120,212,0.05);
+    padding: 6px 16px;
+    border-radius: 20px;
 }
-.hero-in { max-width: 1200px; margin: 0 auto; padding: 0 30px; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(200,164,90,.08); border: 1px solid var(--border);
-  border-radius: 24px; padding: 6px 16px; margin-bottom: 28px;
-  font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
-  color: var(--gold);
-}
-.hero-badge .dot {
-  width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.3;transform:scale(.5)} }
 .hero h1 {
-  font-family: var(--serif);
-  font-size: clamp(3.2rem, 8vw, 6.5rem);
-  font-weight: 700; line-height: 1.0;
-  letter-spacing: -.02em; margin-bottom: 24px;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 20px;
 }
-.hero h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
-.hero-sub {
-  font-size: .95rem; color: var(--muted); font-weight: 300;
-  max-width: 520px; line-height: 1.85; margin-bottom: 32px;
+.hero h1 em {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--ms-gray);
 }
-.hero-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.htag {
-  font-size: .72rem; font-weight: 400; padding: 4px 13px;
-  border-radius: 20px; border: 1px solid var(--border);
-  color: var(--muted-2); background: transparent; letter-spacing: .03em;
+.hero p {
+    font-size: 1.1rem;
+    color: var(--ms-gray);
+    max-width: 600px;
+    font-weight: 300;
+    line-height: 1.8;
 }
-
-/* ─── FILTER TABS ───────────────────────────── */
-.filters {
-  background: var(--ink-2);
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 64px; z-index: 100;
+.scroll-down {
+    position: absolute;
+    bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ms-gray);
 }
-.filters-in {
-  max-width: 1200px; margin: 0 auto; padding: 0 30px;
-  display: flex; align-items: center; gap: 0;
-  overflow-x: auto; scrollbar-width: none;
+.scroll-line {
+    width: 1px;
+    height: 40px;
+    background: var(--ms-dark);
+    animation: scrollAnim 2s infinite;
+    transform-origin: top;
 }
-.filters-in::-webkit-scrollbar { display: none; }
-.ftab {
-  flex-shrink: 0; font-size: .72rem; font-weight: 500;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(255,255,255,.45); padding: 14px 16px;
-  border: none; background: none; cursor: pointer;
-  font-family: var(--sans); position: relative;
-  transition: color var(--speed); white-space: nowrap;
-}
-.ftab::after {
-  content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
-  height: 1px; background: var(--gold); transform: scaleX(0);
-  transition: transform var(--speed);
-}
-.ftab:hover { color: rgba(255,255,255,.8); }
-.ftab.on { color: var(--white); }
-.ftab.on::after { transform: scaleX(1); }
-.fbadge {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px;
-  font-size: 9px; font-weight: 700; margin-left: 5px;
-}
-.fb-blue  { background: rgba(200,164,90,.12); color: var(--gold); border: 1px solid var(--border); }
-.fb-green { background: rgba(58,170,114,.12); color: var(--green); border: 1px solid rgba(58,170,114,.3); }
-.fb-amber { background: rgba(200,164,90,.08); color: var(--gold-lt); border: 1px solid var(--border); }
-.fb-gray  { background: rgba(255,255,255,.04); color: var(--muted); border: 1px solid rgba(255,255,255,.1); }
-
-/* ─── MAIN ──────────────────────────────────── */
-.main { max-width: 1200px; margin: 0 auto; padding: 52px 30px 100px; }
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
-
-/* ─── CARD GRID ─────────────────────────────── */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-@media (max-width: 900px) { .grid { grid-template-columns: repeat(2,1fr); } }
-@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
-
-/* ─── PROJECT CARD ──────────────────────────── */
-.pcard {
-  background: var(--card);
-  border: 1px solid rgba(200,164,90,.1);
-  border-radius: 6px; overflow: hidden; cursor: pointer;
-  transition: border-color var(--speed), transform var(--speed), box-shadow var(--speed);
-  display: flex; flex-direction: column; position: relative;
-}
-.pcard:hover {
-  border-color: var(--border);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(0,0,0,.3);
-}
-.pcard.featured { grid-column: 1 / -1; flex-direction: row; }
-@media (max-width: 700px) { .pcard.featured { flex-direction: column; } }
-
-/* accent stripe */
-.pcard::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 2px; opacity: 0; transition: opacity var(--speed);
-}
-.pcard:hover::before, .pcard.featured::before { opacity: 1; }
-.pcard.ac-green::before { background: var(--green); }
-.pcard.ac-amber::before { background: var(--gold); }
-.pcard.ac-blue::before  { background: var(--gold); }
-
-/* VISUAL AREA */
-.cvis {
-  background: var(--ink-3); flex-shrink: 0;
-  min-height: 220px; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden;
-}
-.pcard.featured .cvis { width: 300px; min-height: auto; }
-@media (max-width: 700px) { .pcard.featured .cvis { width: 100%; min-height: 200px; } }
-
-.cvis-num {
-  font-family: var(--serif); font-size: 9rem; font-weight: 600;
-  color: rgba(200,164,90,.04); line-height: 1;
-  position: absolute; bottom: -16px; right: 8px; user-select: none; pointer-events: none;
+@keyframes scrollAnim {
+    0% { transform: scaleY(0); opacity: 0; }
+    50% { transform: scaleY(1); opacity: 1; }
+    100% { transform: scaleY(1) translateY(40px); opacity: 0; }
 }
 
-/* LI MOCKUP */
-.limock {
-  width: 88%; background: var(--ink); border-radius: 6px;
-  padding: 14px; border: 1px solid rgba(255,255,255,.07);
-  position: relative; z-index: 1;
+/* ── LOOKBOOK GALLERY ── */
+.lookbook {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 40px;
 }
-.lm-head { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-.lm-av {
-  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
-  background: linear-gradient(135deg, var(--ms), #003f7a);
-}
-.lm-name { font-size: 13px; font-weight: 500; color: var(--white); }
-.lm-sub  { font-size: 11px; color: var(--muted); }
-.lm-body { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
-.lm-slides { display: flex; gap: 4px; margin-bottom: 8px; }
-.lm-slide {
-  flex: 1; height: 40px; border-radius: 4px;
-  background: rgba(200,164,90,.08); border: 1px solid rgba(200,164,90,.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 10px; color: var(--gold); font-weight: 500;
-}
-.lm-stats { display: flex; gap: 10px; padding-top: 8px; border-top: 1px solid rgba(255,255,255,.05); }
-.lm-stat { font-size: 11px; }
 
-/* PLACEHOLDER VISUAL */
-.cvis-ph {
-  position: relative; z-index: 1;
-  display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 28px;
+/* 每一組專案的容器 */
+.project-row {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 180px;
+    position: relative;
 }
-.cvis-icon {
-  width: 56px; height: 56px; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
-  border: 1px solid var(--border); background: rgba(200,164,90,.06);
+/* 精緻分割線與十字標記 */
+.project-row::after {
+    content: '+';
+    position: absolute;
+    bottom: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--border-light);
+    font-size: 1.5rem;
+    font-weight: 300;
 }
-.cvis-icon.amb { border-color: rgba(200,164,90,.3); background: rgba(200,164,90,.06); }
-.cvis-lbl { font-size: 13px; color: var(--muted); text-align: center; line-height: 1.5; }
+.project-row:last-child::after { display: none; }
+.project-row:last-child { margin-bottom: 0; }
 
-/* CARD BODY */
-.cbody { padding: 24px 26px; display: flex; flex-direction: column; flex: 1; }
-.ccats { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
-.ccat {
-  font-size: 11px; font-weight: 500; letter-spacing: .03em;
-  padding: 3px 10px; border-radius: 20px;
+/* 圖片區塊 */
+.proj-img-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #f4f4f4;
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
 }
-.cb  { background: rgba(200,164,90,.08); color: var(--gold); border: 1px solid rgba(0,120,212,.28); }
-.cg  { background: rgba(0,178,148,.1);  color: var(--green); border: 1px solid rgba(0,178,148,.25); }
-.ca  { background: rgba(247,166,0,.1);  color: var(--amber); border: 1px solid rgba(247,166,0,.25); }
-.cm  { background: rgba(255,255,255,.04); color: var(--muted-2); border: 1px solid rgba(255,255,255,.1); }
+.proj-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1s var(--ease);
+}
+.proj-img-wrap:hover img {
+    transform: scale(1.03);
+}
 
-.ch {
-  font-family: var(--serif); font-size: 1.45rem; font-weight: 500;
-  line-height: 1.2; margin-bottom: 10px; color: var(--white);
+/* 文字區塊 */
+.proj-text {
+    padding: 20px 0;
 }
-.ch em { font-style: italic; color: var(--gold); font-weight: 400; }
-.cp {
-  font-size: 14px; color: var(--muted-2); line-height: 1.7;
-  flex: 1; font-weight: 300; margin-bottom: 16px;
+.proj-num {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--ms-dark);
+    margin-bottom: 15px;
 }
-.cfoot {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-top: 14px; border-top: 1px solid rgba(255,255,255,.05); margin-top: auto; gap: 8px;
+.proj-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ms-blue);
+    margin-bottom: 15px;
+    display: block;
 }
-.cstatus { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
-.sdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-.s-live  { background: var(--green); }
-.s-wip   { background: var(--amber); animation: pulse 2s infinite; }
-.s-plan  { background: var(--faint); }
-.slabel  { font-size: 12px; }
-.ccta    { font-size: 12px; color: var(--gold); display: inline-flex; align-items: center; gap: 4px; transition: gap var(--speed); }
-.ccta:hover { gap: 8px; }
-.ccta-dis { font-size: 12px; color: var(--muted); opacity: .4; }
+.proj-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    letter-spacing: -0.02em;
+}
+.proj-desc {
+    font-size: 1.05rem;
+    color: var(--ms-gray);
+    font-weight: 300;
+    line-height: 1.8;
+}
+.proj-desc strong {
+    color: var(--ms-blue);
+    font-weight: 500;
+}
 
-/* ─── VIDEO SECTION ─────────────────────────── */
-.video-section { padding: 80px 0; border-top: 1px solid var(--rule); }
-.vs-in { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.vs-tag {
-  font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 12px;
+/* 專案連結按鈕列 */
+.proj-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 30px;
 }
-.vs-title {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 500; line-height: 1.1; margin-bottom: 14px;
+.proj-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ms-dark);
+    background: transparent;
+    border: 1px solid rgba(0,0,0,0.15);
+    padding: 10px 18px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s var(--ease);
 }
-.vs-title em { font-style: italic; color: var(--gold); }
-.vs-desc { font-size: 15px; color: var(--muted-2); font-weight: 300; line-height: 1.75; max-width: 560px; margin-bottom: 48px; }
-.video-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-@media (max-width: 700px) { .video-grid { grid-template-columns: 1fr; } }
-.video-card {
-  background: var(--card); border: 1px solid rgba(255,255,255,.06);
-  border-radius: 6px; overflow: hidden;
-  transition: border-color var(--speed), transform var(--speed);
+.proj-link i { font-size: 1rem; color: var(--ms-gray); transition: color 0.3s; }
+.proj-link:hover {
+    border-color: var(--ms-blue);
+    color: var(--ms-blue);
+    background: rgba(0, 120, 212, 0.04);
 }
-.video-card:hover { border-color: rgba(0,120,212,.4); transform: translateY(-3px); }
-.video-wrap {
-  position: relative; padding-bottom: 56.25%; /* 16:9 */
-  background: var(--ink-3);
-}
-.video-wrap iframe {
-  position: absolute; inset: 0; width: 100%; height: 100%; border: none;
-}
-.video-placeholder {
-  position: absolute; inset: 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
-  background: var(--ink-3);
-}
-.video-placeholder .play-icon {
-  width: 56px; height: 56px; border-radius: 50%;
-  background: rgba(200,164,90,.12); border: 1px solid rgba(0,120,212,.4);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; color: var(--gold);
-}
-.video-placeholder p { font-size: 13px; color: var(--muted); }
-.video-info { padding: 20px 22px; }
-.video-tag {
-  font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 6px;
-}
-.video-title { font-size: 15px; font-weight: 500; color: var(--white); margin-bottom: 6px; line-height: 1.4; }
-.video-desc { font-size: 13px; color: var(--muted-2); font-weight: 300; line-height: 1.6; }
+.proj-link:hover i { color: var(--ms-blue); }
 
-/* ─── STRATEGY PANEL ─────────────────────────── */
-.strategy-wrap { max-width: 720px; }
-.str-eyebrow {
-  font-size: 11px; font-weight: 600; letter-spacing: .14em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
-}
-.str-h {
-  font-family: var(--serif);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500; line-height: 1.1; margin-bottom: 14px;
-}
-.str-h em { font-style: italic; color: var(--gold); }
-.str-p { font-size: 15px; color: var(--muted-2); font-weight: 300; line-height: 1.75; margin-bottom: 28px; }
-.notebox {
-  background: rgba(0,120,212,.07); border: 1px solid rgba(0,120,212,.22);
-  border-left: 3px solid var(--msl); border-radius: var(--r);
-  padding: 18px 20px; font-size: 14px; color: var(--muted-2); line-height: 1.75; margin-bottom: 28px;
-}
-.notebox strong { color: var(--gold); }
-.li-block {
-  background: var(--ink-3); border: 1px solid var(--rule);
-  border-radius: 6px; padding: 24px 28px;
-  display: flex; align-items: flex-start; gap: 18px; flex-wrap: wrap;
-}
-.li-ico {
-  width: 44px; height: 44px; background: #0a66c2; border-radius: 6px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem; color: var(--white); font-weight: 700; font-family: Georgia,serif;
-  flex-shrink: 0;
-}
-.li-body { flex: 1; min-width: 200px; }
-.li-title { font-size: 16px; font-weight: 500; margin-bottom: 6px; }
-.li-desc { font-size: 13px; color: var(--muted-2); line-height: 1.65; margin-bottom: 14px; font-weight: 300; }
-.li-chips { display: flex; flex-wrap: wrap; gap: 7px; }
-.lichip {
-  background: var(--ink-2); border: 1px solid var(--rule); border-radius: 6px;
-  padding: 7px 13px; font-size: 12px; color: var(--muted-2);
-  display: flex; align-items: center; gap: 6px;
-  text-decoration: none; transition: border-color var(--speed);
-}
-.lichip:hover { border-color: rgba(0,120,212,.4); color: var(--white); }
-.cdot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+/* ── 排版變化 (模仿雜誌的不對稱排版) ── */
+.layout-a .proj-img-wrap { grid-column: 1 / 8; }
+.layout-a .proj-text { grid-column: 9 / 13; }
 
-/* ─── PANEL ──────────────────────────────────── */
-.overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.7); z-index: 950;
-  opacity: 0; visibility: hidden; transition: opacity .3s, visibility .3s;
-}
-.overlay.open { opacity: 1; visibility: visible; }
-.drawer {
-  position: fixed; top: 0; right: 0; bottom: 0;
-  width: min(680px, 96vw); z-index: 951;
-  background: var(--ink-2);
-  transform: translateX(105%); transition: transform .4s var(--ease);
-  display: flex; flex-direction: column;
-  border-left: 1px solid var(--border);
-  box-shadow: -20px 0 60px rgba(0,0,0,.6);
-}
-.drawer.open { transform: translateX(0); }
-.dr-head {
-  padding: 80px 24px 18px; border-bottom: 1px solid var(--border);
-  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
-  background: var(--ink-3); flex-shrink: 0;
-}
-.dr-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 500; line-height: 1.15; }
-.dr-title em { font-style: italic; color: var(--gold); }
-.dr-close {
-  width: 34px; height: 34px; border-radius: 6px; cursor: pointer; flex-shrink: 0;
-  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
-  color: var(--muted-2); font-size: .9rem; display: flex; align-items: center; justify-content: center;
-  transition: var(--speed);
-}
-.dr-close:hover { border-color: rgba(255,255,255,.3); color: var(--white); }
-.dr-tabs {
-  display: flex; padding: 0 24px; border-bottom: 1px solid var(--rule);
-  background: var(--ink-3); flex-shrink: 0;
-}
-.dtab {
-  font-size: 11px; font-weight: 500; letter-spacing: .09em; text-transform: uppercase;
-  color: rgba(255,255,255,.4); padding: 13px 14px; border: none; background: none;
-  cursor: pointer; font-family: var(--sans); position: relative; transition: color var(--speed);
-}
-.dtab::after {
-  content: ''; position: absolute; bottom: 0; left: 14px; right: 14px;
-  height: 2px; background: var(--ms); transform: scaleX(0); transition: transform var(--speed);
-}
-.dtab.on { color: var(--white); }
-.dtab.on::after { transform: scaleX(1); }
-.dr-body {
-  flex: 1; overflow-y: auto; padding: 28px 24px 48px;
-  scrollbar-width: thin; scrollbar-color: rgba(200,164,90,.2) transparent;
-}
-.dsec { display: none; }
-.dsec.on { display: block; }
+.layout-b .proj-text { grid-column: 1 / 5; }
+.layout-b .proj-img-wrap { grid-column: 6 / 13; }
 
-/* Panel content */
-.dlabel {
-  font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 10px; display: block;
-}
-.dtext { font-size: 14px; color: var(--muted-2); line-height: 1.8; font-weight: 300; margin-bottom: 18px; }
-.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 16px 0 24px; }
-.metric {
-  background: var(--ink-3); border: 1px solid rgba(200,164,90,.08);
-  border-radius: 6px; padding: 16px 12px; text-align: center;
-}
-.mnum { font-family: var(--serif); font-size: 2rem; font-weight: 600; line-height: 1; margin-bottom: 5px; }
-.mlbl { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-.dlayer {
-  background: rgba(200,164,90,.04); border: 1px solid rgba(200,164,90,.1);
-  border-left: 3px solid var(--ms); border-radius: 8px;
-  padding: 15px 17px; margin-bottom: 12px;
-}
-.dlayer.gr { background: rgba(0,178,148,.04); border-color: rgba(58,170,114,.1); border-left-color: var(--green); }
-.dlayer.am { background: rgba(200,164,90,.03); border-color: rgba(200,164,90,.1); border-left-color: var(--amber); }
-.dllabel { font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 7px; display: block; }
-.dltext  { font-size: 13px; color: var(--muted-2); line-height: 1.65; font-weight: 300; }
-.dlchips { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 9px; }
-.dlchip {
-  font-size: 11px; padding: 3px 9px; border-radius: 6px;
-  border: 1px solid rgba(0,178,148,.25); background: rgba(0,178,148,.07); color: var(--green);
-}
-.dlinks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-.dlink {
-  font-size: 13px; padding: 8px 16px; border-radius: var(--r);
-  border: 1px solid rgba(0,120,212,.4); color: var(--gold);
-  display: inline-flex; align-items: center; gap: 7px;
-  transition: background var(--speed), color var(--speed), border-color var(--speed);
-}
-.dlink:hover { background: var(--ms); color: var(--white); border-color: var(--ms); }
-.strategy-items { margin-top: 4px; }
-.sitem { display: flex; gap: 14px; margin-bottom: 16px; align-items: flex-start; }
-.snum {
-  width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 11px; font-weight: 700;
-}
-.stitle { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
-.stext  { font-size: 13px; color: var(--muted-2); line-height: 1.65; font-weight: 300; }
-.pdf-frame { width: 100%; height: 500px; border: none; border-radius: 8px; background: var(--ink-3); display: block; }
+.layout-c { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.layout-c .proj-img-wrap { width: 75%; margin-bottom: 40px; }
+.layout-c .proj-text { max-width: 650px; }
+.layout-c .proj-links { justify-content: center; }
 
-/* ─── FOOTER ─────────────────────────────────── */
-footer { border-top: 1px solid var(--rule); padding: 36px 0; background: var(--bg); }
-.foot-in {
-  max-width: 1200px; margin: 0 auto; padding: 0 24px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+/* ── 滑動顯現動畫 ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s var(--ease);
 }
-.foot-copy { font-size: 12px; color: var(--muted); }
-.foot-links { display: flex; gap: 22px; }
-.foot-links a { font-size: 12px; color: var(--muted); transition: color var(--speed); text-transform: uppercase; letter-spacing: .06em; }
-.foot-links a:hover { color: var(--white); }
+.reveal.v {
+    opacity: 1;
+    transform: none;
+}
 
-/* ─── MOBILE ──────────────────────────────────── */
+/* ── MOBILE RWD ── */
 @media (max-width: 900px) {
-  .nav-in { padding: 0 20px; }
-  .menu-toggle { display: block; }
-  .nav-wrap {
-    position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
-    background: var(--ink-2); flex-direction: column; justify-content: center;
-    padding: 40px; gap: 0; transition: right .4s var(--ease);
-    box-shadow: -10px 0 30px rgba(0,0,0,.5); z-index: 901;
-    display: flex; align-items: flex-start;
-  }
-  .nav-wrap.open { right: 0; }
-  .nav-links { flex-direction: column; align-items: flex-start; width: 100%; gap: 5px; }
-  .nav-links a, .drop-btn { font-size: .85rem; padding: 10px 14px; }
-  .nav-right { flex-direction: column; align-items: flex-start; margin-top: 28px; width: 100%; gap: 14px; }
-  .lang-sw { font-size: .8rem; gap: 8px; }
-  .lang-btn { font-size: .8rem; }
-  .main { padding: 36px 20px 80px; }
-  .filters-in { padding: 0 20px; }
-  .hero-in { padding: 0 20px; }
-  .vs-in { padding: 0 20px; }
-  .foot-in { flex-direction: column; text-align: center; }
-  .hero { padding: 116px 0 60px; }
-  .drawer { width: 100vw; border-left: none; }
-  .dr-head { padding: 80px 20px 16px; }
-  .dr-body { padding: 20px 20px 40px; }
+    .back-btn { top: 20px; left: 20px; padding: 10px 18px; font-size: 0.7rem; }
+    .lookbook { padding: 80px 25px; }
+    .project-row { display: flex; flex-direction: column; gap: 30px; margin-bottom: 120px; }
+    .project-row::after { bottom: -60px; }
+    .proj-num { font-size: 3.5rem; }
+    .proj-title { font-size: 2rem; }
+    .layout-b .proj-text { order: 2; }
+    .layout-b .proj-img-wrap { order: 1; }
+    .layout-c .proj-img-wrap { width: 100%; }
 }
-
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s var(--ease), transform .65s var(--ease); }
-.reveal.v { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="mainnav">
-  <div class="nav-in">
-    <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-    <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-    <div class="nav-wrap" id="navWrap">
-      <ul class="nav-links">
-        <li><a href="index.html" data-i18n="nav-home">Home</a></li>
-        <li><a href="projects.html" data-i18n="nav-projects">Projects</a></li>
-        <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
-        <li><a href="microsoft-moi.html" class="active nav-moi" data-i18n="nav-moi">Microsoft MOI</a></li>
-        <li class="nav-drop">
-          <button class="drop-btn" data-i18n="nav-more">More <i class="fas fa-chevron-down" style="font-size:.45rem"></i></button>
-          <div class="drop-menu">
-            <a href="experience.html" data-i18n="nav-intern">Internship</a>
-            <a href="exchange.html" data-i18n="nav-exchange">Cultural Exchange</a>
-            <a href="certificates.html" data-i18n="nav-certs">Certificates</a>
-            <a href="clubs.html" data-i18n="nav-clubs">Clubs &amp; Volunteer</a>
-          </div>
-        </li>
-      </ul>
-      <div class="nav-right">
-        <div class="lang-sw">
-          <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
-          <span>|</span>
-          <button class="lang-btn" id="btn-zh" onclick="setLang('zh')">中</button>
-        </div>
-        <a href="resume.pdf" download class="nav-cv" data-i18n="nav-cv">CV</a>
-      </div>
-    </div>
-  </div>
-</nav>
+<a href="index.html" class="back-btn">
+    <i class="fas fa-arrow-left"></i> Home
+</a>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="hero-in">
-    <div class="hero-badge reveal">
-      <span class="dot"></span>
-      <span data-i18n="badge">Microsoft Taiwan · Future Ready Talent Program 2026</span>
+<section class="hero">
+    <span class="hero-tag reveal">Microsoft MOI</span>
+    <h1 class="reveal">Marketing <em>Archive</em></h1>
+    <p class="reveal" style="transition-delay: 0.1s;">A curated lookbook of B2B content, product campaigns, and data-driven strategies built to showcase readiness for the Microsoft MOI role.</p>
+    
+    <div class="scroll-down reveal" style="transition-delay: 0.2s;">
+        Scroll
+        <div class="scroll-line"></div>
     </div>
-    <h1 class="reveal">
-      <span data-i18n="h1-line1">MOI Application</span><br>
-      <em data-i18n="h1-line2">Portfolio</em>
-    </h1>
-    <p class="hero-sub reveal" data-i18n="hero-sub">A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?</p>
-    <div class="hero-tags reveal">
-      <span class="htag" data-i18n="t1">Content Creation</span>
-      <span class="htag" data-i18n="t2">Social Media Marketing</span>
-      <span class="htag" data-i18n="t3">Data-Driven Campaigns</span>
-      <span class="htag" data-i18n="t4">AI Aptitude</span>
-      <span class="htag" data-i18n="t5">B2B Strategy</span>
-    </div>
-  </div>
-</header>
-
-<!-- FILTER TABS -->
-<div class="filters">
-  <div class="filters-in">
-    <button class="ftab on" onclick="switchTab('all',this)"><span data-i18n="tab-all">All Work</span> <span class="fbadge fb-blue">5</span></button>
-    <button class="ftab" onclick="switchTab('live',this)"><span data-i18n="tab-live">Live</span> <span class="fbadge fb-green">1</span></button>
-    <button class="ftab" onclick="switchTab('wip',this)"><span data-i18n="tab-wip">In Progress</span> <span class="fbadge fb-amber">2</span></button>
-    <button class="ftab" onclick="switchTab('planned',this)"><span data-i18n="tab-plan">Planned</span> <span class="fbadge fb-gray">2</span></button>
-    <button class="ftab" onclick="switchTab('strategy',this)" data-i18n="tab-str">Strategy</button>
-  </div>
-</div>
-
-<!-- MAIN -->
-<main class="main">
-  <div id="panel-all" class="tab-panel active"><div class="grid" id="grid-all"></div></div>
-  <div id="panel-live" class="tab-panel"><div class="grid" id="grid-live"></div></div>
-  <div id="panel-wip" class="tab-panel"><div class="grid" id="grid-wip"></div></div>
-  <div id="panel-planned" class="tab-panel"><div class="grid" id="grid-planned"></div></div>
-  <div id="panel-strategy" class="tab-panel">
-    <div class="strategy-wrap">
-      <p class="str-eyebrow" data-i18n="str-tag">Distribution Strategy</p>
-      <h2 class="str-h"><span data-i18n="str-h1">Why</span> <em data-i18n="str-h2">LinkedIn-First</em></h2>
-      <p class="str-p" data-i18n="str-p">Each piece is published on LinkedIn before archiving here — real engagement data, not mock numbers.</p>
-      <div class="notebox">
-        <strong data-i18n="str-nb-t">How this works:</strong>
-        <span data-i18n="str-nb-b"> I publish each piece on LinkedIn first. Once posted, I link the real post here — impressions, comments, and reactions are genuine third-party data. This page is a living archive.</span>
-      </div>
-      <div class="li-block">
-        <div class="li-ico">in</div>
-        <div class="li-body">
-          <div class="li-title" data-i18n="str-posts">Published Posts</div>
-          <div class="li-desc" data-i18n="str-posts-d">Posts go live on LinkedIn first. Links open original posts — engagement numbers are real.</div>
-          <div class="li-chips">
-            <a class="lichip" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><span class="cdot" style="background:var(--green)"></span><span data-i18n="chip1">Tachiz · LinkedIn Algorithm 2025 · 242 impressions</span></a>
-            <div class="lichip"><span class="cdot" style="background:var(--amber)"></span><span data-i18n="chip2">Copilot for Students · Coming Soon</span></div>
-            <div class="lichip"><span class="cdot" style="background:var(--amber)"></span><span data-i18n="chip3">Azure Explained · Coming Soon</span></div>
-            <div class="lichip"><span class="cdot" style="background:var(--faint)"></span><span data-i18n="chip4">AI Copywriting Demo · Planned</span></div>
-            <div class="lichip"><span class="cdot" style="background:var(--faint)"></span><span data-i18n="chip5">Holiday Campaign · Planned</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</main>
-
-<!-- VIDEO SECTION -->
-<section class="video-section">
-  <div class="vs-in">
-    <p class="vs-tag reveal" data-i18n="vs-tag">Video Production</p>
-    <h2 class="vs-title reveal"><span data-i18n="vs-h1">Creative</span> <em data-i18n="vs-h2">Reel</em></h2>
-    <p class="vs-desc reveal" data-i18n="vs-p">Short-form video content created as part of a mock Microsoft Copilot campaign — demonstrating visual storytelling, editing, and social media content production skills.</p>
-    <div class="video-grid">
-      <!-- SLOT 1: replace YOUR_VIDEO_ID_1 with actual YouTube video ID -->
-      <div class="video-card reveal">
-        <div class="video-wrap">
-          <div class="video-placeholder" id="vp1">
-            <div class="play-icon"><i class="fas fa-play"></i></div>
-            <p data-i18n="vid-add">Add YouTube video ID</p>
-          </div>
-          <!-- UNCOMMENT AND REPLACE ID WHEN READY:
-          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID_1" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-          -->
-        </div>
-        <div class="video-info">
-          <div class="video-tag" data-i18n="vid1-tag">Mock Campaign · Copilot</div>
-          <div class="video-title" data-i18n="vid1-title">【大學生獨旅必備】用 Copilot 搞定 5 天 4 夜京都行</div>
-          <div class="video-desc" data-i18n="vid1-desc">A travel vlog reframed as a Microsoft Copilot social campaign — showing how AI planning tools transform the student travel experience.</div>
-        </div>
-      </div>
-      <!-- SLOT 2 -->
-      <div class="video-card reveal">
-        <div class="video-wrap">
-          <div class="video-placeholder" id="vp2">
-            <div class="play-icon"><i class="fas fa-plus"></i></div>
-            <p data-i18n="vid-coming">Video coming soon</p>
-          </div>
-        </div>
-        <div class="video-info">
-          <div class="video-tag" data-i18n="vid2-tag">Mock Campaign · M365</div>
-          <div class="video-title" data-i18n="vid2-title">回憶不佔空間 — My M365 Cloud Travel Diary</div>
-          <div class="video-desc" data-i18n="vid2-desc">OneDrive and M365 as the invisible travel companion — a consumer-focused social ad concept targeting students and young professionals.</div>
-        </div>
-      </div>
-    </div>
-  </div>
 </section>
 
-<!-- PANEL -->
-<div class="overlay" id="overlay" onclick="closePanel()"></div>
-<div class="drawer" id="drawer">
-  <div class="dr-head">
-    <div class="dr-title" id="d-title"></div>
-    <button class="dr-close" onclick="closePanel()"><i class="fas fa-times"></i></button>
-  </div>
-  <div class="dr-tabs">
-    <button class="dtab on" onclick="switchDTab('ov',this)" data-i18n="ptab-ov">Overview</button>
-    <button class="dtab" onclick="switchDTab('pdf',this)" data-i18n="ptab-pdf">PDF / Deliverable</button>
-    <button class="dtab" onclick="switchDTab('str',this)" data-i18n="ptab-str">Strategy</button>
-  </div>
-  <div class="dr-body">
-    <div class="dsec on" id="ds-ov"></div>
-    <div class="dsec" id="ds-pdf"></div>
-    <div class="dsec" id="ds-str"></div>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-in">
-    <div class="foot-copy" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
-    <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" data-i18n="foot-email">Email</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" data-i18n="foot-li">LinkedIn</a>
-      <a href="index.html" data-i18n="foot-home">Home</a>
+<section class="lookbook">
+    
+    <div class="project-row layout-a reveal">
+        <div class="proj-img-wrap">
+            <img src="image_18b85c.png" alt="LinkedIn Algorithm 2025 Carousel" style="aspect-ratio: 4/3; object-fit: cover; object-position: top;">
+        </div>
+        <div class="proj-text">
+            <div class="proj-num">01</div>
+            <span class="proj-tag">B2B Strategy & MarTech</span>
+            <h2 class="proj-title">Tachiz LinkedIn Strategy & Tool</h2>
+            <p class="proj-desc">
+                為 Tachiz 進行的 B2B 內容行銷解方，組內策略提案獲 <strong>100% 採用</strong>。為突破行銷人力預算限制，我開發了一套網頁系統，幫助團隊快速產出符合 LinkedIn 2026 演算法的輪播圖。<br><br>
+                為驗證成效，我親自製作《LinkedIn Algorithm 2025》輪播圖實測，發布 3 天內即獲 <strong>264 次真實曝光、觸及 131 位專業會員</strong>並成功轉換新關注者。
+            </p>
+            <div class="proj-links">
+                <a href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-activity-7448348714924109824-auUl?utm_source=social_share_send&utm_medium=member_desktop_web&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank" class="proj-link">
+                    <i class="fab fa-linkedin"></i> View Live Post
+                </a>
+                <a href="tachiz_personal_proposal.pdf" target="_blank" class="proj-link">
+                    <i class="fas fa-file-pdf"></i> Strategy Proposal
+                </a>
+                <a href="linkedIn_algorithm_2025_mobile_carousel .pdf" target="_blank" class="proj-link">
+                    <i class="fas fa-images"></i> Carousel Deck
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
+
+    <div class="project-row layout-b reveal">
+        <div class="proj-text">
+            <div class="proj-num">02</div>
+            <span class="proj-tag">Social Campaign</span>
+            <h2 class="proj-title">Copilot for Students</h2>
+            <p class="proj-desc">將 Microsoft Copilot 的硬核技術轉譯為 Gen Z 學生友善的語言。以 Instagram 輪播圖形式，視覺化「大學生必備的 3 個 Copilot 神技」，展現跨平台的社群敘事與文案轉譯能力。</p>
+            <div class="proj-links">
+                <a href="#" class="proj-link" style="pointer-events: none; opacity: 0.5;">
+                    <i class="fas fa-clock"></i> Coming Soon
+                </a>
+            </div>
+        </div>
+        <div class="proj-img-wrap">
+            <img src="YOUR_IMAGE_02.jpg" alt="Copilot Campaign" style="aspect-ratio: 3/4; object-fit: cover;" onerror="this.src='https://via.placeholder.com/600x800/f4f4f4/cccccc?text=Copilot+Campaign'">
+        </div>
+    </div>
+
+    <div class="project-row layout-c reveal">
+        <div class="proj-img-wrap">
+            <img src="YOUR_IMAGE_03.jpg" alt="Azure Infographic" style="aspect-ratio: 16/9; object-fit: cover;" onerror="this.src='https://via.placeholder.com/1200x675/f4f4f4/cccccc?text=Azure+Visual+Guide'">
+        </div>
+        <div class="proj-text">
+            <div class="proj-num">03</div>
+            <span class="proj-tag">Visual Design & Translation</span>
+            <h2 class="proj-title">Azure in Plain Language</h2>
+            <p class="proj-desc">面試情境題解答：在 60 秒內讓非技術背景的利害關係人（如採購總監）理解 Azure 雲端架構。透過高度視覺化的資訊圖表，展現將複雜科技產品降維打擊的企劃轉譯力。</p>
+            <div class="proj-links">
+                <a href="#" class="proj-link" style="pointer-events: none; opacity: 0.5;">
+                    <i class="fas fa-clock"></i> Coming Soon
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-row layout-a reveal">
+        <div class="proj-img-wrap">
+            <img src="YOUR_IMAGE_04.jpg" alt="Holiday Campaign" style="aspect-ratio: 4/3; object-fit: cover;" onerror="this.src='https://via.placeholder.com/800x600/f4f4f4/cccccc?text=Holiday+Campaign'">
+        </div>
+        <div class="proj-text">
+            <div class="proj-num">04</div>
+            <span class="proj-tag">Brand Localization</span>
+            <h2 class="proj-title">Holiday Campaign</h2>
+            <p class="proj-desc">遵循微軟嚴謹的品牌視覺規範 (Brand Guidelines)，設計原創的台灣節慶社群貼文（中秋節與農曆新年）。搭配精準的中英雙語文案，展現跨文化與本土化社群營運實力。</p>
+            <div class="proj-links">
+                <a href="#" class="proj-link" style="pointer-events: none; opacity: 0.5;">
+                    <i class="fas fa-clock"></i> Planned
+                </a>
+            </div>
+        </div>
+    </div>
+
+</section>
 
 <script>
-/* ── I18N ── */
-const S={
-  en:{
-    'nav-home':'Home','nav-projects':'Projects','nav-comp':'Competitions','nav-moi':'Microsoft MOI',
-    'nav-more':'More','nav-intern':'Internship','nav-exchange':'Cultural Exchange',
-    'nav-certs':'Certificates','nav-clubs':'Clubs & Volunteer','nav-cv':'CV',
-    'badge':'Microsoft Taiwan · Future Ready Talent Program 2026',
-    'h1-line1':'MOI Application','h1-line2':'Portfolio',
-    'hero-sub':"A curated collection of original marketing work, product research, and campaign concepts — built to answer one question: if I were already Microsoft's MOI, what would I ship?",
-    't1':'Content Creation','t2':'Social Media Marketing','t3':'Data-Driven Campaigns','t4':'AI Aptitude','t5':'B2B Strategy',
-    'tab-all':'All Work','tab-live':'Live','tab-wip':'In Progress','tab-plan':'Planned','tab-str':'Strategy',
-    'str-tag':'Distribution Strategy','str-h1':'Why','str-h2':'LinkedIn-First',
-    'str-p':'Each piece is published on LinkedIn before archiving here — real engagement data, not mock numbers.',
-    'str-nb-t':'How this works:','str-nb-b':' I publish each piece on LinkedIn first. Once posted, I link the real post here — impressions, comments, and reactions are genuine third-party data. This page is a living archive.',
-    'str-posts':'Published Posts','str-posts-d':'Posts go live on LinkedIn first. Links open original posts — engagement numbers are real.',
-    'chip1':'Tachiz · LinkedIn Algorithm 2025 · 242 impressions','chip2':'Copilot for Students · Coming Soon',
-    'chip3':'Azure Explained · Coming Soon','chip4':'AI Copywriting Demo · Planned','chip5':'Holiday Campaign · Planned',
-    'vs-tag':'Video Production','vs-h1':'Creative','vs-h2':'Reel',
-    'vs-p':'Short-form video content created as part of a mock Microsoft Copilot campaign — demonstrating visual storytelling, editing, and social media content production skills.',
-    'vid-add':'Add YouTube video ID','vid-coming':'Video coming soon',
-    'vid1-tag':'Mock Campaign · Copilot',
-    'vid1-title':'【Student Solo Travel】Using Copilot to Plan 5 Days in Kyoto',
-    'vid1-desc':'A travel vlog reframed as a Microsoft Copilot social campaign — showing how AI planning tools transform the student travel experience.',
-    'vid2-tag':'Mock Campaign · M365',
-    'vid2-title':'Memories Don\'t Take Up Space — My M365 Cloud Travel Diary',
-    'vid2-desc':'OneDrive and M365 as the invisible travel companion — a consumer-focused social ad concept targeting students and young professionals.',
-    'ptab-ov':'Overview','ptab-pdf':'PDF / Deliverable','ptab-str':'Strategy',
-    'foot-copy':'© 2026 HsinYu Wen — NCKU TCM Science','foot-email':'Email','foot-li':'LinkedIn','foot-home':'Home'
-  },
-  zh:{
-    'nav-home':'首頁','nav-projects':'專案','nav-comp':'競賽','nav-moi':'微軟 MOI',
-    'nav-more':'更多','nav-intern':'實習','nav-exchange':'文化交流',
-    'nav-certs':'證書','nav-clubs':'社團與志工','nav-cv':'履歷',
-    'badge':'微軟台灣 · 未來就緒人才計畫 2026',
-    'h1-line1':'MOI 應徵','h1-line2':'作品集',
-    'hero-sub':'專為微軟台灣行銷助理（MOI）職位打造的原創行銷作品、產品研究與創意提案精選。',
-    't1':'內容創作','t2':'社群行銷','t3':'數據驅動企劃','t4':'AI 應用能力','t5':'B2B 策略',
-    'tab-all':'全部作品','tab-live':'已上線','tab-wip':'進行中','tab-plan':'規劃中','tab-str':'發布策略',
-    'str-tag':'發布策略','str-h1':'為什麼選擇','str-h2':'LinkedIn 優先',
-    'str-p':'每件作品先在 LinkedIn 發布，再收錄於此頁面，確保你看到的互動數據是真實的。',
-    'str-nb-t':'運作方式：','str-nb-b':'每一件作品以輪播圖、圖片或短影音形式在 LinkedIn 首發。發布後，我將原始貼文連結嵌入此頁——你看到的按讚數、留言數均為真實第三方數據。這是一個持續更新的活檔案庫。',
-    'str-posts':'已發布貼文','str-posts-d':'作品在 LinkedIn 首發，數據自然累積。以下連結直接開啟原始貼文，互動數均為真實數據。',
-    'chip1':'Tachiz · LinkedIn 演算法 2025 · 242 次曝光','chip2':'學生版 Copilot · 即將推出',
-    'chip3':'Azure 視覺化說明 · 即將推出','chip4':'AI 文案示範 · 規劃中','chip5':'節慶行銷活動 · 規劃中',
-    'vs-tag':'影片製作','vs-h1':'創作','vs-h2':'精選剪輯',
-    'vs-p':'以微軟 Copilot 虛擬行銷企劃為框架製作的短影音內容，展現視覺說故事、剪輯技能與社群內容產製能力。',
-    'vid-add':'新增 YouTube 影片 ID','vid-coming':'影片即將上線',
-    'vid1-tag':'虛擬企劃 · Copilot',
-    'vid1-title':'【大學生獨旅必備】用 Copilot 搞定 5 天 4 夜京都行',
-    'vid1-desc':'以旅遊 Vlog 重新包裝為微軟 Copilot 社群行銷企劃——展現 AI 規劃工具如何改變學生旅行體驗。',
-    'vid2-tag':'虛擬企劃 · M365',
-    'vid2-title':'回憶不佔空間 — My M365 雲端旅遊日記',
-    'vid2-desc':'將 OneDrive 和 M365 定位為旅途中的隱形好夥伴——以學生與社會新鮮人為目標受眾的消費者社群廣告概念。',
-    'ptab-ov':'專案概覽','ptab-pdf':'PDF / 成品','ptab-str':'策略分析',
-    'foot-copy':'© 2026 溫心語 — 國立成功大學 交通管理科學系','foot-email':'電子郵件','foot-li':'領英','foot-home':'首頁'
-  }
-};
+    // 滾動浮現動畫腳本
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('v');
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
 
-let LANG='en';
-function setLang(l){
-  LANG=l;
-  localStorage.setItem('lang',l);
-  document.getElementById('btn-en').classList.toggle('active',l==='en');
-  document.getElementById('btn-zh').classList.toggle('active',l==='zh');
-  document.documentElement.lang=l==='zh'?'zh-Hant':'en';
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(S[l][k]!==undefined) el.innerHTML=S[l][k];
-  });
-  ['all','live','wip','planned'].forEach(g=>{
-    const el=document.getElementById('grid-'+g);
-    if(el) el.innerHTML='';
-  });
-  populateGrids();
-}
-
-/* ── PROJECT DATA ── */
-const PROJECTS=[
-  {id:'tachiz',status:'live',acc:'ac-green',featured:true,num:'01',
-   cats:{en:[{l:'100% Adopted by Team',c:'cg'},{l:'LinkedIn Carousel · 12 slides',c:'cb'},{l:'B2B Content Strategy',c:'cb'},{l:'GitHub Tool System',c:'ca'}],
-         zh:[{l:'提案 100% 被採用',c:'cg'},{l:'LinkedIn 輪播圖 · 12 張',c:'cb'},{l:'B2B 內容策略',c:'cb'},{l:'GitHub 工具系統',c:'ca'}]},
-   title:{en:'Tachiz × LinkedIn',zh:'Tachiz × LinkedIn'},
-   em:{en:'Full-Stack Campaign',zh:'全端行銷方案'},
-   desc:{en:'End-to-end B2B content strategy for Tachiz (Taiwan popping boba, 393 flavors, Red Dot Award). 12-slide LinkedIn carousel + 22-page strategy proposal adopted by a team of 8 + live GitHub content system.',
-         zh:'為泰吉軒打造的完整 B2B 內容策略。12 張 LinkedIn 輪播圖 + 22 頁策略提案（8 人團隊全數採用）+ 上線中的 GitHub 內容生產系統。'},
-   stlabel:{en:'Live · All 3 layers deployed',zh:'已上線 · 3 層全數部署'},stcolor:'var(--green)',sdot:'s-live',
-   cta:{en:'View LinkedIn Post →',zh:'查看 LinkedIn 貼文 →'},
-   ctaHref:'https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY',
-   pdfUrl:'tachiz_blue.pdf',hasPdf:true,
-   pdfLabel:{en:'LinkedIn Algorithm 2025 Carousel (12 slides)',zh:'LinkedIn 演算法 2025 輪播圖（12 張）'},
-   ov:{
-     en:`<span class="dlabel">Project Overview</span>
-     <p class="dtext">A full-stack B2B content campaign for Tachiz — 393 flavors, FSSC 22000, Red Dot Design Award. Three deliverables: published LinkedIn carousel, strategy proposal adopted by team of 8, and live GitHub production system.</p>
-     <div class="metrics">
-       <div class="metric"><div class="mnum" style="color:var(--green)">242</div><div class="mlbl">Impressions · Day 5</div></div>
-       <div class="metric"><div class="mnum" style="color:var(--amber)">28</div><div class="mlbl">Followers · Organic</div></div>
-       <div class="metric"><div class="mnum" style="color:var(--gold)">8</div><div class="mlbl">Team · Adopted</div></div>
-     </div>
-     <span class="dlabel">Three Deliverables</span>
-     <div class="dlayer am"><span class="dllabel" style="color:var(--amber)">① LinkedIn Carousel · Published</span><p class="dltext">12-slide PDF: <em style="color:#ddeeff">"The LinkedIn Algorithm in 2025."</em> Covers organic reach decline (−50%), 3 algorithm gates, engagement hierarchy (saves = 5× a like), format rankings, timing, cheat sheet. Based on: van der Blom 2025, Agorapulse, Postiv AI (2M+ posts).</p><div class="dlchips"><span class="dlchip">242 impressions · 5 days</span><span class="dlchip">Organic · 28 followers</span></div></div>
-     <div class="dlayer"><span class="dllabel" style="color:var(--gold)">② Strategic Proposal · Fully Adopted</span><p class="dltext">22-page B2B LinkedIn strategy identifying 5 blind spots. Proposed 60-30-10 content framework, PDF-first strategy, employee advocacy model. <strong style="color:var(--white)">Fully adopted as team's primary marketing solution.</strong></p></div>
-     <div class="dlayer gr"><span class="dllabel" style="color:var(--green)">③ GitHub Tool System · Live</span><p class="dltext">Web system for any Tachiz employee to generate algorithm-compliant carousels and captions without design expertise.</p><div class="dlchips"><a href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank" style="font-size:12px;color:var(--gold);text-decoration:none">adelawen.github.io/tachiz.linkedin.strategy →</a></div></div>
-     <div class="dlinks">
-       <a class="dlink" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn Post</a>
-       <a class="dlink" href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub System</a>
-     </div>`,
-     zh:`<span class="dlabel">專案概覽</span>
-     <p class="dtext">為泰吉軒打造的完整 B2B 內容行銷方案。393 種口味、FSSC 22000 認證、紅點設計獎。三大交付成果：已發布的 LinkedIn 輪播圖、被 8 人團隊全數採用的策略提案、以及上線中的 GitHub 內容生產系統。</p>
-     <div class="metrics">
-       <div class="metric"><div class="mnum" style="color:var(--green)">242</div><div class="mlbl">曝光次數 · 第 5 天</div></div>
-       <div class="metric"><div class="mnum" style="color:var(--amber)">28</div><div class="mlbl">粉絲 · 自然觸及</div></div>
-       <div class="metric"><div class="mnum" style="color:var(--gold)">8</div><div class="mlbl">團隊人數 · 全數採用</div></div>
-     </div>
-     <span class="dlabel">三大交付成果</span>
-     <div class="dlayer am"><span class="dllabel" style="color:var(--amber)">① LinkedIn 輪播圖 · 已發布</span><p class="dltext">12 張 PDF 輪播圖：<em style="color:#ddeeff">「2025 LinkedIn 演算法完全攻略」</em>。涵蓋自然觸及率下降（−50%）、三關演算法機制、互動信號層級、格式排名、發文時機與完整速查表。資料來源：van der Blom 2025、Agorapulse、Postiv AI（200 萬篇貼文分析）。</p><div class="dlchips"><span class="dlchip">242 次曝光 · 5 天</span><span class="dlchip">自然觸及 · 28 粉絲</span></div></div>
-     <div class="dlayer"><span class="dllabel" style="color:var(--gold)">② 策略提案 · 被全數採用</span><p class="dltext">22 頁 B2B LinkedIn 策略報告，識別 5 大盲點，提出 60-30-10 內容框架、PDF 優先策略、員工倡導模型。<strong style="color:var(--white)">提案被 8 人團隊全數採用為主要行銷解方。</strong></p></div>
-     <div class="dlayer gr"><span class="dllabel" style="color:var(--green)">③ GitHub 工具系統 · 上線中</span><p class="dltext">讓任一員工都能在無設計能力的情況下，產出符合演算法規格的 LinkedIn 輪播圖與貼文文案。</p><div class="dlchips"><a href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank" style="font-size:12px;color:var(--gold);text-decoration:none">adelawen.github.io/tachiz.linkedin.strategy →</a></div></div>
-     <div class="dlinks">
-       <a class="dlink" href="https://www.linkedin.com/posts/adelawen_linkedin-algorithm-2025-ugcPost-7448348711832772608-pr0V?utm_source=share&utm_medium=member_desktop&rcm=ACoAAF5M0R0BpPSyfxWD9shyaq1oVRXEd_puXuY" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn 貼文</a>
-       <a class="dlink" href="https://adelawen.github.io/tachiz.linkedin.strategy/" target="_blank"><i class="fas fa-external-link-alt"></i> GitHub 系統</a>
-     </div>`
-   },
-   str:{
-     en:`<span class="dlabel">Core Strategy</span>
-     <p class="dtext">Tachiz's competitors dominate LinkedIn with generic product content. Tachiz's real differentiator — molecular gastronomy, 393 custom flavors, FSSC 22000 — was invisible. Strategy: shift from "food manufacturer" to "Asia's top food-tech R&D lab."</p>
-     <span class="dlabel">60-30-10 Content Framework</span>
-     <div class="strategy-items">
-       <div class="sitem"><div class="snum" style="background:var(--ms);color:#fff">60</div><div><div class="stitle">Industry Value Content</div><div class="stext">EU sugar-reduction trends, Halal + FSSC 22000 compliance, ERP supply chain, technical PDFs.</div></div></div>
-       <div class="sitem"><div class="snum" style="background:var(--amber);color:#000">30</div><div><div class="stitle">Thought Leadership / CEO Personal IP</div><div class="stext">CEO/CTO sharing R&D failures. Algorithm rewards authentic failure stories 5–7× over success posts.</div></div></div>
-       <div class="sitem"><div class="snum" style="background:var(--faint);color:#fff">10</div><div><div class="stitle">Promotional / Exhibition</div><div class="stext">Trade show announcements only. All external links in first comment — never post body (−30% reach).</div></div></div>
-     </div>
-     <span class="dlabel" style="margin-top:16px;display:block">Competitor Blue Ocean</span>
-     <p class="dtext">Possmei & Sunnysyrup: near-zero LinkedIn presence. Bossen: B2C TikTok tactics — ineffective for B2B. Puly: product display only. <strong style="color:var(--white)">Tachiz can own "high-tech food science lab" — the only competitor in this niche on LinkedIn.</strong></p>`,
-     zh:`<span class="dlabel">策略核心邏輯</span>
-     <p class="dtext">競爭對手以大量產品目錄內容佔據 LinkedIn 版面，但泰吉軒真正的差異化優勢——分子料理技術、393 種客製口味、FSSC 22000——完全不可見。策略目標：從「食品製造商」升格為「亞洲頂尖食品科技研發實驗室」。</p>
-     <span class="dlabel">60-30-10 內容框架</span>
-     <div class="strategy-items">
-       <div class="sitem"><div class="snum" style="background:var(--ms);color:#fff">60</div><div><div class="stitle">產業價值型內容</div><div class="stext">歐洲減糖趨勢、Halal + FSSC 22000 合規、ERP 供應鏈透明度、技術型 PDF。</div></div></div>
-       <div class="sitem"><div class="snum" style="background:var(--amber);color:#000">30</div><div><div class="stitle">思想領導力 / CEO 個人品牌</div><div class="stext">由創辦人或 CTO 分享研發失敗與突破經歷。演算法對「真實失敗經驗」的獎勵力道比成功案例高出 5–7 倍。</div></div></div>
-       <div class="sitem"><div class="snum" style="background:var(--faint);color:#fff">10</div><div><div class="stitle">促銷 / 展會資訊</div><div class="stext">僅保留 10% 用於參展資訊。所有外部連結必須放在第一則留言，絕不放在貼文本體（否則觸及率 −30%）。</div></div></div>
-     </div>
-     <span class="dlabel" style="margin-top:16px;display:block">競爭對手藍海分析</span>
-     <p class="dtext">伯思美、太陽糖漿：幾乎不經營 LinkedIn。Bossen：B2C TikTok 戰術在 B2B 平台完全無效。Puly：產品展示型，無研發敘事。<strong style="color:var(--white)">泰吉軒可以獨佔「高階食品科技實驗室」定位——目前這個賽道在 LinkedIn 上毫無競爭。</strong></p>`
-   }
-  },
-  {id:'copilot',status:'wip',acc:'ac-blue',featured:false,num:'02',
-   cats:{en:[{l:'Instagram Carousel',c:'cb'},{l:'Microsoft Copilot',c:'cb'},{l:'Copywriting',c:'cm'}],zh:[{l:'Instagram 輪播圖',c:'cb'},{l:'Microsoft Copilot',c:'cb'},{l:'文案撰寫',c:'cm'}]},
-   title:{en:'Copilot for',zh:'學生版'},em:{en:'Students',zh:'Copilot'},
-   desc:{en:'Social-first explainer translating Copilot\'s top features into student-friendly language. IG carousel targeting Gen Z.',zh:'將 Microsoft Copilot 核心功能轉譯為學生友善語言的社群內容。以 IG 輪播圖形式針對 Gen Z 受眾。'},
-   stlabel:{en:'In Progress',zh:'進行中'},stcolor:'var(--amber)',sdot:'s-wip',cta:null,hasPdf:false,
-   ov:{en:`<span class="dlabel">Concept</span><p class="dtext">「大學生必備的 3 個 Copilot 神技」— IG carousel explaining Copilot's top 3 student use cases. The brief: if a 19-year-old sees this in their feed, do they stop scrolling? In production — will publish to LinkedIn on completion.</p>`,zh:`<span class="dlabel">企劃概念</span><p class="dtext">「大學生必備的 3 個 Copilot 神技」——針對 Gen Z 設計的 IG 輪播圖，將 Copilot 最實用的 3 個學生場景視覺化。目前製作中，完成後將在 LinkedIn 首發。</p>`},
-   str:{en:`<span class="dlabel">Platform Rationale</span><p class="dtext">PDF carousels have ~6.6% avg engagement rate on LinkedIn — highest of all formats. Instagram-first design adapted to LinkedIn PDF format maximizes algorithm performance on both platforms.</p>`,zh:`<span class="dlabel">平台邏輯</span><p class="dtext">PDF 輪播圖在 LinkedIn 上的平均互動率約 6.6%，為所有格式中最高。採用以 Instagram 為優先的視覺設計，再轉為 LinkedIn PDF 格式，同時最大化雙平台的演算法表現。</p>`}
-  },
-  {id:'azure',status:'wip',acc:'ac-blue',featured:false,num:'03',
-   cats:{en:[{l:'Azure',c:'cb'},{l:'Infographic',c:'cb'},{l:'Visual Design',c:'cm'}],zh:[{l:'Azure',c:'cb'},{l:'資訊圖表',c:'cb'},{l:'視覺設計',c:'cm'}]},
-   title:{en:'Azure in',zh:'Azure'},em:{en:'Plain Language',zh:'白話文版本'},
-   desc:{en:'Infographic explaining Azure to a non-technical audience in under 60 seconds — pre-built answer to the classic MOI interview scenario.',zh:'在 60 秒內讓非技術背景受眾理解 Azure 的資訊圖表——面試情境題的預備答案。'},
-   stlabel:{en:'In Progress',zh:'進行中'},stcolor:'var(--amber)',sdot:'s-wip',cta:null,hasPdf:false,
-   ov:{en:`<span class="dlabel">Concept</span><p class="dtext">A single visual explaining what Azure is without jargon. Target reader: a procurement director or marketing manager. Pre-built answer to the MOI interview scenario: "Explain Azure to a non-technical stakeholder."</p>`,zh:`<span class="dlabel">企劃概念</span><p class="dtext">一張視覺化說明圖，讓採購總監或行銷經理無需技術背景就能理解 Azure。這是為 MOI 面試情境題「請向非技術人員說明 Azure」所預先準備的具體答案。</p>`},
-   str:{en:`<span class="dlabel">MOI Interview Alignment</span><p class="dtext">The classic MOI scenario: "Explain Azure to a non-technical stakeholder." This deliverable is the pre-built answer — designed before the interview so it can be referenced live with confidence.</p>`,zh:`<span class="dlabel">面試對應邏輯</span><p class="dtext">MOI 面試的經典情境題：「請向不懂技術的利害關係人說明 Azure。」這份交付成果就是預先準備好的具體答案——在面試前設計完成，可以直接在面試中引用。</p>`}
-  },
-  {id:'ai-copy',status:'planned',acc:'ac-amber',featured:false,num:'04',
-   cats:{en:[{l:'AI Aptitude',c:'ca'},{l:'Prompt Engineering',c:'cb'},{l:'Copilot',c:'cm'}],zh:[{l:'AI 應用能力',c:'ca'},{l:'提示詞工程',c:'cb'},{l:'Copilot',c:'cm'}]},
-   title:{en:'AI-Assisted',zh:'AI 協作'},em:{en:'Copywriting',zh:'文案生產'},
-   desc:{en:"Live demo of Microsoft's GCES prompt framework to generate and refine marketing copy — showing AI collaboration without replacing creative judgment.",zh:'使用微軟 GCES 提示詞框架生成並優化行銷文案的實戰示範——展現 AI 協作加速內容產出，而非取代創意判斷。'},
-   stlabel:{en:'Planned',zh:'規劃中'},stcolor:'var(--faint)',sdot:'s-plan',cta:null,hasPdf:false,
-   ov:{en:`<span class="dlabel">Concept</span><p class="dtext">Documented workflow: prompt input → AI output → human editing → final copy. Uses Microsoft's GCES framework (Goal, Context, Expectations, Source). The point is not that AI wrote it — the point is that I directed it.</p>`,zh:`<span class="dlabel">企劃概念</span><p class="dtext">完整文件化的工作流程：提示詞輸入 → AI 輸出 → 人工編輯 → 最終文案。使用微軟官方 GCES 框架。重點不是「AI 寫了什麼」，而是「我如何指揮 AI」。</p>`},
-   str:{en:`<span class="dlabel">Why This Matters</span><p class="dtext">Microsoft explicitly values AI Aptitude for MOI. Showing how to use Copilot as a content accelerator maps directly to what the role requires in 2026.</p>`,zh:`<span class="dlabel">與 MOI 職缺的對應</span><p class="dtext">微軟在 MOI 職缺中明確要求 AI Aptitude。展現如何將 Copilot 作為內容加速器，直接對應 2026 年這個職位的核心要求。</p>`}
-  },
-  {id:'holiday',status:'planned',acc:'ac-amber',featured:false,num:'05',
-   cats:{en:[{l:'Social Media',c:'ca'},{l:'Brand Design',c:'cb'},{l:'Holiday Campaign',c:'cm'}],zh:[{l:'社群媒體',c:'ca'},{l:'品牌設計',c:'cb'},{l:'節慶活動',c:'cm'}]},
-   title:{en:'Microsoft Taiwan',zh:'微軟台灣'},em:{en:'Holiday Campaign',zh:'節慶行銷'},
-   desc:{en:'Original social post designs for Microsoft Taiwan — Mid-Autumn Festival and Lunar New Year — following Microsoft brand guidelines. Bilingual (EN/ZH) copy.',zh:'依照微軟品牌規範，為微軟台灣設計原創節慶社群貼文——中秋節與農曆新年。包含中英雙語文案。'},
-   stlabel:{en:'Planned',zh:'規劃中'},stcolor:'var(--faint)',sdot:'s-plan',cta:null,hasPdf:false,
-   ov:{en:`<span class="dlabel">Concept</span><p class="dtext">MOI interviewers ask: "Design a Mid-Autumn Festival post for Microsoft Taiwan." This is the pre-prepared answer — designed before the interview with full Microsoft brand compliance and bilingual copy.</p>`,zh:`<span class="dlabel">企劃概念</span><p class="dtext">MOI 面試官會詢問：「請為微軟台灣設計一則中秋節社群貼文。」這份交付成果就是預先準備好的答案——在面試前依照微軟品牌規範設計完成，並附有中英雙語文案。</p>`},
-   str:{en:`<span class="dlabel">Bilingual Strategy</span><p class="dtext">EN copy targets international Microsoft Taiwan LinkedIn followers. ZH copy targets local Taiwanese audience on Instagram and Facebook. Directly demonstrates bilingual content creation ability the MOI role requires.</p>`,zh:`<span class="dlabel">雙語策略</span><p class="dtext">英文版針對微軟台灣 LinkedIn 上的國際關注者；中文版針對 Instagram 和 Facebook 上的台灣本地受眾。直接展現 MOI 職缺所要求的中英雙語內容創作能力。</p>`}
-  }
-];
-
-/* ── BUILD CARD ── */
-function buildCard(p){
-  const L=LANG;
-  const cats=p.cats[L].map(c=>`<span class="ccat ${c.c}">${c.l}</span>`).join('');
-  const cta=p.cta?`<a class="ccta" href="${p.ctaHref}" target="_blank" onclick="event.stopPropagation()">${p.cta[L]}</a>`:`<span class="ccta-dis">${L==='en'?'Coming Soon':'即將推出'}</span>`;
-  let vis='';
-  if(p.featured){
-    const bodyTxt=L==='en'?'THE LINKEDIN ALGORITHM IN 2025 — What actually moves the needle. Organic reach is down 50%… but quality content saw +12%. 12-slide breakdown. 🧵':'2025 LinkedIn 演算法攻略——自然觸及率下降 50%……但高品質內容互動率逆勢 +12%。12 張投影片完整拆解。 🧵';
-    const s1=L==='en'?'Big Picture':'總覽',s2=L==='en'?'3 Gates':'3 關卡',s3=L==='en'?'Signals':'信號',sf=L==='en'?'followers':'粉絲';
-    vis=`<div class="limock"><div class="lm-head"><div class="lm-av"></div><div><div class="lm-name">HsinYu Wen</div><div class="lm-sub">NCKU · TCM Science · 28 ${sf}</div></div></div><div class="lm-body">${bodyTxt}</div><div class="lm-slides"><div class="lm-slide">${s1}</div><div class="lm-slide">${s2}</div><div class="lm-slide">${s3}</div><div class="lm-slide">+9</div></div><div class="lm-stats"><span class="lm-stat" style="color:var(--green)">👁 242</span><span class="lm-stat">👍 3</span><span class="lm-stat" style="color:var(--amber)">Day 5</span></div></div>`;
-  } else {
-    const icons={copilot:'🤖',azure:'☁️','ai-copy':'✦',holiday:'🎋'};
-    const lbls={copilot:{en:'「3 Copilot Tricks\nfor Students」\nIG Carousel',zh:'「大學生必備的\n3 個 Copilot 神技」\nIG 輪播圖'},azure:{en:'Azure Explained\nfor Non-Technical\nAudiences',zh:'Azure 給非技術\n人員的視覺化\n資訊圖表'},'ai-copy':{en:'Microsoft GCES\nPrompt Framework\nLive Demo',zh:'微軟 GCES\nPrompt 實戰展示'},holiday:{en:'Microsoft Taiwan\nHoliday Campaign\nEN/ZH',zh:'微軟台灣\n節慶貼文\n中英雙語'}};
-    const isAmb=p.status==='planned';
-    vis=`<div class="cvis-ph"><div class="cvis-icon${isAmb?' amb':''}">${icons[p.id]}</div><div class="cvis-lbl">${(lbls[p.id][L]||'').replace(/\n/g,'<br>')}</div></div>`;
-  }
-  return`<div class="pcard ${p.featured?'featured':''} ${p.acc}" onclick="openPanel('${p.id}')"><div class="cvis"><div class="cvis-num">${p.num}</div>${vis}</div><div class="cbody"><div class="ccats">${cats}</div><h3 class="ch">${p.title[L]}<br><em>${p.em[L]}</em></h3><p class="cp">${p.desc[L]}</p><div class="cfoot"><span class="cstatus"><span class="sdot ${p.sdot}"></span><span class="slabel" style="color:${p.stcolor}">${p.stlabel[L]}</span></span>${cta}</div></div></div>`;
-}
-
-function populateGrids(){
-  const g={all:document.getElementById('grid-all'),live:document.getElementById('grid-live'),wip:document.getElementById('grid-wip'),planned:document.getElementById('grid-planned')};
-  PROJECTS.forEach(p=>{
-    const h=buildCard(p);
-    g.all.insertAdjacentHTML('beforeend',h);
-    if(p.status==='live')    g.live.insertAdjacentHTML('beforeend',h);
-    if(p.status==='wip')     g.wip.insertAdjacentHTML('beforeend',h);
-    if(p.status==='planned') g.planned.insertAdjacentHTML('beforeend',h);
-  });
-}
-
-function switchTab(name,btn){
-  document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById('panel-'+name).classList.add('active');
-}
-
-function openPanel(id){
-  const p=PROJECTS.find(x=>x.id===id);if(!p)return;
-  const L=LANG;
-  document.getElementById('d-title').innerHTML=`${p.title[L]}<br><em>${p.em[L]}</em>`;
-  document.getElementById('ds-ov').innerHTML=p.ov[L]||'';
-  document.getElementById('ds-str').innerHTML=p.str[L]||'';
-  const ps=document.getElementById('ds-pdf');
-  if(p.hasPdf&&p.pdfUrl){
-    ps.innerHTML=`<span class="dlabel">${L==='en'?'Deliverable':'交付成果'}</span><p class="dtext" style="margin-bottom:16px">${p.pdfLabel[L]}</p><iframe class="pdf-frame" src="${p.pdfUrl}" title="${p.pdfLabel[L]}"></iframe><div style="margin-top:12px"><a class="dlink" href="${p.pdfUrl}" target="_blank"><i class="fas fa-external-link-alt"></i> ${L==='en'?'Open Full PDF':'開啟完整 PDF'}</a></div>`;
-  } else {
-    ps.innerHTML=`<span class="dlabel">${L==='en'?'Deliverable':'交付成果'}</span><p class="dtext" style="color:var(--muted)">${L==='en'?`Not yet available — ${p.status==='wip'?'in progress':'planned'}.`:`尚未提供——此專案${p.status==='wip'?'進行中':'規劃中'}，完成後補充。`}</p>`;
-  }
-  switchDTab('ov',document.querySelector('.dtab'));
-  document.getElementById('overlay').classList.add('open');
-  document.getElementById('drawer').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePanel(){
-  document.getElementById('overlay').classList.remove('open');
-  document.getElementById('drawer').classList.remove('open');
-  document.body.style.overflow='';
-}
-function switchDTab(name,btn){
-  document.querySelectorAll('.dtab').forEach(b=>b.classList.remove('on'));
-  if(btn)btn.classList.add('on');
-  document.querySelectorAll('.dsec').forEach(s=>s.classList.remove('on'));
-  ({ov:'ds-ov',pdf:'ds-pdf',str:'ds-str'}[name]&&document.getElementById({ov:'ds-ov',pdf:'ds-pdf',str:'ds-str'}[name]).classList.add('on'));
-}
-
-/* NAV */
-const menuBtn=document.getElementById('menuBtn');
-const navWrap=document.getElementById('navWrap');
-menuBtn.onclick=()=>{
-  navWrap.classList.toggle('open');
-  menuBtn.innerHTML=navWrap.classList.contains('open')?'<i class="fas fa-times"></i>':'<i class="fas fa-bars"></i>';
-};
-
-/* Scroll */
-window.addEventListener('scroll',()=>document.getElementById('mainnav').classList.toggle('scrolled',window.scrollY>40));
-const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('v')}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closePanel()});
-
-/* INIT */
-document.addEventListener('DOMContentLoaded',()=>{
-  const saved=localStorage.getItem('lang')||'en';
-  LANG=saved;
-  setLang(saved);
-});
+    document.querySelectorAll('.reveal').forEach((el) => {
+        observer.observe(el);
+    });
 </script>
 </body>
 </html>
