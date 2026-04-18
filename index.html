@@ -2,414 +2,195 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HsinYu Wen | 溫心語</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Noto+Sans+TC:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>HsinYu Wen | Cross-Disciplinary Talent</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
-:root{
-  /* Black and White Grayscale (極簡黑白) */
-  --paper: #FFFFFF;
-  --surface: #FFFFFF;
-  --surface-2: #F5F5F5;
-  --surface-3: #EEEEEE;
-  
-  --hairline: #EAEAEA;
-  --hairline-s: #CCCCCC;
-  
-  --ink: #000000;
-  --ink-2: #222222;
-  --ink-3: #555555;
-  --ink-4: #888888;
-  
-  /* Primary Accent: Pure Black */
-  --primary: #000000;
-  --primary-h: #333333;
-  --primary-lt: #F5F5F5;
-  
-  /* Microsoft Brand Colors (微軟專屬色保留) */
-  --ms: #0078D4;
-  --ms-h: #106EBE;
-  --ms-lt: #E5F1FB;
-  
-  /* Shadows and structural */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.04), 0 1px 3px rgba(0,0,0,.02);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.05), 0 12px 28px rgba(0,0,0,.04);
-  
-  --radius: 4px;
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  
-  --fd: 'Fraunces', Georgia, serif;
-  --fb: 'Inter', 'Noto Sans TC', system-ui, sans-serif;
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --text-primary: #050505;
+  --text-secondary: #555555;
+  --text-tertiary: #a0a0a0;
+  --border-color: #e5e5e5;
+  --brand-blue: #A5C9FF; /* 低飽和度淺藍色 */
+  --ms-blue: #0078D4;
+  --nav-height: 80px;
+  --fb: 'Inter', 'Noto Sans TC', sans-serif;
+  --fd: 'Fraunces', serif;
   --fm: 'JetBrains Mono', monospace;
-  
-  --ease: cubic-bezier(.22,1,.36,1);
-  --t: .3s var(--ease);
 }
 
-*,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
-body { 
-  font-family: var(--fb); 
-  background: var(--paper); 
-  color: var(--ink); 
-  overflow-x: hidden; 
-  line-height: 1.6; 
-  -webkit-font-smoothing: antialiased; 
-  position: relative;
-}
-a { text-decoration: none; color: var(--primary); }
-img { display: block; max-width: 100%; }
+body { font-family: var(--fb); background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; }
+a { text-decoration: none; color: inherit; }
 
-/* ── 1. 高級紙張雜訊 (Noise Texture) ── */
-.noise-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.04;
-  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-}
- 
-/* ── NAV ── */
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 22px 0; transition: var(--t); }
-.nav.scrolled { padding: 14px 0; background: rgba(255,255,255,.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--hairline); }
-.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; }
-.nav-logo { font-family: var(--fd); font-size: 1.45rem; font-weight: 500; color: var(--ink); z-index: 1001; letter-spacing: -.01em; text-decoration: none; }
-.nav-logo span { color: var(--primary); }
-.menu-toggle { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; z-index: 1001; }
-.nav-links-wrap { display: flex; align-items: center; gap: 32px; }
-.nav-links { display: flex; align-items: center; list-style: none; gap: 2px; }
-.nav-links a, .drop-btn { font-size: .71rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); padding: 8px 11px; transition: color var(--t); position: relative; background: none; border: none; cursor: pointer; font-family: var(--fb); text-decoration: none; }
-.nav-links a:hover, .nav-drop:hover .drop-btn { color: var(--ink); }
-.nav-links a.active { color: var(--primary); }
-.nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 11px; right: 11px; height: 1px; background: var(--primary); }
+/* ── NAVIGATION ── */
+.nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); display: flex; align-items: center; z-index: 1000; transition: 0.4s; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
+.nav.scrolled { border-bottom: 1px solid var(--border-color); background: #fff; }
+.nav-inner { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--fd); font-size: 1.5rem; font-weight: 500; }
+.logo span { color: var(--brand-blue); font-weight: 700; }
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-link { font-size: 0.75rem; font-family: var(--fm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); transition: 0.3s; }
+.nav-link:hover { color: var(--ms-blue); }
+.nav-actions { display: flex; gap: 20px; align-items: center; }
+.lang-btn { font-family: var(--fm); font-size: 0.7rem; border: none; background: none; cursor: pointer; color: var(--text-tertiary); }
+.lang-btn.active { color: var(--text-primary); font-weight: 700; }
 
-/* Highlighted Microsoft Link */
-.nav-links a.nav-moi { color: var(--ms); font-weight: 600; }
-.nav-links a.nav-moi:hover { color: var(--ms-h); }
-
-.nav-drop { position: relative; }
-.drop-menu { position: absolute; top: calc(100% + 6px); right: 0; background: var(--surface); border: 1px solid var(--hairline); border-radius: var(--radius-sm); padding: 6px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: all var(--t); box-shadow: var(--shadow-md); }
-.nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-.drop-menu a { display: block; font-size: .69rem; padding: 10px 14px; color: var(--ink-3); border-radius: 4px; text-align: left; text-decoration: none; transition: color var(--t), background var(--t); }
-.drop-menu a:hover { background: var(--surface-2); color: var(--ink); }
-.nav-right { display: flex; align-items: center; gap: 20px; }
-.lang-switch { display: flex; align-items: center; gap: 6px; font-size: .69rem; color: var(--ink-4); font-weight: 500; }
-.lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); transition: color var(--t); font-size: .69rem; }
-.lang-btn.active { color: var(--ink); font-weight: 600; }
-.nav-cv { font-size: .69rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--primary); color: var(--primary); padding: 7px 17px; border-radius: var(--radius); transition: var(--t); text-decoration: none; }
-.nav-cv:hover { background: var(--primary); color: #fff; }
- 
 /* ── HERO ── */
-.hero { min-height: 100vh; display: flex; align-items: center; padding: 140px 0 80px; position: relative; overflow: hidden; }
-.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at top left, rgba(0,0,0,.02), transparent 50%); pointer-events: none; }
-.hero-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: center; position: relative; z-index: 1; }
-.hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--primary); font-weight: 600; font-family: var(--fb); }
-.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--primary); }
-.hero-h1 { font-family: var(--fd); font-size: clamp(2.6rem, 5.5vw, 4.8rem); font-weight: 400; line-height: 1.04; margin-bottom: 22px; letter-spacing: -.02em; color: var(--ink); }
-.hero-h1 em { font-style: italic; color: var(--primary); }
-.hero-desc { font-size: .95rem; color: var(--ink-3); max-width: 480px; margin-bottom: 34px; font-weight: 400; line-height: 1.75; }
-.btn-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center; }
+.hero-content { max-width: 1000px; padding: 0 20px; }
+.hero-badge { display: inline-block; font-family: var(--fm); font-size: 0.65rem; padding: 6px 14px; border: 1px solid var(--brand-blue); background: var(--brand-blue); color: #fff; letter-spacing: 0.15em; margin-bottom: 30px; }
+.hero-title { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.2; font-weight: 700; margin-bottom: 30px; letter-spacing: -0.02em; }
+.hero-desc { font-size: 1.15rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-weight: 400; line-height: 1.8; }
+.hero-desc b { color: var(--text-primary); font-weight: 600; }
 
-.btn-primary { background: var(--primary); color: #fff; padding: 11px 22px; border-radius: var(--radius-sm); font-size: .78rem; font-weight: 600; transition: var(--t); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
-.btn-primary:hover { background: var(--primary-h); transform: translateY(-2px); color: #fff; box-shadow: 0 8px 16px rgba(0,0,0,.1); }
+/* ── PHOTO & BIO ── */
+.photo-reveal-section { padding: 120px 40px; background: #0a0a0a; color: #fff; }
+.photo-layout { display: flex; align-items: center; gap: 80px; max-width: 1100px; margin: 0 auto; }
+.photo-frame { width: 320px; height: 420px; border: 1px solid rgba(255,255,255,0.1); position: relative; background: #111; display: flex; align-items: center; justify-content: center; }
+.bio-panel { flex: 1; }
+.bio-text { font-size: 1.1rem; line-height: 2; color: rgba(255,255,255,0.8); }
+.highlight { color: var(--brand-blue); font-weight: 500; }
+.bio-tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
+.btag { font-family: var(--fm); font-size: 0.7rem; padding: 6px 14px; border: 1px solid var(--brand-blue); color: var(--brand-blue); border-radius: 4px; }
 
-.btn-ghost { border: 1px solid var(--hairline); color: var(--ink-2); padding: 11px 22px; border-radius: var(--radius-sm); font-size: .78rem; font-weight: 500; transition: var(--t); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
-.btn-ghost:hover { border-color: var(--ink-3); background: var(--surface-2); transform: translateY(-2px); color: var(--ink); }
+/* ── PROJECTS (Horizontal & Grid) ── */
+.section-title { padding: 80px 40px 40px; max-width: 1400px; margin: 0 auto; font-family: var(--fm); font-size: 0.8rem; color: var(--text-tertiary); letter-spacing: 0.2em; }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-color); max-width: 1400px; margin: 0 auto; border: 1px solid var(--border-color); }
+.project-card { background: #fff; padding: 50px 40px; transition: 0.4s; }
+.project-card:hover { background: var(--bg-secondary); }
+.p-num { font-family: var(--fd); font-size: 2.5rem; color: var(--brand-blue); opacity: 0.5; margin-bottom: 20px; }
+.p-tag { font-family: var(--fm); font-size: 0.65rem; color: var(--ms-blue); margin-bottom: 10px; display: block; }
+.p-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
+.p-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
 
-/* Highlighted Microsoft Button */
-.btn-ms { border: 1px solid rgba(0,120,212,.35); color: var(--ms); background: var(--ms-lt); padding: 11px 22px; border-radius: var(--radius-sm); font-size: .78rem; font-weight: 600; transition: var(--t); display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
-.btn-ms:hover { background: var(--ms); color: #fff; transform: translateY(-2px); border-color: var(--ms); box-shadow: 0 8px 16px rgba(0,120,212,.2); }
+/* ── STATS ── */
+.dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border-color); }
+.dash-item { padding: 60px 40px; border-right: 1px solid var(--border-color); text-align: center; }
+.dash-num { font-family: var(--fm); font-size: 2.5rem; color: var(--text-primary); }
+.dash-lbl { font-size: 0.7rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 10px; }
 
-.btn-icon { padding: 10px 11px; border: 1px solid var(--hairline); border-radius: var(--radius-sm); color: var(--ink-3); line-height: 1; display: inline-flex; align-items: center; justify-content: center; transition: var(--t); text-decoration: none; }
-.btn-icon:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-lt); transform: translateY(-2px); }
+.footer { padding: 60px 40px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-family: var(--fm); font-size: 0.7rem; }
 
-.stats-row { display: flex; gap: 28px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--hairline); flex-wrap: wrap; }
-.stat-item { min-width: 100px; }
-.stat-num { font-family: var(--fd); font-size: 1.8rem; font-weight: 400; color: var(--ink); line-height: 1; letter-spacing: -.02em; }
-.stat-lbl { font-family: var(--fm); font-size: .6rem; color: var(--ink-4); letter-spacing: .05em; text-transform: uppercase; margin-top: 5px; }
-
-/* ── 4. 精緻滾動提示 (Scroll Down Indicator) ── */
-.scroll-indicator {
-  position: absolute;
-  bottom: 40px;
-  left: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  opacity: 0.5;
-  transition: opacity var(--t);
-  z-index: 2;
+@media(max-width: 1024px) {
+  .project-grid { grid-template-columns: 1fr; }
+  .photo-layout { flex-direction: column; text-align: center; }
+  .dash-grid { grid-template-columns: 1fr 1fr; }
 }
-.scroll-indicator:hover { opacity: 1; }
-.scroll-text {
-  font-family: var(--fm);
-  font-size: .55rem;
-  letter-spacing: .2em;
-  color: var(--ink-3);
-  writing-mode: vertical-rl;
-  text-transform: uppercase;
-}
-.scroll-line {
-  width: 1px;
-  height: 50px;
-  background: var(--hairline-s);
-  position: relative;
-  overflow: hidden;
-}
-.scroll-line::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 50%;
-  background: var(--ink);
-  animation: scrollAnim 2s cubic-bezier(0.77, 0, 0.175, 1) infinite;
-}
-@keyframes scrollAnim {
-  0% { transform: translateY(-100%); }
-  50% { transform: translateY(200%); }
-  100% { transform: translateY(200%); }
-}
-
-/* ── 2. 照片「黑白 ➔ 彩色」魔法懸停 ── */
-.photo-wrap { 
-  position: relative; 
-  border-radius: var(--radius-md); 
-  overflow: hidden; /* 隱藏圖片放大溢出的邊緣 */
-  box-shadow: var(--shadow-md); 
-  border: 1px solid var(--hairline); 
-}
-.photo-img { 
-  width: 100%; 
-  aspect-ratio: 4/5; 
-  object-fit: cover; 
-  display: block;
-  /* 預設：強烈的黑白高級感 */
-  filter: grayscale(100%) contrast(1.08) saturate(0.8); 
-  transition: filter 0.8s var(--ease), transform 0.8s var(--ease); 
-}
-.photo-wrap:hover .photo-img {
-  /* 懸停：恢復色彩並微幅放大 */
-  filter: grayscale(0%) contrast(1.02) saturate(1.05);
-  transform: scale(1.04);
-}
-.photo-placeholder { width: 100%; aspect-ratio: 4/5; background: var(--surface-2); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; }
-.photo-placeholder i { font-size: 3rem; color: var(--hairline-s); }
-.photo-placeholder span { font-size: .7rem; color: var(--ink-4); font-family: var(--fm); }
-
-/* ── 3. 無縫跑馬燈 (Infinite Marquee) ── */
-.marquee-container {
-  overflow: hidden;
-  white-space: nowrap;
-  border-top: 1px solid var(--hairline);
-  border-bottom: 1px solid var(--hairline);
-  background: var(--surface-2);
-  padding: 16px 0;
-  display: flex;
-  position: relative;
-  z-index: 1;
-}
-.marquee-track {
-  display: inline-flex;
-  animation: marquee 25s linear infinite;
-}
-.marquee-container:hover .marquee-track {
-  animation-play-state: paused; /* 滑鼠移入暫停滾動 */
-}
-.marquee-track span {
-  font-family: var(--fm);
-  font-size: .7rem;
-  letter-spacing: .15em;
-  color: var(--ink-3);
-  padding-right: 24px;
-}
-.marquee-track span b {
-  color: var(--primary);
-  font-weight: 500;
-}
-@keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* ── FOOTER ── */
-footer { padding: 48px 0; background: var(--paper); position: relative; z-index: 1; }
-.foot-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-.foot-copy { font-size: .68rem; color: var(--ink-4); letter-spacing: .02em; }
-.foot-links { display: flex; gap: 24px; }
-.foot-links a { font-size: .68rem; color: var(--ink-4); transition: color var(--t); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; font-weight: 500; }
-.foot-links a:hover { color: var(--primary); }
- 
-/* ── MOBILE ── */
-@media(max-width:960px){
-  .nav-inner { padding: 0 24px; }
-  .menu-toggle { display: block; }
-  .nav-links-wrap { position: fixed; top: 0; right: -100%; width: 80%; max-width: 300px; height: 100vh; background: var(--surface); flex-direction: column; justify-content: center; padding: 40px; transition: .4s; box-shadow: -8px 0 30px rgba(0,0,0,.08); border-left: 1px solid var(--hairline); }
-  .nav-links-wrap.active { right: 0; }
-  .nav-links { flex-direction: column; align-items: flex-start; width: 100%; gap: 12px; }
-  .nav-right { flex-direction: column; align-items: flex-start; margin-top: 28px; width: 100%; }
-  .nav-cv { width: 100%; text-align: center; }
-  .hero { padding: 120px 0 60px; min-height: auto; }
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; padding: 0 24px; }
-  .hero-desc { margin-left: auto; margin-right: auto; }
-  .hero-eyebrow, .btn-row, .stats-row { justify-content: center; }
-  .hero-eyebrow::before { display: none; }
-  .photo-wrap { max-width: 300px; margin: 0 auto; }
-  .foot-inner { flex-direction: column; text-align: center; }
-  .scroll-indicator { display: none; } /* 手機版隱藏滾動提示，保持畫面乾淨 */
-}
- 
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
-.reveal.v { opacity: 1; transform: none; }
 </style>
 </head>
 <body>
 
-<div class="noise-overlay"></div>
- 
-<nav class="nav" id="mainnav">
+<nav class="nav" id="navbar">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo">HsinYu<span> · </span></a>
-    <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-    <div class="nav-links-wrap" id="navLinks">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="competitions.html">Competitions</a></li>
-        <li><a href="microsoft-moi.html" class="nav-moi">Microsoft MOI</a></li>
-        <li class="nav-drop">
-          <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:.5rem"></i></button>
-          <div class="drop-menu">
-            <a href="experience.html">Internship</a>
-            <a href="exchange.html">Cultural Exchange</a>
-            <a href="certificates.html">Certificates</a>
-            <a href="clubs.html">Clubs &amp; Volunteer</a>
-          </div>
-        </li>
-      </ul>
-      <div class="nav-right">
-        <div class="lang-switch">
-          <button class="lang-btn" id="btn-en" onclick="switchLang('en')">EN</button>
-          <span style="opacity:.3">|</span>
-          <button class="lang-btn active" id="btn-zh" onclick="switchLang('zh')">中</button>
-        </div>
-        <a href="resume.pdf" download class="nav-cv">CV</a>
-      </div>
+    <a href="#" class="logo">HsinYu<span>.</span></a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">About</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#professional" class="nav-link">Professional</a>
+      <a href="#strategy" class="nav-link">Metrics</a>
+      <a href="#" class="nav-link" style="color:var(--ms-blue); font-weight:700;">MSFT MOI</a>
+    </div>
+    <div class="nav-actions">
+      <button class="lang-btn active">EN</button>
+      <span style="color:var(--border-color);">|</span>
+      <button class="lang-btn">中</button>
     </div>
   </div>
 </nav>
- 
-<header class="hero">
-  <div class="hero-inner">
-    <div>
-      <div class="hero-eyebrow reveal">
-        <span id="hero-tag">ITS · Logistics · Growth Mindset</span>
-      </div>
-      <h1 class="hero-h1 reveal">Hi, I'm<br><em>HsinYu Wen</em></h1>
-      <p class="hero-desc reveal" id="hero-desc">Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.</p>
- 
-      <div class="btn-row reveal">
-        <a href="projects.html" class="btn-primary"><i class="fas fa-arrow-right"></i> <span id="btn-projects">Explore Projects</span></a>
-        <a href="mailto:h54121210@gs.ncku.edu.tw" class="btn-ghost"><i class="fas fa-envelope"></i> <span id="btn-contact">Contact</span></a>
-        <a href="microsoft-moi.html" class="btn-ms"><i class="fab fa-microsoft"></i> <span id="btn-moi">Microsoft MOI</span></a>
-        <a href="https://www.linkedin.com/in/adelawen/" target="_blank" class="btn-icon"><i class="fab fa-linkedin-in"></i></a>
-      </div>
- 
-      <div class="stats-row reveal">
-        <div class="stat-item"><div class="stat-num">5+</div><div class="stat-lbl" id="stat-c">Major Competitions</div></div>
-        <div class="stat-item"><div class="stat-num">1<sup style="font-size:.75rem">st</sup></div><div class="stat-lbl" id="stat-cn">Chuangnan 2025</div></div>
-        <div class="stat-item"><div class="stat-num">PM</div><div class="stat-lbl" id="stat-dh">DreamHack 2026</div></div>
-        <div class="stat-item"><div class="stat-num" style="font-size:1.3rem;padding-top:5px">Global</div><div class="stat-lbl" id="stat-lr">L'Oréal 2026</div></div>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">2026 PORTFOLIO</div>
+    <h1 class="hero-title">跨領域人才 | Growth Mindset</h1>
+    <p class="hero-desc">
+      就讀 <b>國立成功大學交通管理科學系</b>，致力於連結工程邏輯與商業洞察。<br>
+      具備基礎程式開發、數據驅動的企劃撰寫及跨部門專案執行能力。<br>
+      擅長將 <b>Coding 實作、商業競賽企劃</b> 與 <b>敏捷專案管理 (PM)</b> 整合，打造具落地的解決方案。
+    </p>
+  </div>
+</section>
+
+<section class="photo-reveal-section" id="about">
+  <div class="photo-layout">
+    <div class="photo-frame">
+      <i class="fas fa-user" style="font-size:4rem; color:#333;"></i>
+      <div style="position:absolute; bottom:20px; font-family:var(--fm); font-size:0.6rem; color:#555;">[ PROFILE IMAGE ]</div>
+    </div>
+    <div class="bio-panel">
+      <p class="bio-text">
+        具備在<span class="highlight">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在跨部門協作中保持高品質輸出。<br><br>
+        我是一個<span class="highlight">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人，曾為了專題與研究在四週內自學 Python 與 Vissim 並獨立完成建模。<br><br>
+        同時具備高度責任感與細節敏感度，無論在大型競賽擔任 PM 或是 B2B 內容策略執行，皆能維持零失誤標準。
+      </p>
+      <div class="bio-tags">
+        <span class="btag">#成長型思維</span>
+        <span class="btag">#目標導向</span>
+        <span class="btag">#跨領域整合</span>
+        <span class="btag">#積極解決問題</span>
       </div>
     </div>
- 
-    <div class="photo-wrap reveal">
-      <img src="my-face.jpg" alt="HsinYu Wen" class="photo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <div class="photo-placeholder" style="display:none">
-        <i class="fas fa-user"></i>
-        <span>my-face.jpg</span>
-      </div>
-    </div>
+  </div>
+</section>
+
+<div class="section-title" id="projects">01 // CORE DELIVERABLES</div>
+<section class="project-grid">
+  <div class="project-card">
+    <div class="p-num">01</div>
+    <span class="p-tag">Marketing Strategy (2026/03)</span>
+    <h3 class="p-title">Tachiz LinkedIn B2B 內容策略</h3>
+    <p class="p-desc">
+      針對台灣爆爆珠龍頭 Tachiz 打造 LinkedIn 品牌門面。深入研究 <b>2026 演算法機制</b>，並主動學習輪播圖製作與內容視覺化。
+      提案獲團隊 <b>100% 採納</b>，成功將品牌專業度轉化為實質社群影響力。
+    </p>
   </div>
 
-  <div class="scroll-indicator reveal">
-    <span class="scroll-text" id="scroll-text">Scroll</span>
-    <div class="scroll-line"></div>
+  <div class="project-card">
+    <div class="p-num">02</div>
+    <span class="p-tag">Agile Project Management (2026/01)</span>
+    <h3 class="p-title">交大 DreamHack 創業競賽</h3>
+    <p class="p-desc">
+      擔任團隊 PM，主導 48 小時開發進度、分工與簡報架構。提出 <b>數位孿生在醫療領域應用</b> 之概念，獲得 <b>全台第二名</b>。
+      更獲得 <b>Tera Thinker 創辦人</b> 賞識，主動尋求後續商業合作機會。
+    </p>
   </div>
-</header>
 
-<div class="marquee-container">
-  <div class="marquee-track">
-    <span>✦ MICROSOFT <b>FUTURE READY TALENT</b> ✦ B2B STRATEGY ✦ CONTENT MARKETING ✦ GROWTH MINDSET ✦ DATA-DRIVEN </span>
-    <span>✦ MICROSOFT <b>FUTURE READY TALENT</b> ✦ B2B STRATEGY ✦ CONTENT MARKETING ✦ GROWTH MINDSET ✦ DATA-DRIVEN </span>
-    <span>✦ MICROSOFT <b>FUTURE READY TALENT</b> ✦ B2B STRATEGY ✦ CONTENT MARKETING ✦ GROWTH MINDSET ✦ DATA-DRIVEN </span>
-    <span>✦ MICROSOFT <b>FUTURE READY TALENT</b> ✦ B2B STRATEGY ✦ CONTENT MARKETING ✦ GROWTH MINDSET ✦ DATA-DRIVEN </span>
+  <div class="project-card">
+    <div class="p-num">03</div>
+    <span class="p-tag">Engineering & Social Innovation</span>
+    <h3 class="p-title">iLink 創見南方 第一名</h3>
+    <p class="p-desc">
+      擔任專案 PM，將「步行校車」理念落地。利用 <b>Affinity Designer</b> 規劃交通疏導路線，並整合 LineBot 調度系統。
+      在全國 <b>40 多組決賽隊伍</b> 中脫穎而出，奪得 <b>冠軍（第一名）</b>。
+    </p>
   </div>
-</div>
- 
-<footer>
-  <div class="foot-inner">
-    <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
-    <div class="foot-links">
-      <a href="mailto:h54121210@gs.ncku.edu.tw" id="foot-email">Email</a>
-      <a href="https://www.linkedin.com/in/adelawen/" target="_blank" id="foot-linkedin">LinkedIn</a>
-      <a href="index.html" id="foot-home">Home</a>
-    </div>
+</section>
+
+<div class="section-title" id="strategy">02 // TELEMETRY & METRICS</div>
+<section class="dash-grid">
+  <div class="dash-item"><div class="dash-num">1st</div><div class="dash-lbl">iLink Champion</div></div>
+  <div class="dash-item"><div class="dash-num">2nd</div><div class="dash-lbl">DreamHack National Rank</div></div>
+  <div class="dash-item"><div class="dash-num">100%</div><div class="dash-lbl">Strategy Adoption Rate</div></div>
+  <div class="dash-item"><div class="dash-num">Python</div><div class="dash-lbl">Simulation & Automation</div></div>
+</section>
+
+<footer class="footer">
+  <div>SYS. 2026 / HSINYU WEN — NCKU TCM SCIENCE</div>
+  <div style="display:flex; gap:20px;">
+    <a href="mailto:h54121210@gs.ncku.edu.tw">EMAIL</a>
+    <a href="#">LINKEDIN</a>
   </div>
 </footer>
- 
+
 <script>
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-
-menuBtn.onclick = () => {
-  navLinks.classList.toggle('active');
-  menuBtn.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-};
-
-window.addEventListener('scroll', () => {
-  document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
-});
-
-const io = new IntersectionObserver(e => e.forEach(x => {
-  if(x.isIntersecting) x.target.classList.add('v');
-}), { threshold: .1 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
- 
-const L = {
-  en: {
-    'hero-tag': 'ITS · Logistics · Growth Mindset',
-    'hero-desc': 'Undergraduate researcher at NCKU — curious by nature, shaped by challenge, always learning from the people around me.',
-    'btn-projects': 'Explore Projects', 'btn-contact': 'Contact', 'btn-moi': 'Microsoft MOI',
-    'stat-c': 'Major Competitions', 'stat-cn': 'Chuangnan 1st', 'stat-dh': 'DreamHack PM', 'stat-lr': "L'Oréal Global",
-    'scroll-text': 'Scroll',
-    'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science', 'foot-email': 'Email', 'foot-linkedin': 'LinkedIn', 'foot-home': 'Home'
-  },
-  zh: {
-    'hero-tag': '智慧交通 · 物流 · 成長型思維',
-    'hero-desc': '就讀於國立成功大學，專注智慧交通與供應鏈永續研究，享受跨域交流帶來的視角衝擊。',
-    'btn-projects': '探索專案', 'btn-contact': '聯絡我', 'btn-moi': '微軟 MOI 作品集',
-    'stat-c': '五大重點競賽', 'stat-cn': '創南競賽首獎', 'stat-dh': 'DreamHack 專案經理', 'stat-lr': '萊雅全球競賽',
-    'scroll-text': '向下滑動',
-    'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系', 'foot-email': '電子郵件', 'foot-linkedin': '領英', 'foot-home': '首頁'
-  }
-};
- 
-function switchLang(l) {
-  localStorage.setItem('lang', l);
-  document.getElementById('btn-en').classList.toggle('active', l === 'en');
-  document.getElementById('btn-zh').classList.toggle('active', l === 'zh');
-  Object.entries(L[l]).forEach(([id, v]) => {
-    const el = document.getElementById(id);
-    if(el) el.textContent = v;
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.classList.toggle('scrolled', window.scrollY > 50);
   });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  switchLang(localStorage.getItem('lang') || 'zh');
-});
 </script>
+
 </body>
 </html>
