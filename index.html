@@ -3,258 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HsinYu Wen | Cross-Disciplinary Portfolio</title>
+    <title>HsinYu Wen | Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* ── 配色與字體變量 (嚴格使用原本配色與可愛字體，Hashtags與強調色為淺藍色) ── */
         :root {
-            --ink: #0a0a0a; /* 黑色背景優化 */
-            --ink-2: #141414;
-            --white: #ffffff;
-            --muted: #888888;
-            --brand-blue: #A5C9FF; /* 可愛低飽和度淺藍色 */
-            --ms-lt: #1890ff;
-            --ms-blue: #0078D4; /* Microsoft 專用藍色 */
-            --border: rgba(255, 255, 255, 0.1);
-            --radius: 3px;
-            --fd: 'Cormorant Garamond', serif; /* 保留原始字體，用於 Logo 等 */
-            --fb: 'Outfit', sans-serif; /* 新套用的可愛字體風格 */
-            --ease: cubic-bezier(.4, 0, .2, 1);
-            --t: .4s var(--ease);
+            --bg: #ffffff;
+            --text-main: #0a0a0a;
+            --muted: #8a96a8;
+            --brand-blue: #0078D4; /* 微軟藍 */
+            --border: rgba(0, 0, 0, 0.08);
+            --fd: 'Cormorant Garamond', serif;
+            --fb: 'Outfit', sans-serif;
+            --t: .4s cubic-bezier(.4, 0, .2, 1);
         }
 
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--fb); background: var(--ink); color: var(--white); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
-        img { display: block; max-width: 100%; }
-
-        /* ── NAVIGATION (響應式優化，保留所有功能、More 選項與語言切換) ── */
-        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 25px 0; transition: var(--t); background: rgba(10,10,10,0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
-        .nav.scrolled { padding: 15px 0; background: #0a0a0a; }
-        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: var(--fd); font-size: 1.5rem; font-weight: 700; color: var(--white); z-index: 1001; }
-        .nav-logo span { color: var(--brand-blue); font-weight: 700; }
-        
-        .nav-links-wrap { display: flex; align-items: center; gap: 35px; }
-        .nav-links { display: flex; list-style: none; gap: 5px; }
-        .nav-links a { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 8px 12px; transition: var(--t); position: relative; }
-        .nav-links a.active { color: var(--white); }
-        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 12px; right: 12px; height: 1px; background: var(--brand-blue); }
-        .nav-moi { color: var(--ms-lt) !important; font-weight: 600 !important; } /* Microsoft標記保留 */
-        
-        /* 漢堡按鈕 (手機專用) */
-        .menu-toggle { display: none; background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer; z-index: 1001; }
-
-        /* ── MORE 下拉選單保留與還原選項 ── */
-        .nav-drop { position: relative; }
-        .drop-btn { font-size: .75rem; font-weight: 500; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 8px 12px; background: none; border: none; cursor: pointer; font-family: var(--fb); }
-        .drop-menu { position: absolute; top: 100%; right: 0; background: var(--ink-2); border: 1px solid var(--border); border-radius: 4px; padding: 10px; min-width: 200px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all .3s; }
-        .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        .drop-menu a { display: block; font-size: .7rem; padding: 10px 15px; color: var(--muted); border-radius: 2px; text-align: left; }
-        .drop-menu a:hover { background: rgba(255,255,255,0.04); color: var(--white); }
-        
-        /* ── 語言切換保留 ── */
-        .lang-switch { display: flex; align-items: center; gap: 8px; font-size: .7rem; color: rgba(255,255,255,0.4); }
-        .lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); }
-        .lang-btn.active { color: var(--white); font-weight: 700; }
-        
-        /* ── CV下載按鈕與串好的連結保留 ── */
-        .nav-cv { font-size: .7rem; font-weight: 600; border: 1px solid var(--brand-blue); color: var(--brand-blue); padding: 7px 18px; border-radius: var(--radius); transition: var(--t); }
-        .nav-cv:hover { background: var(--brand-blue); color: var(--ink); }
-
-        /* ── HERO (封面標題與描述翻新) ── */
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--border); text-align: center; }
-        .hero-content { max-width: 900px; padding: 0 20px; }
-        .hero-badge { display: inline-block; font-family: var(--fm); font-size: 0.65rem; padding: 6px 12px; border: 1px solid var(--brand-blue); color: var(--brand-blue); letter-spacing: 0.15em; margin-bottom: 30px; }
-        .hero-title { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
-        .hero-title em { color: var(--gold); font-style: italic; font-weight: 400; }
-        .hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; font-weight: 300; }
-        .hero-desc b { color: var(--text-primary); font-weight: 500; }
-
-        /* 按鈕樣式 (對應論述翻新) */
-        .hero-btn-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 40px; }
-        .btn-gold-fill { background: var(--gold); color: var(--ink); padding: 12px 24px; font-weight: 600; font-size: .8rem; display: inline-flex; align-items: center; gap: 8px; transition: .3s; }
-        .btn-ms-outline { background: var(--ms-bg); color: var(--ms-lt); border: 1px solid var(--ms); padding: 12px 24px; font-weight: 600; font-size: .8rem; display: inline-flex; align-items: center; gap: 8px; transition: .3s; }
-        .btn-ms-outline:hover { background: var(--ms); color: white; }
-
-        /* 封面下方指示 (Scroll) */
-        .hero-indicator { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 12px; font-family: var(--fb); font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.2em; }
-
-        /* ── ABOUT / PHOTO REVEAL (優化人像與Hashtag特效，修正#被遮擋與灰色照片問題) ── */
-        .section-about { padding: 120px 0; border-bottom: 1px solid var(--border); background: var(--ink); }
-        .about-inner { max-width: 1200px; margin: 0 auto; padding: 0 40px; display: flex; gap: 80px; align-items: flex-start; }
-        
-        /* 核心人像容器與特效實現 */
-        .photo-container { width: 400px; height: 500px; flex-shrink: 0; position: relative; border: 1px solid var(--border); background: #000; overflow: visible; }
-        
-        /* 這裡是放置照片的地方。修正：保持彩色人像，套用摳圖遮罩 */
-        .portrait-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 5; /* 圖片在#字體下方 */ -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); mask-image: linear-gradient(to bottom, black 85%, transparent 100%); filter: grayscale(10%); transition: 0.5s; }
-        
-        /* 這是用於淡化背景的覆蓋層 */
-        .photo-bg-fade { position: absolute; inset: 0; background: url('your-bg.jpg'); background-size: cover; opacity: 0.03; filter: grayscale(100%); z-index: 1; }
-
-        /* 動態 Hashtag (修正：淺藍色可愛字體，在人像上方不被遮擋，pointer-events防止干擾) */
-        .dynamic-hashtag { position: absolute; font-family: var(--fd); font-size: 0.9rem; color: var(--brand-blue); opacity: 0; transform: translateY(10px); transition: 0.6s var(--ease); z-index: 10; /* 高於圖片 */ pointer-events: none; letter-spacing: 0.05em; text-transform: uppercase; text-shadow: 0 0 10px rgba(255,255,255,0.8); }
-        .dynamic-hashtag.is-visible { opacity: 1; transform: translateY(0); }
-        .ht-1 { top: 30px; right: -25px; }
-        .ht-2 { top: 150px; left: -30px; }
-        .ht-3 { bottom: 60px; right: -20px; }
-        .ht-4 { bottom: 130px; left: -25px; }
-
-        /* ── BIO CONTENT (套用順暢的新文案) ── */
-        .bio-content { flex: 1; padding-top: 20px; }
-        .bio-label { font-family: var(--fb); font-size: 0.65rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; display: block; }
-        .bio-text { font-size: 1.05rem; line-height: 2; color: var(--text-secondary); }
-        .bio-text p { margin-bottom: 24px; }
-        .bio-text .hl { color: var(--white); font-weight: 500; border-bottom: 2px solid var(--brand-blue); }
-
-        /* ── STATS (保留數據列) ── */
-        .dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border); }
-        .dash-item { padding: 60px 40px; border-right: 1px solid var(--border); text-align: center; }
-        .dash-num { font-family: var(--fm); font-size: 2.5rem; color: var(--white); }
-        .dash-lbl { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; margin-top: 10px; }
-
-        /* ── FOOTER與聯絡資訊 ── */
-        footer { padding: 60px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--fb); font-size: 0.7rem; color: var(--muted); }
-
-        /* 手機版 (RWD) 優化：不跑版，漢堡選單 */
-        @media (max-width: 960px) {
-            .nav-inner { padding: 0 25px; }
-            .menu-toggle { display: block; }
-            .nav-links-wrap { position: fixed; top: 0; left: 100%; width: 100%; height: 100vh; background: var(--ink-2); flex-direction: column; justify-content: center; padding: 40px; transition: 0.4s; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-            .nav-links-wrap.mobile-active { left: 0; }
-            .nav-links { flex-direction: column; align-items: center; gap: 20px; width: 100%; }
-            .nav-drop .drop-menu { position: static; opacity: 1; visibility: visible; border: none; text-align: center; background: none; }
-            
-            .bio-section { flex-direction: column; text-align: center; }
-            .photo-box { width: 300px; height: 380px; margin: 0 auto; }
-            .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            .hero-desc { margin-left: auto; margin-right: auto; }
-            .hero-h1 { font-size: 2.8rem; }
-            
-            .dash-grid { grid-template-columns: 1fr 1fr; }
-            
-            .photo-container { margin: 0 auto; width: 300px; height: 380px; }
-            .htag { position: static; display: inline-block; margin: 10px; opacity: 1; animation: none; }
+        body { 
+            font-family: var(--fb); 
+            background-color: var(--bg); 
+            color: var(--text-main); 
+            line-height: 1.7; 
+            overflow-x: hidden;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
+        a { text-decoration: none; color: inherit; }
+
+        /* ── NAV ── */
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; padding: 25px 0; transition: var(--t); }
+        .nav.scrolled { padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--fd); font-size: 1.6rem; font-weight: 700; }
+        .nav-logo span { color: var(--brand-blue); }
+
+        .nav-links-wrap { display: flex; align-items: center; gap: 20px; }
+        .nav-links { display: flex; list-style: none; gap: 5px; }
+        .nav-links a { font-size: .75rem; text-transform: uppercase; color: rgba(0,0,0,0.5); padding: 8px 12px; transition: 0.3s; font-weight: 500; }
+        .nav-links a.active, .nav-links a:hover { color: var(--text-main); }
+        .nav-links a.nav-moi { color: var(--brand-blue) !important; font-weight: 700; }
+
+        .nav-drop { position: relative; }
+        .drop-menu { position: absolute; top: 100%; right: 0; background: white; border: 1px solid var(--border); padding: 10px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: 0.3s; border-radius: 4px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .drop-menu a { display: block; padding: 10px; font-size: .7rem; color: var(--muted); text-align: left; }
+
+        .lang-switch { display: flex; align-items: center; gap: 8px; font-size: .7rem; color: rgba(0,0,0,0.3); font-weight: 600; margin-left: 15px; }
+        .lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); }
+        .lang-btn.active { color: var(--text-main); }
+
+        /* ── HERO ── */
+        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 30px; }
+        .hero-badge { display: inline-block; background: #000; color: #fff; font-size: 0.65rem; padding: 8px 16px; letter-spacing: 0.15em; margin-bottom: 30px; text-transform: uppercase; }
+        .hero-h1 { font-family: var(--fd); font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.1; margin-bottom: 25px; }
+        .hero-h1 b { color: var(--muted); }
+        .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 700px; margin: 0 auto 40px; font-weight: 300; }
+        .btn-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .btn-outline { border: 1px solid var(--border); padding: 14px 28px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+        .btn-blue { background: var(--brand-blue); color: white; padding: 14px 28px; font-size: 0.8rem; font-weight: 600; transition: 0.3s; }
+
+        /* ── ABOUT & PHOTO REVEAL ── */
+        .section-about { padding: 100px 30px; max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 420px 1fr; gap: 80px; align-items: center; }
+        .photo-container { position: relative; width: 400px; height: 500px; border: 1px solid var(--border); background: #f9f9f9; }
+        .portrait-img { width: 100%; height: 100%; object-fit: cover; z-index: 5; position: relative; mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+        
+        /* Hashtags 指定微軟藍與可愛字體 */
+        .htag { position: absolute; font-family: var(--fd); font-size: 1.1rem; color: var(--brand-blue); opacity: 0; transform: translateY(10px); transition: 0.6s var(--t); z-index: 10; font-weight: 700; text-shadow: 0 0 10px rgba(255,255,255,0.8); }
+        .htag.is-visible { opacity: 1; transform: translateY(0); }
+        .ht-1 { top: 30px; right: -30px; }
+        .ht-2 { top: 180px; left: -30px; }
+        .ht-3 { bottom: 60px; right: -25px; }
+        .ht-4 { bottom: 150px; left: -35px; }
+
+        .bio-content { font-size: 1.1rem; line-height: 2; color: #444; }
+        .bio-content .hl { color: #000; font-weight: 600; border-bottom: 2px solid var(--brand-blue); }
+
+        /* ── RWD 手機版 ── */
+        @media (max-width: 900px) {
+            .nav-links-wrap { display: none; }
+            .section-about { grid-template-columns: 1fr; text-align: center; }
+            .photo-container { margin: 0 auto; width: 280px; height: 350px; }
+            .htag { position: static; display: inline-block; margin: 10px; opacity: 1; transform: none; }
+            .hero-h1 { font-size: 2.8rem; }
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--t); }
+        .reveal.v { opacity: 1; transform: none; }
+
+        footer { padding: 80px 30px; border-top: 1px solid var(--border); text-align: center; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; margin-top: 25px; }
+        .footer-links a { font-size: 1.5rem; color: var(--muted); transition: 0.3s; }
+        .footer-links a:hover { color: var(--brand-blue); }
     </style>
 </head>
 <body>
 
-<nav class="nav" id="navbar">
+<nav class="nav" id="mainnav">
     <div class="nav-inner">
         <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
-        
-        <button class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></button>
-
-        <div class="nav-links-wrap" id="navLinks">
+        <div class="nav-links-wrap">
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="competitions.html">Competitions</a></li>
-                <li><a href="microsoft-moi.html" class="nav-moi">Microsoft MOI</a></li>
+                <li><a href="index.html" class="active" data-i18n="nav-home">Home</a></li>
+                <li><a href="projects.html" data-i18n="nav-projects">Projects</a></li>
+                <li><a href="competitions.html" data-i18n="nav-comp">Competitions</a></li>
+                <li><a href="microsoft-moi.html" class="nav-moi" data-i18n="nav-moi">Microsoft MOI</a></li>
                 <li class="nav-drop">
-                    <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+                    <a href="#" class="drop-btn" data-i18n="nav-more">More <i class="fas fa-chevron-down" style="font-size: 0.5rem"></i></a>
                     <div class="drop-menu">
-                        <a href="experience.html">Internship</a>
-                        <a href="exchange.html">Cultural Exchange</a>
-                        <a href="certificates.html">Certificates</a>
-                        <a href="#">Clubs & Volunteer</a>
+                        <a href="experience.html" data-i18n="drop-intern">Internship</a>
+                        <a href="exchange.html" data-i18n="drop-exchange">Cultural Exchange</a>
+                        <a href="certificates.html" data-i18n="drop-cert">Certificates</a>
+                        <a href="volunteer.html" data-i18n="drop-volunteer">Clubs & Volunteer</a>
                     </div>
                 </li>
             </ul>
-            
             <div class="lang-switch">
-                <button class="lang-btn active">EN</button>
-                <span style="opacity:0.3;">/</span>
-                <button class="lang-btn">ZH</button>
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <span>/</span>
+                <button class="lang-btn" onclick="switchLang('zh')">中</button>
             </div>
-            <a href="resume.pdf" class="nav-cv">Download CV</a>
         </div>
     </div>
 </nav>
 
 <section class="hero" id="home">
-    <div class="hero-content">
-        <div class="hero-badge">NCKU TCM SCIENCE</div>
-        <h1 class="hero-title">Hi, I'm<br><em>HsinYu Wen</em></h1>
-        <p class="hero-desc">
-            就讀於 <b>國立成功大學交通管理科學系</b>。<br>
-            擁有基礎程式實作能力、精準的企劃撰寫與執行規劃力。<br>
-            擅長在工程硬實力、商業策略與 <b>PM 團隊領導</b> 之間無縫對接。
-        </p>
-        <div class="hero-btn-row">
-            <a href="projects.html" class="btn-gold-fill"><i class="fas fa-arrow-right"></i> Explore Projects</a>
-            <a href="microsoft-moi.html" class="btn-ms-outline"><i class="fab fa-microsoft"></i> Microsoft MOI</a>
+    <div class="reveal">
+        <span class="hero-badge" data-i18n="hero-badge">Telemetry & Strategy Ready</span>
+        <h1 class="hero-h1" id="hero-title">Engineering Precision.<br><b>Strategic Growth.</b></h1>
+        <p class="hero-desc" data-i18n="hero-desc">NCKU Undergraduate. Bridging the gap between engineering and data-driven B2B strategy. Crafted for Microsoft and ASML.</p>
+        <div class="btn-row">
+            <a href="projects.html" class="btn-outline" data-i18n="btn-projects">Explore my projects</a>
+            <a href="microsoft-moi.html" class="btn-blue" data-i18n="btn-moi">Microsoft MOI</a>
         </div>
     </div>
 </section>
 
 <section class="section-about" id="about">
-    <div class="about-inner">
-        <div class="photo-container">
-            <div class="photo-bg-fade"></div> <img src="my-face.jpg" alt="HsinYu Wen彩色人像" class="portrait-img" onerror="this.src='placeholder.png'">
-            
-            <span class="dynamic-hashtag ht-1">#成長型思維</span>
-            <span class="dynamic-hashtag ht-2">#目標導向</span>
-            <span class="htag ht-3">#跨領域整合</span>
-            <span class="htag ht-4">#積極解決問題</span>
-        </div>
-        
-        <div class="bio-content">
-            <span class="bio-label">PERSONAL PROFILE</span>
-            <div class="bio-text">
-                <p>「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」</p>
-                <p>
-                    我是<span class="hl">成大交管系</span>學生，也是一位熱衷於連結工程硬實力與商業洞察的跨領域實踐者。具備極強的自我驅動能力，擅長在短時間內將新工具轉化為實際產出。曾為了專題與研究，在<span class="hl">四週內獨立自學 Python 與 Vissim</span> 並完成建模實作。
-                </p>
-                <p>
-                    擁有高度責任感與細節敏感度，無論在大型競賽擔任團隊 PM 領導團隊，或是執行 B2B 行銷策略規劃，皆能維持零失誤標準，確保專案精準落地。
-                </p>
-            </div>
-        </div>
+    <div class="photo-container reveal">
+        <img src="YOUR_PORTRAIT_IMAGE_NO_BACKGROUND.png" alt="HsinYu" class="portrait-img" onerror="this.style.opacity='0.2'">
+        <span class="htag ht-1">#成長型思維</span>
+        <span class="htag ht-2">#目標導向</span>
+        <span class="htag ht-3">#跨領域整合</span>
+        <span class="htag ht-4">#積極解決問題</span>
+    </div>
+    <div class="bio-content reveal">
+        <p id="bio-quote" style="font-style: italic;">「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」</p><br>
+        <p id="bio-p1">我是<span class="hl">成大交管系</span>學生，擅長連結工程硬實力與商業洞察。曾為了研究，在四週內獨立自學 <span class="hl">Python 與 Vissim</span> 並完成建模實作。</p><br>
+        <p id="bio-p2">無論是身為 <b>大型競賽的 PM</b> 領導團隊，或是執行 <b>B2B 行銷內容策略</b>，我皆能確保專案精準落地。</p>
     </div>
 </section>
 
-<div class="dash-grid" id="strategy">
-    <div class="dash-item"><div class="dash-num">1st</div><div class="dash-lbl">Chuangnan Champion</div></div>
-    <div class="dash-item"><div class="dash-num">2nd</div><div class="dash-lbl">DreamHack PM</div></div>
-    <div class="dash-item"><div class="dash-num">Python</div><div class="dash-lbl">Simulation & Automation</div></div>
-    <div class="dash-item"><div class="dash-num">100%</div><div class="dash-lbl">Strategy Adoption Rate</div></div>
-</div>
-
-<footer style="padding: 60px 40px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; font-family: var(--fb); font-size: 0.7rem; color: var(--muted); background: var(--ink);">
-  <div>SYS. 2026 / HSINYU WEN — NCKU</div>
-  <div style="display:flex; gap:30px;">
-    <a href="mailto:h54121210@gs.ncku.edu.tw"><i class="fas fa-envelope"></i> GMAIL</a>
-    <a href="https://www.linkedin.com/in/adelawen/" target="_blank"><i class="fab fa-linkedin"></i> LINKEDIN</a>
-  </div>
+<footer>
+    <div class="reveal">
+        <p style="font-size: 0.8rem; color: var(--muted);" data-i18n="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</p>
+        <div class="footer-links">
+            <a href="mailto:h54121210@gs.ncku.edu.tw"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com/in/adelawen/" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
 </footer>
 
 <script>
-    // 滾動導覽列邏輯保留
+    // 滾動導覽列與 Hashtag 亮起
     window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
         
-        // Hashtag 逐一亮起邏輯
-        const aboutRect = document.getElementById('about').getBoundingClientRect();
-        if(aboutRect.top < window.innerHeight * 0.5) {
-            document.querySelectorAll('.htag').forEach((tag, i) => {
-                setTimeout(() => tag.classList.add('is-visible'), i * 300);
+        const about = document.getElementById('about').getBoundingClientRect();
+        if(about.top < window.innerHeight * 0.6) {
+            document.querySelectorAll('.htag').forEach((t, i) => {
+                setTimeout(() => t.classList.add('is-visible'), i * 250);
             });
         }
     });
 
-    // 手機版選單切換
-    const menuBtn = document.getElementById('menuBtn');
-    const navLinks = document.getElementById('navLinks');
-    menuBtn.onclick = () => {
-        navLinks.classList.toggle('mobile-active');
-        menuBtn.innerHTML = navLinks.classList.contains('mobile-active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-    };
-</script>
+    // 滑動顯現動畫
+    const observer = new IntersectionObserver(e => e.forEach(x => {
+        if(x.isIntersecting) x.target.classList.add('v');
+    }), { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+    // 中英文翻譯功能
+    const L = {
+        en: {
+            'nav-home': 'Home', 'nav-projects': 'Projects', 'nav-comp': 'Competitions', 'nav-moi': 'Microsoft MOI', 'nav-more': 'More',
+            'drop-intern': 'Internship', 'drop-exchange': 'Cultural Exchange', 'drop-cert': 'Certificates', 'drop-volunteer': 'Clubs & Volunteer',
+            'hero-badge': 'Telemetry & Strategy Ready',
+            'hero-title': 'Engineering Precision.<br><b>Strategic Growth.</b>',
+            'hero-desc': 'NCKU Undergraduate. Bridging the gap between engineering and data-driven B2B strategy. Crafted for Microsoft and ASML.',
+            'btn-projects': 'Explore my projects', 'btn-moi': 'Microsoft MOI',
+            'bio-quote': '"Breaking down ambiguous problems into actionable steps under pressure."',
+            'bio-p1': 'I am an <span class="hl">NCKU TCM</span> student, skilled at connecting engineering logic with business insights. Self-taught <span class="hl">Python & Vissim</span> in 4 weeks for research.',
+            'bio-p2': 'Whether as a <b>Competition PM</b> leading teams or executing <b>B2B marketing strategies</b>, I ensure precision in every project.',
+            'foot-copy': '© 2026 HsinYu Wen — NCKU TCM Science'
+        },
+        zh: {
+            'nav-home': '首頁', 'nav-projects': '專案作品', 'nav-comp': '競賽經歷', 'nav-moi': '微軟 MOI', 'nav-more': '更多',
+            'drop-intern': '實習經歷', 'drop-exchange': '國際交流', 'drop-cert': '專業證照', 'drop-volunteer': '社團與志工',
+            'hero-badge': '遙測數據與策略分析就緒',
+            'hero-title': '跨領域人才 |<br><b>Growth Mindset</b>',
+            'hero-desc': '就讀於國立成功大學交通管理科學系。擅長在工程硬實力與 B2B 商業策略之間對接。專為 Microsoft 與 ASML 打造。',
+            'btn-projects': '探索我的專案', 'btn-moi': '微軟 MOI 作品集',
+            'bio-quote': '「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」',
+            'bio-p1': '我是<span class="hl">成大交管系</span>學生，擅長連結工程硬實力與商業洞察。曾為了研究，在四週內獨立自學 <span class="hl">Python 與 Vissim</span> 並完成建模實作。',
+            'bio-p2': '無論是身為 <b>大型競賽的 PM</b> 領導團隊，或是執行 <b>B2B 行銷內容策略</b>，我皆能確保專案精準落地。',
+            'foot-copy': '© 2026 溫心語 — 國立成功大學 交通管理科學系'
+        }
+    };
+
+    function switchLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        event.target.classList.add('active');
+        
+        Object.keys(L[lang]).forEach(key => {
+            const el = document.querySelector(`[data-i18n="${key}"]`) || document.getElementById(key);
+            if (el) el.innerHTML = L[lang][key];
+        });
+    }
+</script>
 </body>
 </html>
