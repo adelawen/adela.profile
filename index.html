@@ -2,13 +2,13 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HsinYu Wen | Cross-Disciplinary Talent</title>
+<title>HsinYu Wen | Cross-Disciplinary Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root {
   --bg-primary: #ffffff;
-  --bg-secondary: #f8f9fa;
+  --bg-secondary: #f9f9f9;
   --text-primary: #050505;
   --text-secondary: #555555;
   --text-tertiary: #a0a0a0;
@@ -27,58 +27,50 @@ body { font-family: var(--fb); background: var(--bg-primary); color: var(--text-
 a { text-decoration: none; color: inherit; }
 
 /* ── NAVIGATION ── */
-.nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); display: flex; align-items: center; z-index: 1000; transition: 0.4s; background: rgba(255,255,255,0.8); backdrop-filter: blur(10px); }
-.nav.scrolled { border-bottom: 1px solid var(--border-color); background: #fff; }
+.nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); display: flex; align-items: center; z-index: 1000; transition: 0.4s; background: rgba(255,255,255,0.9); backdrop-filter: blur(15px); }
+.nav.scrolled { border-bottom: 1px solid var(--border-color); }
 .nav-inner { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
 .logo { font-family: var(--fd); font-size: 1.5rem; font-weight: 500; }
 .logo span { color: var(--brand-blue); font-weight: 700; }
 .nav-links { display: flex; gap: 32px; align-items: center; }
 .nav-link { font-size: 0.75rem; font-family: var(--fm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); transition: 0.3s; }
-.nav-link:hover { color: var(--ms-blue); }
+.nav-link:hover { color: var(--brand-blue); }
 .nav-actions { display: flex; gap: 20px; align-items: center; }
 .lang-btn { font-family: var(--fm); font-size: 0.7rem; border: none; background: none; cursor: pointer; color: var(--text-tertiary); }
 .lang-btn.active { color: var(--text-primary); font-weight: 700; }
 
 /* ── HERO ── */
-.hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; text-align: center; }
-.hero-content { max-width: 1000px; padding: 0 20px; }
-.hero-badge { display: inline-block; font-family: var(--fm); font-size: 0.65rem; padding: 6px 14px; border: 1px solid var(--brand-blue); background: var(--brand-blue); color: #fff; letter-spacing: 0.15em; margin-bottom: 30px; }
-.hero-title { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.2; font-weight: 700; margin-bottom: 30px; letter-spacing: -0.02em; }
-.hero-desc { font-size: 1.15rem; color: var(--text-secondary); max-width: 750px; margin: 0 auto; font-weight: 400; line-height: 1.8; }
-.hero-desc b { color: var(--text-primary); font-weight: 600; }
+.hero { height: 85vh; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--border-color); }
+.hero-content { text-align: center; max-width: 900px; padding: 0 20px; }
+.hero-badge { display: inline-block; font-family: var(--fm); font-size: 0.65rem; padding: 6px 12px; border: 1px solid var(--brand-blue); color: var(--brand-blue); letter-spacing: 0.15em; margin-bottom: 30px; }
+.hero-title { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
+.hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; font-weight: 300; }
+.hero-desc b { color: var(--text-primary); font-weight: 500; }
 
-/* ── PHOTO & BIO ── */
-.photo-reveal-section { padding: 120px 40px; background: #0a0a0a; color: #fff; }
-.photo-layout { display: flex; align-items: center; gap: 80px; max-width: 1100px; margin: 0 auto; }
-.photo-frame { width: 320px; height: 420px; border: 1px solid rgba(255,255,255,0.1); position: relative; background: #111; display: flex; align-items: center; justify-content: center; }
-.bio-panel { flex: 1; }
-.bio-text { font-size: 1.1rem; line-height: 2; color: rgba(255,255,255,0.8); }
-.highlight { color: var(--brand-blue); font-weight: 500; }
-.bio-tags { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 10px; }
-.btag { font-family: var(--fm); font-size: 0.7rem; padding: 6px 14px; border: 1px solid var(--brand-blue); color: var(--brand-blue); border-radius: 4px; }
+/* ── BIO SECTION ── */
+.bio-section { padding: 120px 40px; max-width: 1100px; margin: 0 auto; display: flex; gap: 80px; align-items: center; }
+.photo-box { width: 300px; height: 380px; background: var(--bg-secondary); border: 1px solid var(--border-color); flex-shrink: 0; display: flex; align-items: center; justify-content: center; position: relative; }
+.photo-box::after { content: ''; position: absolute; inset: -10px; border: 1px solid var(--brand-blue); z-index: -1; opacity: 0.3; }
+.bio-content { flex: 1; }
+.bio-text { font-size: 1.05rem; line-height: 2; color: var(--text-secondary); }
+.bio-text .hl { color: var(--brand-blue); font-weight: 600; border-bottom: 2px solid var(--brand-blue); }
+.tag-row { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+.tag { font-family: var(--fm); font-size: 0.7rem; color: var(--brand-blue); padding: 5px 12px; border: 1px solid var(--brand-blue); border-radius: 20px; }
 
-/* ── PROJECTS (Horizontal & Grid) ── */
-.section-title { padding: 80px 40px 40px; max-width: 1400px; margin: 0 auto; font-family: var(--fm); font-size: 0.8rem; color: var(--text-tertiary); letter-spacing: 0.2em; }
-.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border-color); max-width: 1400px; margin: 0 auto; border: 1px solid var(--border-color); }
-.project-card { background: #fff; padding: 50px 40px; transition: 0.4s; }
-.project-card:hover { background: var(--bg-secondary); }
-.p-num { font-family: var(--fd); font-size: 2.5rem; color: var(--brand-blue); opacity: 0.5; margin-bottom: 20px; }
-.p-tag { font-family: var(--fm); font-size: 0.65rem; color: var(--ms-blue); margin-bottom: 10px; display: block; }
-.p-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 15px; }
-.p-desc { font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7; }
-
-/* ── STATS ── */
-.dash-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--border-color); }
-.dash-item { padding: 60px 40px; border-right: 1px solid var(--border-color); text-align: center; }
-.dash-num { font-family: var(--fm); font-size: 2.5rem; color: var(--text-primary); }
-.dash-lbl { font-size: 0.7rem; color: var(--text-tertiary); text-transform: uppercase; margin-top: 10px; }
-
-.footer { padding: 60px 40px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-family: var(--fm); font-size: 0.7rem; }
+/* ── PROJECT GRID ── */
+.project-section { padding: 100px 40px; max-width: 1400px; margin: 0 auto; }
+.section-label { font-family: var(--fm); font-size: 0.7rem; color: var(--text-tertiary); letter-spacing: 0.2em; margin-bottom: 40px; display: block; }
+.project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.p-card { background: #fff; border: 1px solid var(--border-color); padding: 40px; transition: 0.4s ease; position: relative; }
+.p-card:hover { transform: translateY(-10px); border-color: var(--brand-blue); box-shadow: 0 20px 40px rgba(165,201,255,0.1); }
+.p-year { font-family: var(--fm); font-size: 0.6rem; color: var(--text-tertiary); margin-bottom: 15px; display: block; }
+.p-title { font-size: 1.4rem; font-weight: 600; margin-bottom: 15px; line-height: 1.3; }
+.p-desc { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
+.p-award { margin-top: 20px; font-family: var(--fm); font-size: 0.75rem; color: var(--ms-blue); font-weight: 700; }
 
 @media(max-width: 1024px) {
+  .bio-section { flex-direction: column; text-align: center; }
   .project-grid { grid-template-columns: 1fr; }
-  .photo-layout { flex-direction: column; text-align: center; }
-  .dash-grid { grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -89,10 +81,8 @@ a { text-decoration: none; color: inherit; }
     <a href="#" class="logo">HsinYu<span>.</span></a>
     <div class="nav-links">
       <a href="#about" class="nav-link">About</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#professional" class="nav-link">Professional</a>
-      <a href="#strategy" class="nav-link">Metrics</a>
-      <a href="#" class="nav-link" style="color:var(--ms-blue); font-weight:700;">MSFT MOI</a>
+      <a href="#projects" class="nav-link">Work</a>
+      <a href="#" class="nav-link" style="color:var(--ms-blue); font-weight:700;">Microsoft MOI</a>
     </div>
     <div class="nav-actions">
       <button class="lang-btn active">EN</button>
@@ -104,93 +94,77 @@ a { text-decoration: none; color: inherit; }
 
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">2026 PORTFOLIO</div>
+    <div class="hero-badge">NCKU TCM SCIENCE</div>
     <h1 class="hero-title">跨領域人才 | Growth Mindset</h1>
     <p class="hero-desc">
-      就讀 <b>國立成功大學交通管理科學系</b>，致力於連結工程邏輯與商業洞察。<br>
-      具備基礎程式開發、數據驅動的企劃撰寫及跨部門專案執行能力。<br>
-      擅長將 <b>Coding 實作、商業競賽企劃</b> 與 <b>敏捷專案管理 (PM)</b> 整合，打造具落地的解決方案。
+      就讀 <b>國立成功大學交通管理科學系</b>。<br>
+      擁有基礎程式實作能力、精準的企劃撰寫與執行規劃力。<br>
+      擅長在工程硬實力、商業策略與 <b>PM 團隊領導</b> 之間無縫對接。
     </p>
   </div>
 </section>
 
-<section class="photo-reveal-section" id="about">
-  <div class="photo-layout">
-    <div class="photo-frame">
-      <i class="fas fa-user" style="font-size:4rem; color:#333;"></i>
-      <div style="position:absolute; bottom:20px; font-family:var(--fm); font-size:0.6rem; color:#555;">[ PROFILE IMAGE ]</div>
+<section class="bio-section" id="about">
+  <div class="photo-box">
+    <i class="fas fa-user-tie" style="font-size:4rem; color:var(--border-color);"></i>
+    <span style="position:absolute; bottom:20px; font-size:0.6rem; color:var(--text-tertiary);">HSINYU WEN</span>
+  </div>
+  <div class="bio-content">
+    <p class="bio-text">
+      具備在<span class="hl">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在跨部門協作中保持高效率輸出。<br><br>
+      我是一個自我驅動、遇到新工具會主動鑽研到能實際產出的人，過去曾為了專題與研究，在<span class="hl">四週內自學 Python 與 Vissim</span> 並完成建模實作。<br><br>
+      同時擁有高度責任感與細節敏感度，無論在創業競賽擔任團隊 PM 或是 B2B 行銷策略規劃，皆能維持零失誤標準，確保專案精準落地。
+    </p>
+    <div class="tag-row">
+      <div class="tag">#成長型思維</div>
+      <div class="tag">#目標導向</div>
+      <div class="tag">#勇於挑戰與改變</div>
+      <div class="tag">#積極主動</div>
     </div>
-    <div class="bio-panel">
-      <p class="bio-text">
-        具備在<span class="highlight">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在跨部門協作中保持高品質輸出。<br><br>
-        我是一個<span class="highlight">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人，曾為了專題與研究在四週內自學 Python 與 Vissim 並獨立完成建模。<br><br>
-        同時具備高度責任感與細節敏感度，無論在大型競賽擔任 PM 或是 B2B 內容策略執行，皆能維持零失誤標準。
+  </div>
+</section>
+
+<section class="project-section" id="projects">
+  <span class="section-label">01 // SELECTED DELIVERABLES</span>
+  <div class="project-grid">
+    <div class="p-card">
+      <span class="p-year">2026.03 / B2B MARKETING</span>
+      <h3 class="p-title">Tachiz LinkedIn 品牌行銷策略</h3>
+      <p class="p-desc">
+        針對台灣爆爆珠領導品牌打造 LinkedIn B2B 策略。深入研究 <b>2026 演算法機制</b>，自學製作專業輪播圖（Carousel）提升互動。
+        22 頁企劃獲團隊 <b>100% 採納</b> 並實際執行發文。
       </p>
-      <div class="bio-tags">
-        <span class="btag">#成長型思維</span>
-        <span class="btag">#目標導向</span>
-        <span class="btag">#跨領域整合</span>
-        <span class="btag">#積極解決問題</span>
-      </div>
+    </div>
+
+    <div class="p-card">
+      <span class="p-year">2026.01 / PROJECT MANAGEMENT</span>
+      <h3 class="p-title">交大 DreamHack 創業競賽</h3>
+      <p class="p-desc">
+        擔任 <b>團隊 PM</b> 負責任務分配、進度管理與簡報架構。提出 <b>數位孿生在醫療領域之應用</b> 並獲 100% 採納。
+        在全台 48 組強敵中奪得 <b>第二名</b>，獲 Tera Thinker 創辦人主動邀約合作。
+      </p>
+      <div class="p-award">NATIONAL 2ND PLACE</div>
+    </div>
+
+    <div class="p-card">
+      <span class="p-year">2025 - 2026 / SOCIAL INNOVATION</span>
+      <h3 class="p-title">iLink 創見南方：安全雲端</h3>
+      <p class="p-desc">
+        擔任 PM 角色，將「步行校車」理念落地。利用 <b>Affinity Designer</b> 規劃交通疏導路線與停車區，並整合 LineBot 調度系統。
+        在 <b>40 多組決賽隊伍</b> 中脫穎而出，奪得 <b>第一名</b> 佳績。
+      </p>
+      <div class="p-award">CHAMPION / 1ST PLACE</div>
     </div>
   </div>
 </section>
 
-<div class="section-title" id="projects">01 // CORE DELIVERABLES</div>
-<section class="project-grid">
-  <div class="project-card">
-    <div class="p-num">01</div>
-    <span class="p-tag">Marketing Strategy (2026/03)</span>
-    <h3 class="p-title">Tachiz LinkedIn B2B 內容策略</h3>
-    <p class="p-desc">
-      針對台灣爆爆珠龍頭 Tachiz 打造 LinkedIn 品牌門面。深入研究 <b>2026 演算法機制</b>，並主動學習輪播圖製作與內容視覺化。
-      提案獲團隊 <b>100% 採納</b>，成功將品牌專業度轉化為實質社群影響力。
-    </p>
-  </div>
-
-  <div class="project-card">
-    <div class="p-num">02</div>
-    <span class="p-tag">Agile Project Management (2026/01)</span>
-    <h3 class="p-title">交大 DreamHack 創業競賽</h3>
-    <p class="p-desc">
-      擔任團隊 PM，主導 48 小時開發進度、分工與簡報架構。提出 <b>數位孿生在醫療領域應用</b> 之概念，獲得 <b>全台第二名</b>。
-      更獲得 <b>Tera Thinker 創辦人</b> 賞識，主動尋求後續商業合作機會。
-    </p>
-  </div>
-
-  <div class="project-card">
-    <div class="p-num">03</div>
-    <span class="p-tag">Engineering & Social Innovation</span>
-    <h3 class="p-title">iLink 創見南方 第一名</h3>
-    <p class="p-desc">
-      擔任專案 PM，將「步行校車」理念落地。利用 <b>Affinity Designer</b> 規劃交通疏導路線，並整合 LineBot 調度系統。
-      在全國 <b>40 多組決賽隊伍</b> 中脫穎而出，奪得 <b>冠軍（第一名）</b>。
-    </p>
-  </div>
-</section>
-
-<div class="section-title" id="strategy">02 // TELEMETRY & METRICS</div>
-<section class="dash-grid">
-  <div class="dash-item"><div class="dash-num">1st</div><div class="dash-lbl">iLink Champion</div></div>
-  <div class="dash-item"><div class="dash-num">2nd</div><div class="dash-lbl">DreamHack National Rank</div></div>
-  <div class="dash-item"><div class="dash-num">100%</div><div class="dash-lbl">Strategy Adoption Rate</div></div>
-  <div class="dash-item"><div class="dash-num">Python</div><div class="dash-lbl">Simulation & Automation</div></div>
-</section>
-
-<footer class="footer">
-  <div>SYS. 2026 / HSINYU WEN — NCKU TCM SCIENCE</div>
-  <div style="display:flex; gap:20px;">
+<footer style="padding: 60px 40px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-family: var(--fm); font-size: 0.7rem; color: var(--text-tertiary);">
+  <div>SYS. 2026 / HSINYU WEN — NCKU</div>
+  <div style="display:flex; gap:30px;">
     <a href="mailto:h54121210@gs.ncku.edu.tw">EMAIL</a>
     <a href="#">LINKEDIN</a>
   </div>
 </footer>
-
-<script>
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('navbar');
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-  });
-</script>
 
 </body>
 </html>
