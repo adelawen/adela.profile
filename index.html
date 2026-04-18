@@ -11,13 +11,13 @@
             /* 顏色變數定義 */
             --bg: #ffffff;
             --text-main: #0a0a0a;
-            --muted: #8a96a8; /* 附圖中的灰色 */
+            --muted: #8a96a8; /* 灰色 */
             --brand-blue: #0078D4; /* 微軟藍 */
-            --border: rgba(0, 0, 0, 0.08); /* 網格與邊框色 */
+            --border: rgba(0, 0, 0, 0.06); /* 網格與邊框色 */
             
             /* 字體變數 */
-            --fd: 'Cormorant Garamond', serif; /* 可愛/古典的標題字體 */
-            --fb: 'Outfit', sans-serif; /* 現代感的內文字體 */
+            --fd: 'Cormorant Garamond', serif; /* 可愛/古典標題字體 */
+            --fb: 'Outfit', sans-serif; /* 現代感內文字體 */
             --t: .4s cubic-bezier(.4, 0, .2, 1);
         }
 
@@ -41,7 +41,7 @@
         .nav.scrolled { padding: 15px 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border); box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; }
         
-        .nav-logo { font-family: var(--fd); font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; }
+        .nav-logo { font-family: var(--fd); font-size: 1.8rem; font-weight: 700; letter-spacing: -0.02em; position: relative; z-index: 1001; }
         .nav-logo span { color: var(--brand-blue); }
 
         .nav-links-wrap { display: flex; align-items: center; gap: 20px; }
@@ -61,26 +61,23 @@
         .lang-btn.active { color: var(--text-main); }
 
         /* 手機漢堡選單按鈕 */
-        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); }
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main); z-index: 1001; }
 
-        /* ── HERO (完美復刻附圖風格) ── */
+        /* ── HERO ── */
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 140px 20px 80px; position: relative; }
         .hero-content { max-width: 900px; margin: 0 auto; }
         
-        /* 黑色小標籤 */
         .hero-badge { display: inline-block; background: #000; color: #fff; font-size: 0.65rem; padding: 8px 16px; letter-spacing: 0.15em; margin-bottom: 30px; text-transform: uppercase; }
         
-        /* 主標題 (黑粗體 + 灰斜體) */
         .hero-h1 { font-family: var(--fd); line-height: 1.05; margin-bottom: 30px; letter-spacing: -0.02em; }
         .hero-h1 .title-main { display: block; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 700; color: var(--text-main); }
         .hero-h1 .title-sub { display: block; font-size: clamp(3rem, 8vw, 5.5rem); font-weight: 600; color: var(--muted); font-style: italic; margin-top: -5px; }
         
         .hero-desc { font-size: 1.15rem; color: var(--muted); max-width: 750px; margin: 0 auto 50px; font-weight: 300; line-height: 1.8; }
-        .hero-desc b { color: var(--text-main); font-weight: 500; }
         
         /* 按鈕樣式 */
         .btn-row { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .btn-outline { border: 1px solid #dcdcdc; color: var(--text-main); background: transparent; padding: 14px 28px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
+        .btn-outline { border: 1px solid #dcdcdc; color: var(--text-main); background: #fff; padding: 14px 28px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; }
         .btn-outline:hover { border-color: var(--text-main); background: rgba(0,0,0,0.02); }
         .btn-blue { background: var(--brand-blue); color: white; padding: 14px 28px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; transition: 0.3s; border: 1px solid var(--brand-blue); }
         .btn-blue:hover { background: #0063b0; border-color: #0063b0; }
@@ -92,34 +89,34 @@
 
         /* ── ABOUT & PHOTO REVEAL ── */
         .section-about { padding: 120px 30px; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: center; }
-        .photo-container { position: relative; width: 400px; height: 500px; border: 1px solid var(--border); background: #f9f9f9; }
-        .portrait-img { width: 100%; height: 100%; object-fit: cover; z-index: 5; position: relative; mask-image: linear-gradient(to bottom, black 85%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 85%, transparent 100%); }
+        .photo-container { position: relative; width: 400px; height: 500px; background: #f9f9f9; }
+        .portrait-img { width: 100%; height: 100%; object-fit: cover; z-index: 5; position: relative; mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%); }
         
-        /* Hashtags (被稱讚的版本：微軟藍、可愛字體、不遮擋) */
+        /* Hashtags (微軟藍、可愛字體、不遮擋) */
         .htag { 
             position: absolute; 
-            font-family: var(--fd); /* 可愛標題字體 */
-            font-size: 1.1rem; 
-            color: var(--brand-blue); /* 微軟藍 */
+            font-family: var(--fd); 
+            font-size: 1.2rem; 
+            color: var(--brand-blue); 
             opacity: 0; 
             transform: translateY(10px); 
             transition: 0.6s var(--t); 
-            z-index: 10; /* 浮在照片上方 */
+            z-index: 10; 
             font-weight: 700; 
-            pointer-events: none; /* 滑鼠穿透，不干擾滑動 */
-            text-shadow: 0 0 10px rgba(255,255,255,0.9); /* 加強對比 */
+            pointer-events: none; 
+            text-shadow: 0 0 15px rgba(255,255,255,0.9); 
         }
         .htag.is-visible { opacity: 1; transform: translateY(0); }
-        .ht-1 { top: 40px; right: -25px; }
+        .ht-1 { top: 40px; right: -35px; }
         .ht-2 { top: 180px; left: -30px; }
-        .ht-3 { bottom: 70px; right: -20px; }
-        .ht-4 { bottom: 150px; left: -35px; }
+        .ht-3 { bottom: 70px; right: -25px; }
+        .ht-4 { bottom: 150px; left: -40px; }
 
         .bio-content { font-size: 1.1rem; line-height: 2; color: #555; }
         .bio-content p { margin-bottom: 20px; }
         .bio-content .hl { color: #000; font-weight: 600; border-bottom: 2px solid var(--brand-blue); }
 
-        /* ── RWD 手機版 ── */
+        /* ── RWD 手機版適應 ── */
         @media (max-width: 960px) {
             .menu-toggle { display: block; }
             .nav-links-wrap { 
@@ -144,10 +141,10 @@
         .reveal.v { opacity: 1; transform: none; }
 
         /* ── FOOTER ── */
-        footer { padding: 60px 30px; border-top: 1px solid var(--border); text-align: center; }
+        footer { padding: 60px 30px; border-top: 1px solid var(--border); text-align: center; background: #fff; }
         .footer-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
-        .footer-links a { font-size: 1.2rem; color: var(--muted); transition: 0.3s; display: flex; align-items: center; gap: 8px; font-family: var(--fb); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
-        .footer-links a i { font-size: 1.2rem; }
+        .footer-links a { color: var(--muted); transition: 0.3s; display: flex; align-items: center; gap: 8px; font-family: var(--fb); font-size: 0.8rem; text-transform: uppercase; font-weight: 600; letter-spacing: 0.05em; }
+        .footer-links a i { font-size: 1.4rem; }
         .footer-links a:hover { color: var(--brand-blue); }
     </style>
 </head>
@@ -194,7 +191,7 @@
             <span class="title-sub" id="hero-title-sub">Strategic Growth.</span>
         </h1>
         
-        <p class="hero-desc" data-i18n="hero-desc">NCKU Undergraduate. Bridging the gap between engineering and data-driven B2B strategy. Crafted for Microsoft and ASML.</p>
+        <p class="hero-desc" data-i18n="hero-desc">NCKU Undergraduate. Bridging the gap between engineering logistics and data-driven B2B marketing. Crafted for Microsoft and ASML.</p>
         
         <div class="btn-row">
             <a href="projects.html" class="btn-outline" data-i18n="btn-projects">Explore my projects</a>
@@ -209,7 +206,7 @@
 
 <section class="section-about" id="about">
     <div class="photo-container reveal">
-        <img src="YOUR_PORTRAIT_IMAGE_NO_BACKGROUND.png" alt="HsinYu" class="portrait-img" onerror="this.style.opacity='0.2'">
+        <img src="YOUR_PORTRAIT_IMAGE_NO_BACKGROUND.png" alt="HsinYu" class="portrait-img" onerror="this.style.opacity='0.1'">
         <span class="htag ht-1" data-i18n="tag-1">#成長型思維</span>
         <span class="htag ht-2" data-i18n="tag-2">#目標導向</span>
         <span class="htag ht-3" data-i18n="tag-3">#跨領域整合</span>
@@ -259,7 +256,7 @@
     }), { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-    // 中英文翻譯功能 (完美對應所有文字)
+    // 中英文翻譯功能
     const L = {
         en: {
             'nav-home': 'Home', 'nav-projects': 'Projects', 'nav-comp': 'Competitions', 'nav-moi': 'Microsoft MOI', 'nav-more': 'More',
@@ -267,7 +264,7 @@
             'hero-badge': 'Telemetry & Strategy Ready',
             'hero-title-main': 'Engineering Precision.',
             'hero-title-sub': 'Strategic Growth.',
-            'hero-desc': 'NCKU Undergraduate. Bridging the gap between engineering and data-driven B2B strategy. Crafted for Microsoft and ASML.',
+            'hero-desc': 'NCKU Undergraduate. Bridging the gap between engineering logistics and data-driven B2B marketing. Crafted for Microsoft and ASML.',
             'btn-projects': 'Explore my projects', 'btn-moi': 'Microsoft MOI',
             'tag-1': '#Growth Mindset', 'tag-2': '#Goal-Oriented', 'tag-3': '#Cross-Disciplinary', 'tag-4': '#Proactive',
             'bio-quote': '"Breaking down ambiguous problems into actionable steps under pressure."',
