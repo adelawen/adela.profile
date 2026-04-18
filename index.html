@@ -1,194 +1,251 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>HsinYu Wen | Cross-Disciplinary Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Noto+Sans+TC:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-  --bg-primary: #0a0a0a; /* 暗色背景 */
-  --bg-secondary: #111111;
-  --text-primary: #ffffff;
-  --text-secondary: #aaaaaa;
-  --text-tertiary: #666666;
-  --border-color: #2a2a2a;
-  --brand-blue: #A5C9FF; /* 低飽和度淺藍色 */
-  --ms-blue: #0078D4;
-  --nav-height: 80px;
-  --fb: 'Inter', 'Noto Sans TC', sans-serif;
-  --fd: 'Fraunces', serif;
-  --fm: 'JetBrains Mono', monospace;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HsinYu Wen | Cross-Disciplinary Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --ink: #0a0a0a; /* 黑色背景優化 */
+            --ink-2: #141414;
+            --ink-3: #1e1e1e;
+            --gold: #c8a45a;
+            --white: #ffffff;
+            --muted: #888888;
+            --ms-lt: #1890ff;
+            --border: rgba(255, 255, 255, 0.1);
+            --radius: 3px;
+            --fd: 'Cormorant Garamond', serif;
+            --fb: 'Outfit', sans-serif;
+            --ease: cubic-bezier(.4, 0, .2, 1);
+            --t: .4s var(--ease);
+        }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { font-family: var(--fb); background: var(--bg-primary); color: var(--text-primary); overflow-x: hidden; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-a { text-decoration: none; color: inherit; }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--fb); background: var(--ink); color: var(--white); overflow-x: hidden; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
 
-/* ── NAVIGATION ── */
-.nav { position: fixed; top: 0; width: 100%; height: var(--nav-height); display: flex; align-items: center; z-index: 1000; transition: 0.4s; background: rgba(10,10,10,0.8); backdrop-filter: blur(15px); border-bottom: 1px solid var(--border-color); }
-.nav.scrolled { background: #0a0a0a; }
-.nav-inner { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-family: var(--fd); font-size: 1.5rem; font-weight: 500; }
-.logo span { color: var(--brand-blue); font-weight: 700; }
-.nav-links { display: flex; gap: 32px; align-items: center; }
-.nav-link { font-size: 0.75rem; font-family: var(--fm); letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); transition: 0.3s; }
-.nav-link:hover { color: var(--brand-blue); }
-.nav-actions { display: flex; gap: 20px; align-items: center; }
-.lang-btn { font-family: var(--fm); font-size: 0.7rem; border: none; background: none; cursor: pointer; color: var(--text-tertiary); }
-.lang-btn.active { color: var(--text-primary); font-weight: 700; }
+        /* ── NAV (保留原始功能與藍色標記) ── */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 25px 0; transition: var(--t); }
+        .nav.scrolled { padding: 15px 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; }
+        .nav-logo { font-family: var(--fd); font-size: 1.6rem; font-weight: 700; }
+        .nav-logo span { color: var(--gold); }
+        .nav-links-wrap { display: flex; align-items: center; gap: 35px; }
+        .nav-links { display: flex; list-style: none; gap: 5px; }
+        .nav-links a { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 8px 12px; transition: var(--t); position: relative; }
+        .nav-links a.active { color: var(--white); }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 12px; right: 12px; height: 1px; background: var(--gold); }
+        .nav-links a.nav-moi { color: var(--ms-lt); } /* 微軟標記 */
+        .nav-links a.nav-moi::after { background: var(--ms-lt) !important; }
+        
+        .lang-switch { display: flex; align-items: center; gap: 8px; font-size: .7rem; color: rgba(255,255,255,0.4); }
+        .lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); }
+        .lang-btn.active { color: var(--white); }
+        .nav-cv { font-size: .7rem; font-weight: 600; border: 1px solid var(--gold); color: var(--gold); padding: 7px 18px; border-radius: var(--radius); transition: var(--t); }
+        .nav-cv:hover { background: var(--gold); color: var(--ink); }
 
-/* ── HERO ── */
-.hero { height: 75vh; display: flex; align-items: center; justify-content: center; position: relative; border-bottom: 1px solid var(--border-color); }
-.hero-content { text-align: center; max-width: 900px; padding: 0 20px; }
-.hero-badge { display: inline-block; font-family: var(--fm); font-size: 0.65rem; padding: 6px 12px; border: 1px solid var(--brand-blue); color: var(--brand-blue); letter-spacing: 0.15em; margin-bottom: 30px; }
-.hero-title { font-family: 'Noto Sans TC', sans-serif; font-size: clamp(2.5rem, 6vw, 4rem); font-weight: 700; line-height: 1.2; margin-bottom: 24px; }
-.hero-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.8; font-weight: 300; }
-.hero-desc b { color: var(--text-primary); font-weight: 500; }
+        /* ── HERO ── */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; border-bottom: 1px solid var(--border); }
+        .hero-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; text-align: center; width: 100%; }
+        .hero-h1 { font-family: var(--fd); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; margin-bottom: 20px; }
+        .hero-h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+        .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 40px; font-weight: 300; }
 
-/* ── BIO SECTION with DYNAMIC PHOTO EFFECT ── */
-.bio-section { padding: 120px 40px; max-width: 1300px; margin: 0 auto; display: flex; gap: 80px; align-items: flex-start; }
+        /* ── ABOUT / PHOTO REVEAL (新滑動功能) ── */
+        .section-about { padding: 120px 0; border-bottom: 1px solid var(--border); }
+        .about-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: center; }
+        
+        .photo-container { position: relative; width: 400px; height: 500px; background: var(--ink-2); border: 1px solid var(--border); overflow: visible; }
+        .portrait-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 10; filter: grayscale(20%); transition: 0.5s; }
+        .photo-bg-fade { position: absolute; inset: 0; background: url('your-bg.jpg'); background-size: cover; opacity: 0.05; filter: grayscale(100%); z-index: 1; }
 
-/* 核心人像容器 */
-.photo-container {
-  width: 400px;
-  height: 500px;
-  flex-shrink: 0;
-  position: relative;
-  border: 1px solid var(--border-color);
-  background: #000; /* 人像後的純黑 */
-  overflow: visible; /* 讓#號亮起時可以溢出 */
-}
+        /* 動態 Hashtag */
+        .htag { position: absolute; font-family: var(--fb); font-size: 0.75rem; color: var(--gold); opacity: 0; transform: translateY(10px); transition: 0.6s var(--ease); z-index: 20; }
+        .htag.is-visible { opacity: 1; transform: translateY(0); }
+        .ht-1 { top: 40px; right: -30px; }
+        .ht-2 { top: 180px; left: -20px; }
+        .ht-3 { bottom: 60px; right: -25px; }
+        .ht-4 { bottom: 120px; left: -30px; }
 
-/* 這裡是放置人像照片的地方 */
-/* 注意：您需要先將照片摳圖（變成透明背景的彩色人像） */
-.portrait {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* 人像彩色 */
-  z-index: 10;
-}
+        .bio-content { font-size: 1.05rem; line-height: 2; color: var(--muted); }
+        .bio-content .hl { color: var(--white); font-weight: 500; border-bottom: 1px solid var(--gold); }
 
-/* 這是用於淡化背景的覆蓋層 */
-.background-fade {
-  position: absolute;
-  inset: 0;
-  background-image: url('YOUR_ORIGINAL_BACKGROUND_URL.jpg'); /* 替換為您的原背景圖 */
-  background-size: cover;
-  background-position: center;
-  z-index: 1; /* 在人像後面 */
-  opacity: 0.03; /* 背景淡到幾乎不見 */
-  filter: grayscale(100%); /* 將背景變為黑白 */
-}
+        /* ── WORK GRID ── */
+        .section-work { padding: 120px 0; background: var(--ink-2); }
+        .work-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
+        .work-card { background: var(--ink); border: 1px solid var(--border); padding: 40px; transition: var(--t); }
+        .work-card:hover { border-color: var(--gold); transform: translateY(-5px); }
+        .work-card h3 { font-family: var(--fd); font-size: 1.5rem; margin-bottom: 15px; }
+        .work-card p { font-size: 0.85rem; color: var(--muted); }
 
-/* Hashtag 的通用樣式 (人像前的純文字) */
-.dynamic-hashtag {
-  position: absolute;
-  font-family: var(--fm);
-  font-size: 0.75rem;
-  color: var(--brand-blue);
-  opacity: 0; /* 初始狀態：隱藏 */
-  z-index: 20; /* 在人像前面 */
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  animation: hashtagReveal 0.6s ease forwards; /* 開啟動畫 */
-}
+        /* ── STATS (保留數據列) ── */
+        .stats-row { display: flex; justify-content: center; gap: 60px; padding: 80px 0; border-top: 1px solid var(--border); }
+        .stat-num { font-family: var(--fd); font-size: 2.5rem; color: var(--gold); text-align: center; }
+        .stat-lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; text-align: center; letter-spacing: 2px; }
 
-/* #1號位置 (右上) - 不擋臉 */
-.dh-1 { top: 30px; right: -20px; animation-delay: 0.5s; }
-/* #2號位置 (左中) - 不擋臉 */
-.dh-2 { top: 180px; left: -15px; animation-delay: 1.1s; }
-/* #3號位置 (左下) */
-.dh-3 { bottom: 50px; left: -10px; animation-delay: 1.7s; }
-/* #4號位置 (右中) */
-.dh-4 { bottom: 200px; right: -15px; animation-delay: 2.3s; }
+        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; }
+        .foot-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
+        .foot-links a { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
 
-/* Hashtag 亮起的動畫定義 */
-@keyframes hashtagReveal {
-  0% { opacity: 0; transform: translateY(10px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
+        /* 滑動顯現 */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
+        .reveal.v { opacity: 1; transform: none; }
 
-/* ── BIO CONTENT ── */
-.bio-content { flex: 1; padding-top: 20px; }
-.bio-label { font-family: var(--fm); font-size: 0.65rem; color: var(--brand-blue); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 24px; display: block; }
-.bio-text { font-size: 1.05rem; line-height: 2; color: var(--text-secondary); }
-.bio-text p { margin-bottom: 24px; }
-.bio-text b { color: var(--text-primary); font-weight: 500; }
-.bio-text .hl { color: var(--brand-blue); font-weight: 600; border-bottom: 2px solid var(--brand-blue); }
-
-@media(max-width: 1024px) {
-  .bio-section { flex-direction: column; text-align: center; }
-  .photo-container { margin: 0 auto; width: 300px; height: 380px; }
-  .dh-1, .dh-2, .dh-3, .dh-4 { position: static; display: inline-block; margin: 10px; opacity: 1; animation: none; }
-}
-</style>
+        @media(max-width: 960px) {
+            .about-inner { grid-template-columns: 1fr; text-align: center; }
+            .photo-container { margin: 0 auto; width: 300px; height: 380px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-<nav class="nav" id="navbar">
-  <div class="nav-inner">
-    <a href="#" class="logo">HsinYu<span>.</span></a>
-    <div class="nav-links">
-      <a href="#about" class="nav-link">About</a>
-      <a href="#projects" class="nav-link">Work</a>
-      <a href="#" class="nav-link" style="color:var(--ms-blue); font-weight:700;">Microsoft MOI</a>
+<nav class="nav" id="mainnav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
+        <div class="nav-links-wrap">
+            <ul class="nav-links">
+                <li><a href="#home" class="active" data-i18n="nav-home">Home</a></li>
+                <li><a href="#about" data-i18n="nav-about">About</a></li>
+                <li><a href="#projects" data-i18n="nav-work">Work</a></li>
+                <li><a href="microsoft-moi.html" class="nav-moi" data-i18n="nav-moi">Microsoft MOI</a></li>
+            </ul>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+                <span>/</span>
+                <button class="lang-btn" onclick="switchLang('zh')">ZH</button>
+            </div>
+            <a href="resume.pdf" class="nav-cv">Download CV</a>
+        </div>
     </div>
-    <div class="nav-actions">
-      <button class="lang-btn active">EN</button>
-      <span style="color:var(--border-color);">|</span>
-      <button class="lang-btn">中</button>
-    </div>
-  </div>
 </nav>
 
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">NCKU TCM SCIENCE</div>
-    <h1 class="hero-title">跨領域人才 | Growth Mindset</h1>
-    <p class="hero-desc">
-      就讀 <b>國立成功大學交通管理科學系</b>。<br>
-      擁有基礎程式實作能力、精準的企劃撰寫與執行規劃力。<br>
-      擅長在工程硬實力、商業策略與 <b>PM 團隊領導</b> 之間無縫對接。
-    </p>
-  </div>
-</section>
-
-<section class="bio-section" id="about">
-  <div class="photo-container">
-    <div class="background-fade"></div> <img src="YOUR_PORTRAIT_IMAGE_NO_BACKGROUND.png" alt="HsinYu Wen彩色人像" class="portrait">
-
-    <span class="dynamic-hashtag dh-1">#成長型思維</span>
-    <span class="dynamic-hashtag dh-2">#目標導向</span>
-    <span class="dynamic-hashtag dh-3">#勇於挑戰與改變</span>
-    <span class="dynamic-hashtag dh-4">#積極解決問題</span>
-  </div>
-  
-  <div class="bio-content">
-    <span class="bio-label">PERSONAL PROFILE</span>
-    <div class="bio-text">
-        <p>「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」</p>
-        <p>
-            我是<span class="hl">成大交管系</span>學生，也是一位熱衷於連結工程硬實力與商業洞察的跨領域實踐者。具備極強的自我驅動能力，擅長在短時間內將新工具轉化為實際產出。曾為了專題與研究，在四週內獨立自學 Python 與 Vissim 並完成建模實作。
-        </p>
-        <p>
-            同時擁有高度責任感與細節敏感度，無論在大型競賽擔任團隊 PM 或是 B2B 行銷策略規劃，皆能確保專案精準落地。
-        </p>
+<section class="hero" id="home">
+    <div class="hero-inner">
+        <div class="reveal">
+            <h1 class="hero-h1" id="hero-title">Engineering Precision.<br><em>Strategic Growth.</em></h1>
+            <p class="hero-desc" id="hero-desc">NCKU Undergraduate. Bridging the gap between deep-tech engineering and data-driven strategy. Specialized for Microsoft.</p>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <a href="#projects" class="btn-gold"><i class="fas fa-arrow-right"></i> Explore Work</a>
+                <a href="microsoft-moi.html" class="nav-cv" style="border-color: var(--ms-lt); color: var(--ms-lt);">MOI Portfolio</a>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
 
-<footer style="padding: 60px 40px; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; font-family: var(--fm); font-size: 0.7rem; color: var(--text-tertiary);">
-  <div>SYS. 2026 / HSINYU WEN — NCKU</div>
-  <div style="display:flex; gap:30px;">
-    <a href="mailto:h54121210@gs.ncku.edu.tw">EMAIL</a>
-    <a href="#">LINKEDIN</a>
-  </div>
+<section class="section-about" id="about">
+    <div class="about-inner">
+        <div class="photo-container reveal">
+            <div class="photo-bg-fade"></div>
+            <img src="my-face-nobg.png" alt="HsinYu" class="portrait-img" onerror="this.src='placeholder.png'">
+            
+            <span class="htag ht-1">#成長型思維</span>
+            <span class="htag ht-2">#目標導向</span>
+            <span class="htag ht-3">#跨領域整合</span>
+            <span class="htag ht-4">#積極解決問題</span>
+        </div>
+        <div class="bio-content reveal">
+            <p id="bio-text">
+                「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」<br><br>
+                我是<span class="hl">成大交管系</span>學生，擅長連結工程硬實力與商業洞察。具備極強的自我驅動能力，曾在四週內獨立自學 <span class="hl">Python 與 Vissim</span> 並完成建模實作。<br><br>
+                無論是身為 <b>大型競賽的 PM</b> 或是執行 <b>B2B 行銷策略</b>，我皆能確保專案精準落地。
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="section-work" id="projects">
+    <div class="work-inner">
+        <h2 class="reveal" style="font-family: var(--fd); font-size: 2.5rem; margin-bottom: 40px; text-align: center;">Selected Work</h2>
+        <div class="grid">
+            <div class="work-card reveal">
+                <h3>Tachiz × LinkedIn</h3>
+                <p>2026/03. B2B strategy for popping boba leader. 100% adoption of content optimization plan.</p>
+            </div>
+            <div class="work-card reveal">
+                <h3>DreamHack PM</h3>
+                <p>National 2nd Place. Led team of 5 in agile development of Digital Twin healthcare solutions.</p>
+            </div>
+            <div class="work-card reveal">
+                <h3>iLink Champion</h3>
+                <p>Champion among 40+ teams. Integrated LineBot & traffic modeling for urban safety.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="stats-row reveal">
+    <div class="stat-item">
+        <div class="stat-num">1st</div>
+        <div class="stat-lbl" data-i18n="stat-cn">iLink Champion</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">2nd</div>
+        <div class="stat-lbl" data-i18n="stat-dh">DreamHack PM</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">IELTS</div>
+        <div class="stat-lbl">6.5 Score</div>
+    </div>
+</section>
+
+<footer>
+    <div class="foot-inner">
+        <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
+        <div class="foot-links">
+            <a href="mailto:h54121210@gs.ncku.edu.tw"><i class="fas fa-envelope"></i> Gmail</a>
+            <a href="https://www.linkedin.com/in/adelawen/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+        </div>
+    </div>
 </footer>
 
+<script>
+    // 滾動監測
+    window.addEventListener('scroll', () => {
+        document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
+        
+        // Hashtag 逐一亮起邏輯
+        const aboutRect = document.getElementById('about').getBoundingClientRect();
+        if(aboutRect.top < window.innerHeight * 0.5) {
+            document.querySelectorAll('.htag').forEach((tag, i) => {
+                setTimeout(() => tag.classList.add('is-visible'), i * 300);
+            });
+        }
+    });
+
+    // Reveal Animation
+    const observer = new IntersectionObserver(e => e.forEach(x => {
+        if(x.isIntersecting) x.target.classList.add('v');
+    }), { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // 多語系保留
+    const L = {
+        en: {
+            'nav-home': 'Home', 'nav-about': 'About', 'nav-work': 'Work', 'nav-moi': 'Microsoft MOI',
+            'hero-title': 'Engineering Precision.<br><em>Strategic Growth.</em>',
+            'stat-cn': 'iLink Champion'
+        },
+        zh: {
+            'nav-home': '首頁', 'nav-about': '關於我', 'nav-work': '專案作品', 'nav-moi': '微軟 MOI',
+            'hero-title': '跨領域人才 |<br><em>Growth Mindset</em>',
+            'stat-cn': '創南競賽首獎'
+        }
+    };
+
+    function switchLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        // 此處可擴充替換頁面文字邏輯
+        document.getElementById('hero-title').innerHTML = L[lang]['hero-title'];
+    }
+</script>
+
 </body>
-</html>   
+</html>
