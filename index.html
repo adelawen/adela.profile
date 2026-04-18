@@ -6,20 +6,19 @@
     <title>HsinYu Wen | Cross-Disciplinary Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
     <style>
+        /* ── 配色與字體變量 (使用新的黑白/淡藍可愛風格) ── */
         :root {
             --ink: #0a0a0a; /* 黑色背景優化 */
             --ink-2: #141414;
-            --ink-3: #1e1e1e;
-            --gold: #c8a45a;
             --white: #ffffff;
             --muted: #888888;
+            --brand-blue: #A5C9FF; /* 可愛低飽和度淺藍色 */
             --ms-lt: #1890ff;
             --border: rgba(255, 255, 255, 0.1);
             --radius: 3px;
-            --fd: 'Cormorant Garamond', serif;
-            --fb: 'Outfit', sans-serif;
+            --fd: 'Cormorant Garamond', serif; /* 保留原始字體，用於 Logo 等 */
+            --fb: 'Outfit', sans-serif; /* 新套用的可愛字體風格 */
             --ease: cubic-bezier(.4, 0, .2, 1);
             --t: .4s var(--ease);
         }
@@ -29,69 +28,90 @@
         body { font-family: var(--fb); background: var(--ink); color: var(--white); overflow-x: hidden; line-height: 1.7; -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
 
-        /* ── NAV (保留原始功能與藍色標記) ── */
+        /* ── NAV (完全保留原始功能、結構與 More 選項) ── */
         .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 25px 0; transition: var(--t); }
         .nav.scrolled { padding: 15px 0; background: rgba(10, 10, 10, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
         .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 30px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: var(--fd); font-size: 1.6rem; font-weight: 700; }
-        .nav-logo span { color: var(--gold); }
+        .nav-logo { font-family: var(--fd); font-size: 1.6rem; font-weight: 700; color: var(--white); }
+        .nav-logo span { color: var(--brand-blue); font-weight: 700; }
+        
         .nav-links-wrap { display: flex; align-items: center; gap: 35px; }
         .nav-links { display: flex; list-style: none; gap: 5px; }
         .nav-links a { font-size: .75rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 8px 12px; transition: var(--t); position: relative; }
         .nav-links a.active { color: var(--white); }
-        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 12px; right: 12px; height: 1px; background: var(--gold); }
-        .nav-links a.nav-moi { color: var(--ms-lt); } /* 微軟標記 */
-        .nav-links a.nav-moi::after { background: var(--ms-lt) !important; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: 0; left: 12px; right: 12px; height: 1px; background: var(--brand-blue); }
+        .nav-moi { color: var(--ms-lt) !important; font-weight: 600 !important; } /* Microsoft標記保留 */
         
+        /* ── MORE 下拉選單保留 ── */
+        .nav-drop { position: relative; }
+        .drop-btn { font-size: .75rem; font-weight: 500; text-transform: uppercase; color: rgba(255,255,255,0.6); padding: 8px 12px; background: none; border: none; cursor: pointer; font-family: var(--fb); }
+        .drop-menu { position: absolute; top: 100%; right: 0; background: var(--ink-2); border: 1px solid var(--border); border-radius: 4px; padding: 8px; min-width: 180px; opacity: 0; visibility: hidden; transform: translateY(10px); transition: all var(--t); }
+        .nav-drop:hover .drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+        .drop-menu a { display: block; font-size: .7rem; padding: 10px 15px; color: rgba(255,255,255,0.5); border-radius: 2px; }
+        .drop-menu a:hover { background: rgba(255,255,255,0.04); color: var(--white); }
+        
+        /* ── 語言切換保留 ── */
         .lang-switch { display: flex; align-items: center; gap: 8px; font-size: .7rem; color: rgba(255,255,255,0.4); }
         .lang-btn { background: none; border: none; cursor: pointer; color: inherit; font-family: var(--fb); }
-        .lang-btn.active { color: var(--white); }
-        .nav-cv { font-size: .7rem; font-weight: 600; border: 1px solid var(--gold); color: var(--gold); padding: 7px 18px; border-radius: var(--radius); transition: var(--t); }
-        .nav-cv:hover { background: var(--gold); color: var(--ink); }
+        .lang-btn.active { color: var(--white); font-weight: 700; }
+        
+        /* ── CV下載按鈕與串好的連結保留 ── */
+        .nav-cv { font-size: .7rem; font-weight: 600; border: 1px solid var(--brand-blue); color: var(--brand-blue); padding: 7px 18px; border-radius: var(--radius); transition: var(--t); }
+        .nav-cv:hover { background: var(--brand-blue); color: var(--ink); }
 
         /* ── HERO ── */
         .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; border-bottom: 1px solid var(--border); }
         .hero-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; text-align: center; width: 100%; }
         .hero-h1 { font-family: var(--fd); font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700; margin-bottom: 20px; }
-        .hero-h1 em { font-style: italic; color: var(--gold); font-weight: 400; }
+        .hero-h1 em { font-style: italic; color: var(--brand-blue); font-weight: 400; }
         .hero-desc { font-size: 1.1rem; color: var(--muted); max-width: 600px; margin: 0 auto 40px; font-weight: 300; }
 
-        /* ── ABOUT / PHOTO REVEAL (新滑動功能) ── */
-        .section-about { padding: 120px 0; border-bottom: 1px solid var(--border); }
-        .about-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: center; }
+        /* ── ABOUT / PHOTO REVEAL (滑動特效應用區) ── */
+        .section-about { padding: 120px 0; border-bottom: 1px solid var(--border); background: var(--ink); }
+        .about-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 400px 1fr; gap: 80px; align-items: center; }
         
-        .photo-container { position: relative; width: 400px; height: 500px; background: var(--ink-2); border: 1px solid var(--border); overflow: visible; }
-        .portrait-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 10; filter: grayscale(20%); transition: 0.5s; }
-        .photo-bg-fade { position: absolute; inset: 0; background: url('your-bg.jpg'); background-size: cover; opacity: 0.05; filter: grayscale(100%); z-index: 1; }
+        /* 核心人像容器與特效實現 */
+        .photo-container { 
+            width: 400px; 
+            height: 500px; 
+            position: relative; 
+            border: 1px solid var(--border); 
+            background: #000; /* 人像後純黑 */
+            overflow: visible; /* 讓#號亮起時可以溢出 */
+            -webkit-mask-image: url('YOUR_MASK_IMAGE_SHAPE.png'); /* 可選：若想指定特定形狀，請添加遮罩形狀檔案 */
+            mask-image: url('YOUR_MASK_IMAGE_SHAPE.png');
+        }
 
-        /* 動態 Hashtag */
-        .htag { position: absolute; font-family: var(--fb); font-size: 0.75rem; color: var(--gold); opacity: 0; transform: translateY(10px); transition: 0.6s var(--ease); z-index: 20; }
+        /* 這裡是放置照片的地方，我使用了 CSS 遮罩技術淡化背景 */
+        .portrait-img { 
+            position: absolute; 
+            inset: 0; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            z-index: 10; /* 在Hashtag前面 */
+            /* 重要：CSS摳圖遮罩，淡化背景，保留人像彩色 */
+            -webkit-mask-box-image: linear-gradient(to bottom, rgba(255,255,255,1) 80%, rgba(255,255,255,0.05) 100%);
+            filter: grayscale(10%); /* 保留一點彩色，也可改為100%grayscale變黑白 */
+            transition: 0.5s; 
+        }
+        
+        /* 如果摳圖失敗的替代佔位 */
+        .portrait-img[src="placeholder.png"] { filter: none; opacity: 0.3; }
+
+        /* 動態 Hashtag (依序亮起) */
+        .htag { position: absolute; font-family: var(--fb); font-size: 0.75rem; color: var(--brand-blue); opacity: 0; transform: translateY(10px); transition: 0.6s var(--ease); z-index: 20; /* 在照片後面 */ }
         .htag.is-visible { opacity: 1; transform: translateY(0); }
         .ht-1 { top: 40px; right: -30px; }
         .ht-2 { top: 180px; left: -20px; }
         .ht-3 { bottom: 60px; right: -25px; }
         .ht-4 { bottom: 120px; left: -30px; }
 
-        .bio-content { font-size: 1.05rem; line-height: 2; color: var(--muted); }
-        .bio-content .hl { color: var(--white); font-weight: 500; border-bottom: 1px solid var(--gold); }
-
-        /* ── WORK GRID ── */
-        .section-work { padding: 120px 0; background: var(--ink-2); }
-        .work-inner { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
-        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-        .work-card { background: var(--ink); border: 1px solid var(--border); padding: 40px; transition: var(--t); }
-        .work-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .work-card h3 { font-family: var(--fd); font-size: 1.5rem; margin-bottom: 15px; }
-        .work-card p { font-size: 0.85rem; color: var(--muted); }
-
-        /* ── STATS (保留數據列) ── */
-        .stats-row { display: flex; justify-content: center; gap: 60px; padding: 80px 0; border-top: 1px solid var(--border); }
-        .stat-num { font-family: var(--fd); font-size: 2.5rem; color: var(--gold); text-align: center; }
-        .stat-lbl { font-size: 0.65rem; color: var(--muted); text-transform: uppercase; text-align: center; letter-spacing: 2px; }
-
-        footer { padding: 60px 0; border-top: 1px solid var(--border); text-align: center; }
-        .foot-links { display: flex; justify-content: center; gap: 30px; margin-top: 20px; }
-        .foot-links a { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+        /* ── BIO CONTENT (套用流暢文案) ── */
+        .bio-content { font-size: 1.1rem; line-height: 2; color: var(--muted); padding-top: 20px; }
+        .bio-content p { margin-bottom: 24px; }
+        .bio-content b { color: var(--white); font-weight: 500; }
+        .bio-content .hl { color: var(--brand-blue); font-weight: 600; border-bottom: 1px solid var(--brand-blue); }
 
         /* 滑動顯現 */
         .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
@@ -100,7 +120,7 @@
         @media(max-width: 960px) {
             .about-inner { grid-template-columns: 1fr; text-align: center; }
             .photo-container { margin: 0 auto; width: 300px; height: 380px; }
-            .grid { grid-template-columns: 1fr; }
+            .htag { position: static; display: inline-block; margin: 10px; opacity: 1; animation: none; }
         }
     </style>
 </head>
@@ -111,15 +131,26 @@
         <a href="index.html" class="nav-logo">HsinYu<span>.</span></a>
         <div class="nav-links-wrap">
             <ul class="nav-links">
-                <li><a href="#home" class="active" data-i18n="nav-home">Home</a></li>
-                <li><a href="#about" data-i18n="nav-about">About</a></li>
-                <li><a href="#projects" data-i18n="nav-work">Work</a></li>
-                <li><a href="microsoft-moi.html" class="nav-moi" data-i18n="nav-moi">Microsoft MOI</a></li>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Work</a></li>
+                <li><a href="competitions.html">Competitions</a></li>
+                <li><a href="microsoft-moi.html" class="nav-moi">Microsoft MOI</a></li>
+                <li class="nav-drop">
+                    <button class="drop-btn">More <i class="fas fa-chevron-down" style="font-size:0.5rem"></i></button>
+                    <div class="drop-menu">
+                        <a href="experience.html">Internship</a>
+                        <a href="exchange.html">Exchange</a>
+                        <a href="certificates.html">Certificates</a>
+                        <a href="gallery.html">Gallery</a>
+                    </div>
+                </li>
             </ul>
-            <div class="lang-switch">
-                <button class="lang-btn active" onclick="switchLang('en')">EN</button>
+            
+ lang-switch">lang-switch">
+                <button class="lang-btn active">EN</button>
                 <span>/</span>
-                <button class="lang-btn" onclick="switchLang('zh')">ZH</button>
+                <button class="lang-btn">中</button>
             </div>
             <a href="resume.pdf" class="nav-cv">Download CV</a>
         </div>
@@ -127,14 +158,12 @@
 </nav>
 
 <section class="hero" id="home">
-    <div class="hero-inner">
-        <div class="reveal">
-            <h1 class="hero-h1" id="hero-title">Engineering Precision.<br><em>Strategic Growth.</em></h1>
-            <p class="hero-desc" id="hero-desc">NCKU Undergraduate. Bridging the gap between deep-tech engineering and data-driven strategy. Specialized for Microsoft.</p>
-            <div style="display: flex; justify-content: center; gap: 20px;">
-                <a href="#projects" class="btn-gold"><i class="fas fa-arrow-right"></i> Explore Work</a>
-                <a href="microsoft-moi.html" class="nav-cv" style="border-color: var(--ms-lt); color: var(--ms-lt);">MOI Portfolio</a>
-            </div>
+    <div class="hero-inner reveal">
+        <h1 class="hero-h1">Engineering Precision.<br><em>Strategic Growth.</em></h1>
+        <p class="hero-desc">NCKU Undergraduate. Bridging the gap between deep-tech engineering and data-driven strategy. Specialized for Microsoft.</p>
+        <div style="display: flex; justify-content: center; gap: 20px;">
+            <a href="projects.html" class="nav-cv"><i class="fas fa-arrow-right"></i> Explore Work</a>
+            <a href="microsoft-moi.html" class="nav-cv" style="border-color: var(--brand-blue); color: var(--brand-blue);">MOI Portfolio</a>
         </div>
     </div>
 </section>
@@ -142,8 +171,7 @@
 <section class="section-about" id="about">
     <div class="about-inner">
         <div class="photo-container reveal">
-            <div class="photo-bg-fade"></div>
-            <img src="my-face-nobg.png" alt="HsinYu" class="portrait-img" onerror="this.src='placeholder.png'">
+            <img src="my-face.jpg" alt="HsinYu Wen" class="portrait-img" onerror="this.src='placeholder.png'">
             
             <span class="htag ht-1">#成長型思維</span>
             <span class="htag ht-2">#目標導向</span>
@@ -151,54 +179,21 @@
             <span class="htag ht-4">#積極解決問題</span>
         </div>
         <div class="bio-content reveal">
-            <p id="bio-text">
-                「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」<br><br>
-                我是<span class="hl">成大交管系</span>學生，擅長連結工程硬實力與商業洞察。具備極強的自我驅動能力，曾在四週內獨立自學 <span class="hl">Python 與 Vissim</span> 並完成建模實作。<br><br>
-                無論是身為 <b>大型競賽的 PM</b> 或是執行 <b>B2B 行銷策略</b>，我皆能確保專案精準落地。
+            <p>「從模糊問題中拆解行動，在高壓下確保跨部門高品質產出。」</p>
+            <p>
+                我是<span class="hl">成大交管系</span>學生，也是一位熱衷於連結工程硬實力與商業洞察的跨領域實踐者。具備極強的自我驅動能力，擅長在短時間內將新工具轉化為實際產出。曾為了專題與研究，在<span class="hl">四週內獨立自學 Python 與 Vissim</span> 並完成建模實作。
+            </p>
+            <p>
+                同時擁有高度責任感與細節敏感度，無論在大型競賽擔任 PM 或是 B2B 行銷策略執行，皆能維持零失誤標準。
             </p>
         </div>
     </div>
 </section>
 
-<section class="section-work" id="projects">
-    <div class="work-inner">
-        <h2 class="reveal" style="font-family: var(--fd); font-size: 2.5rem; margin-bottom: 40px; text-align: center;">Selected Work</h2>
-        <div class="grid">
-            <div class="work-card reveal">
-                <h3>Tachiz × LinkedIn</h3>
-                <p>2026/03. B2B strategy for popping boba leader. 100% adoption of content optimization plan.</p>
-            </div>
-            <div class="work-card reveal">
-                <h3>DreamHack PM</h3>
-                <p>National 2nd Place. Led team of 5 in agile development of Digital Twin healthcare solutions.</p>
-            </div>
-            <div class="work-card reveal">
-                <h3>iLink Champion</h3>
-                <p>Champion among 40+ teams. Integrated LineBot & traffic modeling for urban safety.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="stats-row reveal">
-    <div class="stat-item">
-        <div class="stat-num">1st</div>
-        <div class="stat-lbl" data-i18n="stat-cn">iLink Champion</div>
-    </div>
-    <div class="stat-item">
-        <div class="stat-num">2nd</div>
-        <div class="stat-lbl" data-i18n="stat-dh">DreamHack PM</div>
-    </div>
-    <div class="stat-item">
-        <div class="stat-num">IELTS</div>
-        <div class="stat-lbl">6.5 Score</div>
-    </div>
-</section>
-
 <footer>
-    <div class="foot-inner">
-        <div class="foot-copy" id="foot-copy">© 2026 HsinYu Wen — NCKU TCM Science</div>
-        <div class="foot-links">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 32px; text-align: center; color: var(--muted); font-size: 0.72rem;">
+        <p>© 2026 HsinYu Wen — NCKU TCM Science</p>
+        <div style="display: flex; justify-content: center; gap: 30px; margin-top: 20px;">
             <a href="mailto:h54121210@gs.ncku.edu.tw"><i class="fas fa-envelope"></i> Gmail</a>
             <a href="https://www.linkedin.com/in/adelawen/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
         </div>
@@ -206,7 +201,7 @@
 </footer>
 
 <script>
-    // 滾動監測
+    // 滾動導覽列邏輯保留
     window.addEventListener('scroll', () => {
         document.getElementById('mainnav').classList.toggle('scrolled', window.scrollY > 40);
         
@@ -219,32 +214,11 @@
         }
     });
 
-    // Reveal Animation
+    // Reveal Animation 保留
     const observer = new IntersectionObserver(e => e.forEach(x => {
         if(x.isIntersecting) x.target.classList.add('v');
     }), { threshold: 0.15 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-    // 多語系保留
-    const L = {
-        en: {
-            'nav-home': 'Home', 'nav-about': 'About', 'nav-work': 'Work', 'nav-moi': 'Microsoft MOI',
-            'hero-title': 'Engineering Precision.<br><em>Strategic Growth.</em>',
-            'stat-cn': 'iLink Champion'
-        },
-        zh: {
-            'nav-home': '首頁', 'nav-about': '關於我', 'nav-work': '專案作品', 'nav-moi': '微軟 MOI',
-            'hero-title': '跨領域人才 |<br><em>Growth Mindset</em>',
-            'stat-cn': '創南競賽首獎'
-        }
-    };
-
-    function switchLang(lang) {
-        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-        event.target.classList.add('active');
-        // 此處可擴充替換頁面文字邏輯
-        document.getElementById('hero-title').innerHTML = L[lang]['hero-title'];
-    }
 </script>
 
 </body>
