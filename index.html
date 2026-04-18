@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 :root{
-  --ink:#0d1520;--ink-2:#172030;--ink-3:#1e2d42;
-  --gold:#c8a45a;--gold-lt:#e8d4a0;
+  --ink:#080808;--ink-2:#111111;--ink-3:#1c1c1c;
+  --gold:#e2e2e2;--gold-lt:#f5f5f5;
   --ms:#0067b8;--ms-lt:#1890ff;--ms-bg:#051a30;
-  --white:#fff;--muted:#8a96a8;--muted-2:#b0bac8;--green:#3aaa72;
-  --border:rgba(200,164,90,.22);--border-w:rgba(255,255,255,.07);
+  --white:#fff;--muted:#747474;--muted-2:#a6a6a6;--green:#3aaa72;
+  --border:rgba(255,255,255,.13);--border-w:rgba(255,255,255,.07);
   --radius:3px;--fd:'Cormorant Garamond',Georgia,serif;--fb:'Outfit',system-ui,sans-serif;
   --ease:cubic-bezier(.4,0,.2,1);--t:.32s var(--ease)
 }
@@ -22,7 +22,7 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 /* ── NAV ── */
 .nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:25px 0;transition:var(--t)}
-.nav.scrolled{padding:15px 0;background:rgba(13,21,32,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.nav.scrolled{padding:15px 0;background:rgba(8,8,8,.98);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 30px;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{font-family:var(--fd);font-size:1.6rem;font-weight:700;color:var(--white);z-index:1001;letter-spacing:.02em}
 .nav-logo span{color:var(--gold)}
