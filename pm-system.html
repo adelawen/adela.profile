@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Execution System | HsinYu Wen</title>
+<style>
+:root {
+  --blue:#0078D4;--blue-dk:#005fa3;--blue-lt:rgba(0,120,212,0.06);
+  --dark:#1a1a1a;--gray:#737373;--lgray:#f4f4f4;
+  --bg:#fff;--border:rgba(0,0,0,0.08);--bmd:rgba(0,0,0,0.13);
+  --sans:'Segoe UI','PingFang TC','Microsoft JhengHei',system-ui,sans-serif;
+  --serif:Georgia,'Times New Roman',serif;
+  --ease:cubic-bezier(0.25,1,0.5,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);background:var(--bg);color:var(--dark);
+  line-height:1.6;overflow-x:hidden;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),
+    linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:100px 100px;
+}
+a{text-decoration:none;color:inherit}
+input,select,textarea,button{font-family:var(--sans)}
+
+.back-btn{
+  position:fixed;top:32px;left:32px;z-index:200;
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--dark);background:rgba(255,255,255,0.95);
+  padding:11px 22px;border:1px solid var(--border);border-radius:30px;
+  backdrop-filter:blur(10px);transition:0.3s;
+  box-shadow:0 4px 15px rgba(0,0,0,0.04);text-decoration:none;
+}
+.back-btn:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateX(-4px)}
+.back-btn svg{width:13px;height:13px;flex-shrink:0}
+
+/* HERO */
+.hero{
+  min-height:50vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  padding:120px 20px 56px;border-bottom:1px solid var(--border);
+}
+.hero-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--blue);background:var(--blue-lt);padding:6px 16px;border-radius:20px;margin-bottom:20px}
+.hero h1{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:14px}
+.hero h1 em{font-family:var(--serif);font-weight:400;color:var(--gray)}
+.hero p{font-size:1rem;color:var(--gray);max-width:560px;font-weight:300;line-height:1.85}
+
+/* TABS */
+.tabs-bar{
+  display:flex;border-bottom:1px solid var(--border);background:#fff;
+  overflow-x:auto;padding:0 40px;position:sticky;top:0;z-index:100;
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.tab-btn{
+  flex-shrink:0;padding:16px 18px;font-size:0.68rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--gray);
+  background:none;border:none;border-bottom:2px solid transparent;
+  cursor:pointer;transition:0.2s;white-space:nowrap;
+}
+.tab-btn:hover{color:var(--dark)}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+
+/* PANELS */
+.panel{display:none;padding:48px 40px;max-width:1200px;margin:0 auto}
+.panel.active{display:block}
+
+/* SECTION HEAD */
+.sh{font-size:1.5rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:5px}
+.sh em{font-family:var(--serif);font-weight:400;color:var(--gray)}
+.sd{font-size:0.88rem;color:var(--gray);margin-bottom:30px;font-weight:300}
+
+/* FORM */
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg label{font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray)}
+.fi{background:#fff;border:1px solid var(--bmd);color:var(--dark);padding:10px 13px;border-radius:5px;font-size:0.88rem;outline:none;transition:0.2s;width:100%}
+.fi:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,120,212,0.1)}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-bottom:24px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 18px;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;border-radius:4px;cursor:pointer;transition:0.25s;border:1px solid transparent}
+.btn-p{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn-p:hover{background:var(--blue-dk);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,120,212,0.25)}
+.btn-g{background:#fff;color:var(--dark);border-color:var(--bmd)}
+.btn-g:hover{border-color:var(--dark)}
+.btn-d{background:rgba(220,38,38,0.07);color:#dc2626;border-color:rgba(220,38,38,0.2)}
+.btn-d:hover{background:rgba(220,38,38,0.14)}
+.btn-sm{padding:6px 12px;font-size:0.62rem}
+.btn svg{width:12px;height:12px;flex-shrink:0}
+
+/* STATS */
+.srow{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1px;border:1px solid var(--border);background:var(--border);margin-bottom:32px}
+.sc{background:#fff;padding:20px 16px;text-align:center}
+.sn{font-size:2rem;font-weight:700;color:var(--blue);line-height:1;margin-bottom:4px;font-family:var(--serif)}
+.sl{font-size:0.58rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray);font-weight:700}
+
+/* TABLE */
+.tw{overflow-x:auto;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:0.83rem}
+th{background:var(--lgray);padding:10px 14px;text-align:left;font-size:0.58rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--gray);border-bottom:1px solid var(--border);white-space:nowrap}
+td{padding:10px 14px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:rgba(0,120,212,0.02)}
+
+/* BADGE */
+.b{display:inline-block;padding:3px 8px;border-radius:3px;font-size:0.58rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase}
+.bb{background:var(--blue-lt);color:var(--blue);border:1px solid rgba(0,120,212,0.2)}
+.bg{background:rgba(22,163,74,0.08);color:#16a34a;border:1px solid rgba(22,163,74,0.2)}
+.ba{background:rgba(217,119,6,0.08);color:#d97706;border:1px solid rgba(217,119,6,0.2)}
+.br{background:rgba(220,38,38,0.07);color:#dc2626;border:1px solid rgba(220,38,38,0.15)}
+
+/* PROGRESS */
+.pw{background:var(--lgray);border-radius:10px;height:5px;overflow:hidden;margin-top:4px}
+.pf{height:100%;border-radius:10px;background:var(--blue);transition:width 0.5s ease}
+
+/* INFO */
+.ib{background:var(--blue-lt);border:1px solid rgba(0,120,212,0.18);border-radius:5px;padding:12px 15px;font-size:0.8rem;color:var(--blue);margin-bottom:22px;display:flex;align-items:flex-start;gap:8px}
+.ib svg{width:14px;height:14px;flex-shrink:0;margin-top:2px}
+
+/* ══ WHEN2MEET ══ */
+.w2m-setup{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;padding:22px;border:1px solid var(--border);background:#fafafa;margin-bottom:22px}
+.w2m-outer{overflow-x:auto;border:1px solid var(--border);cursor:default;user-select:none}
+.w2m-tbl{border-collapse:collapse;font-size:0.7rem;min-width:max-content}
+.w2m-tbl .ch{background:var(--lgray);padding:7px 5px;text-align:center;border:1px solid var(--border);font-size:0.58rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray);min-width:48px}
+.w2m-tbl .ch.tod{background:rgba(0,120,212,0.08);color:var(--blue)}
+.w2m-tbl .tl{padding:0 10px 0 5px;text-align:right;white-space:nowrap;font-size:0.65rem;color:var(--gray);border:1px solid var(--border);background:#fafafa;font-weight:600;min-width:54px}
+.w2m-tbl .sl{width:48px;height:26px;border:1px solid rgba(0,0,0,0.05);cursor:pointer;transition:background 0.1s;position:relative}
+.w2m-tbl .sl:hover{outline:2px solid var(--blue);z-index:2}
+.c0{background:#fff}
+.c1{background:rgba(0,120,212,0.12)}
+.c2{background:rgba(0,120,212,0.26)}
+.c3{background:rgba(0,120,212,0.42)}
+.c4{background:rgba(0,120,212,0.58)}
+.c5{background:rgba(0,120,212,0.74)}
+.c6,.c7,.c8,.c9,.c10{background:rgba(0,120,212,0.92)}
+.sl.mv::after{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:50%;background:#fff;opacity:0.9}
+.mpills{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+.mp{padding:5px 14px;font-size:0.68rem;font-weight:700;border-radius:20px;border:1px solid var(--bmd);background:#fff;color:var(--gray);cursor:pointer;transition:0.2s}
+.mp.on{border-color:var(--blue);background:var(--blue-lt);color:var(--blue)}
+
+/* GANTT */
+.gw{overflow-x:auto;border:1px solid var(--border)}
+.gt{border-collapse:collapse;width:100%;min-width:600px;font-size:0.78rem}
+.gt th{background:var(--lgray);padding:9px 11px;border-bottom:1px solid var(--border);border-right:1px solid var(--border);color:var(--gray);font-size:0.56rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;text-align:center;white-space:nowrap}
+.gt th.lft{text-align:left;min-width:140px}
+.gt td{border-bottom:1px solid var(--border);border-right:1px solid var(--border);padding:6px 9px;vertical-align:middle}
+.gt td.lft{font-weight:600;white-space:nowrap}
+.gt td.oc{font-size:0.72rem;color:var(--gray);white-space:nowrap}
+.gbar{height:16px;border-radius:3px;background:linear-gradient(90deg,var(--blue),#5aabf0);margin:0 2px;min-width:5px}
+.gbar.done{background:linear-gradient(90deg,#16a34a,#4ade80)}
+.gbar.late{background:linear-gradient(90deg,#dc2626,#f87171)}
+.tcol{background:rgba(0,120,212,0.05)}
+
+/* MEETINGS */
+.tline{position:relative;padding-left:24px}
+.tline::before{content:'';position:absolute;left:6px;top:0;bottom:0;width:1px;background:var(--border)}
+.ti{position:relative;margin-bottom:18px}
+.tdot{position:absolute;left:-20px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:2px solid #fff;box-shadow:0 0 0 2px var(--blue)}
+.tdate{font-size:0.6rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--blue);margin-bottom:3px}
+.tcard{border:1px solid var(--border);border-radius:4px;padding:12px 14px;background:#fff}
+.ttitle{font-size:0.88rem;font-weight:700;margin-bottom:5px}
+.tmeta{font-size:0.72rem;color:var(--gray);display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+
+footer{text-align:center;padding:32px 20px;border-top:1px solid var(--border);font-size:0.7rem;color:var(--gray);margin-top:40px}
+
+@media(max-width:640px){
+  .panel{padding:24px 14px}
+  .tabs-bar{padding:0 10px}
+  .tab-btn{padding:13px 10px;font-size:0.6rem}
+  .srow{grid-template-columns:repeat(2,1fr)}
+  .back-btn{top:14px;left:14px;padding:8px 14px;font-size:0.62rem}
+}
+</style>
+</head>
+<body>
+
+<a href="microsoft-moi.html" class="back-btn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+  Back to MOI
+</a>
+
+<div class="hero">
+  <div class="hero-tag">Project Management System</div>
+  <h1>PM <em>Execution</em> Tool</h1>
+  <p>輸入專案資訊，自動產出甘特圖、任務分配、會議排程，以及真實日期區間的 When2Meet 時間交集。</p>
+</div>
+
+<div class="tabs-bar">
+  <button class="tab-btn active" onclick="gt('setup',this)">⚙ 專案設定</button>
+  <button class="tab-btn" onclick="gt('team',this)">👥 團隊成員</button>
+  <button class="tab-btn" onclick="gt('w2m',this)">🗓 時間投票</button>
+  <button class="tab-btn" onclick="gt('tasks',this)">📋 工作分配</button>
+  <button class="tab-btn" onclick="gt('gantt',this)">📊 甘特圖</button>
+  <button class="tab-btn" onclick="gt('mtg',this)">💬 會議排程</button>
+</div>
+
+<!-- ══ SETUP ══ -->
+<div class="panel active" id="panel-setup">
+  <div class="sh">專案 <em>控制面板</em></div>
+  <div class="sd">填寫基本資訊後套用，所有分頁同步更新。</div>
+  <div class="fgrid">
+    <div class="fg" style="grid-column:span 2"><label>專案名稱</label><input class="fi" id="pName" value="Microsoft MOI 校園推廣計畫"></div>
+    <div class="fg"><label>專案類型</label><select class="fi" id="pType"><option>行銷活動</option><option>一般專案</option><option>研究計畫</option><option>競賽專案</option><option>自訂</option></select></div>
+    <div class="fg"><label>開始日期</label><input class="fi" id="pStart" type="date"></div>
+    <div class="fg"><label>截止日期</label><input class="fi" id="pEnd" type="date"></div>
+    <div class="fg"><label>團隊人數</label><input class="fi" id="pMem" type="number" value="4" min="1" max="20"></div>
+    <div class="fg"><label>會議頻率</label><select class="fi" id="pFreq"><option>每週</option><option>每月</option><option>每週 + 每月</option><option>彈性自訂</option></select></div>
+    <div class="fg"><label>交接模式</label><select class="fi" id="pMode"><option>線性（瀑布式）</option><option>並行</option><option>混合</option></select></div>
+  </div>
+  <button class="btn btn-p" onclick="applySetup()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>套用設定，更新全系統
+  </button>
+  <div class="srow" style="margin-top:32px">
+    <div class="sc"><div class="sn" id="sDays">—</div><div class="sl">專案天數</div></div>
+    <div class="sc"><div class="sn" id="sWeeks">—</div><div class="sl">總週數</div></div>
+    <div class="sc"><div class="sn" id="sMem">4</div><div class="sl">團隊人數</div></div>
+    <div class="sc"><div class="sn" id="sMtg">—</div><div class="sl">預計會議次</div></div>
+    <div class="sc"><div class="sn" id="sTasks">0</div><div class="sl">任務總數</div></div>
+  </div>
+</div>
+
+<!-- ══ TEAM ══ -->
+<div class="panel" id="panel-team">
+  <div class="sh">團隊 <em>成員管理</em></div>
+  <div class="sd">新增成員後，工作分配與時間投票分頁自動同步。</div>
+  <div style="display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap">
+    <input id="nName" placeholder="成員姓名" type="text" class="fi" style="flex:1;min-width:120px">
+    <input id="nRole" placeholder="職位 / 角色" type="text" class="fi" style="flex:1;min-width:120px">
+    <button class="btn btn-p" onclick="addMember()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>新增
+    </button>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>姓名</th><th>職位</th><th>任務數</th><th>操作</th></tr></thead>
+    <tbody id="memTb"></tbody>
+  </table></div>
+</div>
+
+<!-- ══ WHEN2MEET ══ -->
+<div class="panel" id="panel-w2m">
+  <div class="sh">時間投票 <em>When2Meet</em></div>
+  <div class="sd">設定日期範圍與時段，各成員勾選可用時間，系統自動算出交集。支援拖曳選取。</div>
+  <div class="w2m-setup">
+    <div class="fg"><label>投票開始日期</label><input class="fi" id="w2mS" type="date"></div>
+    <div class="fg"><label>投票結束日期</label><input class="fi" id="w2mE" type="date"></div>
+    <div class="fg"><label>時段開始</label>
+      <select class="fi" id="w2mHs">
+        <option value="7">07:00</option><option value="8">08:00</option><option value="9" selected>09:00</option>
+        <option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option>
+      </select>
+    </div>
+    <div class="fg"><label>時段結束（含）</label>
+      <select class="fi" id="w2mHe">
+        <option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option>
+        <option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option>
+        <option value="23" selected>23:00</option>
+      </select>
+    </div>
+    <div style="display:flex;align-items:flex-end">
+      <button class="btn btn-p" onclick="buildW2M()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>產出時間格
+      </button>
+    </div>
+  </div>
+  <div class="ib">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    選擇下方成員後，點擊或拖曳格子標記可用時段。顏色越深 = 越多人可參加。白點 = 目前成員已標記。
+  </div>
+  <div style="margin-bottom:14px">
+    <div style="font-size:0.6rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gray);margin-bottom:9px">目前編輯成員</div>
+    <div class="mpills" id="mPills"></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:18px;flex-wrap:wrap">
+    <span style="font-size:0.6rem;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:0.1em">顏色說明：</span>
+    <div style="display:flex;gap:4px;align-items:center">
+      <div style="width:18px;height:13px;border-radius:2px;background:#fff;border:1px solid var(--border)"></div><span style="font-size:0.65rem;color:var(--gray)">0人</span>
+      <div style="width:18px;height:13px;border-radius:2px;background:rgba(0,120,212,0.26)"></div><span style="font-size:0.65rem;color:var(--gray)">少</span>
+      <div style="width:18px;height:13px;border-radius:2px;background:rgba(0,120,212,0.58)"></div><span style="font-size:0.65rem;color:var(--gray)">多</span>
+      <div style="width:18px;height:13px;border-radius:2px;background:rgba(0,120,212,0.92)"></div><span style="font-size:0.65rem;color:var(--gray)">全員</span>
+    </div>
+  </div>
+  <div class="w2m-outer" id="w2mOut">
+    <div style="padding:36px;text-align:center;color:var(--gray);font-size:0.88rem">請先設定日期與時段，再點擊「產出時間格」。</div>
+  </div>
+</div>
+
+<!-- ══ TASKS ══ -->
+<div class="panel" id="panel-tasks">
+  <div class="sh">工作分配 <em>與交接</em></div>
+  <div class="sd">新增任務並指定負責人、交接對象，進度更新後甘特圖同步。</div>
+  <div style="display:flex;gap:9px;margin-bottom:20px;flex-wrap:wrap">
+    <input id="tName" placeholder="任務名稱" class="fi" style="flex:2;min-width:120px">
+    <select id="tOwner" class="fi" style="flex:1;min-width:100px"></select>
+    <select id="tHandoff" class="fi" style="flex:1;min-width:100px"></select>
+    <input id="tDue" type="date" class="fi" style="flex:1;min-width:125px">
+    <button class="btn btn-p" onclick="addTask()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>新增
+    </button>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>#</th><th>任務</th><th>負責人</th><th>交接</th><th>截止</th><th>進度</th><th>狀態</th><th></th></tr></thead>
+    <tbody id="taskTb"></tbody>
+  </table></div>
+</div>
+
+<!-- ══ GANTT ══ -->
+<div class="panel" id="panel-gantt">
+  <div class="sh">甘特圖 <em>進度追蹤</em></div>
+  <div class="sd">任務截止日期自動生成橫條，藍色標記今天所在週。</div>
+  <div class="gw" id="ganttW">
+    <div style="padding:36px;text-align:center;color:var(--gray);font-size:0.88rem">請先新增任務。</div>
+  </div>
+</div>
+
+<!-- ══ MEETINGS ══ -->
+<div class="panel" id="panel-mtg">
+  <div class="sh">會議排程 <em>管理</em></div>
+  <div class="sd">依專案設定自動產出會議時間軸，可貼 Teams 連結。</div>
+  <button class="btn btn-p" onclick="genMtg()" style="margin-bottom:28px">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>自動產出會議排程
+  </button>
+  <div class="tline" id="mtgLine">
+    <div style="color:var(--gray);font-size:0.85rem">請先設定專案日期與會議頻率。</div>
+  </div>
+</div>
+
+<footer>HsinYu Wen · PM Execution System · Built for Microsoft MOI 2026</footer>
+
+<script>
+const S={
+  members:[
+    {name:'溫心語',role:'Project Manager'},
+    {name:'成員 B',role:'行銷執行'},
+    {name:'成員 C',role:'內容設計'},
+    {name:'成員 D',role:'數據分析'}
+  ],
+  tasks:[],
+  votes:{},
+  am:0,
+  w2mDates:[],
+  w2mHours:[],
+  drag:null
+};
+
+function fi(id){return document.getElementById(id)}
+function fmtISO(d){return d.toISOString().split('T')[0]}
+function isoD(s){const[y,m,d]=s.split('-');return new Date(+y,+m-1,+d)}
+function todayD(){const d=new Date();d.setHours(0,0,0,0);return d}
+function fmtLabel(d){return `${d.getMonth()+1}/${d.getDate()} ${'日一二三四五六'[d.getDay()]}`}
+
+// TABS
+function gt(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  fi('panel-'+id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='gantt')renderGantt();
+  if(id==='tasks'){renderTaskSel();renderTasks();}
+  if(id==='w2m')renderPills();
+  if(id==='team')renderMembers();
+}
+
+// SETUP
+function applySetup(){
+  const s=fi('pStart').value,e=fi('pEnd').value;
+  const freq=fi('pFreq').value;
+  const mem=parseInt(fi('pMem').value)||4;
+  if(s&&e){
+    const sd=isoD(s),ed=isoD(e);
+    const days=Math.round((ed-sd)/86400000);
+    const weeks=Math.round(days/7);
+    const mtg=freq==='每週'?weeks:freq==='每月'?Math.ceil(days/30):freq==='每週 + 每月'?weeks+Math.ceil(days/30):'彈性';
+    fi('sDays').textContent=days>0?days:'—';
+    fi('sWeeks').textContent=weeks>0?weeks:'—';
+    fi('sMtg').textContent=mtg;
+  }
+  fi('sMem').textContent=mem;
+  fi('sTasks').textContent=S.tasks.length;
+  renderMembers();renderTaskSel();
+}
+
+// MEMBERS
+function renderMembers(){
+  const tb=fi('memTb');if(!tb)return;
+  tb.innerHTML=S.members.map((m,i)=>`
+    <tr><td>${i+1}</td><td><strong>${m.name}</strong></td>
+    <td><span class="b bb">${m.role}</span></td>
+    <td>${S.tasks.filter(t=>t.oi===i).length}</td>
+    <td><button class="btn btn-d btn-sm" onclick="removeMember(${i})">移除</button></td></tr>`).join('');
+  renderPills();renderTaskSel();
+}
+function addMember(){
+  const name=fi('nName').value.trim(),role=fi('nRole').value.trim();
+  if(!name){alert('請輸入姓名');return;}
+  S.members.push({name,role:role||'成員'});
+  fi('nName').value='';fi('nRole').value='';
+  renderMembers();
+}
+function removeMember(i){
+  if(S.members.length<=1){alert('至少保留一位成員');return;}
+  S.members.splice(i,1);
+  if(S.am>=S.members.length)S.am=0;
+  renderMembers();
+}
+
+// WHEN2MEET
+function buildW2M(){
+  const s=fi('w2mS').value,e=fi('w2mE').value;
+  const hs=parseInt(fi('w2mHs').value),he=parseInt(fi('w2mHe').value);
+  if(!s||!e){alert('請填寫起訖日期');return;}
+  const sd=isoD(s),ed=isoD(e);
+  if(ed<sd){alert('結束日期不能早於開始日期');return;}
+  const span=Math.round((ed-sd)/86400000);
+  if(span>62){alert('日期範圍最多 62 天');return;}
+  if(he<hs){alert('結束時段需晚於開始時段');return;}
+  S.w2mDates=[];
+  for(let d=new Date(sd);d<=ed;d=new Date(+d+86400000))S.w2mDates.push(new Date(d));
+  S.w2mHours=[];
+  for(let h=hs;h<=he;h++)S.w2mHours.push(h);
+  // init votes
+  S.members.forEach((_,mi)=>{
+    if(!S.votes[mi])S.votes[mi]={};
+    S.w2mDates.forEach(d=>{
+      const k=fmtISO(d);
+      if(!S.votes[mi][k])S.votes[mi][k]={};
+      S.w2mHours.forEach(h=>{if(S.votes[mi][k][h]===undefined)S.votes[mi][k][h]=0;});
+    });
+  });
+  renderW2M();
+}
+
+function renderPills(){
+  const el=fi('mPills');if(!el)return;
+  el.innerHTML=S.members.map((m,i)=>
+    `<div class="mp${i===S.am?' on':''}" onclick="setAM(${i})">${m.name}</div>`).join('');
+}
+function setAM(i){S.am=i;renderPills();renderW2M();}
+
+function getCount(ds,h){
+  return S.members.reduce((a,_,mi)=>a+(S.votes[mi]?.[ds]?.[h]||0),0);
+}
+
+function renderW2M(){
+  renderPills();
+  if(!S.w2mDates.length)return;
+  const tod=todayD(),mi=S.am;
+  let html='<table class="w2m-tbl" id="w2mTbl" onmouseleave="endDrag()"><thead><tr><th class="tl" style="text-align:right">時段</th>';
+  S.w2mDates.forEach(d=>{
+    const isT=fmtISO(d)===fmtISO(tod);
+    html+=`<th class="ch${isT?' tod':''}">${fmtLabel(d)}</th>`;
+  });
+  html+='</tr></thead><tbody>';
+  S.w2mHours.forEach(h=>{
+    html+=`<tr><td class="tl">${String(h).padStart(2,'0')}:00</td>`;
+    S.w2mDates.forEach(d=>{
+      const ds=fmtISO(d),cnt=getCount(ds,h),mine=S.votes[mi]?.[ds]?.[h]||0;
+      html+=`<td class="sl c${Math.min(cnt,10)}${mine?' mv':''}"
+        data-d="${ds}" data-h="${h}"
+        onmousedown="startDrag(event,this)"
+        onmouseover="doDrag(this)"></td>`;
+    });
+    html+='</tr>';
+  });
+  html+='</tbody></table>';
+  fi('w2mOut').innerHTML=html;
+}
+
+function startDrag(e,cell){
+  e.preventDefault();
+  const ds=cell.dataset.d,h=+cell.dataset.h,mi=S.am;
+  const cur=S.votes[mi]?.[ds]?.[h]||0;
+  S.drag=cur?'r':'a';
+  applyV(mi,ds,h);renderW2M();
+  document.addEventListener('mouseup',endDrag,{once:true});
+}
+function doDrag(cell){
+  if(!S.drag)return;
+  const ds=cell.dataset.d,h=+cell.dataset.h;
+  if(ds&&h!==undefined){applyV(S.am,ds,h);renderW2M();}
+}
+function endDrag(){S.drag=null;}
+function applyV(mi,ds,h){
+  if(!S.votes[mi])S.votes[mi]={};
+  if(!S.votes[mi][ds])S.votes[mi][ds]={};
+  S.votes[mi][ds][h]=S.drag==='a'?1:0;
+}
+
+// TASKS
+function renderTaskSel(){
+  ['tOwner','tHandoff'].forEach((id,idx)=>{
+    const el=fi(id);if(!el)return;
+    el.innerHTML=`<option value="">${idx===0?'負責人':'交接對象'}</option>`+
+      S.members.map((m,i)=>`<option value="${i}">${m.name}</option>`).join('');
+  });
+}
+function addTask(){
+  const name=fi('tName').value.trim();
+  if(!name){alert('請輸入任務名稱');return;}
+  S.tasks.push({name,oi:parseInt(fi('tOwner').value)||0,hi:parseInt(fi('tHandoff').value),due:fi('tDue').value,prog:0});
+  fi('tName').value='';fi('tDue').value='';
+  renderTasks();fi('sTasks').textContent=S.tasks.length;
+}
+function removeTask(i){S.tasks.splice(i,1);renderTasks();fi('sTasks').textContent=S.tasks.length;}
+function setP(i,v){S.tasks[i].prog=+v;renderTasks();}
+function renderTasks(){
+  const tb=fi('taskTb');if(!tb)return;
+  if(!S.tasks.length){tb.innerHTML='<tr><td colspan="8" style="text-align:center;color:var(--gray);padding:28px">尚未新增任務</td></tr>';return;}
+  tb.innerHTML=S.tasks.map((t,i)=>{
+    const own=S.members[t.oi]?.name||'—',han=t.hi>=0&&S.members[t.hi]?S.members[t.hi].name:'—';
+    const p=t.prog||0,sc=p===100?'bg':p>=50?'bb':p>0?'ba':'br',sl=p===100?'完成':p>=50?'進行中':p>0?'開始':'待開始';
+    return `<tr>
+      <td>${i+1}</td><td><strong>${t.name}</strong></td>
+      <td>${own}</td><td style="color:var(--gray)">${han}</td>
+      <td style="font-size:0.76rem;color:var(--gray)">${t.due||'—'}</td>
+      <td style="min-width:110px">
+        <div style="display:flex;align-items:center;gap:7px">
+          <input type="range" min="0" max="100" value="${p}" oninput="setP(${i},this.value)" style="flex:1;accent-color:var(--blue)">
+          <span style="font-size:0.7rem;font-weight:700;color:var(--blue);min-width:30px">${p}%</span>
+        </div>
+        <div class="pw"><div class="pf" style="width:${p}%"></div></div>
+      </td>
+      <td><span class="b ${sc}">${sl}</span></td>
+      <td><button class="btn btn-d btn-sm" onclick="removeTask(${i})">移除</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// GANTT
+function renderGantt(){
+  const w=fi('ganttW');if(!w)return;
+  if(!S.tasks.length){w.innerHTML='<div style="padding:36px;text-align:center;color:var(--gray)">請先新增任務。</div>';return;}
+  const ps=fi('pStart')?.value,pe=fi('pEnd')?.value;
+  if(!ps||!pe){w.innerHTML='<div style="padding:36px;text-align:center;color:var(--gray)">請先填寫專案日期。</div>';return;}
+  const sd=isoD(ps),ed=isoD(pe),tod=todayD();
+  const total=Math.max(1,Math.round((ed-sd)/86400000));
+  const cols=[];
+  for(let d=0;d<total;d+=7){
+    const dt=new Date(+sd+d*86400000);
+    cols.push({label:`W${Math.floor(d/7)+1} ${dt.getMonth()+1}/${dt.getDate()}`,off:d});
+  }
+  let html=`<table class="gt"><thead><tr>
+    <th class="lft">任務</th><th class="lft" style="min-width:80px">負責人</th>
+    ${cols.map(c=>{
+      const cs=new Date(+sd+c.off*86400000),ce=new Date(+cs+7*86400000);
+      const isT=tod>=cs&&tod<ce;
+      return `<th style="${isT?'background:rgba(0,120,212,0.08);color:var(--blue)':''}">${c.label}${isT?' ◎':''}</th>`;
+    }).join('')}
+  </tr></thead><tbody>`;
+  S.tasks.forEach(t=>{
+    const own=S.members[t.oi]?.name||'—';
+    const due=t.due?isoD(t.due):ed;
+    const p=t.prog||0;
+    const bc=p===100?'done':due<tod&&p<100?'late':'';
+    html+=`<tr>
+      <td class="lft">${t.name}</td>
+      <td class="oc">${own}</td>
+      ${cols.map(c=>{
+        const cs=new Date(+sd+c.off*86400000),ce=new Date(+cs+7*86400000);
+        const isT=tod>=cs&&tod<ce;
+        const inR=due>=cs&&sd<ce;
+        return `<td class="${isT?'tcol':''}" style="padding:4px">
+          ${inR?`<div class="gbar ${bc}"></div>`:''}
+        </td>`;
+      }).join('')}
+    </tr>`;
+  });
+  html+='</tbody></table>';
+  w.innerHTML=html;
+}
+
+// MEETINGS
+function genMtg(){
+  const sv=fi('pStart')?.value,ev=fi('pEnd')?.value;
+  if(!sv||!ev){alert('請先填寫專案日期');return;}
+  const freq=fi('pFreq')?.value||'每週',pn=fi('pName')?.value||'專案';
+  const sd=isoD(sv),ed=isoD(ev);
+  const step=freq==='每月'?30:7;
+  const items=[];let cur=new Date(sd),idx=1;
+  while(cur<=ed){
+    const type=(freq==='每週 + 每月'&&idx%4===0)?'月會':freq==='每月'?'月會':'週會';
+    items.push({date:fmtLabel(cur)+' '+cur.getFullYear(),type,title:`${pn} — ${type} #${idx}`});
+    cur=new Date(+cur+step*86400000);idx++;
+  }
+  fi('mtgLine').innerHTML=items.map(m=>`
+    <div class="ti">
+      <div class="tdot"></div>
+      <div class="tdate">${m.date}</div>
+      <div class="tcard">
+        <div class="ttitle">${m.title}</div>
+        <div class="tmeta">
+          <span class="b ${m.type==='月會'?'ba':'bb'}">${m.type}</span>
+          <span>Teams：<input type="text" placeholder="貼上 Teams 連結" style="border:none;border-bottom:1px solid var(--bmd);outline:none;font-size:0.72rem;color:var(--gray);width:200px;padding:2px 4px;background:transparent"></span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+// INIT
+document.addEventListener('DOMContentLoaded',()=>{
+  const td=todayD(),ed=new Date(+td+60*86400000);
+  fi('pStart').value=fmtISO(td);
+  fi('pEnd').value=fmtISO(ed);
+  fi('w2mS').value=fmtISO(td);
+  fi('w2mE').value=fmtISO(new Date(+td+13*86400000));
+  applySetup();renderMembers();renderTasks();renderTaskSel();renderPills();
+});
+</script>
+</body>
+</html>
