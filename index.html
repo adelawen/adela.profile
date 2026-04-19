@@ -102,13 +102,13 @@ a { text-decoration: none; color: inherit; }
 .scroll-ind div { width: 1px; height: 28px; background: var(--text); }
 
 /* ───── ABOUT / PHOTO + HASHTAGS ───── */
-.photo-reveal-section { min-height: 200vh; position: relative; background: #1e2535; color: #fff; }
+.photo-reveal-section { min-height: 200vh; position: relative; background: #eef0f4; color: var(--text); }
 .photo-reveal-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 0 60px; overflow: hidden; }
 
 /* corner crosshairs */
 .cw { position: absolute; width: 28px; height: 28px; }
-.cw::before { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:rgba(255,255,255,0.15); }
-.cw::after  { content:''; position:absolute; top:0; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.15); }
+.cw::before { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:rgba(0,0,0,0.12); }
+.cw::after  { content:''; position:absolute; top:0; left:50%; width:1px; height:100%; background:rgba(0,0,0,0.12); }
 .cw-tl{top:36px;left:36px} .cw-tr{top:36px;right:36px} .cw-bl{bottom:36px;left:36px} .cw-br{bottom:36px;right:36px}
 
 .photo-layout { display: flex; align-items: center; gap: 80px; max-width: 1100px; width: 100%; }
@@ -118,49 +118,48 @@ a { text-decoration: none; color: inherit; }
 .photo-corner { position: absolute; inset: -10px; pointer-events: none; }
 .photo-corner::before { content:''; position:absolute; top:-1px;left:-1px; width:28px;height:28px; border-top:2px solid var(--blue);border-left:2px solid var(--blue); }
 .photo-corner::after  { content:''; position:absolute; bottom:-1px;right:-1px; width:28px;height:28px; border-bottom:2px solid var(--blue-soft);border-right:2px solid var(--blue-soft); }
-.photo-inner { width:100%; height:100%; background: linear-gradient(140deg,#2a3650 0%,#1e2d48 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; color:rgba(255,255,255,0.25); font-family:var(--fm); font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; gap:10px; overflow:hidden; position:relative; }
-.photo-inner i { font-size:2.8rem; opacity:0.2; }
+.photo-inner { width:100%; height:100%; background: linear-gradient(140deg,#d0d8e8 0%,#c4cfe2 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; color:rgba(0,0,0,0.3); font-family:var(--fm); font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; gap:10px; overflow:hidden; position:relative; }
+.photo-inner i { font-size:2.8rem; opacity:0.25; }
 .photo-inner img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
-/* hashtag orbit — # symbol in mono to render correctly, tag text in Cormorant */
-.htag-orbit { position:absolute; inset:-120px; pointer-events:none; z-index:10; }
+/* hashtag orbit — tight to photo frame, 4 unique tags */
+.htag-orbit { position:absolute; inset:-70px; pointer-events:none; z-index:10; }
 .htag {
   position:absolute;
-  font-family: var(--fd);
-  font-size: 1.25rem;
-  font-weight: 600;
-  font-style: italic;
-  letter-spacing: 0.02em;
+  font-family: var(--fm);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
   white-space: nowrap;
-  color: rgba(90,171,240,0.12);
+  color: rgba(0,100,200,0.12);
   transition: color 0.04s linear, text-shadow 0.04s linear;
 }
-/* # symbol uses mono so it renders as # not ¥ */
-.htag .hash { font-family: var(--fm); font-style: normal; font-size: 1rem; }
+.htag .hash { font-family: var(--fm); font-style: normal; }
 
-/* positions matching user's marked locations */
-.ht1 { top: -30px;   left: -60px;   transform: rotate(-5deg); }  /* top-left, above photo */
-.ht2 { top: 22%;     right: -130px; transform: rotate(4deg);  }  /* right side, upper-mid */
-.ht3 { bottom: 22%;  left: -130px;  transform: rotate(-4deg); }  /* left side, lower-mid */
-.ht4 { bottom: -35px; left: 10px;   transform: rotate(3deg);  }  /* below photo, left */
+/* tight positions — just outside the photo edge */
+.ht1 { top:  -18px; left:  10px;  transform: rotate(-4deg); }   /* above photo */
+.ht2 { top:  18%;   right: -20px; transform: rotate(4deg);  }   /* right, upper */
+.ht3 { bottom: 20%; left: -20px;  transform: rotate(-3deg); }   /* left, lower */
+.ht4 { bottom: -18px; left: 40px; transform: rotate(3deg);  }   /* below photo */
 
 /* bottom pill tags */
 .htag-pills { margin-top:30px; display:flex; flex-wrap:wrap; gap:9px; }
 .hpill {
   font-family:var(--fd); font-size:0.9rem; font-style:italic; font-weight:600;
   padding:5px 16px;
-  border:1px solid rgba(90,171,240,0.25); color:rgba(90,171,240,0.35);
+  border:1px solid rgba(0,100,200,0.2); color:rgba(0,100,200,0.4);
   border-radius:30px; letter-spacing:0.04em;
   transition: color 0.04s linear, border-color 0.04s linear, background 0.04s linear;
 }
+.hpill .hash { font-family: var(--fm); font-style: normal; }
 
 /* bio panel */
 .bio-panel { flex:1; }
-.bio-eyebrow { font-family:var(--fm); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--blue-soft); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
-.bio-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--blue-soft); }
-.bio-text { font-family:'Outfit',sans-serif; font-size:1.02rem; font-weight:400; line-height:2; color:rgba(255,255,255,0.85); }
-.bio-text .hl-b { color:#7ec8f8; font-weight:600; }
-.bio-text .hl-w { color:#ffffff; font-weight:600; border-bottom: 1px solid rgba(255,255,255,0.3); }
+.bio-eyebrow { font-family:var(--fm); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--blue); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
+.bio-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--blue); }
+.bio-text { font-family:'Outfit',sans-serif; font-size:1.02rem; font-weight:400; line-height:2; color:rgba(10,10,10,0.78); }
+.bio-text .hl-b { color:var(--blue); font-weight:600; }
+.bio-text .hl-w { color:var(--text); font-weight:700; }
 
 /* ───── HORIZONTAL SCROLL PROJECTS ───── */
 .hscroll-wrap { height:350vh; position:relative; background:#f5f5f5; }
@@ -182,20 +181,20 @@ a { text-decoration: none; color: inherit; }
 .bcard:hover .bcard-link { color:var(--blue); gap:14px; }
 
 /* ───── PROFESSIONAL PROJECTS PREVIEW ───── */
-.pro-section { background:#02060f; color:#fff; padding:100px 60px; }
+.pro-section { background:#eef0f4; color:var(--text); padding:100px 60px; }
 .pro-inner { max-width:1280px; margin:0 auto; }
 .pro-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:52px; }
-.pcard { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); padding:46px 40px; position:relative; overflow:hidden; transition:0.35s; }
-.pcard::before { content:''; position:absolute; top:0;left:0; width:3px; height:0; background:var(--blue-soft); transition:height 0.4s; }
-.pcard:hover { background:rgba(255,255,255,0.055); }
+.pcard { background:#fff; border:1px solid rgba(0,0,0,0.08); padding:46px 40px; position:relative; overflow:hidden; transition:0.35s; }
+.pcard::before { content:''; position:absolute; top:0;left:0; width:3px; height:0; background:var(--blue); transition:height 0.4s; }
+.pcard:hover { background:#f7f9fc; }
 .pcard:hover::before { height:100%; }
-.pcard-tag { font-family:var(--fm); font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue-soft); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+.pcard-tag { font-family:var(--fm); font-size:0.58rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--blue); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
 .pcard-tag::before { content:''; display:block; width:18px; height:1px; background:currentColor; }
-.pcard-title { font-size:1.25rem; font-weight:700; line-height:1.3; margin-bottom:14px; color:#fff; }
-.pcard-body { font-size:0.88rem; line-height:1.82; color:rgba(255,255,255,0.45); }
+.pcard-title { font-size:1.25rem; font-weight:700; line-height:1.3; margin-bottom:14px; color:var(--text); }
+.pcard-body { font-size:0.88rem; line-height:1.82; color:var(--muted); }
 .pcard-stats { margin-top:26px; display:flex; gap:22px; flex-wrap:wrap; }
-.pstat-num { font-family:var(--fm); font-size:1.5rem; font-weight:300; letter-spacing:-0.03em; color:var(--blue-soft); }
-.pstat-lbl { font-family:var(--fm); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-top:2px; }
+.pstat-num { font-family:var(--fm); font-size:1.5rem; font-weight:300; letter-spacing:-0.03em; color:var(--blue); }
+.pstat-lbl { font-family:var(--fm); font-size:0.56rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-top:2px; }
 
 /* ───── METRICS DASHBOARD ───── */
 .metrics-section { padding:140px 44px; max-width:1300px; margin:0 auto; }
@@ -353,16 +352,17 @@ a { text-decoration: none; color: inherit; }
       <div class="photo-frame">
         <div class="photo-corner"></div>
         <div class="photo-inner" id="photoEl">
-          <!-- Replace with: <img src="your-photo.png" alt="HsinYu"> -->
+          <img src="YOUR_PORTRAIT_IMAGE_NO_BACKGROUND.png" alt="HsinYu Wen"
+               onerror="this.style.display='none'">
           <i class="fas fa-user"></i>
           <span style="font-size:0.58rem;letter-spacing:0.14em;">HSINYU WEN</span>
         </div>
-        <!-- Hashtag orbit: 4 unique tags, scroll-driven brightness -->
+        <!-- Hashtag orbit: 4 tags, scroll-driven brightness -->
         <div class="htag-orbit">
-          <span class="htag ht1" data-idx="0"><span class="hash">#</span>成長型思維</span>
-          <span class="htag ht2" data-idx="1"><span class="hash">#</span>目標導向</span>
-          <span class="htag ht3" data-idx="2"><span class="hash">#</span>勇於挑戰與改變</span>
-          <span class="htag ht4" data-idx="3"><span class="hash">#</span>積極</span>
+          <span class="htag ht1" data-idx="0"><span class="hash">#</span>Growth Mindset</span>
+          <span class="htag ht2" data-idx="1"><span class="hash">#</span>積極主動</span>
+          <span class="htag ht3" data-idx="2"><span class="hash">#</span>細心</span>
+          <span class="htag ht4" data-idx="3"><span class="hash">#</span>有創意</span>
         </div>
       </div>
 
@@ -375,10 +375,10 @@ a { text-decoration: none; color: inherit; }
           同時擁有<span class="hl-w">高度責任感與細節敏感度</span>，能在活動、行政與內容製作中維持零失誤標準，確保行銷營運流程順暢。
         </p>
         <div class="htag-pills" id="pillRow">
-          <span class="hpill" data-idx="0" data-i18n="tag-1"><span class="hash">#</span>成長型思維</span>
-          <span class="hpill" data-idx="1" data-i18n="tag-2"><span class="hash">#</span>目標導向</span>
-          <span class="hpill" data-idx="2" data-i18n="tag-3"><span class="hash">#</span>勇於挑戰與改變</span>
-          <span class="hpill" data-idx="3" data-i18n="tag-4"><span class="hash">#</span>積極</span>
+          <span class="hpill" data-idx="0"><span class="hash">#</span>Growth Mindset</span>
+          <span class="hpill" data-idx="1"><span class="hash">#</span>積極主動</span>
+          <span class="hpill" data-idx="2"><span class="hash">#</span>細心</span>
+          <span class="hpill" data-idx="3"><span class="hash">#</span>有創意</span>
         </div>
       </div>
     </div>
@@ -439,9 +439,9 @@ a { text-decoration: none; color: inherit; }
 <!-- ═══ 02 PROFESSIONAL PROJECTS ═══ -->
 <section class="pro-section" id="pro">
   <div class="pro-inner">
-    <p class="section-eyebrow fade-up" style="color:var(--blue-soft);" data-i18n="s2-eyebrow">02 // Professional Projects</p>
-    <h2 class="fade-up" style="font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:#fff;margin-top:10px;letter-spacing:-0.02em;">
-      Research &amp; <em style="color:rgba(255,255,255,0.28);">Global Experience</em>
+    <p class="section-eyebrow fade-up" style="color:var(--blue);" data-i18n="s2-eyebrow">02 // Professional Projects</p>
+    <h2 class="fade-up" style="font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);font-weight:400;color:var(--text);margin-top:10px;letter-spacing:-0.02em;">
+      Research &amp; <em style="color:var(--muted);">Global Experience</em>
     </h2>
 
     <div class="pro-grid fade-up">
@@ -561,9 +561,9 @@ function handlePhotoReveal() {
     const local = Math.max(0, Math.min(1, (prog - start) / (end - start)));
     // dim base: 0.10 opacity; fully lit: 1.0 opacity
     const opacity = 0.10 + local * 0.90;
-    h.style.color        = `rgba(90,171,240,${opacity})`;
+    h.style.color        = `rgba(0,100,200,${opacity})`;
     h.style.textShadow   = local > 0.05
-      ? `0 0 ${14 * local}px rgba(90,171,240,${0.6 * local}), 0 0 ${32 * local}px rgba(90,171,240,${0.25 * local})`
+      ? `0 0 ${12 * local}px rgba(0,120,212,${0.35 * local})`
       : 'none';
   });
 
@@ -572,9 +572,9 @@ function handlePhotoReveal() {
     const start = idx / n;
     const end   = (idx + 1) / n;
     const local = Math.max(0, Math.min(1, (prog - start) / (end - start)));
-    p.style.color       = `rgba(90,171,240,${0.2 + local * 0.8})`;
-    p.style.borderColor = `rgba(90,171,240,${0.15 + local * 0.85})`;
-    p.style.background  = `rgba(90,171,240,${0.04 + local * 0.08})`;
+    p.style.color       = `rgba(0,100,200,${0.25 + local * 0.75})`;
+    p.style.borderColor = `rgba(0,100,200,${0.15 + local * 0.65})`;
+    p.style.background  = `rgba(0,100,200,${0.03 + local * 0.07})`;
   });
 }
 
@@ -673,20 +673,41 @@ const L = {
 };
 
 function switchLang(lang, e) {
+  // update active button
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-  if(e) e.target.classList.add('active');
+  const activeBtn = document.getElementById(lang === 'en' ? 'lbEN' : 'lbZH');
+  if (activeBtn) activeBtn.classList.add('active');
+
   localStorage.setItem('lang', lang);
+
+  // apply all data-i18n translations
   Object.keys(L[lang]).forEach(k => {
     document.querySelectorAll(`[data-i18n="${k}"]`).forEach(el => { el.innerHTML = L[lang][k]; });
   });
-  // hero title
+
   const isEN = lang === 'en';
+
+  // hero titles
   document.getElementById('ht-main').textContent = isEN ? 'Cross-Disciplinary Talent' : '跨領域人才';
   document.getElementById('ht-sub').textContent  = 'Growth Mindset';
+
   // bio text
   const bioEN = `Capable of <span class="hl-b">breaking down ambiguous problems into executable actions</span> even under high pressure, maintaining high efficiency and quality in <span class="hl-w">cross-functional collaboration</span>.<br><br>I'm <span class="hl-b">self-driven — whenever I encounter a new tool, I dig until I can deliver real output</span>. I self-taught Python and Vissim within four weeks.<br><br>With <span class="hl-w">strong accountability and detail sensitivity</span>, I uphold a zero-error standard across events, administration, and content production.`;
   const bioZH = `具備在<span class="hl-b">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在<span class="hl-w">跨部門協作</span>中保持高效率與高品質輸出。<br><br>我是一個<span class="hl-b">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人，過去曾在四週內自學 Python 與 Vissim。<br><br>同時擁有<span class="hl-w">高度責任感與細節敏感度</span>，能在活動、行政與內容製作中維持零失誤標準，確保行銷營運流程順暢。`;
   document.getElementById('bioText').innerHTML = isEN ? bioEN : bioZH;
+
+  // hashtag orbit text — same 4 tags, bilingual
+  const htagTexts = isEN
+    ? ['Growth Mindset', 'Proactive', 'Detail-Oriented', 'Creative']
+    : ['Growth Mindset', '積極主動', '細心', '有創意'];
+  document.querySelectorAll('.htag').forEach((h, i) => {
+    h.innerHTML = `<span class="hash">#</span>${htagTexts[i] || ''}`;
+  });
+
+  // pill text
+  document.querySelectorAll('.hpill').forEach((p, i) => {
+    p.innerHTML = `<span class="hash">#</span>${htagTexts[i] || ''}`;
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
