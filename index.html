@@ -102,13 +102,13 @@ a { text-decoration: none; color: inherit; }
 .scroll-ind div { width: 1px; height: 28px; background: var(--text); }
 
 /* ───── ABOUT / PHOTO + HASHTAGS ───── */
-.photo-reveal-section { min-height: 200vh; position: relative; background: #050a12; color: #fff; }
+.photo-reveal-section { min-height: 200vh; position: relative; background: #1e2535; color: #fff; }
 .photo-reveal-sticky { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; justify-content: center; padding: 0 60px; overflow: hidden; }
 
 /* corner crosshairs */
 .cw { position: absolute; width: 28px; height: 28px; }
-.cw::before { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:rgba(255,255,255,0.2); }
-.cw::after  { content:''; position:absolute; top:0; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.2); }
+.cw::before { content:''; position:absolute; top:50%; left:0; width:100%; height:1px; background:rgba(255,255,255,0.15); }
+.cw::after  { content:''; position:absolute; top:0; left:50%; width:1px; height:100%; background:rgba(255,255,255,0.15); }
 .cw-tl{top:36px;left:36px} .cw-tr{top:36px;right:36px} .cw-bl{bottom:36px;left:36px} .cw-br{bottom:36px;right:36px}
 
 .photo-layout { display: flex; align-items: center; gap: 80px; max-width: 1100px; width: 100%; }
@@ -118,44 +118,49 @@ a { text-decoration: none; color: inherit; }
 .photo-corner { position: absolute; inset: -10px; pointer-events: none; }
 .photo-corner::before { content:''; position:absolute; top:-1px;left:-1px; width:28px;height:28px; border-top:2px solid var(--blue);border-left:2px solid var(--blue); }
 .photo-corner::after  { content:''; position:absolute; bottom:-1px;right:-1px; width:28px;height:28px; border-bottom:2px solid var(--blue-soft);border-right:2px solid var(--blue-soft); }
-.photo-inner { width:100%; height:100%; background: linear-gradient(140deg,#0d1b2e 0%,#1a3050 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; color:rgba(255,255,255,0.2); font-family:var(--fm); font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; gap:10px; overflow:hidden; position:relative; }
-.photo-inner i { font-size:2.8rem; opacity:0.15; }
+.photo-inner { width:100%; height:100%; background: linear-gradient(140deg,#2a3650 0%,#1e2d48 100%); display:flex; flex-direction:column; align-items:center; justify-content:center; color:rgba(255,255,255,0.25); font-family:var(--fm); font-size:0.6rem; letter-spacing:0.15em; text-transform:uppercase; gap:10px; overflow:hidden; position:relative; }
+.photo-inner i { font-size:2.8rem; opacity:0.2; }
 .photo-inner img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
-/* hashtag orbit */
-.htag-orbit { position:absolute; inset:-90px; pointer-events:none; }
+/* hashtag orbit — # symbol in mono to render correctly, tag text in Cormorant */
+.htag-orbit { position:absolute; inset:-120px; pointer-events:none; z-index:10; }
 .htag {
-  position:absolute; font-family:var(--fm); font-size:0.72rem; font-weight:500;
-  letter-spacing:0.06em; text-transform:uppercase; white-space:nowrap;
-  color:rgba(90,171,240,0.10);
+  position:absolute;
+  font-family: var(--fd);
+  font-size: 1.25rem;
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  color: rgba(90,171,240,0.12);
   transition: color 0.04s linear, text-shadow 0.04s linear;
 }
-/* positions */
-.ht1{top:12%;left:-10px;transform:rotate(-10deg)}
-.ht2{top:42%;left:-50px;transform:rotate(4deg)}
-.ht3{bottom:14%;left:-20px;transform:rotate(-7deg)}
-.ht4{top:8%;right:-30px;transform:rotate(9deg)}
-.ht5{top:50%;right:-45px;transform:rotate(-5deg)}
-.ht6{bottom:12%;right:-25px;transform:rotate(12deg)}
-.ht7{top:-28px;left:28%;transform:rotate(-3deg)}
-.ht8{bottom:-28px;right:22%;transform:rotate(7deg)}
+/* # symbol uses mono so it renders as # not ¥ */
+.htag .hash { font-family: var(--fm); font-style: normal; font-size: 1rem; }
+
+/* positions matching user's marked locations */
+.ht1 { top: -30px;   left: -60px;   transform: rotate(-5deg); }  /* top-left, above photo */
+.ht2 { top: 22%;     right: -130px; transform: rotate(4deg);  }  /* right side, upper-mid */
+.ht3 { bottom: 22%;  left: -130px;  transform: rotate(-4deg); }  /* left side, lower-mid */
+.ht4 { bottom: -35px; left: 10px;   transform: rotate(3deg);  }  /* below photo, left */
 
 /* bottom pill tags */
 .htag-pills { margin-top:30px; display:flex; flex-wrap:wrap; gap:9px; }
 .hpill {
-  font-family:var(--fm); font-size:0.58rem; padding:5px 13px;
-  border:1px solid rgba(90,171,240,0.15); color:rgba(90,171,240,0.2);
-  border-radius:30px; letter-spacing:0.08em;
+  font-family:var(--fd); font-size:0.9rem; font-style:italic; font-weight:600;
+  padding:5px 16px;
+  border:1px solid rgba(90,171,240,0.25); color:rgba(90,171,240,0.35);
+  border-radius:30px; letter-spacing:0.04em;
   transition: color 0.04s linear, border-color 0.04s linear, background 0.04s linear;
 }
 
 /* bio panel */
 .bio-panel { flex:1; }
-.bio-eyebrow { font-family:var(--fm); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--blue-soft); margin-bottom:18px; display:flex; align-items:center; gap:10px; }
+.bio-eyebrow { font-family:var(--fm); font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--blue-soft); margin-bottom:20px; display:flex; align-items:center; gap:10px; }
 .bio-eyebrow::before { content:''; display:block; width:28px; height:1px; background:var(--blue-soft); }
-.bio-text { font-family:'Outfit',sans-serif; font-size:1.02rem; font-weight:300; line-height:2; color:rgba(255,255,255,0.65); }
-.bio-text .hl-b { color:var(--blue-soft); font-weight:500; }
-.bio-text .hl-w { color:#fff; font-weight:500; }
+.bio-text { font-family:'Outfit',sans-serif; font-size:1.02rem; font-weight:400; line-height:2; color:rgba(255,255,255,0.85); }
+.bio-text .hl-b { color:#7ec8f8; font-weight:600; }
+.bio-text .hl-w { color:#ffffff; font-weight:600; border-bottom: 1px solid rgba(255,255,255,0.3); }
 
 /* ───── HORIZONTAL SCROLL PROJECTS ───── */
 .hscroll-wrap { height:350vh; position:relative; background:#f5f5f5; }
@@ -352,16 +357,12 @@ a { text-decoration: none; color: inherit; }
           <i class="fas fa-user"></i>
           <span style="font-size:0.58rem;letter-spacing:0.14em;">HSINYU WEN</span>
         </div>
-        <!-- Hashtag orbit: data-idx ties each tag to a colour stage -->
+        <!-- Hashtag orbit: 4 unique tags, scroll-driven brightness -->
         <div class="htag-orbit">
-          <span class="htag ht1" data-idx="0">#成長型思維</span>
-          <span class="htag ht2" data-idx="1">#目標導向</span>
-          <span class="htag ht3" data-idx="2">#勇於挑戰與改變</span>
-          <span class="htag ht4" data-idx="3">#積極</span>
-          <span class="htag ht5" data-idx="0">#成長型思維</span>
-          <span class="htag ht6" data-idx="1">#目標導向</span>
-          <span class="htag ht7" data-idx="2">#勇於挑戰與改變</span>
-          <span class="htag ht8" data-idx="3">#積極</span>
+          <span class="htag ht1" data-idx="0"><span class="hash">#</span>成長型思維</span>
+          <span class="htag ht2" data-idx="1"><span class="hash">#</span>目標導向</span>
+          <span class="htag ht3" data-idx="2"><span class="hash">#</span>勇於挑戰與改變</span>
+          <span class="htag ht4" data-idx="3"><span class="hash">#</span>積極</span>
         </div>
       </div>
 
@@ -374,10 +375,10 @@ a { text-decoration: none; color: inherit; }
           同時擁有<span class="hl-w">高度責任感與細節敏感度</span>，能在活動、行政與內容製作中維持零失誤標準，確保行銷營運流程順暢。
         </p>
         <div class="htag-pills" id="pillRow">
-          <span class="hpill" data-idx="0" data-i18n="tag-1">#成長型思維</span>
-          <span class="hpill" data-idx="1" data-i18n="tag-2">#目標導向</span>
-          <span class="hpill" data-idx="2" data-i18n="tag-3">#勇於挑戰與改變</span>
-          <span class="hpill" data-idx="3" data-i18n="tag-4">#積極</span>
+          <span class="hpill" data-idx="0" data-i18n="tag-1"><span class="hash">#</span>成長型思維</span>
+          <span class="hpill" data-idx="1" data-i18n="tag-2"><span class="hash">#</span>目標導向</span>
+          <span class="hpill" data-idx="2" data-i18n="tag-3"><span class="hash">#</span>勇於挑戰與改變</span>
+          <span class="hpill" data-idx="3" data-i18n="tag-4"><span class="hash">#</span>積極</span>
         </div>
       </div>
     </div>
@@ -610,7 +611,7 @@ const L = {
     'btn-projects':'Explore Projects','btn-moi':'Microsoft MOI',
     'scroll':'Scroll',
     'bio-label':'Personal Profile',
-    'tag-1':'#Growth Mindset','tag-2':'#Goal-Oriented','tag-3':'#Embrace Change','tag-4':'#Proactive',
+    'tag-1':'<span class="hash">#</span>Growth Mindset','tag-2':'<span class="hash">#</span>Goal-Oriented','tag-3':'<span class="hash">#</span>Embrace Change','tag-4':'<span class="hash">#</span>Proactive',
     's1-eyebrow':'01 // Key Deliverables & Prototypes',
     'c1-tag':'B2B Marketing Strategy',
     'c1-title':'Tachiz × LinkedIn<br>Marketing Strategy',
@@ -644,7 +645,7 @@ const L = {
     'btn-projects':'探索我的專案','btn-moi':'微軟 MOI',
     'scroll':'向下滑動',
     'bio-label':'個人簡介',
-    'tag-1':'#成長型思維','tag-2':'#目標導向','tag-3':'#勇於挑戰與改變','tag-4':'#積極',
+    'tag-1':'<span class="hash">#</span>成長型思維','tag-2':'<span class="hash">#</span>目標導向','tag-3':'<span class="hash">#</span>勇於挑戰與改變','tag-4':'<span class="hash">#</span>積極',
     's1-eyebrow':'01 // 核心交付物與原型',
     'c1-tag':'B2B 行銷策略',
     'c1-title':'Tachiz × LinkedIn<br>行銷策略提案',
