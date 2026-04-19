@@ -334,32 +334,16 @@ body {
 
   <!-- 05 PM Execution System -->
   <div class="project-row layout-a reveal" style="margin-bottom:80px;">
-    <div class="proj-img-wrap" style="background:linear-gradient(135deg,#f0f6ff 0%,#e8f3fc 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px;min-height:340px;">
-      <!-- Mini preview of the PM system tabs -->
-      <div style="width:100%;max-width:360px;border:1px solid rgba(0,120,212,0.15);border-radius:6px;background:#fff;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.06)">
-        <div style="background:#f4f4f4;padding:10px 16px;display:flex;gap:0;border-bottom:1px solid rgba(0,0,0,0.08);overflow:hidden">
-          <div style="font-size:0.55rem;font-weight:700;padding:6px 10px;color:#0078D4;border-bottom:2px solid #0078D4;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">⚙ 專案設定</div>
-          <div style="font-size:0.55rem;font-weight:700;padding:6px 10px;color:#737373;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">👥 成員</div>
-          <div style="font-size:0.55rem;font-weight:700;padding:6px 10px;color:#737373;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">🗓 投票</div>
-          <div style="font-size:0.55rem;font-weight:700;padding:6px 10px;color:#737373;letter-spacing:0.08em;text-transform:uppercase;white-space:nowrap">📊 甘特</div>
+    <div class="proj-img-wrap">
+      <a href="pm-system.html" style="display:block;position:relative;">
+        <img src="pm_execution_system.png" alt="PM Execution System"
+             style="width:100%;display:block;max-height:420px;object-fit:cover;object-position:top;"
+             onerror="this.style.background='#e8f3fc';this.style.minHeight='300px'">
+        <div class="img-hover-text">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          <span>點擊啟動互動系統</span>
         </div>
-        <div style="padding:16px">
-          <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,0.08);margin-bottom:12px">
-            <div style="background:#fff;padding:10px 6px;text-align:center"><div style="font-size:1rem;font-weight:700;color:#0078D4;font-family:Georgia">60</div><div style="font-size:0.5rem;text-transform:uppercase;color:#737373;letter-spacing:0.08em">天數</div></div>
-            <div style="background:#fff;padding:10px 6px;text-align:center"><div style="font-size:1rem;font-weight:700;color:#0078D4;font-family:Georgia">4</div><div style="font-size:0.5rem;text-transform:uppercase;color:#737373;letter-spacing:0.08em">成員</div></div>
-            <div style="background:#fff;padding:10px 6px;text-align:center"><div style="font-size:1rem;font-weight:700;color:#0078D4;font-family:Georgia">8</div><div style="font-size:0.5rem;text-transform:uppercase;color:#737373;letter-spacing:0.08em">會議</div></div>
-            <div style="background:#fff;padding:10px 6px;text-align:center"><div style="font-size:1rem;font-weight:700;color:#0078D4;font-family:Georgia">5</div><div style="font-size:0.5rem;text-transform:uppercase;color:#737373;letter-spacing:0.08em">任務</div></div>
-          </div>
-          <!-- mini gantt bars -->
-          <div style="font-size:0.52rem;text-transform:uppercase;color:#737373;letter-spacing:0.08em;margin-bottom:6px">甘特圖預覽</div>
-          <div style="display:flex;flex-direction:column;gap:4px">
-            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.55rem;color:#737373;min-width:50px">策略企劃</span><div style="height:8px;width:70%;border-radius:3px;background:linear-gradient(90deg,#0078D4,#5aabf0)"></div></div>
-            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.55rem;color:#737373;min-width:50px">內容製作</span><div style="height:8px;width:45%;border-radius:3px;background:linear-gradient(90deg,#0078D4,#5aabf0)"></div></div>
-            <div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.55rem;color:#737373;min-width:50px">數據分析</span><div style="height:8px;width:30%;border-radius:3px;background:linear-gradient(90deg,#16a34a,#4ade80)"></div></div>
-          </div>
-        </div>
-      </div>
-      <div style="font-size:0.65rem;color:#0078D4;font-weight:700;letter-spacing:0.12em;text-transform:uppercase">Interactive System — Click to Launch</div>
+      </a>
     </div>
     <div class="proj-text">
       <div class="proj-num">05</div>
@@ -369,13 +353,39 @@ body {
         為擔任競賽 PM 所自建的全功能專案管理系統，以網頁互動形式呈現原 Excel 系統邏輯。<br><br>
         輸入截止日期、人數與會議頻率，系統自動產出 <strong>甘特圖</strong>、<strong>任務交接表</strong> 與 <strong>會議排程</strong>。
         內建 <strong>When2Meet 時間投票</strong>，PM 設定日期範圍後，各成員直接在網頁上拖曳標記可用時段，自動計算全員交集。
+        支援 <strong>JSON 匯出/匯入</strong>、<strong>PDF 匯出</strong> 與 <strong>localStorage 自動儲存</strong>。
       </p>
       <div class="proj-links">
         <a href="pm-system.html" class="proj-link primary">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
           Launch System
         </a>
       </div>
+    </div>
+  </div>
+
+  <!-- 06 Curriculum & Availability System -->
+  <div class="project-row layout-b reveal" style="margin-bottom:80px;">
+    <div class="proj-text">
+      <div class="proj-num">06</div>
+      <span class="proj-tag">Availability & Schedule System</span>
+      <h2 class="proj-title">Curriculum &amp;<br>Office Availability</h2>
+      <p class="proj-desc">
+        以 Excel 自建的下學期課表系統，供面試官直接參考本人在微軟辦公室的可出勤時間。<br><br>
+        系統分兩部分：<strong>課表視覺化</strong>（輸入課程分類即自動呈現週課表樣式）；<strong>可用時數彙總</strong>（自動計算每日空堂數、可安排在微軟辦公室的小時數與空閒率）。<br><br>
+        另有<strong>課程代碼查詢</strong>功能：輸入課程代碼，右側面板即時顯示課程名稱、教師、時間與大綱連結。
+      </p>
+      <div class="proj-links">
+        <a href="adela.curriclum.xlsx" download class="proj-link primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:middle"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="12" x2="12" y2="18"/><polyline points="9 15 12 18 15 15"/></svg>
+          下載 Excel 課表系統
+        </a>
+      </div>
+    </div>
+    <div class="proj-img-wrap">
+      <img src="excel_curriculum.png" alt="Curriculum System"
+           style="width:100%;display:block;"
+           onerror="this.style.background='#e8f3fc';this.style.minHeight='300px'">
     </div>
   </div>
 
