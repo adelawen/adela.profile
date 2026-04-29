@@ -85,8 +85,27 @@ a { text-decoration: none; color: inherit; }
 .hero-badge { display: inline-block; background: var(--text); color: #fff; font-family: var(--fm); font-size: 0.6rem; padding: 7px 15px; letter-spacing: 0.18em; margin-bottom: 28px; text-transform: uppercase; }
 
 .hero-h1 { font-family: var(--fd); line-height: 1.08; margin-bottom: 26px; letter-spacing: -0.02em; }
-.hero-h1 .t-main { display: block; font-size: clamp(3rem, 7.5vw, 5.8rem); font-weight: 700; color: var(--text); }
-.hero-h1 .t-sub  { display: block; font-size: clamp(2.8rem, 7vw, 5.3rem); font-weight: 400; color: var(--muted); font-style: italic; margin-top: -4px; }
+/* 縮小英文主標尺寸並加入 max-width 與斷字保護，避免在英文模式下被切掉 */
+.hero-h1 .t-main {
+  display: block;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 700;
+  color: var(--text);
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+.hero-h1 .t-sub {
+  display: block;
+  font-size: clamp(2.4rem, 5.8vw, 4.6rem);
+  font-weight: 400;
+  color: var(--muted);
+  font-style: italic;
+  margin-top: -4px;
+}
+/* 中文模式時可放大主標 */
+.hero-h1 .t-main.is-zh { font-size: clamp(3rem, 7.5vw, 5.8rem); }
 
 .hero-desc { font-size: 1.05rem; color: var(--muted); max-width: 680px; margin: 0 auto 36px; font-weight: 300; line-height: 1.9; }
 .hero-desc strong { color: var(--text); font-weight: 600; }
@@ -173,8 +192,6 @@ a { text-decoration: none; color: inherit; }
 .bcard-desc { font-size:0.88rem; color:var(--muted); line-height:1.78; }
 .bcard-meta { margin-top:20px; display:flex; gap:16px; }
 .bcard-badge { font-family:var(--fm); font-size:0.6rem; padding:4px 10px; background:rgba(0,120,212,0.07); color:var(--blue); border-radius:20px; }
-.bcard-link { margin-top:24px; font-family:var(--fm); font-size:0.7rem; font-weight:700; text-transform:uppercase; display:flex; align-items:center; gap:8px; color:var(--muted); transition:0.25s; }
-.bcard:hover .bcard-link { color:var(--blue); gap:14px; }
 
 /* ───── PROFESSIONAL PROJECTS PREVIEW ───── */
 .pro-section { background:#eef0f4; color:var(--text); padding:100px 60px; }
@@ -312,11 +329,11 @@ a { text-decoration: none; color: inherit; }
   <div class="hero-content fade-up">
     <span class="hero-badge" data-i18n="hero-badge">NCKU · TCM Science · 2026</span>
     <h1 class="hero-h1">
-      <span class="t-main" id="ht-main">跨領域人才</span>
+      <span class="t-main is-zh" id="ht-main">跨領域人才</span>
       <span class="t-sub"  id="ht-sub">Growth Mindset</span>
     </h1>
     <p class="hero-desc" data-i18n="hero-desc">
-      國立成功大學交通管理科學系學生，具備<strong>基礎程式能力</strong>（Python · Vissim），以及<strong>企劃執行與撰寫規劃能力</strong>——從工程建模到商業競賽 PM，跨越技術與策略的邊界。
+      國立成功大學交通管理科學系學生,具備<strong>基礎程式能力</strong>(Python · Vissim),以及<strong>企劃執行與撰寫規劃能力</strong>——從工程建模到商業競賽 PM,跨越技術與策略的邊界。
     </p>
     <div class="hero-btn-row">
       <a href="projects.html"          class="btn-outline"><i class="fas fa-folder-open"></i><span data-i18n="btn-projects">Explore Projects</span></a>
@@ -357,9 +374,9 @@ a { text-decoration: none; color: inherit; }
       <div class="bio-panel">
         <div class="bio-eyebrow" data-i18n="bio-label">Personal Profile</div>
         <p class="bio-text" id="bioText">
-          具備在<span class="hl-b">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在<span class="hl-w">跨部門協作</span>中保持高效率與高品質輸出。<br><br>
-          我是一個<span class="hl-b">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人，過去曾在四週內自學 Python 與 Vissim。<br><br>
-          同時擁有<span class="hl-w">高度責任感與細節敏感度</span>，能在活動、行政與內容製作中維持零失誤標準，確保行銷營運流程順暢。
+          具備在<span class="hl-b">高壓下依然能把模糊問題拆解成可執行行動</span>的能力,並能在<span class="hl-w">跨部門協作</span>中保持高效率與高品質輸出。<br><br>
+          我是一個<span class="hl-b">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人,過去曾在四週內自學 Python 與 Vissim。<br><br>
+          同時擁有<span class="hl-w">高度責任感與細節敏感度</span>,能在活動、行政與內容製作中維持零失誤標準,確保行銷營運流程順暢。
         </p>
         <div class="htag-pills" id="pillRow">
           <span class="hpill" data-idx="0"><span class="hash">#</span>Growth Mindset</span>
@@ -383,36 +400,33 @@ a { text-decoration: none; color: inherit; }
         <div class="bcard-num">01</div>
         <div class="bcard-tag blue" data-i18n="c1-tag">B2B Marketing Strategy</div>
         <h3 class="bcard-title" data-i18n="c1-title">Tachiz × LinkedIn<br>行銷策略提案</h3>
-        <p class="bcard-desc" data-i18n="c1-desc">針對台灣爆爆珠品牌 Tachiz 制定 LinkedIn B2B 行銷策略（2026/03）。深入研究 LinkedIn 2026 演算法機制、自學輪播圖製作並實際發文執行。提案100%獲團隊採納。</p>
+        <p class="bcard-desc" data-i18n="c1-desc">針對台灣爆爆珠品牌 Tachiz 制定 LinkedIn B2B 行銷策略(2026/03)。深入研究 LinkedIn 2026 演算法機制、自學輪播圖製作並實際發文執行。提案100%獲團隊採納。</p>
         <div class="bcard-meta">
           <span class="bcard-badge">100% Adopted</span>
           <span class="bcard-badge">LinkedIn 2026 Algo</span>
         </div>
-        <a href="#" class="bcard-link" data-i18n="view-case">Explore Case <i class="fas fa-arrow-right"></i></a>
       </div>
 
       <div class="bcard fade-up">
         <div class="bcard-num">02</div>
         <div class="bcard-tag" data-i18n="c2-tag">Project Management · PM</div>
         <h3 class="bcard-title" data-i18n="c2-title">DreamHack 交大<br>創業競賽 — 銀牌</h3>
-        <p class="bcard-desc" data-i18n="c2-desc">擔任團隊 PM，負責分工規劃、兩日進度管理、簡報共編與架構撰寫。提出「數位孿生應用於醫療訓練」核心概念，100%獲採納並主導整份競賽執行。在48組（3-5人/組）參賽的交大兩日黑客松中獲得第二名，並獲 Tera Thinker 創辦人合作邀約。</p>
+        <p class="bcard-desc" data-i18n="c2-desc">擔任團隊 PM,負責分工規劃、兩日進度管理、簡報共編與架構撰寫。提出「數位孿生應用於醫療訓練」核心概念,100%獲採納並主導整份競賽執行。在48組(3-5人/組)參賽的交大兩日黑客松中獲得第二名,並獲 Tera Thinker 創辦人合作邀約。</p>
         <div class="bcard-meta">
           <span class="bcard-badge">2nd / 48 Teams</span>
           <span class="bcard-badge">Digital Twin</span>
         </div>
-        <a href="#" class="bcard-link" data-i18n="view-case">Explore Case <i class="fas fa-arrow-right"></i></a>
       </div>
 
       <div class="bcard fade-up">
         <div class="bcard-num">03</div>
         <div class="bcard-tag" data-i18n="c3-tag">Engineering + ESG Logistics · PM</div>
         <h3 class="bcard-title" data-i18n="c3-title">iLink 創見南方<br>競賽 — 冠軍</h3>
-        <p class="bcard-desc" data-i18n="c3-desc">擔任 PM，構思台南東區勝利國小步行校車方案：研究周遭交通、以 Affinity Designer 繪製疏導路線、規劃停車區、建置 Line Bot 調度系統，組織團隊任務分配。書審+決賽共40+組，獲得南區創見南方首獎。</p>
+        <p class="bcard-desc" data-i18n="c3-desc">擔任 PM,構思台南東區勝利國小步行校車方案:研究周遭交通、以 Affinity Designer 繪製疏導路線、規劃停車區、建置 Line Bot 調度系統,組織團隊任務分配。書審+決賽共40+組,獲得南區創見南方首獎。</p>
         <div class="bcard-meta">
           <span class="bcard-badge">1st / 40+ Teams</span>
           <span class="bcard-badge">Line Bot · Traffic Modeling</span>
         </div>
-        <a href="#" class="bcard-link" data-i18n="view-case">Explore Case <i class="fas fa-arrow-right"></i></a>
       </div>
 
     </div>
@@ -430,7 +444,7 @@ a { text-decoration: none; color: inherit; }
       <div class="pcard">
         <div class="pcard-tag" data-i18n="p1-tag">學海惜珠 / MOE Scholars Program</div>
         <div class="pcard-title" data-i18n="p1-title">Green Last-Mile Transformation<br><span style="font-weight:300;font-size:0.95rem;">Liverpool University Internship · 2026</span></div>
-        <p class="pcard-body" data-i18n="p1-body">獲開南大學陳韜博士推薦，從 20 位申請者中脫穎而出，成為成功大學五位錄取者之一（全國18人之一）。以 DHL Express Taiwan 最後一哩路永續研究與 IELTS 6.5 通過審核，獲教育部全額贊助赴英實習。研究成果已入選學術論文集發表。</p>
+        <p class="pcard-body" data-i18n="p1-body">獲開南大學陳韜博士推薦,從 20 位申請者中脫穎而出,成為成功大學五位錄取者之一(全國18人之一)。以 DHL Express Taiwan 最後一哩路永續研究與 IELTS 6.5 通過審核,獲教育部全額贊助赴英實習。研究成果已入選學術論文集發表。</p>
         <div class="pcard-stats">
           <div><div class="pstat-num">18選1</div><div class="pstat-lbl">全國錄取比</div></div>
           <div><div class="pstat-num">NT$100K</div><div class="pstat-lbl">獎學金</div></div>
@@ -440,7 +454,7 @@ a { text-decoration: none; color: inherit; }
       <div class="pcard">
         <div class="pcard-tag" data-i18n="p2-tag">國科會大專生研究計畫 / NSTC Research</div>
         <div class="pcard-title" data-i18n="p2-title">自適應式號誌連鎖影響研究<br><span style="font-weight:300;font-size:0.95rem;">Adaptive Signal Retiming · In Progress</span></div>
-        <p class="pcard-body" data-i18n="p2-body">2026年1月提案，目前執行中。針對行人偵測觸發之延遲補償特性，探討五個路口的號誌連鎖協調效果。四週內自學 Vissim 交通模擬軟體與 Python，獨立完成數據建模與模擬，展現快速習得技術工具並轉化研究產出的能力。</p>
+        <p class="pcard-body" data-i18n="p2-body">2026年1月提案,目前執行中。針對行人偵測觸發之延遲補償特性,探討五個路口的號誌連鎖協調效果。四週內自學 Vissim 交通模擬軟體與 Python,獨立完成數據建模與模擬,展現快速習得技術工具並轉化研究產出的能力。</p>
         <div class="pcard-stats">
           <div><div class="pstat-num">5</div><div class="pstat-lbl">模擬路口數</div></div>
           <div><div class="pstat-num">4 wks</div><div class="pstat-lbl">自學 Vissim+Python</div></div>
@@ -593,7 +607,6 @@ const L = {
     'c3-tag':'Engineering + ESG Logistics · PM',
     'c3-title':'iLink Creative South<br>Competition — Champion',
     'c3-desc':'Served as PM: designed a walking school bus scheme for Tainan\'s Shengli Elementary zone without disrupting traffic. Researched local traffic, drew diversion routes in Affinity Designer, planned parking areas, built a Line Bot dispatch system, and allocated team tasks. Won 1st place among 40+ finalists.',
-    'view-case':'Explore Case <i class="fas fa-arrow-right"></i>',
     's2-eyebrow':'02 // Professional Projects',
     'p1-tag':'學海惜珠 / MOE Scholars Program',
     'p1-title':'Green Last-Mile Transformation<br><span style="font-weight:300;font-size:.95rem;">Liverpool University Internship · 2026</span>',
@@ -619,25 +632,24 @@ const L = {
     's1-eyebrow':'01 // 核心交付物與原型',
     'c1-tag':'B2B 行銷策略',
     'c1-title':'Tachiz × LinkedIn<br>行銷策略提案',
-    'c1-desc':'針對台灣爆爆珠品牌 Tachiz 制定 LinkedIn B2B 行銷策略（2026/03）。深入研究 LinkedIn 2026 演算法機制、自學輪播圖製作並實際發文執行。提案100%獲團隊採納。',
+    'c1-desc':'針對台灣爆爆珠品牌 Tachiz 制定 LinkedIn B2B 行銷策略(2026/03)。深入研究 LinkedIn 2026 演算法機制、自學輪播圖製作並實際發文執行。提案100%獲團隊採納。',
     'c2-tag':'專案管理 · PM',
     'c2-title':'DreamHack 交大<br>創業競賽 — 銀牌',
-    'c2-desc':'擔任團隊 PM，負責分工規劃、兩日進度管理、簡報共編與架構撰寫。提出「數位孿生應用於醫療訓練」核心概念，100%獲採納並主導整份競賽執行。在48組（3-5人/組）參賽的交大兩日黑客松中獲得第二名，並獲 Tera Thinker 創辦人合作邀約。',
+    'c2-desc':'擔任團隊 PM,負責分工規劃、兩日進度管理、簡報共編與架構撰寫。提出「數位孿生應用於醫療訓練」核心概念,100%獲採納並主導整份競賽執行。在48組(3-5人/組)參賽的交大兩日黑客松中獲得第二名,並獲 Tera Thinker 創辦人合作邀約。',
     'c3-tag':'工程 + ESG 物流 · PM',
     'c3-title':'iLink 創見南方<br>競賽 — 冠軍',
-    'c3-desc':'擔任 PM，構思台南東區勝利國小步行校車方案：研究周遭交通、以 Affinity Designer 繪製疏導路線、規劃停車區、建置 Line Bot 調度系統，組織團隊任務分配。書審+決賽共40+組，獲得南區創見南方首獎。',
-    'view-case':'探索專案 <i class="fas fa-arrow-right"></i>',
+    'c3-desc':'擔任 PM,構思台南東區勝利國小步行校車方案:研究周遭交通、以 Affinity Designer 繪製疏導路線、規劃停車區、建置 Line Bot 調度系統,組織團隊任務分配。書審+決賽共40+組,獲得南區創見南方首獎。',
     's2-eyebrow':'02 // 專業研究計畫',
     'p1-tag':'學海惜珠 / MOE Scholars Program',
     'p1-title':'Green Last-Mile Transformation<br><span style="font-weight:300;font-size:.95rem;">Liverpool University 實習 · 2026</span>',
-    'p1-body':'獲開南大學陳韜博士推薦，從 20 位申請者中脫穎而出，成為成功大學五位錄取者之一（全國18人之一）。以 DHL Express Taiwan 最後一哩路永續研究與 IELTS 6.5 通過審核，獲教育部全額贊助赴英實習。研究成果已入選學術論文集發表。',
+    'p1-body':'獲開南大學陳韜博士推薦,從 20 位申請者中脫穎而出,成為成功大學五位錄取者之一(全國18人之一)。以 DHL Express Taiwan 最後一哩路永續研究與 IELTS 6.5 通過審核,獲教育部全額贊助赴英實習。研究成果已入選學術論文集發表。',
     'p2-tag':'國科會大專生研究計畫 / NSTC Research',
     'p2-title':'自適應式號誌連鎖影響研究<br><span style="font-weight:300;font-size:.95rem;">行人偵測延遲補償 · 執行中</span>',
-    'p2-body':'2026年1月提案，目前執行中。針對行人偵測觸發之延遲補償特性，探討五個路口的號誌連鎖協調效果。四週內自學 Vissim 交通模擬軟體與 Python，獨立完成數據建模與模擬。',
+    'p2-body':'2026年1月提案,目前執行中。針對行人偵測觸發之延遲補償特性,探討五個路口的號誌連鎖協調效果。四週內自學 Vissim 交通模擬軟體與 Python,獨立完成數據建模與模擬。',
     's3-eyebrow':'03 // 影響力指標',
     'm1':'策略提案採用率','m2':'學海惜珠 全國/成大','m3':'iLink 創見南方冠軍','m4':'DreamHack 第二名 / 48組',
     'm5':'B2B 內容優化','m6':'敏捷專案管理',
-    'hero-desc':'國立成功大學交通管理科學系學生，具備<strong>基礎程式能力</strong>（Python · Vissim），以及<strong>企劃執行與撰寫規劃能力</strong>——從工程建模到商業競賽 PM，跨越技術與策略的邊界。',
+    'hero-desc':'國立成功大學交通管理科學系學生,具備<strong>基礎程式能力</strong>(Python · Vissim),以及<strong>企劃執行與撰寫規劃能力</strong>——從工程建模到商業競賽 PM,跨越技術與策略的邊界。',
     'foot-copy':'© 2026 HsinYu Wen — 國立成功大學 交通管理科學系'
   }
 };
@@ -655,11 +667,18 @@ function switchLang(lang, e) {
 
   const isEN = lang === 'en';
 
-  document.getElementById('ht-main').textContent = isEN ? 'Cross-Disciplinary Talent' : '跨領域人才';
+  const htMain = document.getElementById('ht-main');
+  htMain.textContent = isEN ? 'Cross-Disciplinary Talent' : '跨領域人才';
+  // 英文模式下移除 is-zh class,套用較小的字級避免被切掉
+  if (isEN) {
+    htMain.classList.remove('is-zh');
+  } else {
+    htMain.classList.add('is-zh');
+  }
   document.getElementById('ht-sub').textContent  = 'Growth Mindset';
 
   const bioEN = `Capable of <span class="hl-b">breaking down ambiguous problems into executable actions</span> even under high pressure, maintaining high efficiency and quality in <span class="hl-w">cross-functional collaboration</span>.<br><br>I'm <span class="hl-b">self-driven — whenever I encounter a new tool, I dig until I can deliver real output</span>. I self-taught Python and Vissim within four weeks.<br><br>With <span class="hl-w">strong accountability and detail sensitivity</span>, I uphold a zero-error standard across events, administration, and content production.`;
-  const bioZH = `具備在<span class="hl-b">高壓下依然能把模糊問題拆解成可執行行動</span>的能力，並能在<span class="hl-w">跨部門協作</span>中保持高效率與高品質輸出。<br><br>我是一個<span class="hl-b">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人，過去曾在四週內自學 Python 與 Vissim。<br><br>同時擁有<span class="hl-w">高度責任感與細節敏感度</span>，能在活動、行政與內容製作中維持零失誤標準，確保行銷營運流程順暢。`;
+  const bioZH = `具備在<span class="hl-b">高壓下依然能把模糊問題拆解成可執行行動</span>的能力,並能在<span class="hl-w">跨部門協作</span>中保持高效率與高品質輸出。<br><br>我是一個<span class="hl-b">自我驅動、遇到新工具會主動鑽研到能實際產出</span>的人,過去曾在四週內自學 Python 與 Vissim。<br><br>同時擁有<span class="hl-w">高度責任感與細節敏感度</span>,能在活動、行政與內容製作中維持零失誤標準,確保行銷營運流程順暢。`;
   document.getElementById('bioText').innerHTML = isEN ? bioEN : bioZH;
 
   const htagTexts = isEN
